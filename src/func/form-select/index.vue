@@ -1,7 +1,7 @@
 <template>
   <i-select v-model="center[currentVal.dragItem.key]"
             :disabled="currentVal.dragItem.disabled" :style="{width:`${currentVal.dragItem.widthRatio}%`}"
-            @on-change="clickChange" :clearable="true">
+            @on-change="clickChange" :clearable="currentVal.dragItem.clearable">
     <i-option v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"
               :value="item.value" :key="item.value">
       <span>{{item.title}}</span>

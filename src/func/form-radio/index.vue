@@ -1,12 +1,12 @@
 <template>
   <RadioGroup class="f-radio fn-flex flex-row" v-model="center[currentVal.dragItem.key]"
-              :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
+              @on-change="clickChange">
     <Radio v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"
-           :label="item.value" :key="item.value">
+           :disabled="currentVal.dragItem.disabled" :label="item.value" :key="item.value">
       {{item.title}}
     </Radio>
     <Radio v-if="currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.ajaxList" :label="item.value"
-           :key="item.value">
+           :disabled="currentVal.dragItem.disabled" :key="item.value">
       {{item.title}}
     </Radio>
   </RadioGroup>
@@ -60,5 +60,7 @@
   .f-radio {
     height: 32px;
     align-items: center;
+    display: flex!important;
+    display: -webkit-flex!important;
   }
 </style>

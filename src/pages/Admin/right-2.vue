@@ -1,97 +1,97 @@
 <template>
   <div>
-    <div>
-      <label class="fn-block">字段id</label>
+    <div class="fish-control">
+      <label>字段id</label>
       <i-input v-model="item.dragItem.id" :disabled="true"/>
     </div>
-    <div>
-      <label class="fn-block">字段标识</label>
-      <i-input :disabled="item.dragItem.business" :value="item.dragItem.diyKey?item.dragItem.diyKey:item.dragItem.key"
+    <div class="fish-control" v-if="item.dragItem.type!=='divider'">
+      <label>字段标识</label>
+      <i-input :value="item.dragItem.key"
                @on-change="e=>keyChange(e)" v-if="item.dragItem.type!=='dateRange'"/>
-      <i-input :disabled="item.dragItem.business" :value="item.dragItem.key.split(';')[0]"
+      <i-input :value="item.dragItem.key.split(';')[0]"
                @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dragItem.type==='dateRange'"/>
-      <i-input :disabled="item.dragItem.business" :value="item.dragItem.key.split(';')[1]"
+      <i-input :value="item.dragItem.key.split(';')[1]"
                @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.type==='dateRange'"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
-      <label class="fn-block">组件提示字</label>
-      <i-input :disabled="item.dragItem.business" v-model="item.dragItem.placeholder"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
+      <label>组件提示字</label>
+      <i-input v-model="item.dragItem.placeholder"
                @on-change="e=>inputChange(e,'placeholder')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('disabled')!==-1">
-      <label class="fn-block">组件禁用</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('disabled')!==-1">
+      <label>组件禁用</label>
       <RadioGroup v-model="item.dragItem.disabled?1:0" type="button" size="large"
                   @on-change="value=>checkChange(!!value,'disabled')">
-        <Radio :label="1" :disabled="item.dragItem.business">禁用</Radio>
-        <Radio :label="0" :disabled="item.dragItem.business">可用</Radio>
+        <Radio :label="1">禁用</Radio>
+        <Radio :label="0">可用</Radio>
       </RadioGroup>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('required')!==-1">
-      <label class="fn-block">是否必填</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('required')!==-1">
+      <label>是否必填</label>
       <RadioGroup v-model="item.dragItem.required?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'required')">
-        <Radio :label="1" :disabled="item.dragItem.business">是</Radio>
-        <Radio :label="0" :disabled="item.dragItem.business">否</Radio>
+        <Radio :label="1">是</Radio>
+        <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('clearable')!==-1">
-      <label class="fn-block">是否可以清除值</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('clearable')!==-1">
+      <label>是否可以清除值</label>
       <RadioGroup v-model="item.dragItem.clearable?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'clearable')">
-        <Radio :label="1" :disabled="item.dragItem.business">是</Radio>
-        <Radio :label="0" :disabled="item.dragItem.business">否</Radio>
+        <Radio :label="1">是</Radio>
+        <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('alpha')!==-1">
-      <label class="fn-block">是否支持透明度选择</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('alpha')!==-1">
+      <label>是否支持透明度选择</label>
       <RadioGroup v-model="item.dragItem.alpha?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'alpha')">
-        <Radio :label="1" :disabled="item.dragItem.business">是</Radio>
-        <Radio :label="0" :disabled="item.dragItem.business">否</Radio>
+        <Radio :label="1">是</Radio>
+        <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('showText')!==-1">
-      <label class="fn-block">是否显示提示文字</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('showText')!==-1">
+      <label>是否显示提示文字</label>
       <RadioGroup v-model="item.dragItem.showText?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'showText')">
-        <Radio :label="1" :disabled="item.dragItem.business">是</Radio>
-        <Radio :label="0" :disabled="item.dragItem.business">否</Radio>
+        <Radio :label="1">是</Radio>
+        <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('defaultSelectIndex')!==-1">
-      <label class="fn-block">默认选择项（第几项）</label>
-      <i-input :disabled="item.dragItem.business" v-model="item.dragItem.defaultSelectIndex"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('defaultSelectIndex')!==-1">
+      <label>默认选择项（第几项）</label>
+      <i-input v-model="item.dragItem.defaultSelectIndex"
                @on-change="e=>inputChange(e,'defaultSelectIndex')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('character')!==-1">
-      <label class="fn-block">自定义字符</label>
-      <i-input :disabled="item.dragItem.business" v-model="item.dragItem.character"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('character')!==-1">
+      <label>自定义字符</label>
+      <i-input v-model="item.dragItem.character"
                @on-change="e=>inputChange(e,'character')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('step')!==-1">
-      <label class="fn-block">步长</label>
-      <i-input :disabled="item.dragItem.business" v-model="item.dragItem.step"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('step')!==-1">
+      <label>步长</label>
+      <i-input v-model="item.dragItem.step"
                @on-change="e=>inputChange(e,'step')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('max')!==-1">
-      <label class="fn-block">最大值</label>
-      <i-input :disabled="item.dragItem.business" v-model="item.dragItem.max"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('max')!==-1">
+      <label>最大值</label>
+      <i-input v-model="item.dragItem.max"
                @on-change="e=>inputChange(e,'max')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('min')!==-1">
-      <label class="fn-block">最小值</label>
-      <i-input :disabled="item.dragItem.business" v-model="item.dragItem.min"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('min')!==-1">
+      <label>最小值</label>
+      <i-input v-model="item.dragItem.min"
                @on-change="e=>inputChange(e,'min')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('selectList')!==-1">
-      <label class="fn-block">选择项配置</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('selectList')!==-1">
+      <label>选择项配置</label>
       <RadioGroup v-model="tab" type="button" size="large">
-        <Radio :label="1" :disabled="item.dragItem.business">选择项配置</Radio>
-        <Radio :label="2" :disabled="item.dragItem.business">选择项数据地址</Radio>
+        <Radio :label="1">选择项配置</Radio>
+        <Radio :label="2">选择项数据地址</Radio>
       </RadioGroup>
       <ul class="select-list" v-if="tab===1">
         <li class="fn-flex flex-row">
@@ -100,10 +100,10 @@
         </li>
         <li class="fn-flex flex-row" v-for="(child,index) in item.dragItem.selectList">
           <i-input style="width: 195px" v-model="child.title"
-                   :disabled="item.dragItem.business"
+
                    @on-change="e=>inputTitleChange(e,index)"/>
           <i-input style="width: 195px;margin-left: 10px;" v-model="child.value"
-                   :disabled="item.dragItem.business"
+
                    @on-change="e=>inputValueChange(e,index)"/>
           <span :class="item.dragItem.selectList.length>1?'':'disabled'" class="select-del text-center pointer"
                 @click="selectDelChange(index)">-</span>
@@ -111,30 +111,27 @@
         </li>
       </ul>
       <label v-if="tab===2" class="fn-block">配置数据地址后，选择项配置将失效</label>
-      <i-input v-if="tab===2" v-model="item.dragItem.selectListUrl" :disabled="item.dragItem.business"
+      <i-input v-if="tab===2" v-model="item.dragItem.selectListUrl"
                @on-change="e=>selectListUrlChange(e,'selectListUrl')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('regular')!==-1">
-      <label class="fn-block">正则校验</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('regular')!==-1">
+      <label>正则校验</label>
     </div>
-
-    <div v-if="item.dragItem.changeList.indexOf('controlOthersUpdate')!==-1">
-      <label class="fn-block">控制其他组件更新</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('controlOthersUpdate')!==-1">
+      <label>控制其他组件更新</label>
       <Transfer
         not-found-text=""
-        :disabled="item.dragItem.business"
         :data="componentList"
         :titles="['所有组件','需要更新的组件']"
         :target-keys="item.dragItem.controlOthersUpdateTargetKeys"
         @on-change="controlOthersUpdateChange"></Transfer>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('controlOthersHide')!==-1">
-      <label class="fn-block">控制其他组件隐藏</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('controlOthersHide')!==-1">
+      <label>控制其他组件隐藏</label>
       <ul>
         <li v-for="child in item.dragItem.ajaxList" v-if="item.dragItem.selectListUrl">
           <span>选择 <strong>{{child.title}}</strong> 时需要隐藏的组件</span>
           <Transfer
-            :disabled="item.dragItem.business"
             not-found-text=""
             :data="componentList"
             :titles="['所有组件','需要隐藏的组件']"
@@ -144,7 +141,7 @@
         <li v-for="child in item.dragItem.selectList" v-if="!item.dragItem.selectListUrl">
           <span>选择 <strong>{{child.title}}</strong> 时需要隐藏的组件</span>
           <Transfer
-            :disabled="item.dragItem.business"
+
             not-found-text=""
             :data="componentList"
             :titles="['所有组件','需要隐藏的组件']"
@@ -176,7 +173,8 @@
       componentList() {
         let mockData = [];
         for (let i = 0; i <= this.center.list.length - 1; i++) {
-          if (this.item.dragItem.id !== this.center.list[i].dragItem.id) {
+          if (this.item.dragItem.id !== this.center.list[i].dragItem.id &&
+            this.center.list[i].dragItem.type !== 'divider') {
             mockData.push({
               key: this.center.list[i].dragItem.id,
               label: this.center.list[i].dragItem.title,

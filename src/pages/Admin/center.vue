@@ -4,10 +4,15 @@
       <h2>功能区</h2>
       <ul class="fn-flex flex-row">
         <li class="pointer" @click="clear">清空</li>
-        <li class="pointer" @click="modelDataShow">数据预览</li>
-        <li class="pointer" @click="modelPreviewShow">组件预览</li>
-        <li class="pointer" @click="modelBuyShow">源码查看</li>
-        <li class="pointer" @click="updateLog">更新日志</li>
+        <Dropdown @on-click="handlePreview">
+          <a>预览
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <DropdownItem name="data">数据预览</DropdownItem>
+            <DropdownItem name="preview">组件预览</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </ul>
     </div>
     <div class="fish-drag">
@@ -60,20 +65,16 @@
       document.addEventListener('mouseup', this.add);
     },
     methods: {
-      updateLog(){
-        this.$router.push('/updateLog')
+      handlePreview(name) {
+        if (name === 'preview') {
+          this.$store.commit('model/previewShow');
+        }
+        if (name === 'data') {
+          this.$store.commit('model/dataShow');
+        }
       },
-      layoutUpdatedEvent(){
+      layoutUpdatedEvent() {
         this.$store.commit('center/sort');
-      },
-      modelPreviewShow() {
-        this.$store.commit('model/previewShow');
-      },
-      modelBuyShow(){
-        this.$store.commit('model/buyShow');
-      },
-      modelDataShow() {
-        this.$store.commit('model/dataShow');
       },
       clear() {
         this.$store.commit('center/clear');
@@ -89,7 +90,7 @@
         const y = e.y + document.documentElement.scrollTop;
         const drag = document.getElementsByClassName('fish-drag')[0];
         if (x >= 260 && x <= 260 + drag.clientWidth &&
-          y >= 10 + 70 && y <= drag.clientHeight + 70) {
+          y >= 10 + 70 + 80 && y <= drag.clientHeight + 70) {
           if (this.component.drag) {
             this.canAdd = true;
           } else {
@@ -114,7 +115,17 @@
   .fish-drag {
     border: 1px dashed #ddd;
     border-radius: 4px;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 200px);
+  }
+
+  .ivu-dropdown {
+    margin-right: 10px;
+
+    &.disabled {
+      a {
+        color: #ddd;
+      }
+    }
   }
 
   .fish-fn {

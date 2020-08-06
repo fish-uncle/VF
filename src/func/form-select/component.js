@@ -10,6 +10,7 @@ const component = {
   widthRatio: 100,
   required: false,
   addLink: [],
+  clearable: true,
   removeLink: [],
   selectList: [
     {
@@ -35,6 +36,7 @@ const component = {
     'widthRatio',
     'disabled',
     'required',
+    'clearable',
     // 'defaultSelectIndex',
     'selectList',
     'selectListUrl',

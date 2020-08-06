@@ -13,11 +13,11 @@
       <ul class="pos-r fn-flex flex-row">
         <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.business"/>
       </ul>
-<!--      <div class="pos-a func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
+      <!--      <div class="pos-a func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
     </div>
     <div class="pos-a drag text-center"
          :class="[component.drag?'active z-index-999':'',component.remove?'remove':'']"
-         :style="{left:component.dragItem.x + 'px',top:component.dragItem.y + 50 - scrollTop+'px'}">
+         :style="{left:component.dragItem.x + 10 + 'px',top:component.dragItem.y - 30 - scrollTop+'px'}">
       {{component.dragItem.title}}
     </div>
   </div>
@@ -70,7 +70,7 @@
 
   .func {
     width: 250px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 130px);
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;

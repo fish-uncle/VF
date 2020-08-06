@@ -7,21 +7,21 @@ Vue.use(ViewUI);
 import router from './router';
 import store from './store';
 import plugins from '../plugins';
-import FishComponent from './pages/form-components';
-import FormList from './pages/form-list';
-import FormInput from './components/form-input';
-import FormTextArea from './components/form-textarea';
-import FormSwitch from './components/form-switch';
-import FormSelect from './components/form-select';
-import FormRadio from './components/form-radio';
-import FormMultiple from './components/form-multiple';
-import FormImage from './components/form-image';
-import FormDatePicker from './components/form-datePicker';
-import FormDateRange from './components/form-dateRange';
-import FormRate from './components/form-rate';
-import FormSlider from './components/form-slider';
-import FormDivider from './components/form-divider';
-import FormColorPicker from './components/form-colorPicker';
+import FishComponent from './components/FormComponents';
+import FormList from './components/FormList';
+import FormInput from './func/form-input';
+import FormTextArea from './func/form-textarea';
+import FormSwitch from './func/form-switch';
+import FormSelect from './func/form-select';
+import FormRadio from './func/form-radio';
+import FormMultiple from './func/form-multiple';
+import FormImage from './func/form-image';
+import FormDatePicker from './func/form-datePicker';
+import FormDateRange from './func/form-dateRange';
+import FormRate from './func/form-rate';
+import FormSlider from './func/form-slider';
+import FormDivider from './func/form-divider';
+import FormColorPicker from './func/form-colorPicker';
 import JsonViewer from 'vue-json-viewer';
 
 Vue.component('f-component', FishComponent);
@@ -56,3 +56,10 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#root");
+
+console.log(
+  `%c VF %c v1.0.8 %c`,
+  'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+  'background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+  'background:transparent'
+)

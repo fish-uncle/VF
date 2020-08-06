@@ -1,20 +1,20 @@
-import Input from '../components/form-input/component'
-import Textarea from '../components/form-textarea/component'
-import Switch from '../components/form-switch/component'
-import Radio from '../components/form-radio/component'
-import Select from '../components/form-select/component'
-import Multiple from '../components/form-multiple/component'
+import Input from '../func/form-input/component'
+import Textarea from '../func/form-textarea/component'
+import Switch from '../func/form-switch/component'
+import Radio from '../func/form-radio/component'
+import Select from '../func/form-select/component'
+import Multiple from '../func/form-multiple/component'
 // import Image from '../components/form-image/component'
-import DateRange from '../components/form-dateRange/component'
-import DatePicker from '../components/form-datePicker/component'
-import Rate from '../components/form-rate/component'
-import Slider from '../components/form-slider/component'
-import ColorPicker from '../components/form-colorPicker/component'
-import Divider from '../components/form-divider/component'
+import DateRange from '../func/form-dateRange/component'
+import DatePicker from '../func/form-datePicker/component'
+import Rate from '../func/form-rate/component'
+import Slider from '../func/form-slider/component'
+import ColorPicker from '../func/form-colorPicker/component'
+import Divider from '../func/form-divider/component'
 
 const xStart = 0; // 起始 x 轴
-const yStart1 = 0; // 基础组件 起始 y 轴
-const yStart2 = 40; // 修饰组件 起始 y 轴
+const yStart1 = 80; // 基础组件 起始 y 轴
+const yStart2 = 120; // 修饰组件 起始 y 轴
 const width = 108; // 拖动块宽度
 const height = 30; // 拖动块高度
 const yStep = 40; // 拖动块间隔高度

@@ -1,17 +1,23 @@
 const component = {
-  title: '分割线',
+  title: '日期范围',
   version: '1.0.0',
-  business: true,
-  type: 'divider',
+  business: false,
+  type: 'dateRange',
   h: 2,
   disabled: false,
-  labelWidth: 0,
+  labelWidth: 100,
+  clearable: true,
   labelTextAlign: 'right',
   required: false,
-  alpha: false,
   changeList: [
     'title',
     'labelTextAlign',
+    'labelWidth',
+
+    'key',
+    'disabled',
+    'required',
+    'clearable',
   ]
 }
 

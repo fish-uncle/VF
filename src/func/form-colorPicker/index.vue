@@ -1,20 +1,28 @@
 <template>
-  <Date-picker type="daterange" v-model="center[currentVal.dragItem.key]" @on-change="dateChange" :disabled="currentVal.dragItem.disabled"/>
+  <ColorPicker v-model="color"
+               @on-change="colorChange"
+               :alpha="currentVal.dragItem.alpha"
+               :disabled="currentVal.dragItem.disabled"/>
 </template>
 <script>
   import {mapState} from 'vuex';
 
   export default {
     data() {
+      let color = '';
       return {
+        color,
         currentVal: this.value,
       }
     },
-    computed: mapState(["center"]),
+    computed: {
+      ...mapState(["center"]),
+    },
     props: ["value"],
     watch: {
       value(val) {
         this.currentVal = val;
+        this.color = this.center[this.currentVal.dragItem.key];
       }
     },
     methods: {
@@ -25,8 +33,8 @@
           key: this.currentVal.dragItem.key
         })
       },
-      dateChange(value) {
-        this.$store.commit('center/changeDateRange', {
+      colorChange(value) {
+        this.$store.commit('center/changeData', {
           value,
           key: this.currentVal.dragItem.key
         })

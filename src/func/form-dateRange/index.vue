@@ -1,5 +1,10 @@
 <template>
-  <Date-picker v-model="center[currentVal.dragItem.key]" @on-change="dateChange" :disabled="currentVal.dragItem.disabled"/>
+  <Date-picker class="f-date-range"
+               type="daterange"
+               v-model="center[currentVal.dragItem.key]"
+               :clearable="currentVal.dragItem.clearable"
+               @on-change="dateChange"
+               :disabled="currentVal.dragItem.disabled"/>
 </template>
 <script>
   import {mapState} from 'vuex';
@@ -26,7 +31,7 @@
         })
       },
       dateChange(value) {
-        this.$store.commit('center/changeData', {
+        this.$store.commit('center/changeDateRange', {
           value,
           key: this.currentVal.dragItem.key
         })

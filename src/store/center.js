@@ -54,6 +54,8 @@ const store = {
         case 'switch':
           data[key] = false;
           break;
+        case 'divider':
+          break;
         case 'multiple':
           data[key] = [];
           break;

@@ -1,27 +1,35 @@
 <template>
   <div>
-    <div v-if="item.dragItem.changeList.indexOf('title')!==-1">
-      <label class="fn-block">组件标题</label>
-      <i-input v-model="item.dragItem.title" :disabled="item.dragItem.business"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('title')!==-1">
+      <label>组件标题</label>
+      <i-input v-model="item.dragItem.title"
                @on-change="e=>inputChange(e,'title')"/>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
-      <label class="fn-block">组件标题对齐</label>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
+      <label>组件标题对齐</label>
       <RadioGroup v-model="item.dragItem.labelTextAlign" type="button" size="large"
                   @on-change="value=>checkChange(value,'labelTextAlign')">
-        <Radio label="left" :disabled="item.dragItem.business">左对齐</Radio>
-        <Radio label="right" :disabled="item.dragItem.business">右对齐</Radio>
+        <Radio label="left">左对齐</Radio>
+        <Radio label="right">右对齐</Radio>
       </RadioGroup>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
-      <label class="fn-block">组件标题宽度</label>
-      <i-input v-model="item.dragItem.labelWidth" :disabled="item.dragItem.business"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('dashed')!==-1">
+      <label>组件是否虚线</label>
+      <RadioGroup v-model="item.dragItem.dashed?1:0" type="button" size="large"
+                  @on-change="value=>checkChange(!!value,'dashed')">
+        <Radio :label="1">是</Radio>
+        <Radio :label="0">否</Radio>
+      </RadioGroup>
+    </div>
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
+      <label>组件标题宽度</label>
+      <i-input v-model="item.dragItem.labelWidth"
                @on-change="e=>inputChange(e,'labelWidth')"><span slot="append">px</span>
       </i-input>
     </div>
-    <div v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
-      <label class="fn-block">组件宽度</label>
-      <i-input v-model="item.dragItem.widthRatio" :disabled="item.dragItem.business"
+    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
+      <label>组件宽度</label>
+      <i-input v-model="item.dragItem.widthRatio"
                @on-change="e=>inputChange(e,'widthRatio')"><span slot="append">%</span>
       </i-input>
     </div>
@@ -70,7 +78,7 @@
     width: 440px;
     margin-top: 10px;
     padding-right: 10px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 130px);
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -87,11 +95,13 @@
       border-radius: 10px;
       background: #ededed;
     }
-    .tenant-select{
+
+    .tenant-select {
       width: 200px;
       top: 0;
       right: 10px;
     }
+
     h2 {
       font-size: 16px;
       height: 40px;
@@ -104,20 +114,21 @@
       }
     }
 
-    label {
-      font-size: 14px;
-      margin-bottom: 10px;
+    .fish-control {
+      >label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
     }
 
-    input {
-      margin-bottom: 10px;
-      width: 100%;
-      border-radius: 4px;
-      box-shadow: none;
-      border: 1px solid #ddd;
-      padding-left: 10px;
-      padding-right: 10px;
+
+    .ivu-input, .ivu-input-group-append {
       height: 36px;
+    }
+
+    .ivu-input-wrapper {
+      margin-bottom: 10px;
     }
   }
 </style>

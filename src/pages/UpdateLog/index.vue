@@ -1,22 +1,29 @@
 <template>
-  <Timeline class="update-log">
-    <TimelineItem v-for="item in log">
-      <div class="version">{{item.version}}</div>
-      <p>
-        <code>{{item.time}}</code>
-      </p>
-      <ul class="log">
-        <li v-for="child in item.content">
-          {{child}}
-        </li>
-      </ul>
-    </TimelineItem>
-  </Timeline>
+  <div>
+    <top/>
+    <Timeline class="update-log">
+      <TimelineItem v-for="item in log">
+        <div class="version">{{item.version}}</div>
+        <p>
+          <code>{{item.time}}</code>
+        </p>
+        <ul class="log">
+          <li v-for="child in item.content">
+            {{child}}
+          </li>
+        </ul>
+      </TimelineItem>
+    </Timeline>
+  </div>
 </template>
 <script>
   import log from "./log";
+  import Top from '../../components/Top'
 
   export default {
+    components: {
+      Top
+    },
     data() {
       return {
         log
