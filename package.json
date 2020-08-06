@@ -1,0 +1,33 @@
+{
+  "name": "VF",
+  "version": "1.0.7",
+  "description": "基于Vue的表单设计器，让表单开发简单而高效",
+  "main": "index.js",
+  "keywords": [
+    "vue",
+    "表单设计器",
+    "form"
+  ],
+  "scripts": {
+    "build:prod": "fish build prod vue",
+    "build:test": "fish build test vue",
+    "start": "fish start vue",
+    "upload": "fish upload",
+    "update": "auto-vers -t"
+  },
+  "author": "fish uncle",
+  "license": "EPL",
+  "dependencies": {
+    "date-fns": "^2.14.0",
+    "view-design": "^4.3.2",
+    "vue": "^2.6.11",
+    "vue-grid-layout": "^2.3.7",
+    "vue-json-viewer": "^2.2.11",
+    "vue-router": "^3.4.0",
+    "vuex": "^3.2.0"
+  },
+  "devDependencies": {
+    "@fish/cli": "^1.0.3",
+    "auto-vers": "^1.0.3"
+  }
+}
