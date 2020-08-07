@@ -57,7 +57,7 @@ new Vue({
   render: h => h(App)
 }).$mount("#root");
 
-// document.getElementById('vf-loading').remove();
+document.getElementById('vf-loading').remove();
 console.log(
   `%c VF %c v${process.env.pkg.version} %c`,
   'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
