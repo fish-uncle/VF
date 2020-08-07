@@ -1,7 +1,6 @@
 <template>
   <div>
-    <top/>
-    <Timeline class="update-log">
+    <Timeline class="vf-update-log vf-scrollbar">
       <TimelineItem v-for="item in log">
         <div class="version">{{item.version}}</div>
         <p>
@@ -18,22 +17,23 @@
 </template>
 <script>
   import log from "./log";
-  import Top from '../../components/Top'
 
   export default {
-    components: {
-      Top
-    },
     data() {
       return {
         log
       }
+    },
+    mounted() {
+      this.$store.commit('top/changeTop', {topIndex: 2})
     }
   }
 </script>
 <style lang="less">
-  .update-log {
-    margin: 20px;
+  .vf-update-log {
+    padding: 20px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
 
     .version {
       font-size: 20px;

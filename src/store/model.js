@@ -4,9 +4,16 @@ const store = {
     previewVisible: false,
     dataVisible: false,
     buyVisible: false,
+    pleaseVisible: false,
     loading: false,
   },
   mutations: {
+    pleaseShow: function (state) {
+      state.pleaseVisible = true;
+    },
+    pleaseHide: function (state) {
+      state.pleaseVisible = false;
+    },
     buyShow: function (state) {
       state.buyVisible = true;
     },

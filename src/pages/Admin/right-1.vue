@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('title')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('title')!==-1">
       <label>组件标题</label>
       <i-input v-model="item.dragItem.title"
                @on-change="e=>inputChange(e,'title')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
       <label>组件标题对齐</label>
       <RadioGroup v-model="item.dragItem.labelTextAlign" type="button" size="large"
                   @on-change="value=>checkChange(value,'labelTextAlign')">
@@ -13,7 +13,7 @@
         <Radio label="right">右对齐</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('dashed')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('dashed')!==-1">
       <label>组件是否虚线</label>
       <RadioGroup v-model="item.dragItem.dashed?1:0" type="button" size="large"
                   @on-change="value=>checkChange(!!value,'dashed')">
@@ -21,13 +21,13 @@
         <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
       <label>组件标题宽度</label>
       <i-input v-model="item.dragItem.labelWidth"
                @on-change="e=>inputChange(e,'labelWidth')"><span slot="append">px</span>
       </i-input>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
       <label>组件宽度</label>
       <i-input v-model="item.dragItem.widthRatio"
                @on-change="e=>inputChange(e,'widthRatio')"><span slot="append">%</span>
@@ -74,27 +74,12 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .fish-right {
+  .vf-right {
     width: 440px;
     margin-top: 10px;
     padding-right: 10px;
     height: calc(100vh - 130px);
     overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 1px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: #535353;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background: #ededed;
-    }
 
     .tenant-select {
       width: 200px;
@@ -114,7 +99,7 @@
       }
     }
 
-    .fish-control {
+    .vf-control {
       >label {
         display: block;
         font-size: 14px;

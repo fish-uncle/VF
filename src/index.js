@@ -7,7 +7,7 @@ Vue.use(ViewUI);
 import router from './router';
 import store from './store';
 import plugins from '../plugins';
-import FishComponent from './components/FormComponents';
+import FormComponent from './components/FormComponents';
 import FormList from './components/FormList';
 import FormInput from './func/form-input';
 import FormTextArea from './func/form-textarea';
@@ -24,7 +24,7 @@ import FormDivider from './func/form-divider';
 import FormColorPicker from './func/form-colorPicker';
 import JsonViewer from 'vue-json-viewer';
 
-Vue.component('f-component', FishComponent);
+Vue.component('f-component', FormComponent);
 Vue.component('f-list', FormList);
 Vue.component('f-input', FormInput);
 Vue.component('f-textarea', FormTextArea);
@@ -58,8 +58,8 @@ new Vue({
 }).$mount("#root");
 
 console.log(
-  `%c VF %c v1.0.8 %c`,
+  `%c VF %c v${process.env.pkg.version} %c`,
   'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-  'background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+  'background:rgb(18, 120, 245) ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
   'background:transparent'
 )

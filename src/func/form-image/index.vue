@@ -1,9 +1,9 @@
 <template>
-  <div class="fish-image" :class="currentVal.dragItem.disabled?'disabled':''">
+  <div class="vf-image" :class="currentVal.dragItem.disabled?'disabled':''">
     <img :src="img" alt="" v-if="img"/>
-    <label v-else for="fish-image">
+    <label v-else for="vf-image">
       <input  accept="image/*" :disabled="currentVal.dragItem.disabled"
-              id="fish-image" type="file" style="display: none;" @change="fileChange"/>
+              id="vf-image" type="file" style="display: none;" @change="fileChange"/>
     </label>
   </div>
 </template>

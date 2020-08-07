@@ -1,8 +1,8 @@
 <template>
-  <div class="fn-clear fish-component pos-r"
+  <div class="fn-clear vf-component pos-r"
        v-show="visible"
        :class="[index===center.current&&edit?'active':'',
-       edit?'fish-component-edit':'',
+       edit?'vf-component-edit':'',
        currentVal.lowerVersion?'lower-version':'']"
        @click="choose(index)">
     <label class="fn-fl"
@@ -25,7 +25,7 @@
       <f-color-picker v-if="currentVal.dragItem.type==='colorPicker'" :value="currentVal"/>
       <f-divider v-if="currentVal.dragItem.type==='divider'" :value="currentVal"/>
     </div>
-    <div v-if="index===center.current&&edit" class="pos-a fish-component-del pointer text-center" @click="del">
+    <div v-if="index===center.current&&edit" class="pos-a vf-component-del pointer text-center" @click="del">
       <Icon type="md-trash"/>
     </div>
   </div>
@@ -86,13 +86,13 @@
 <style lang="less" scoped>
   @import "../../less/conf";
 
-  .fish-component {
+  .vf-component {
     border: 2px dashed rgba(0, 0, 0, 0);
     min-height: 100%;
     border-radius: 4px;
     padding: 10px;
 
-    &.fish-component-edit {
+    &.vf-component-edit {
       &:hover {
         border: 2px dashed @themeColor_04;
       }
@@ -121,7 +121,7 @@
     }
   }
 
-  .fish-component-del {
+  .vf-component-del {
     bottom: 0;
     right: 0;
     width: 20px;

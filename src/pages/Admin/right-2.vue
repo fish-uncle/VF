@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="fish-control">
+    <div class="vf-control">
       <label>字段id</label>
       <i-input v-model="item.dragItem.id" :disabled="true"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.type!=='divider'">
+    <div class="vf-control" v-if="item.dragItem.type!=='divider'">
       <label>字段标识</label>
       <i-input :value="item.dragItem.key"
                @on-change="e=>keyChange(e)" v-if="item.dragItem.type!=='dateRange'"/>
@@ -13,12 +13,12 @@
       <i-input :value="item.dragItem.key.split(';')[1]"
                @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.type==='dateRange'"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
       <label>组件提示字</label>
       <i-input v-model="item.dragItem.placeholder"
                @on-change="e=>inputChange(e,'placeholder')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('disabled')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('disabled')!==-1">
       <label>组件禁用</label>
       <RadioGroup v-model="item.dragItem.disabled?1:0" type="button" size="large"
                   @on-change="value=>checkChange(!!value,'disabled')">
@@ -26,7 +26,7 @@
         <Radio :label="0">可用</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('required')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('required')!==-1">
       <label>是否必填</label>
       <RadioGroup v-model="item.dragItem.required?1:0" type="button" size="large"
 
@@ -35,7 +35,7 @@
         <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('clearable')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('clearable')!==-1">
       <label>是否可以清除值</label>
       <RadioGroup v-model="item.dragItem.clearable?1:0" type="button" size="large"
 
@@ -44,7 +44,7 @@
         <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('alpha')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('alpha')!==-1">
       <label>是否支持透明度选择</label>
       <RadioGroup v-model="item.dragItem.alpha?1:0" type="button" size="large"
 
@@ -53,7 +53,7 @@
         <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('showText')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('showText')!==-1">
       <label>是否显示提示文字</label>
       <RadioGroup v-model="item.dragItem.showText?1:0" type="button" size="large"
 
@@ -62,32 +62,32 @@
         <Radio :label="0">否</Radio>
       </RadioGroup>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('defaultSelectIndex')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('defaultSelectIndex')!==-1">
       <label>默认选择项（第几项）</label>
       <i-input v-model="item.dragItem.defaultSelectIndex"
                @on-change="e=>inputChange(e,'defaultSelectIndex')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('character')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('character')!==-1">
       <label>自定义字符</label>
       <i-input v-model="item.dragItem.character"
                @on-change="e=>inputChange(e,'character')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('step')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('step')!==-1">
       <label>步长</label>
       <i-input v-model="item.dragItem.step"
                @on-change="e=>inputChange(e,'step')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('max')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('max')!==-1">
       <label>最大值</label>
       <i-input v-model="item.dragItem.max"
                @on-change="e=>inputChange(e,'max')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('min')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('min')!==-1">
       <label>最小值</label>
       <i-input v-model="item.dragItem.min"
                @on-change="e=>inputChange(e,'min')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('selectList')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('selectList')!==-1">
       <label>选择项配置</label>
       <RadioGroup v-model="tab" type="button" size="large">
         <Radio :label="1">选择项配置</Radio>
@@ -114,10 +114,10 @@
       <i-input v-if="tab===2" v-model="item.dragItem.selectListUrl"
                @on-change="e=>selectListUrlChange(e,'selectListUrl')"/>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('regular')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('regular')!==-1">
       <label>正则校验</label>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('controlOthersUpdate')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('controlOthersUpdate')!==-1">
       <label>控制其他组件更新</label>
       <Transfer
         not-found-text=""
@@ -126,7 +126,7 @@
         :target-keys="item.dragItem.controlOthersUpdateTargetKeys"
         @on-change="controlOthersUpdateChange"></Transfer>
     </div>
-    <div class="fish-control" v-if="item.dragItem.changeList.indexOf('controlOthersHide')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('controlOthersHide')!==-1">
       <label>控制其他组件隐藏</label>
       <ul>
         <li v-for="child in item.dragItem.ajaxList" v-if="item.dragItem.selectListUrl">
@@ -267,7 +267,7 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .fish-right {
+  .vf-right {
     .ivu-radio-group-button {
       display: block;
       margin-bottom: 10px;

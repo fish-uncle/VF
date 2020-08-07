@@ -1,5 +1,5 @@
 <template>
-  <div class="fish-bottom fn-flex">
+  <div class="vf-bottom fn-flex">
     {{date}} © fish uncle️
   </div>
 </template>
@@ -13,7 +13,7 @@
   }
 </script>
 <style lang="less">
-  .fish-bottom{
+  .vf-bottom{
     height: 40px;
     align-items: center;
     justify-content: center;

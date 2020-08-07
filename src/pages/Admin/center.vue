@@ -1,6 +1,6 @@
 <template>
-  <div class="fish-center">
-    <div class="fish-fn">
+  <div class="vf-center">
+    <div class="vf-fn">
       <h2>功能区</h2>
       <ul class="fn-flex flex-row">
         <li class="pointer" @click="clear">清空</li>
@@ -15,7 +15,7 @@
         </Dropdown>
       </ul>
     </div>
-    <div class="fish-drag">
+    <div class="vf-drag">
       <grid-layout
         :layout.sync="center.list"
         :col-num="2"
@@ -88,7 +88,7 @@
       move(e) {
         const x = e.x + document.documentElement.scrollLeft;
         const y = e.y + document.documentElement.scrollTop;
-        const drag = document.getElementsByClassName('fish-drag')[0];
+        const drag = document.getElementsByClassName('vf-drag')[0];
         if (x >= 260 && x <= 260 + drag.clientWidth &&
           y >= 10 + 70 + 80 && y <= drag.clientHeight + 70) {
           if (this.component.drag) {
@@ -106,13 +106,13 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .fish-center {
+  .vf-center {
     margin-left: 260px;
     margin-right: 450px;
     margin-top: 10px;
   }
 
-  .fish-drag {
+  .vf-drag {
     border: 1px dashed #ddd;
     border-radius: 4px;
     min-height: calc(100vh - 200px);
@@ -128,7 +128,7 @@
     }
   }
 
-  .fish-fn {
+  .vf-fn {
     height: 50px;
     margin-bottom: 20px;
 

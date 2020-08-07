@@ -1,6 +1,6 @@
 <template>
   <div class="pos-r">
-    <div class="func fn-fl pos-r" id="func">
+    <div class="vf-func fn-fl pos-r vf-scrollbar" id="func">
       <h2>
         基础组件
       </h2>
@@ -68,27 +68,12 @@
     left: 0;
   }
 
-  .func {
+  .vf-func {
     width: 250px;
     height: calc(100vh - 130px);
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 1px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: #535353;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background: #ededed;
-    }
 
     h2 {
       font-size: 16px;

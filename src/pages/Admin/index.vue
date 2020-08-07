@@ -1,12 +1,11 @@
 <template>
   <div>
-    <top/>
     <div class="fn-clear">
       <div class="fn-fl">
         <func/>
       </div>
       <div class="fn-fr">
-        <div class="fish-right">
+        <div class="vf-right vf-scrollbar">
           <div class="fn-flex flex-row">
             <h2 class="pointer" :class="right.tabIndex===1?'active':''" @click="changeTab(1)">
               表单属性
@@ -30,7 +29,6 @@
   import Center from './center'
   import Bottom from './bottom'
   import Func from './func'
-  import Top from '../../components/Top'
   import Right1 from './right-1'
   import Right2 from './right-2'
   import ModelData from '../../components/ModelData'
@@ -48,12 +46,14 @@
       Func,
       Right1,
       Right2,
-      Top
     },
     methods: {
       changeTab(tabIndex) {
         this.$store.commit('right/changeTab', {tabIndex})
       },
+    },
+    mounted() {
+      this.$store.commit('top/changeTop', {topIndex: 1})
     }
   }
 </script>

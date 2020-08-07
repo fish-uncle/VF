@@ -11,7 +11,7 @@ const router = new Router({
       component: () => import('./pages/updateLog')
     },
     {
-      path: '/help',
+      path: '/help/:name',
       name: 'Help',
       component: () => import('./pages/help')
     },
