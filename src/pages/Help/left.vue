@@ -21,12 +21,13 @@
 <!--      <MenuItem name="自定义组件">自定义组件</MenuItem>-->
 <!--      <MenuItem name="国际化">国际化</MenuItem>-->
 <!--    </Submenu>-->
-<!--    <Submenu name="4">-->
-<!--      <template slot="title">-->
-<!--        其他-->
-<!--      </template>-->
-<!--      <MenuItem name="友情赞助">友情赞助</MenuItem>-->
-<!--    </Submenu>-->
+    <Submenu name="4">
+      <template slot="title">
+        其他
+      </template>
+      <MenuItem name="友情赞助">友情赞助</MenuItem>
+      <MenuItem name="意见反馈">意见反馈</MenuItem>
+    </Submenu>
   </Menu>
 </template>
 <script>
