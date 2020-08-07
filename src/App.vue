@@ -24,4 +24,7 @@
 <style lang="less">
   @import "./less/reset.less";
   @import "./less/index.less";
+  body {
+    min-width: 1170px;
+  }
 </style>

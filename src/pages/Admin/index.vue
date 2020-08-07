@@ -57,8 +57,3 @@
     }
   }
 </script>
-<style lang="less">
-  body {
-    min-width: 1170px;
-  }
-</style>

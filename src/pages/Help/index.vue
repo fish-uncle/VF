@@ -2,7 +2,7 @@
   <div>
     <div class="fn-clear">
       <left/>
-      <div class="vf-help-content">
+      <div class="vf-help-content vf-scrollbar">
         <div class="markdown-body">
           <div v-html="help.helpContent"/>
         </div>
@@ -38,21 +38,7 @@
     margin-left: 240px;
     height: calc(100vh - 80px);
     padding: 40px 80px;
-
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 1px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: #535353;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background: #ededed;
-    }
+    overflow-y: auto;
 
     code {
       word-break: break-all;
