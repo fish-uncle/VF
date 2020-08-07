@@ -14,4 +14,4 @@
  
 > 注：支付时备注邮件，1个工作日内发送到指定邮箱，如需更换邮箱，请及时发送邮件至<a href="mailto:fishuncle@126.com">fishuncle@126.com</a>告知。
 
-[更多文档](https://vf.shenzhepei.com/index.html/#/help/介绍)
+[更多文档](https://vf.shenzhepei.com/#/help/介绍)

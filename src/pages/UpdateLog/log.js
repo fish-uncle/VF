@@ -8,6 +8,7 @@ const log = [
       '优化class命名，添加 vf- 前缀。',
       '优化class命名，添加 vf- 前缀。',
       '优化添加loading页。',
+      '修复loading页样式异常问题。',
     ]
   },
   {

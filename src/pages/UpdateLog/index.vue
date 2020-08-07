@@ -2,11 +2,11 @@
   <div>
     <Timeline class="vf-update-log vf-scrollbar">
       <TimelineItem v-for="item in log">
-        <div class="version">{{item.version}}</div>
+        <div class="vf-version">{{item.version}}</div>
         <p>
           <code>{{item.time}}</code>
         </p>
-        <ul class="log">
+        <ul class="vf-log">
           <li v-for="child in item.content">
             {{child}}
           </li>
@@ -35,7 +35,7 @@
     height: calc(100vh - 80px);
     overflow-y: auto;
 
-    .version {
+    .vf-version {
       font-size: 20px;
       font-weight: 400;
     }
@@ -55,18 +55,15 @@
       display: inline-block;
     }
 
-    .log {
+    .vf-log {
       list-style: circle;
+      padding-left: 22px;
 
       li {
         list-style: circle;
         margin-bottom: 5px;
         font-size: 14px;
       }
-    }
-
-    .log {
-      padding-left: 22px;
     }
   }
 </style>

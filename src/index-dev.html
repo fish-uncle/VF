@@ -7,26 +7,22 @@
   <title>基于Vue的表单设计器，让表单开发简单而高效</title>
 </head>
 <body>
-<div id="root">
+<div id="root"></div>
+<div id="vf-loading">
   <style>
-    body {
+
+    #vf-loading {
       height: 100vh;
-      text-align: center;
-      overflow: hidden;
     }
 
-    body #root {
-      height: 100%
-    }
-
-    body .loader {
+    #vf-loading .loader {
       height: 100%;
       position: relative;
       margin: auto;
       width: 400px;
     }
 
-    body .loader_overlay {
+    #vf-loading .loader_overlay {
       width: 150px;
       height: 150px;
       background: transparent;
@@ -41,7 +37,7 @@
       margin: auto;
     }
 
-    body .loader_cogs {
+    #vf-loading .loader_cogs {
       z-index: -2;
       width: 100px;
       height: 100px;
@@ -54,7 +50,7 @@
       margin: auto;
     }
 
-    body .loader_cogs__top {
+    #vf-loading .loader_cogs__top {
       position: relative;
       width: 100px;
       height: 100px;
@@ -64,22 +60,22 @@
       animation: rotate 10s infinite linear;
     }
 
-    body .loader_cogs__top div:nth-of-type(1) {
+    #vf-loading .loader_cogs__top div:nth-of-type(1) {
       -webkit-transform: rotate(30deg);
       transform: rotate(30deg);
     }
 
-    body .loader_cogs__top div:nth-of-type(2) {
+    #vf-loading .loader_cogs__top div:nth-of-type(2) {
       -webkit-transform: rotate(60deg);
       transform: rotate(60deg);
     }
 
-    body .loader_cogs__top div:nth-of-type(3) {
+    #vf-loading .loader_cogs__top div:nth-of-type(3) {
       -webkit-transform: rotate(90deg);
       transform: rotate(90deg);
     }
 
-    body .loader_cogs__top div.top_part {
+    #vf-loading .loader_cogs__top div.top_part {
       width: 100px;
       border-radius: 10px;
       position: absolute;
@@ -87,7 +83,7 @@
       background: #f98db9;
     }
 
-    body .loader_cogs__top div.top_hole {
+    #vf-loading .loader_cogs__top div.top_hole {
       width: 50px;
       height: 50px;
       border-radius: 100%;
@@ -101,7 +97,7 @@
       margin: auto;
     }
 
-    body .loader_cogs__left {
+    #vf-loading .loader_cogs__left {
       position: relative;
       width: 80px;
       -webkit-transform: rotate(16deg);
@@ -114,22 +110,22 @@
       height: 80px;
     }
 
-    body .loader_cogs__left div:nth-of-type(1) {
+    #vf-loading .loader_cogs__left div:nth-of-type(1) {
       -webkit-transform: rotate(30deg);
       transform: rotate(30deg);
     }
 
-    body .loader_cogs__left div:nth-of-type(2) {
+    #vf-loading .loader_cogs__left div:nth-of-type(2) {
       -webkit-transform: rotate(60deg);
       transform: rotate(60deg);
     }
 
-    body .loader_cogs__left div:nth-of-type(3) {
+    #vf-loading .loader_cogs__left div:nth-of-type(3) {
       -webkit-transform: rotate(90deg);
       transform: rotate(90deg);
     }
 
-    body .loader_cogs__left div.left_part {
+    #vf-loading .loader_cogs__left div.left_part {
       width: 80px;
       border-radius: 6px;
       position: absolute;
@@ -137,7 +133,7 @@
       background: #97ddff;
     }
 
-    body .loader_cogs__left div.left_hole {
+    #vf-loading .loader_cogs__left div.left_hole {
       width: 40px;
       height: 40px;
       border-radius: 100%;
@@ -151,7 +147,7 @@
       margin: auto;
     }
 
-    body .loader_cogs__bottom {
+    #vf-loading .loader_cogs__bottom {
       position: relative;
       width: 60px;
       top: -65px;
@@ -165,22 +161,22 @@
       height: 60px;
     }
 
-    body .loader_cogs__bottom div:nth-of-type(1) {
+    #vf-loading .loader_cogs__bottom div:nth-of-type(1) {
       -webkit-transform: rotate(30deg);
       transform: rotate(30deg);
     }
 
-    body .loader_cogs__bottom div:nth-of-type(2) {
+    #vf-loading .loader_cogs__bottom div:nth-of-type(2) {
       -webkit-transform: rotate(60deg);
       transform: rotate(60deg);
     }
 
-    body .loader_cogs__bottom div:nth-of-type(3) {
+    #vf-loading .loader_cogs__bottom div:nth-of-type(3) {
       -webkit-transform: rotate(90deg);
       transform: rotate(90deg);
     }
 
-    body .loader_cogs__bottom div.bottom_part {
+    #vf-loading .loader_cogs__bottom div.bottom_part {
       width: 60px;
       border-radius: 5px;
       position: absolute;
@@ -188,7 +184,7 @@
       background: #ffcd66;
     }
 
-    body .loader_cogs__bottom div.bottom_hole {
+    #vf-loading .loader_cogs__bottom div.bottom_hole {
       width: 30px;
       height: 30px;
       border-radius: 100%;
