@@ -29,7 +29,19 @@
         columns: [
           {
             title: '套餐',
-            key: 'name'
+            key: 'name',
+            render: (h, params) => {
+              return h('div', [
+                h('Icon', {
+                  props: {
+                    type: 'ios-ribbon-outline',
+                    size: 24,
+                    color: 'rgba(18, 120, 246, 1)'
+                  }
+                }),
+                h('span', params.row.name)
+              ]);
+            }
           },
           {
             title: '价格',

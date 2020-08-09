@@ -28,8 +28,61 @@
         alipay: 'https://cdn.shenzhepei.com/hexo-theme-matery/public/medias/reward/alipay.jpg',
         columns: [
           {
-            title: '咖啡',
-            key: 'name'
+            title: '物品',
+            key: 'name',
+            render: (h, params) => {
+              if (params.row.level === 1)
+                return h('div', [
+                  h('Icon', {
+                    props: {
+                      type: 'ios-cafe-outline',
+                      size: 24,
+                      color: 'rgba(18, 120, 246, 1)'
+                    }
+                  }),
+                ]);
+              if (params.row.level === 2)
+                return h('div', [
+                  h('Icon', {
+                    props: {
+                      type: 'ios-ice-cream-outline',
+                      size: 24,
+                      color: 'rgba(18, 120, 246, 1)'
+                    }
+                  }),
+                  h('Icon', {
+                    props: {
+                      type: 'ios-ice-cream-outline',
+                      size: 24,
+                      color: 'rgba(18, 120, 246, 1)'
+                    }
+                  }),
+                ]);
+              if (params.row.level === 3)
+                return h('div', [
+                  h('Icon', {
+                    props: {
+                      type: 'ios-beer-outline',
+                      size: 24,
+                      color: 'rgba(18, 120, 246, 1)'
+                    }
+                  }),
+                  h('Icon', {
+                    props: {
+                      type: 'ios-beer-outline',
+                      size: 24,
+                      color: 'rgba(18, 120, 246, 1)'
+                    }
+                  }),
+                  h('Icon', {
+                    props: {
+                      type: 'ios-beer-outline',
+                      size: 24,
+                      color: 'rgba(18, 120, 246, 1)'
+                    }
+                  }),
+                ]);
+            }
           },
           {
             title: '价格',
@@ -42,19 +95,19 @@
         ],
         data: [
           {
-            name: '一杯',
-            price: '¥5.00',
+            level: 1,
+            price: '¥10.00',
             content: '一杯精神气爽，码代码速度加快了',
           },
           {
-            name: '两杯',
-            price: '¥10.00',
-            content: '两杯仙气飘飘，熬夜不是问题',
+            level: 2,
+            price: '¥25.00',
+            content: '两个仙气飘飘，熬夜不是问题',
           },
           {
-            name: '五杯',
-            price: '¥25.00',
-            content: '五杯欲仙欲死，需求come',
+            level: 3,
+            price: '¥50.00',
+            content: '三杯欲仙欲死，需求come',
           },
         ]
       }

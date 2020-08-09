@@ -1,6 +1,7 @@
 <template>
-  <div class="vf-top fn-flex flex-row">
+  <div class="vf-top fn-flex flex-row pos-r">
     <h2>VF</h2>
+    <Icon type="ios-analytics" color="white"/>
     <h1>基于Vue的表单设计器，让表单开发简单而高效</h1>
     <span>v{{version}}</span>
     <ul class="fn-flex flex-row">
@@ -43,15 +44,40 @@
 <style lang="less">
   @import "../../less/conf";
 
+  @keyframes yi {
+    0% {
+      margin-left: 0;
+    }
+    50% {
+      margin-left: -100%;
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+
   .vf-top {
     height: 80px;
-    background-color: @themeColor;
+    background: @themeColor;
     align-items: center;
+    overflow: hidden;
+    &:before {
+      position: absolute;
+      content: '';
+      width: 200%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      animation: linear 3s yi infinite;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+    }
 
     h2 {
       color: rgba(255, 255, 255, 0.9);
       font-size: 34px;
-      margin-left: 10px;
+      margin-left: 20px;
+      font-weight: normal;
+      margin-right: 10px;
     }
 
     h1 {
