@@ -2,13 +2,13 @@
   <div class="pos-r">
     <div class="vf-func fn-fl pos-r vf-scrollbar" id="func">
       <h2>
-        基础组件
+        {{$t('admin_left_title1')}}
       </h2>
       <ul class="pos-r fn-flex flex-row">
         <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="!item.business"/>
       </ul>
       <h2>
-        修饰组件
+        {{$t('admin_left_title2')}}
       </h2>
       <ul class="pos-r fn-flex flex-row">
         <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.business"/>
@@ -16,6 +16,7 @@
       <!--      <div class="pos-a func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
     </div>
     <div class="pos-a drag text-center"
+         v-show="component.drag"
          :class="[component.drag?'active z-index-999':'',component.remove?'remove':'']"
          :style="{left:component.dragItem.x + 10 + 'px',top:component.dragItem.y - 30 - scrollTop+'px'}">
       {{component.dragItem.title}}

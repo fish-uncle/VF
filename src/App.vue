@@ -12,18 +12,23 @@
   import ModelBuy from './components/ModelBuy'
   import ModelPlease from './components/ModelPlease'
   import Top from './components/Top';
+
   export default {
     components: {
-      ModelBuy,ModelPlease,Top
+      ModelBuy, ModelPlease, Top
     },
     computed: {
       ...mapState(["model"]),
     },
+    mounted() {
+      document.title = this.$t('top_description');
+    }
   }
 </script>
 <style lang="less">
   @import "./less/reset.less";
   @import "./less/index.less";
+
   body {
     min-width: 1170px;
   }

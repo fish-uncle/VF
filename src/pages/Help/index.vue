@@ -18,18 +18,28 @@
   export default {
     components: {Left},
     computed: mapState(["top", "help"]),
-    async mounted() {
+    methods: {
+      async init() {
+        console.log(1);
+        const {name} = this.$route.params;
+        const content = await import(`./${name}-${this.$i18n.locale}.md`)
+        this.$store.commit('help/changeHelp', {
+          helpName: name,
+          helpContent: content
+        })
+      }
+    },
+    beforeDestroy() {
+      this.$agent.$off('languageChange', this.init)
+    },
+    mounted() {
       if (this.top.topIndex !== 3)
         this.$store.commit('top/changeTop', {topIndex: 3})
-      const {name} = this.$route.params;
-      const content = await import(`./${name}.md`)
-      this.$store.commit('help/changeHelp', {
-        helpName: name,
-        helpContent: content
-      })
+      this.init();
       window.please = function () {
         this.$store.commit('model/pleaseShow')
       }.bind(this);
+      this.$agent.$on('languageChange', this.init)
     }
   }
 </script>

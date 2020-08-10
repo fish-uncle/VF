@@ -2,8 +2,9 @@ import Vue from 'vue';
 import App from './App';
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
-
+import i18n from './languages'
 Vue.use(ViewUI);
+
 import router from './router';
 import store from './store';
 import plugins from '../plugins';
@@ -43,17 +44,10 @@ Vue.config.productionTip = false;
 Vue.use(plugins);
 Vue.use(JsonViewer);
 
-Array.prototype.removeByValue = function (val) {
-  for (let i = 0; i < this.length; i++) {
-    if (this[i] == val) {
-      this.splice(i, 1);
-      break;
-    }
-  }
-}
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount("#root");
 

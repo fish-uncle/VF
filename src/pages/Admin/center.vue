@@ -1,16 +1,16 @@
 <template>
   <div class="vf-center">
     <div class="vf-fn">
-      <h2>功能区</h2>
+      <h2>{{$t('admin_center_title1')}}</h2>
       <ul class="fn-flex flex-row">
-        <li class="pointer" @click="clear">清空</li>
+        <li class="pointer" @click="clear">{{$t('admin_center_btn1')}}</li>
         <Dropdown @on-click="handlePreview">
-          <a>预览
+          <a>{{$t('admin_center_btn2')}}
             <Icon type="ios-arrow-down"></Icon>
           </a>
           <DropdownMenu slot="list">
-            <DropdownItem name="data">数据预览</DropdownItem>
-            <DropdownItem name="preview">组件预览</DropdownItem>
+            <DropdownItem name="data">{{$t('admin_center_btn2_1')}}</DropdownItem>
+            <DropdownItem name="preview">{{$t('admin_center_btn2_2')}}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </ul>

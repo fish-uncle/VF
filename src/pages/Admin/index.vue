@@ -8,10 +8,10 @@
         <div class="vf-right vf-scrollbar">
           <div class="fn-flex flex-row">
             <h2 class="pointer" :class="right.tabIndex===1?'active':''" @click="changeTab(1)">
-              表单属性
+              {{$t('admin_right_title1')}}
             </h2>
             <h2 class="pointer" :class="right.tabIndex===2?'active':''" @click="changeTab(2)">
-              字段属性
+              {{$t('admin_right_title2')}}
             </h2>
           </div>
           <right-1 v-if="right.tabIndex===1"/>

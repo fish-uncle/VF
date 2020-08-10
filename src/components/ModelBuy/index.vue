@@ -6,15 +6,15 @@
     <div class="fn-flex flex-row pay">
       <div class="fn-flex flex-column text-center">
         <img :src="wechatpay" alt=""/>
-        <span>微信</span>
+        <span>{{$t('buy_wechat')}}</span>
       </div>
       <div class="fn-flex flex-column text-center">
         <img :src="alipay" alt=""/>
-        <span>支付宝</span>
+        <span>{{$t('buy_alipay')}}</span>
       </div>
     </div>
     <div class="mark">
-      注：支付时备注邮件，1个工作日内发送到指定邮箱，如需更换邮箱，请及时发送邮件至<a href="mailto:fishuncle@126.com">fishuncle@126.com</a>告知。
+      {{$t('buy_description1')}}<a href="mailto:fishuncle@126.com">fishuncle@126.com</a>{{$t('buy_description2')}}
     </div>
   </Modal>
 </template>
@@ -66,17 +66,29 @@
             }
           }
         ],
-        data: [
-          {
-            name: '永久VIP套餐',
-            price: '¥500.00',
-            content: ['支持永久更新到最新版本', '支持技术咨询服务', '提供源代码', '允许二次扩展开发']
-          },
-        ]
+        data: []
       }
     },
     computed: {
       ...mapState(["model", "center"]),
+    },
+    methods: {
+      init() {
+        this.data = [
+          {
+            name: this.$t('buy_title'),
+            price: '¥500.00 / $70.00',
+            content: [this.$t('buy_content1'), this.$t('buy_content2'), this.$t('buy_content3'), this.$t('buy_content4')]
+          },
+        ]
+      }
+    },
+    beforeDestroy() {
+      this.$agent.$off('languageChange', this.init)
+    },
+    mounted() {
+      this.init();
+      this.$agent.$on('languageChange', this.init)
     }
   }
 </script>

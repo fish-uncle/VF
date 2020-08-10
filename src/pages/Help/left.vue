@@ -1,32 +1,33 @@
 <template>
-  <Menu class="fn-fl vf-help-left" :open-names="['1','2','3','4']" :active-name="help.helpName" @on-select="handleSelect">
+  <Menu class="fn-fl vf-help-left" :open-names="['1','2','3','4']" :active-name="help.helpName"
+        @on-select="handleSelect">
     <Submenu name="1">
       <template slot="title">
-        指南
+        {{$t('help_left_1')}}
       </template>
-      <MenuItem name="介绍">介绍</MenuItem>
-      <MenuItem name="目录介绍">目录介绍</MenuItem>
+      <MenuItem name="Introduce">{{$t('help_left_1_1')}}</MenuItem>
+      <MenuItem name="Catalogue introduction">{{$t('help_left_1_2')}}</MenuItem>
     </Submenu>
 <!--    <Submenu name="2">-->
 <!--      <template slot="title">-->
-<!--        基础功能-->
+<!--        {{$t('help_left_2')}}-->
 <!--      </template>-->
-<!--      <MenuItem name="快速使用">快速使用</MenuItem>-->
-<!--      <MenuItem name="动态数据">动态数据</MenuItem>-->
+<!--      <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>-->
+<!--      <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>-->
 <!--    </Submenu>-->
 <!--    <Submenu name="3">-->
 <!--      <template slot="title">-->
-<!--        高级功能-->
+<!--        {{$t('help_left_3')}}-->
 <!--      </template>-->
-<!--      <MenuItem name="自定义组件">自定义组件</MenuItem>-->
-<!--      <MenuItem name="国际化">国际化</MenuItem>-->
+<!--      <MenuItem name="Custom components">{{$t('help_left_3_1')}}</MenuItem>-->
+<!--      <MenuItem name="Internationalization">{{$t('help_left_3_2')}}</MenuItem>-->
 <!--    </Submenu>-->
     <Submenu name="4">
       <template slot="title">
-        其他
+        {{$t('help_left_4')}}
       </template>
-      <MenuItem name="友情赞助">友情赞助</MenuItem>
-      <MenuItem name="意见反馈">意见反馈</MenuItem>
+      <MenuItem name="Friendship sponsorship">{{$t('help_left_4_1')}}</MenuItem>
+      <MenuItem name="Feedback">{{$t('help_left_4_2')}}</MenuItem>
     </Submenu>
   </Menu>
 </template>
@@ -38,7 +39,7 @@
     methods: {
       async handleSelect(name) {
         this.$router.push(`/help/${name}`);
-        const content = await import(`./${name}.md`)
+        const content = await import(`./${name}-${this.$i18n.locale}.md`)
         this.$store.commit('help/changeHelp', {
           helpName: name,
           helpContent: content
