@@ -1,34 +1,34 @@
 <template>
   <div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('title')!==-1">
-      <label>组件标题</label>
+      <label>{{$t('admin_right_btn1')}}</label>
       <i-input v-model="item.dragItem.title"
                @on-change="e=>inputChange(e,'title')"/>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
-      <label>组件标题对齐</label>
+      <label>{{$t('admin_right_btn2')}}</label>
       <RadioGroup v-model="item.dragItem.labelTextAlign" type="button" size="large"
                   @on-change="value=>checkChange(value,'labelTextAlign')">
-        <Radio label="left">左对齐</Radio>
-        <Radio label="right">右对齐</Radio>
+        <Radio label="left">{{$t('admin_right_btn2_1')}}</Radio>
+        <Radio label="right">{{$t('admin_right_btn2_2')}}</Radio>
       </RadioGroup>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('dashed')!==-1">
-      <label>组件是否虚线</label>
+      <label>{{$t('admin_right_btn5')}}</label>
       <RadioGroup v-model="item.dragItem.dashed?1:0" type="button" size="large"
                   @on-change="value=>checkChange(!!value,'dashed')">
-        <Radio :label="1">是</Radio>
-        <Radio :label="0">否</Radio>
+        <Radio :label="1">{{$t('admin_right_btn5_1')}}</Radio>
+        <Radio :label="0">{{$t('admin_right_btn5_2')}}</Radio>
       </RadioGroup>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
-      <label>组件标题宽度</label>
+      <label>{{$t('admin_right_btn3')}}</label>
       <i-input v-model="item.dragItem.labelWidth"
                @on-change="e=>inputChange(e,'labelWidth')"><span slot="append">px</span>
       </i-input>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
-      <label>组件宽度</label>
+      <label>{{$t('admin_right_btn4')}}</label>
       <i-input v-model="item.dragItem.widthRatio"
                @on-change="e=>inputChange(e,'widthRatio')"><span slot="append">%</span>
       </i-input>

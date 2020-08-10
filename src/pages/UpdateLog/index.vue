@@ -2,7 +2,7 @@
   <div>
     <Timeline class="vf-update-log vf-scrollbar">
       <TimelineItem v-for="item in log">
-        <div class="vf-version">{{item.version}}</div>
+        <div class="vf-update-version">{{item.version}}</div>
         <p>
           <code>{{item.time}}</code>
         </p>
@@ -16,29 +16,38 @@
   </div>
 </template>
 <script>
-  import log from "./log";
-
   export default {
     data() {
       return {
-        log
+        log: []
+      }
+    },
+    beforeDestroy() {
+      this.$agent.$off('languageChange', this.init)
+    },
+    methods: {
+      async init() {
+        const log = await import(`./log-${this.$i18n.locale}`);
+        this.log = log.default;
       }
     },
     mounted() {
-      this.$store.commit('top/changeTop', {topIndex: 2})
+      this.$store.commit('top/changeTop', {topIndex: 2});
+      this.$agent.$on('languageChange', this.init);
+      this.init();
     }
   }
 </script>
 <style lang="less">
+  .vf-update-version {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
   .vf-update-log {
     padding: 20px;
     height: calc(100vh - 80px);
     overflow-y: auto;
-
-    .vf-version {
-      font-size: 20px;
-      font-weight: 400;
-    }
 
     p {
       margin: 5px;
