@@ -18,12 +18,22 @@
         if (this.$children) {
           this.$children.forEach(child => {
             for (let key in controlOthersHideTargetKeys) {
-              console.log(2)
+              const k = key.toString();
               if (controlOthersHideTargetKeys[key].indexOf(child.id) !== -1) {
-                if (key == value) {
-                  child.hide();
+                if (Array.isArray(value)) {
+                  const v = value.map(item => item.toString());
+                  if (v.indexOf(k) !== -1) {
+                    child.hide();
+                  } else {
+                    child.show();
+                  }
                 } else {
-                  child.show();
+                  const v = value.toString();
+                  if (k === v) {
+                    child.hide();
+                  } else {
+                    child.show();
+                  }
                 }
               }
             }
@@ -33,7 +43,6 @@
       controlOthersUpdate(controlOthersUpdateTargetKeys) {
         if (this.$children) {
           this.$children.forEach(child => {
-            console.log(1)
             if (controlOthersUpdateTargetKeys.indexOf(child.id) !== -1) {
               child.init();
             }

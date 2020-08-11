@@ -1,25 +1,26 @@
 const component = {
-  title_zh: '日期范围',
-  title_en: 'dateRange',
-  icon: 'ios-calendar-outline',
+  title_zh: '密码文本',
+  title_en: 'password',
+  icon: 'ios-lock-outline',
   version: '1.0.0',
   business: false,
-  type: 'dateRange',
+  type: 'password',
   h: 2,
+  placeholder: '',
   disabled: false,
   labelWidth: 100,
-  clearable: true,
   labelTextAlign: 'right',
+  widthRatio: 100,
   required: false,
   changeList: [
     'title',
     'labelTextAlign',
     'labelWidth',
 
-    'key',
+    'placeholder',
+    'widthRatio',
     'disabled',
     'required',
-    'clearable',
   ]
 }
 

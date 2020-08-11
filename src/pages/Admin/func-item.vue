@@ -1,6 +1,7 @@
 <template>
-  <li class="text-center pos-r z-index-9" :title="item.title">
-    {{item[`title_${language.lang}`]}}
+  <li class="pos-r z-index-9 fn-flex vf-func-item" :title="item.title">
+    <Icon :type="item.icon" v-if="item.icon" color="#333" size="18"/>
+    <span>{{item[`title_${language.lang}`]}}</span>
   </li>
 </template>
 <script>
@@ -56,10 +57,10 @@
     }
   }
 </script>
-<style lang="less" scoped>
+<style lang="less">
   @import "../../less/conf";
 
-  li {
+  .vf-func-item {
     width: 108px;
     height: 30px;
     background: #f4f6fc;
@@ -70,7 +71,11 @@
     user-select: none;
     margin-right: 10px;
     border-radius: 4px;
-
+    align-items: center;
+    padding-left: 8px;
+    span{
+      margin-left: 5px;
+    }
     &:hover {
       color: @themeColor;
       border: 1px dashed @themeColor;

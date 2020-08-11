@@ -1,6 +1,7 @@
 const component = {
   title_zh: '开关',
   title_en: 'switch',
+  icon: 'ios-switch-outline',
   version: '1.0.0',
   business: false,
   type: 'switch',

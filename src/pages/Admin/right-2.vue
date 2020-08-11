@@ -172,8 +172,7 @@
       componentList() {
         let mockData = [];
         for (let i = 0; i <= this.center.list.length - 1; i++) {
-          if (this.item.dragItem.id !== this.center.list[i].dragItem.id &&
-            this.center.list[i].dragItem.type !== 'divider') {
+          if (this.item.dragItem.id !== this.center.list[i].dragItem.id && !this.center.list[i].dragItem.business) {
             mockData.push({
               key: this.center.list[i].dragItem.id,
               label: this.center.list[i].dragItem[`title_${this.language.lang}`],

@@ -3,9 +3,14 @@
     <div class="vf-fn">
       <h2>{{$t('admin_center_title1')}}</h2>
       <ul class="fn-flex flex-row">
-        <li class="pointer" @click="clear">{{$t('admin_center_btn1')}}</li>
+        <li class="pointer vf-fn-btn" @click="clear">
+          <Icon type="ios-trash-outline" size="18"/>
+          {{$t('admin_center_btn1')}}
+        </li>
         <Dropdown @on-click="handlePreview">
-          <a>{{$t('admin_center_btn2')}}
+          <a>
+            <Icon type="ios-eye-outline" size="18"/>
+            {{$t('admin_center_btn2')}}
             <Icon type="ios-arrow-down"></Icon>
           </a>
           <DropdownMenu slot="list">
@@ -128,6 +133,17 @@
     }
   }
 
+  .vf-fn-btn {
+    font-size: 14px;
+    color: @themeColor;
+    user-select: none;
+    margin-right: 10px;
+
+    &:hover {
+      color: @themeColor_08;
+    }
+  }
+
   .vf-fn {
     height: 50px;
     margin-bottom: 20px;
@@ -135,17 +151,6 @@
     h2 {
       font-size: 16px;
       margin-bottom: 15px;
-    }
-
-    li {
-      font-size: 14px;
-      color: @themeColor;
-      user-select: none;
-      margin-right: 10px;
-
-      &:hover {
-        color: @themeColor_07;
-      }
     }
   }
 </style>

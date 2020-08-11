@@ -4,6 +4,9 @@ import Switch from '../func/form-switch/component'
 import Radio from '../func/form-radio/component'
 import Select from '../func/form-select/component'
 import Multiple from '../func/form-multiple/component'
+import Password from '../func/form-password/component'
+import Javascript from '../func/form-javascript/component'
+import Html from '../func/form-html/component'
 // import Image from '../components/form-image/component'
 import DateRange from '../func/form-dateRange/component'
 import DatePicker from '../func/form-datePicker/component'
@@ -22,6 +25,7 @@ const xStep = 118; // 拖动块间隔宽度
 const list1 = [
   Input,
   Textarea,
+  Password,
   Switch,
   Radio,
   Select,
@@ -33,7 +37,7 @@ const list1 = [
   Slider,
   ColorPicker,
 ];
-const list2 = [Divider];
+const list2 = [Divider, Javascript, Html];
 list1.forEach((item, index) => {
   item.xStart = xStart + index % 2 * xStep
   item.xEnd = xStart + width + index % 2 * xStep

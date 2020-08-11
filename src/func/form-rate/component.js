@@ -1,6 +1,7 @@
 const component = {
   title_zh: '星级评分',
   title_en: 'rate',
+  icon: 'ios-star-outline',
   version: '1.0.0',
   business: false,
   type: 'rate',

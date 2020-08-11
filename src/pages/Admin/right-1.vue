@@ -33,6 +33,14 @@
                @on-change="e=>inputChange(e,'widthRatio')"><span slot="append">%</span>
       </i-input>
     </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('code')!==-1">
+      <label>{{$t('admin_right_btn23')}}</label>
+      <i-input v-model="item.dragItem.code" type="textarea"
+               class="vf-code"
+               :rows="20"
+               @on-change="e=>inputChange(e,'code')">
+      </i-input>
+    </div>
   </div>
 </template>
 <script>
@@ -40,7 +48,7 @@
 
   export default {
     computed: {
-      ...mapState(["center","language"]),
+      ...mapState(["center", "language"]),
       item() {
         if (this.center.list.length > 0) {
           return this.center.list[this.center.current] ? this.center.list[this.center.current] : {dragItem: {changeList: []}}
@@ -100,7 +108,7 @@
     }
 
     .vf-control {
-      >label {
+      > label {
         display: block;
         font-size: 14px;
         margin-bottom: 10px;
@@ -110,6 +118,12 @@
 
     .ivu-input, .ivu-input-group-append {
       height: 36px;
+    }
+
+    .vf-code {
+      textarea {
+        height: auto;
+      }
     }
 
     .ivu-input-wrapper {

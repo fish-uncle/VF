@@ -23,6 +23,8 @@ const language = {
   "admin_right_btn2_2": "Right alignment",
   "admin_right_btn3": "Component Title width",
   "admin_right_btn4": "Component width",
+  "admin_right_btn23": "Code snippet",
+
   "admin_right_btn5": "Is the component dashed",
   "admin_right_btn5_1": "YES",
   "admin_right_btn5_2": "NO",
@@ -72,6 +74,8 @@ const language = {
   "help_left_2": "Basic functions",
   "help_left_2_1": "Quick use",
   "help_left_2_2": "Dynamic data",
+  "help_left_2_3": "Basic components",
+  "help_left_2_4": "Decorating components",
   "help_left_3": "Advanced features",
   "help_left_3_1": "Custom components",
   "help_left_3_2": "Internationalization",

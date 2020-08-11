@@ -1,6 +1,7 @@
 const component = {
   title_zh: '单项选择',
   title_en: 'radio',
+  icon: 'ios-radio-button-on',
   version: '1.0.0',
   business: false,
   type: 'radio',

@@ -1,6 +1,7 @@
 const component = {
   title_zh: '多行文本',
   title_en: 'textarea',
+  icon: 'ios-list-box-outline',
   version: '1.0.0',
   business: false,
   type: 'textarea',

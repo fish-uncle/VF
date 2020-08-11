@@ -1,6 +1,7 @@
 const component = {
   title_zh: '滑块',
   title_en: 'slider',
+  icon: 'ios-options-outline',
   version: '1.0.0',
   business: false,
   type: 'slider',

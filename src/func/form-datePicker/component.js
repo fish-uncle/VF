@@ -1,8 +1,9 @@
 const component = {
   title_zh: '日期选择',
   title_en: 'datePicker',
+  icon: 'ios-calendar-outline',
   version: '1.0.0',
-  business:false,
+  business: false,
   type: 'datePicker',
   h: 2,
   disabled: false,

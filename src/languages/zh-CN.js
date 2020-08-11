@@ -23,6 +23,8 @@ const language = {
   "admin_right_btn2_2": "右对齐",
   "admin_right_btn3": "组件标题宽度",
   "admin_right_btn4": "组件宽度",
+  "admin_right_btn23": "代码片段",
+
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",
   "admin_right_btn5_2": "否",
@@ -72,6 +74,8 @@ const language = {
   "help_left_2": "基础功能",
   "help_left_2_1": "快速使用",
   "help_left_2_2": "动态数据",
+  "help_left_2_3": "基础组件",
+  "help_left_2_4": "修饰组件",
   "help_left_3": "高级功能",
   "help_left_3_1": "自定义组件",
   "help_left_3_2": "国际化",

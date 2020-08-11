@@ -6,24 +6,13 @@
        currentVal.lowerVersion?'lower-version':'']"
        @click="choose(index)">
     <label class="fn-fl"
-           v-if="currentVal.dragItem.type!=='divider'"
+           v-if="currentVal.dragItem.type!=='divider' &&currentVal.dragItem.type!=='javascript'&&currentVal.dragItem.type!=='html'"
            :class="currentVal.dragItem.required?'has-required':''"
            :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
       {{currentVal.dragItem[`title_${language.lang}`]}}:
     </label>
     <div :style="{marginLeft:`${currentVal.dragItem.labelWidth}px`}">
-      <f-input v-if="currentVal.dragItem.type==='input'" :value="currentVal"/>
-      <f-textarea v-if="currentVal.dragItem.type==='textarea'" :value="currentVal"/>
-      <f-switch v-if="currentVal.dragItem.type==='switch'" :value="currentVal"/>
-      <f-radio v-if="currentVal.dragItem.type==='radio'" :value="currentVal"/>
-      <f-select v-if="currentVal.dragItem.type==='select'" :value="currentVal"/>
-      <f-multiple v-if="currentVal.dragItem.type==='multiple'" :value="currentVal"/>
-      <f-date-picker v-if="currentVal.dragItem.type==='datePicker'" :value="currentVal"/>
-      <f-date-range v-if="currentVal.dragItem.type==='dateRange'" :value="currentVal"/>
-      <f-slider v-if="currentVal.dragItem.type==='slider'" :value="currentVal"/>
-      <f-rate v-if="currentVal.dragItem.type==='rate'" :value="currentVal"/>
-      <f-color-picker v-if="currentVal.dragItem.type==='colorPicker'" :value="currentVal"/>
-      <f-divider v-if="currentVal.dragItem.type==='divider'" :value="currentVal"/>
+      <component :is="currentComponent" :value="currentVal"></component>
     </div>
     <div v-if="index===center.current&&edit" class="pos-a vf-component-del pointer text-center" @click="del">
       <Icon type="md-trash"/>
@@ -32,6 +21,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {cssStyle2DomStyle} from '../../utils';
 
   export default {
     data() {
@@ -39,6 +29,7 @@
         currentVal: this.value,
         id: null,
         visible: true,
+        currentComponent: null
       }
     },
     computed: mapState(["center", "language"]),
@@ -50,6 +41,8 @@
     },
     mounted() {
       this.id = this.currentVal.dragItem.id;
+      const type = cssStyle2DomStyle(this.currentVal.dragItem.type);
+      this.currentComponent = () => import(`../../func/form-${type}`)
       if (this.edit) {
         this.$agent.$on('componentInit', this.init)
       }

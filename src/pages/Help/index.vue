@@ -20,7 +20,6 @@
     computed: mapState(["top", "help"]),
     methods: {
       async init() {
-        console.log(1);
         const {name} = this.$route.params;
         const content = await import(`./${name}-${this.$i18n.locale}.md`)
         this.$store.commit('help/changeHelp', {

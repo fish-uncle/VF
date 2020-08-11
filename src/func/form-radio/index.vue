@@ -53,6 +53,11 @@
             this.parent.controlOthersUpdate(this.currentVal.dragItem.controlOthersUpdateTargetKeys)
           }
         }
+        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+          if (this.parent) {
+            this.parent.controlOthersHide(this.currentVal.dragItem.controlOthersHideTargetKeys, value)
+          }
+        }
       }
     }
   }

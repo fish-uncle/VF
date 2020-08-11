@@ -24,3 +24,10 @@ export function findComponentsDownward (context, componentName) {
     return components.concat(foundChilds);
   }, []);
 }
+
+// 连字符转驼峰
+export function cssStyle2DomStyle(sName) {
+  return sName.replace(/^\-/, '').replace(/\-(\w)(\w+)/g, function(a, b,c){
+    return b.toUpperCase() + c.toLowerCase();
+  });
+}

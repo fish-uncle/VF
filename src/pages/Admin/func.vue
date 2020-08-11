@@ -15,11 +15,12 @@
       </ul>
       <!--      <div class="pos-a func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
     </div>
-    <div class="pos-a drag text-center"
+    <div class="pos-a drag fn-flex"
          v-show="component.drag"
          :class="[component.drag?'active z-index-999':'',component.remove?'remove':'']"
          :style="{left:component.dragItem.x + 10 + 'px',top:component.dragItem.y - 30 - scrollTop+'px'}">
-      {{component.dragItem[`title_${language.lang}`]}}
+      <Icon :type="component.dragItem.icon" v-if="component.dragItem.icon" color="rgb(18, 120, 245)" size="18"/>
+      <span>{{component.dragItem[`title_${language.lang}`]}}</span>
     </div>
   </div>
 </template>
@@ -42,7 +43,7 @@
       if (func)
         func.removeEventListener("scroll", this.handleScroll);
     },
-    computed:mapState(["component", 'center','language']),
+    computed: mapState(["component", 'center', 'language']),
     methods: {
       handleScroll(e) {
         const func = document.getElementById('func');
@@ -112,6 +113,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    align-items: center;
+    padding-left: 8px;
+
+    span {
+      margin-left: 5px;
+    }
 
     &.active {
       opacity: 0.8;
