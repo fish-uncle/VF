@@ -1,10 +1,11 @@
 const component = {
-  title: '单行文本',
+  title_zh: '单行文本',
+  title_en: 'input',
   version: '1.0.0',
   business: false,
   type: 'input',
   h: 2,
-  placeholder: '请输入',
+  placeholder: '',
   disabled: false,
   labelWidth: 100,
   labelTextAlign: 'right',

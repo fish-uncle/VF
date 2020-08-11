@@ -1,5 +1,6 @@
 const component = {
-  title: '多行文本',
+  title_zh: '多行文本',
+  title_en: 'textarea',
   version: '1.0.0',
   business: false,
   type: 'textarea',

@@ -1,5 +1,6 @@
 const component = {
-  title: '单项选择',
+  title_zh: '单项选择',
+  title_en: 'radio',
   version: '1.0.0',
   business: false,
   type: 'radio',
@@ -12,11 +13,11 @@ const component = {
   selectList: [
     {
       value: 1,
-      title: '选项1'
+      title: '1'
     },
     {
       value: 2,
-      title: '选项2'
+      title: '2'
     }
   ],
   ajaxList: [],

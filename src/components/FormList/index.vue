@@ -18,6 +18,7 @@
         if (this.$children) {
           this.$children.forEach(child => {
             for (let key in controlOthersHideTargetKeys) {
+              console.log(2)
               if (controlOthersHideTargetKeys[key].indexOf(child.id) !== -1) {
                 if (key == value) {
                   child.hide();
@@ -32,6 +33,7 @@
       controlOthersUpdate(controlOthersUpdateTargetKeys) {
         if (this.$children) {
           this.$children.forEach(child => {
+            console.log(1)
             if (controlOthersUpdateTargetKeys.indexOf(child.id) !== -1) {
               child.init();
             }

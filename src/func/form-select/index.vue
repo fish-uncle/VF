@@ -1,5 +1,6 @@
 <template>
   <i-select v-model="center[currentVal.dragItem.key]"
+            :placeholder="currentVal.dragItem.placeholder"
             :disabled="currentVal.dragItem.disabled" :style="{width:`${currentVal.dragItem.widthRatio}%`}"
             @on-change="clickChange" :clearable="currentVal.dragItem.clearable">
     <i-option v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"
@@ -25,7 +26,7 @@
         parent: findComponentUpward(this, 'FormList')
       }
     },
-    computed: mapState(["center", "right"]),
+    computed: mapState(["center"]),
     props: ["value"],
     watch: {
       value(val) {
@@ -39,16 +40,9 @@
     methods: {
       init() {
         const key = this.currentVal.dragItem.diyKey ? this.currentVal.dragItem.diyKey : this.currentVal.dragItem.key;
-        if (ajax[key]) return
         ajax[key] = true;
         if (this.currentVal.dragItem.selectListUrl) {
-          const tenantId = this.right.tenant;
-          let data;
-          if (tenantId) {
-            data = {...this.center.data, ...this.currentVal.dragItem.customAjaxParams, tenantId};
-          } else {
-            data = {...this.center.data, ...this.currentVal.dragItem.customAjaxParams};
-          }
+          const data = {...this.center.data, ...this.currentVal.dragItem.customAjaxParams};
           request.post(this.currentVal.dragItem.selectListUrl, data).then(res => {
             ajax[key] = false;
             this.$store.commit('center/changeSelectList', {
@@ -58,6 +52,8 @@
           }).catch(() => {
             ajax[key] = false;
           })
+        } else {
+          ajax[key] = false;
         }
         this.center[key] = '';
         this.$store.commit('center/changeData', {

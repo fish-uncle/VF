@@ -19,19 +19,24 @@ axios.interceptors.request.use(function (config) {
 // 可自行判断 逻辑报错请求
 axios.interceptors.response.use(response => {
   const {data} = response;
+  const locale = localStorage.getItem('locale');
+  let errMessage = '网络异常，请重试';
+  if (locale === 'en') {
+    errMessage = 'Network exception, please try again';
+  }
   if (data) {
-    if (data.returnCode === '0000') {
-      return data.result
+    if (data.resultCode === '0000') {
+      return data.data
     } else {
-      Message.error(data.returnMessage || '网络异常，请重试')
+      Message.error(data.returnMessage || errMessage)
       return Promise.reject(false);
     }
   } else {
-    Message.error('网络异常，请重试')
+    Message.error(errMessage)
     return Promise.reject(false);
   }
 }, function (e) {
-  Message.error('网络异常，请重试');
+  Message.error(errMessage);
   return Promise.reject(false);
 });
 

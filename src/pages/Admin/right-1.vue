@@ -2,8 +2,8 @@
   <div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('title')!==-1">
       <label>{{$t('admin_right_btn1')}}</label>
-      <i-input v-model="item.dragItem.title"
-               @on-change="e=>inputChange(e,'title')"/>
+      <i-input v-model="item.dragItem[`title_${language.lang}`]"
+               @on-change="e=>inputChange(e,`title_${language.lang}`)"/>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
       <label>{{$t('admin_right_btn2')}}</label>
@@ -40,7 +40,7 @@
 
   export default {
     computed: {
-      ...mapState(["center"]),
+      ...mapState(["center","language"]),
       item() {
         if (this.center.list.length > 0) {
           return this.center.list[this.center.current] ? this.center.list[this.center.current] : {dragItem: {changeList: []}}

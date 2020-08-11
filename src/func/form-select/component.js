@@ -1,10 +1,12 @@
 const component = {
-  title: '下拉选择',
+  title_zh: '下拉选择',
+  title_en: 'select',
   version: '1.0.0',
   business: false,
   type: 'select',
   h: 2,
   disabled: false,
+  placeholder: '',
   labelWidth: 100,
   labelTextAlign: 'right',
   widthRatio: 100,
@@ -15,11 +17,11 @@ const component = {
   selectList: [
     {
       value: 1,
-      title: '选项1'
+      title: '1'
     },
     {
       value: 2,
-      title: '选项2'
+      title: '2'
     }
   ],
   customAjaxParams: {},
@@ -33,6 +35,7 @@ const component = {
     'labelTextAlign',
     'labelWidth',
 
+    'placeholder',
     'widthRatio',
     'disabled',
     'required',

@@ -1,5 +1,6 @@
 const component = {
-  title: '开关',
+  title_zh: '开关',
+  title_en: 'switch',
   version: '1.0.0',
   business: false,
   type: 'switch',

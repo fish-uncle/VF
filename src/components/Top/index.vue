@@ -38,7 +38,8 @@
       handleLanguageChange(data) {
         document.title = this.$t('top_description');
         localStorage.setItem("locale", data);
-        this.$agent.$once({type: 'languageChange', data})
+        this.$agent.$once({type: 'languageChange', data});
+        this.$store.commit('language/change', {lang: data})
       },
       handleIndex() {
         if (this.$route.name !== 'Admin')

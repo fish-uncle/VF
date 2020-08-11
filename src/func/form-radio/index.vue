@@ -33,10 +33,11 @@
     methods: {
       init() {
         if (this.currentVal.dragItem.selectListUrl) {
-          request.get(this.currentVal.dragItem.selectListUrl).then(res => {
+          const data = {...this.center.data, ...this.currentVal.dragItem.customAjaxParams};
+          request.post(this.currentVal.dragItem.selectListUrl, data).then(res => {
             this.$store.commit('center/changeSelectList', {
               value: res,
-              index: this.currentVal.index
+              key: this.currentVal.dragItem.key
             })
           })
         }
@@ -60,7 +61,7 @@
   .f-radio {
     height: 32px;
     align-items: center;
-    display: flex!important;
-    display: -webkit-flex!important;
+    display: flex !important;
+    display: -webkit-flex !important;
   }
 </style>

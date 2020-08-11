@@ -1,5 +1,6 @@
 const component = {
-  title: '多项选择',
+  title_zh: '多项选择',
+  title_en: 'multiple',
   version: '1.0.0',
   business: false,
   type: 'multiple',
@@ -13,11 +14,11 @@ const component = {
   selectList: [
     {
       value: 1,
-      title: '选项1'
+      title: '1'
     },
     {
       value: 2,
-      title: '选项2'
+      title: '2'
     }
   ],
   ajaxList: [],

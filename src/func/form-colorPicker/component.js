@@ -1,5 +1,6 @@
 const component = {
-  title: '颜色选择器',
+  title_zh: '颜色选择器',
+  title_en: 'colorPicker',
   version: '1.0.0',
   business: false,
   type: 'colorPicker',

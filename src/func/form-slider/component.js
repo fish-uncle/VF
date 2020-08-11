@@ -1,5 +1,6 @@
 const component = {
-  title: '滑块',
+  title_zh: '滑块',
+  title_en: 'slider',
   version: '1.0.0',
   business: false,
   type: 'slider',

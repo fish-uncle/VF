@@ -157,11 +157,11 @@
   export default {
     data() {
       return {
-        tab: 2
+        tab: 1
       }
     },
     computed: {
-      ...mapState(["center"]),
+      ...mapState(["center",'language']),
       item() {
         if (this.center.list.length > 0) {
           return this.center.list[this.center.current]
@@ -176,7 +176,7 @@
             this.center.list[i].dragItem.type !== 'divider') {
             mockData.push({
               key: this.center.list[i].dragItem.id,
-              label: this.center.list[i].dragItem.title,
+              label: this.center.list[i].dragItem[`title_${this.language.lang}`],
             });
           }
         }

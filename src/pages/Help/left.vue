@@ -8,13 +8,13 @@
       <MenuItem name="Introduce">{{$t('help_left_1_1')}}</MenuItem>
       <MenuItem name="Catalogue introduction">{{$t('help_left_1_2')}}</MenuItem>
     </Submenu>
-<!--    <Submenu name="2">-->
-<!--      <template slot="title">-->
-<!--        {{$t('help_left_2')}}-->
-<!--      </template>-->
+    <Submenu name="2">
+      <template slot="title">
+        {{$t('help_left_2')}}
+      </template>
 <!--      <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>-->
-<!--      <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>-->
-<!--    </Submenu>-->
+      <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>
+    </Submenu>
 <!--    <Submenu name="3">-->
 <!--      <template slot="title">-->
 <!--        {{$t('help_left_3')}}-->

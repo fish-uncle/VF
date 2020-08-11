@@ -95,6 +95,16 @@ const store = {
       data[newState.key] = newState.value;
       state.data = data;
     },
+    // 初始化 列表
+    changeSelectList: function (state, newState) {
+      const list = state.list;
+      list.forEach(item => {
+        if (item.dragItem.key === newState.key) {
+          item.dragItem.ajaxList = newState.value;
+        }
+      })
+      state.list = list;
+    },
     // 更改 类型为 日期范围的值
     changeDateRange: function (state, newState) {
       const data = state.data;

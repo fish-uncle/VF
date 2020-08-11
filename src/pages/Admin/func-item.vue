@@ -1,6 +1,6 @@
 <template>
   <li class="text-center pos-r z-index-9" :title="item.title">
-    {{item.title}}
+    {{item[`title_${language.lang}`]}}
   </li>
 </template>
 <script>
@@ -8,7 +8,7 @@
 
   export default {
     props: ['item'],
-    computed: mapState(["component", "model"]),
+    computed: mapState(["component", "model", "language"]),
     mounted() {
       document.addEventListener('mouseup', this.remove);
       document.addEventListener('mousedown', this.drag);

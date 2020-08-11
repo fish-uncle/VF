@@ -1,5 +1,6 @@
 const component = {
-  title: '分割线',
+  title_zh: '分割线',
+  title_en: 'divider',
   version: '1.0.0',
   business: true,
   type: 'divider',

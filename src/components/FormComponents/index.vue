@@ -9,7 +9,7 @@
            v-if="currentVal.dragItem.type!=='divider'"
            :class="currentVal.dragItem.required?'has-required':''"
            :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
-      {{currentVal.dragItem.title}}:
+      {{currentVal.dragItem[`title_${language.lang}`]}}:
     </label>
     <div :style="{marginLeft:`${currentVal.dragItem.labelWidth}px`}">
       <f-input v-if="currentVal.dragItem.type==='input'" :value="currentVal"/>
@@ -41,7 +41,7 @@
         visible: true,
       }
     },
-    computed: mapState(["center"]),
+    computed: mapState(["center", "language"]),
     props: ["value", "index", 'edit'],
     watch: {
       value(val) {

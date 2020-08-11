@@ -1,5 +1,6 @@
 const component = {
-  title: '星级评分',
+  title_zh: '星级评分',
+  title_en: 'rate',
   version: '1.0.0',
   business: false,
   type: 'rate',

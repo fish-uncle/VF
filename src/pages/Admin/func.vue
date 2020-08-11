@@ -19,7 +19,7 @@
          v-show="component.drag"
          :class="[component.drag?'active z-index-999':'',component.remove?'remove':'']"
          :style="{left:component.dragItem.x + 10 + 'px',top:component.dragItem.y - 30 - scrollTop+'px'}">
-      {{component.dragItem.title}}
+      {{component.dragItem[`title_${language.lang}`]}}
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@
     data() {
       return {
         scrollTop: 0,
-        scrollHeight: '100%'
+        scrollHeight: '100%',
       }
     },
     components: {
@@ -42,9 +42,7 @@
       if (func)
         func.removeEventListener("scroll", this.handleScroll);
     },
-    computed: {
-      ...mapState(["component", 'center']),
-    },
+    computed:mapState(["component", 'center','language']),
     methods: {
       handleScroll(e) {
         const func = document.getElementById('func');

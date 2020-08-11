@@ -1,5 +1,13 @@
 const log = [
   {
+    version: '1.0.11',
+    time: '2020-08-11',
+    content: [
+      'New component internationalization function。',
+      'Optimization help document, dynamic data。',
+    ]
+  },
+  {
     version: '1.0.10',
     time: '2020-08-10',
     content: [
@@ -7,6 +15,7 @@ const log = [
       'Optimize the help document, part of the display effect。',
       'Optimize the navigation, part of the display effect。',
       'New platform and document internationalization function。',
+      'Modify the navigation source code to view for purchase。',
     ]
   },
   {

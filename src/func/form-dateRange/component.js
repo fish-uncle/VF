@@ -1,5 +1,6 @@
 const component = {
-  title: '日期范围',
+  title_zh: '日期范围',
+  title_en: 'dateRange',
   version: '1.0.0',
   business: false,
   type: 'dateRange',
