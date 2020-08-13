@@ -10,7 +10,7 @@ const component = {
   disabled: false,
   code: 'console.log("javascript start!")',
   changeList: [
-    'code',
+    'javascript',
   ]
 }
 

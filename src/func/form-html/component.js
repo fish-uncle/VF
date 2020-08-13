@@ -8,9 +8,9 @@ const component = {
   type: 'html',
   h: 2,
   disabled: false,
-  code: '<i data-v-7342072d="" class="f-code ivu-icon ivu-icon-logo-html5" style="font-size: 18px;"></i>',
+  code: '<i class="f-code ivu-icon ivu-icon-logo-html5" style="font-size: 18px;"></i>',
   changeList: [
-    'code',
+    'html',
   ]
 }
 

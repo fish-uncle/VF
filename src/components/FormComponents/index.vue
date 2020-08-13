@@ -3,10 +3,10 @@
        v-show="visible"
        :class="[index===center.current&&edit?'active':'',
        edit?'vf-component-edit':'',
+       `vf-${type}-box`,
        currentVal.lowerVersion?'lower-version':'']"
        @click="choose(index)">
     <label class="fn-fl"
-           v-if="currentVal.dragItem.type!=='divider' &&currentVal.dragItem.type!=='javascript'&&currentVal.dragItem.type!=='html'"
            :class="currentVal.dragItem.required?'has-required':''"
            :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
       {{currentVal.dragItem[`title_${language.lang}`]}}:
@@ -29,7 +29,8 @@
         currentVal: this.value,
         id: null,
         visible: true,
-        currentComponent: null
+        currentComponent: null,
+        type: ''
       }
     },
     computed: mapState(["center", "language"]),
@@ -42,6 +43,7 @@
     mounted() {
       this.id = this.currentVal.dragItem.id;
       const type = cssStyle2DomStyle(this.currentVal.dragItem.type);
+      this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
       if (this.edit) {
         this.$agent.$on('componentInit', this.init)
@@ -76,8 +78,23 @@
     }
   }
 </script>
-<style lang="less" scoped>
+<style lang="less">
   @import "../../less/conf";
+
+  .vf-javascript-box, .vf-divider-box, .vf-html-box {
+    label {
+      display: none;
+    }
+  }
+
+  .vf-javascript-box {
+    display: none;
+
+    &.vf-component-edit {
+      display: block;
+    }
+  }
+
 
   .vf-component {
     border: 2px dashed rgba(0, 0, 0, 0);

@@ -39,20 +39,50 @@
                @on-change="e=>inputChange(e,'className')">
       </i-input>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('code')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('javascript')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
-      <i-input v-model="item.dragItem.code" type="textarea"
-               class="vf-code"
-               :rows="20"
-               @on-change="e=>inputChange(e,'code')">
-      </i-input>
+      <codemirror :value="item.dragItem.code"
+                  :options="javascript"
+                  @input="newCode=>onCmCodeChange(newCode,'code')"/>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('html')!==-1">
+      <label>{{$t('admin_right_btn23')}}</label>
+      <codemirror :value="item.dragItem.code"
+                  :options="html"
+                  @input="newCode=>onCmCodeChange(newCode,'code')"/>
     </div>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex';
+  import {codemirror} from 'vue-codemirror';
+  import 'codemirror/lib/codemirror.css';
+  import 'codemirror/theme/material.css';
 
   export default {
+    data(){
+      return {
+        html: {
+          tabSize: 4,
+          mode: 'text/html',
+          theme: 'material',
+          lineNumbers: true,
+          line: true,
+          lineWrapping: true,
+        },
+        javascript: {
+          tabSize: 4,
+          mode: 'text/javascript',
+          theme: 'material',
+          lineNumbers: true,
+          line: true,
+          lineWrapping: true,
+        }
+      }
+    },
+    components: {
+      codemirror
+    },
     computed: {
       ...mapState(["center", "language"]),
       item() {
@@ -64,6 +94,10 @@
       }
     },
     methods: {
+      onCmCodeChange(newCode, key) {
+        let item = this.item;
+        item.dragItem[key] = newCode;
+      },
       checkChange(value, key) {
         let item = this.item;
         item.dragItem[key] = value;
@@ -87,7 +121,22 @@
 </script>
 <style lang="less">
   @import "../../less/conf";
+  .CodeMirror-vscrollbar{
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 1px;
+    }
 
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #535353;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background: #ededed;
+    }
+  }
   .vf-right {
     width: 440px;
     margin-top: 10px;

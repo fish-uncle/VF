@@ -1,6 +1,8 @@
 <template>
-  <Icon class="f-javascript" type="logo-javascript" size="18"
-        :class="[currentVal.dragItem.className]"/>
+  <div class="f-javascript"
+        :class="[currentVal.dragItem.className]">
+    自定义js片段，仅在编辑时显示该文本，用于占位
+  </div>
 </template>
 <script>
   import {mapState} from 'vuex';
@@ -27,8 +29,3 @@
     }
   }
 </script>
-<style lang="less">
-  .f-javascript {
-    margin: 8px 0 0 0;
-  }
-</style>
