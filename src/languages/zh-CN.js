@@ -24,6 +24,8 @@ const language = {
   "admin_right_btn3": "组件标题宽度",
   "admin_right_btn4": "组件宽度",
   "admin_right_btn23": "代码片段",
+  "admin_right_btn24": "显示格式化",
+  "admin_right_btn25": "自定义class名",
 
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",
@@ -92,5 +94,9 @@ const language = {
   "buy_content2": "支持技术咨询服务",
   "buy_content3": "提供源代码",
   "buy_content4": "允许二次扩展开发",
+
+  "model_preview_submit": "提交表单",
+
+  "verify-required": "是必填项",
 };
 export default language

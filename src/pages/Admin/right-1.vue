@@ -33,6 +33,12 @@
                @on-change="e=>inputChange(e,'widthRatio')"><span slot="append">%</span>
       </i-input>
     </div>
+    <div class="vf-control" v-if="this.center.list.length > 0">
+      <label>{{$t('admin_right_btn25')}}</label>
+      <i-input v-model="item.dragItem.className"
+               @on-change="e=>inputChange(e,'className')">
+      </i-input>
+    </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('code')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
       <i-input v-model="item.dragItem.code" type="textarea"

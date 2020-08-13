@@ -1,5 +1,5 @@
 <template>
-  <div class="vf-image" :class="currentVal.dragItem.disabled?'disabled':''">
+  <div class="f-image" :class="[currentVal.dragItem.className]">
     <img :src="img" alt="" v-if="img"/>
     <label v-else for="vf-image">
       <input  accept="image/*" :disabled="currentVal.dragItem.disabled"

@@ -1,22 +1,27 @@
 <template>
   <div>
-    <div class="vf-control">
+    <div class="vf-control" v-if="this.center.list.length > 0">
       <label>{{$t('admin_right_btn6')}}</label>
       <i-input v-model="item.dragItem.id" :disabled="true"/>
     </div>
-    <div class="vf-control" v-if="item.dragItem.type!=='divider'">
+    <div class="vf-control" v-if="this.center.list.length > 0">
       <label>{{$t('admin_right_btn7')}}</label>
       <i-input :value="item.dragItem.key"
-               @on-change="e=>keyChange(e)" v-if="item.dragItem.type!=='dateRange'"/>
+               @on-change="e=>keyChange(e)" v-if="item.dragItem.dataType!=='Array'"/>
       <i-input :value="item.dragItem.key.split(';')[0]"
-               @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dragItem.type==='dateRange'"/>
+               @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dragItem.dataType==='Array'"/>
       <i-input :value="item.dragItem.key.split(';')[1]"
-               @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.type==='dateRange'"/>
+               @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.dataType==='Array'"/>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
       <label>{{$t('admin_right_btn8')}}</label>
       <i-input v-model="item.dragItem.placeholder"
                @on-change="e=>inputChange(e,'placeholder')"/>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('format')!==-1">
+      <label>{{$t('admin_right_btn24')}}</label>
+      <i-input v-model="item.dragItem.format"
+               @on-change="e=>inputChange(e,'format')"/>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('disabled')!==-1">
       <label>{{$t('admin_right_btn9')}}</label>

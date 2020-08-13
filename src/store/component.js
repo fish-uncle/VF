@@ -7,6 +7,8 @@ import Multiple from '../func/form-multiple/component'
 import Password from '../func/form-password/component'
 import Javascript from '../func/form-javascript/component'
 import Html from '../func/form-html/component'
+import TimePicker from '../func/form-timePicker/component'
+import TimeRange from '../func/form-timeRange/component'
 // import Image from '../components/form-image/component'
 import DateRange from '../func/form-dateRange/component'
 import DatePicker from '../func/form-datePicker/component'
@@ -30,12 +32,15 @@ const list1 = [
   Radio,
   Select,
   Multiple,
-  // Image,
-  DateRange,
-  DatePicker,
   Rate,
+  // Image,
+  DatePicker,
+  DateRange,
+  TimePicker,
+  TimeRange,
   Slider,
   ColorPicker,
+
 ];
 const list2 = [Divider, Javascript, Html];
 list1.forEach((item, index) => {

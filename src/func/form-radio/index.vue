@@ -1,5 +1,6 @@
 <template>
   <RadioGroup class="f-radio fn-flex flex-row" v-model="center[currentVal.dragItem.key]"
+              :class="[currentVal.dragItem.className]"
               @on-change="clickChange">
     <Radio v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"
            :disabled="currentVal.dragItem.disabled" :label="item.value" :key="item.value">

@@ -20,7 +20,7 @@
         </Dropdown>
       </ul>
     </div>
-    <div class="vf-drag">
+    <div class="vf-drag pos-r">
       <grid-layout
         :layout.sync="center.list"
         :col-num="2"
@@ -43,6 +43,9 @@
           <f-component :value="item" :index="index" :edit="true"/>
         </grid-item>
       </grid-layout>
+      <div class="vf-center-empty pos-a text-center" v-if="!center.list.length">
+        从左侧拖拽添加组件
+      </div>
     </div>
   </div>
 </template>
@@ -110,6 +113,14 @@
 </script>
 <style lang="less">
   @import "../../less/conf";
+
+  .vf-center-empty{
+    font-size: 20px;
+    top: 50%;
+    width: 100%;
+    margin-top: -15px;
+    color: #ccc;
+  }
 
   .vf-center {
     margin-left: 260px;

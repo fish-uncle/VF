@@ -2,6 +2,7 @@ const component = {
   title_zh: '下拉选择',
   title_en: 'select',
   icon: 'ios-arrow-dropdown',
+  className: '',
   version: '1.0.0',
   business: false,
   type: 'select',

@@ -1,9 +1,10 @@
 <template>
-  <ColorPicker v-model="color"
-               class="f-color-picker"
+  <Time-picker class="f-date-picker" type="time" v-model="center[currentVal.dragItem.key]"
                :class="[currentVal.dragItem.className]"
-               @on-change="colorChange"
-               :alpha="currentVal.dragItem.alpha"
+               :clearable="currentVal.dragItem.clearable"
+               :placeholder="currentVal.dragItem.placeholder"
+               :format="currentVal.dragItem.format"
+               @on-change="dateChange"
                :disabled="currentVal.dragItem.disabled"/>
 </template>
 <script>
@@ -11,20 +12,15 @@
 
   export default {
     data() {
-      let color = '';
       return {
-        color,
         currentVal: this.value,
       }
     },
-    computed: {
-      ...mapState(["center"]),
-    },
+    computed: mapState(["center"]),
     props: ["value"],
     watch: {
       value(val) {
         this.currentVal = val;
-        this.color = this.center[this.currentVal.dragItem.key];
       }
     },
     methods: {
@@ -35,7 +31,7 @@
           key: this.currentVal.dragItem.key
         })
       },
-      colorChange(value) {
+      dateChange(value) {
         this.$store.commit('center/changeData', {
           value,
           key: this.currentVal.dragItem.key

@@ -1,5 +1,7 @@
 <template>
   <i-input
+    class="f-input"
+    :class="[currentVal.dragItem.className]"
     v-model="center[currentVal.dragItem.key]"
     :disabled="currentVal.dragItem.disabled"
     :placeholder="currentVal.dragItem.placeholder"

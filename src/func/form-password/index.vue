@@ -1,5 +1,6 @@
 <template>
-  <div class="f-password pos-r" :style="{width:`${currentVal.dragItem.widthRatio}%`}">
+  <div class="f-password pos-r" :style="{width:`${currentVal.dragItem.widthRatio}%`}"
+       :class="[currentVal.dragItem.className]">
     <i-input
       v-model="center[currentVal.dragItem.key]"
       :disabled="currentVal.dragItem.disabled"

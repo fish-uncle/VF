@@ -2,6 +2,7 @@ const component = {
   title_zh: 'JS片段',
   title_en: 'javascript',
   icon: 'logo-javascript',
+  className: '',
   version: '1.0.0',
   business: true,
   type: 'javascript',

@@ -1,15 +1,21 @@
 const log = [
   {
     version: '1.0.11',
-    time: '2020-08-11',
+    time: '2020-08-13',
     content: [
       'New component internationalization function.',
       'Optimization help document, dynamic data.',
+      'Optimization help document, quick use.',
       'New component icon ID.',
-      'New password text control component f-password。',
-      'New JS fragment control component f-javascript。',
-      'New Html fragment control component f-javascript。',
+      'New password text component f-password。',
+      'New JS fragment component f-javascript。',
+      'New Html fragment component f-javascript。',
       'Optimize the way of component introduction and introduce dynamically。',
+      'New time selection component f-timePicker.',
+      'New time range component f-timeRange.',
+      'New field property function, display format.',
+      'New form attribute function, custom class name.',
+      'New method, verifyrequired, verification required。',
     ]
   },
   {
@@ -63,18 +69,18 @@ const log = [
     version: '1.0.6',
     time: '2020-07-20',
     content: [
-      'Optimize the function of multi-choice control components, support the control of other components, cascade effect.',
-      'Optimize the component function of drop-down selection control component, support to control other components, cascade effect.',
-      'Optimize the component function of single selection control component, support to control other components, cascade effect.',
+      'Optimize the function of multi-choice components, support the control of other components, cascade effect.',
+      'Optimize the component function of drop-down selection component, support to control other components, cascade effect.',
+      'Optimize the component function of single selection component, support to control other components, cascade effect.',
     ]
   },
   {
     version: '1.0.5',
     time: '2020-07-14',
     content: [
-      'Optimize the multi-choice control component function, support dynamic access list.',
-      'Optimize the function of drop-down selection control component, support dynamic access list.',
-      'Optimize the function of single selection control component, support dynamic access list.',
+      'Optimize the multi-choice component function, support dynamic access list.',
+      'Optimize the function of drop-down selection component, support dynamic access list.',
+      'Optimize the function of single selection component, support dynamic access list.',
     ]
   },
   {
@@ -89,35 +95,35 @@ const log = [
     version: '1.0.3',
     time: '2020-07-02',
     content: [
-      'New star rating control component f-color-picker.',
+      'New star rating component f-color-picker.',
     ]
   },
   {
     version: '1.0.2',
     time: '2020-06-27',
     content: [
-      'New star rating control component f-date-rate.',
-      'New slider control component f-date-slider.',
+      'New star rating component f-date-rate.',
+      'New slider component f-date-slider.',
     ]
   },
   {
     version: '1.0.1',
     time: '2020-06-25',
     content: [
-      'New date range control component f-date-range.',
-      'New date selection control component f-date-picker.',
+      'New date range component f-date-range.',
+      'New date selection component f-date-picker.',
     ]
   },
   {
     version: '1.0.0',
     time: '2020-06-20',
     content: [
-      'New single line text control component f-input.',
-      'New multi line text control component f-textarea.',
-      'New switch control component f-switch.',
-      'New single selection control component f-radio.',
-      'New drop-down selection control component f-select.',
-      'New multi selection control component f-multiple.',
+      'New single line text component f-input.',
+      'New multi line text component f-textarea.',
+      'New switch component f-switch.',
+      'New single selection component f-radio.',
+      'New drop-down selection component f-select.',
+      'New multi selection component f-multiple.',
     ]
   }
 ];

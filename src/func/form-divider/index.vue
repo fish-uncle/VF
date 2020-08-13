@@ -1,5 +1,5 @@
 <template>
-  <Divider class="f-divider" :dashed="currentVal.dragItem.dashed"/>
+  <Divider class="f-divider"  :class="[currentVal.dragItem.className]" :dashed="currentVal.dragItem.dashed"/>
 </template>
 <script>
   import {mapState} from 'vuex';

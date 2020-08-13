@@ -1,5 +1,6 @@
 <template>
-  <Icon class="f-javascript" type="logo-javascript" size="18"/>
+  <Icon class="f-javascript" type="logo-javascript" size="18"
+        :class="[currentVal.dragItem.className]"/>
 </template>
 <script>
   import {mapState} from 'vuex';

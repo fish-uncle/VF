@@ -1,27 +1,31 @@
 const component = {
-  title_zh: '多行文本',
-  title_en: 'textarea',
-  icon: 'ios-list-box-outline',
+  title_zh: '时间范围',
+  title_en: 'timeRange',
+  icon: 'ios-time-outline',
   className: '',
+  dataType: 'Array',
   version: '1.0.0',
   business: false,
-  type: 'textarea',
-  h: 3,
+  type: 'timeRange',
+  h: 2,
   placeholder: '',
+  format:"HH’mm’ss",
   disabled: false,
   labelWidth: 100,
+  clearable: true,
   labelTextAlign: 'right',
-  widthRatio: 100,
   required: false,
   changeList: [
     'title',
     'labelTextAlign',
     'labelWidth',
 
+    'format',
     'placeholder',
-    'widthRatio',
+    'key',
     'disabled',
     'required',
+    'clearable',
   ]
 }
 

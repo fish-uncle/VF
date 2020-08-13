@@ -1,6 +1,7 @@
 const component = {
   title_zh: '图片',
   title_en: 'image',
+  className: '',
   type: 'image',
   h: 5,
   disabled: false,

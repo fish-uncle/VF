@@ -1,5 +1,7 @@
 <template>
   <Slider  v-model="center[currentVal.dragItem.key]"
+           class="f-slider"
+           :class="[currentVal.dragItem.className]"
            :step="Number(currentVal.dragItem.step)"
            :max="Number(currentVal.dragItem.max)"
            :min="Number(currentVal.dragItem.min)"

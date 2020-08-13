@@ -24,6 +24,8 @@ const language = {
   "admin_right_btn3": "Component Title width",
   "admin_right_btn4": "Component width",
   "admin_right_btn23": "Code snippet",
+  "admin_right_btn24": "Display formatting",
+  "admin_right_btn25": "Custom class name",
 
   "admin_right_btn5": "Is the component dashed",
   "admin_right_btn5_1": "YES",
@@ -92,5 +94,9 @@ const language = {
   "buy_content2": "Support technical consulting services",
   "buy_content3": "Provide source code",
   "buy_content4": "Allow secondary extension development",
+
+  "model_preview_submit": "Submit Form",
+
+  "verify-required": "Is required",
 }
 export default language

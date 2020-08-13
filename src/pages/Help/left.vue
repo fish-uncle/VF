@@ -12,10 +12,10 @@
       <template slot="title">
         {{$t('help_left_2')}}
       </template>
-<!--      <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>-->
+      <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>
       <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>
-      <MenuItem name="Dynamic data">{{$t('help_left_2_3')}}</MenuItem>
-      <MenuItem name="Dynamic data">{{$t('help_left_2_4')}}</MenuItem>
+      <MenuItem name="Basic components">{{$t('help_left_2_3')}}</MenuItem>
+      <MenuItem name="Decorating components">{{$t('help_left_2_4')}}</MenuItem>
     </Submenu>
 <!--    <Submenu name="3">-->
 <!--      <template slot="title">-->

@@ -29,7 +29,7 @@ const store = {
       const i = Math.random(5).toString(32).replace('0.', '');
       const l = Math.random(5).toString(32).replace('0.', '')
       let key = `${newState.dragItem.type}_${i}`;
-      if (newState.dragItem.type === 'dateRange') {
+      if (newState.dragItem.dataType === 'Array') {
         key += `;${l}`;
       }
       let newList = {
@@ -55,10 +55,18 @@ const store = {
           break;
         case 'divider':
           break;
+        case 'javascript':
+          break;
+        case 'html':
+          break;
         case 'multiple':
           data[key] = [];
           break;
         case 'dateRange':
+          data[key.replace(`;${l}`, '')] = '';
+          data[l] = '';
+          break;
+        case 'timeRange':
           data[key.replace(`;${l}`, '')] = '';
           data[l] = '';
           break;
@@ -83,7 +91,14 @@ const store = {
     remove: function (state, newState) {
       const list = state.list;
       const data = state.data;
-      delete data[list[newState.index].dragItem.key]
+      if (list[newState.index].dragItem.key.indexOf(';') !== '-1') {
+        const _key = list[newState.index].dragItem.key.split(';');
+        _key.forEach(item => {
+          delete data[item]
+        })
+      } else {
+        delete data[list[newState.index].dragItem.key]
+      }
       list.splice(newState.index, 1);
       state.list = list;
       state.data = data;

@@ -1,5 +1,7 @@
 <template>
   <i-input type="textarea"
+           clas="f-textarea"
+           :class="[currentVal.dragItem.className]"
            v-model="center[currentVal.dragItem.key]"
            :disabled="currentVal.dragItem.disabled"
            :placeholder="currentVal.dragItem.placeholder"

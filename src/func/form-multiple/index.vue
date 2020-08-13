@@ -1,5 +1,6 @@
 <template>
   <Checkbox-group class="f-multiple fn-flex flex-row" v-model="data"
+                  :class="[currentVal.dragItem.className]"
                   :style="{width:`${currentVal.dragItem.widthRatio}%`}"
                   @on-change="clickChange">
     <Checkbox v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"

@@ -1,5 +1,8 @@
 <template>
-  <i-switch v-model="center[currentVal.dragItem.key]" :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
+  <i-switch v-model="center[currentVal.dragItem.key]"
+            class="f-switch"
+            :class="[currentVal.dragItem.className]"
+            :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
     <i/>
   </i-switch>
 </template>

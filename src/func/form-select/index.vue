@@ -1,5 +1,7 @@
 <template>
   <i-select v-model="center[currentVal.dragItem.key]"
+            class="f-select"
+            :class="[currentVal.dragItem.className]"
             :placeholder="currentVal.dragItem.placeholder"
             :disabled="currentVal.dragItem.disabled" :style="{width:`${currentVal.dragItem.widthRatio}%`}"
             @on-change="clickChange" :clearable="currentVal.dragItem.clearable">

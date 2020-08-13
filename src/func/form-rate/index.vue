@@ -1,5 +1,7 @@
 <template>
   <Rate  v-model="center[currentVal.dragItem.key]"
+         class="f-rate"
+         :class="[currentVal.dragItem.className]"
          :character="currentVal.dragItem.character"
          :clearable="currentVal.dragItem.clearable"
          :allow-half="true"
