@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{325:function(n,o){n.exports="<h2 id=decorating-components>Decorating components</h2> "}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{326:function(p,n){p.exports="<h2 id=自定义组件>自定义组件</h2> <p>编写中，请耐心等待</p> "}}]);

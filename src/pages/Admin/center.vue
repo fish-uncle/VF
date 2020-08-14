@@ -35,7 +35,7 @@
         :is-mirrored="false"
         :vertical-compact="true"
         :margin="[0, 0]"
-        :use-css-transforms="true"
+        :use-css-transforms="false"
         @layout-updated="layoutUpdatedEvent"
       >
         <grid-item v-for="(item,index) in center.list"

@@ -37,6 +37,11 @@
       <Slider v-model="item.w" :max="24">
       </Slider>
     </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
+      <label>{{$t('admin_right_btn8')}}</label>
+      <i-input v-model="item.dragItem.placeholder"
+               @on-change="e=>inputChange(e,'placeholder')"/>
+    </div>
     <div class="vf-control" v-if="this.center.list.length > 0">
       <label>{{$t('admin_right_btn25')}}</label>
       <i-input v-model="item.dragItem.className"

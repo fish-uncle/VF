@@ -24,6 +24,7 @@
   import {cssStyle2DomStyle} from '../../utils';
 
   export default {
+    name: 'FormComponents',
     data() {
       return {
         currentVal: this.value,

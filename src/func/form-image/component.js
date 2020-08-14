@@ -1,10 +1,11 @@
 const component = {
   title_zh: '图片',
   title_en: 'image',
-  icon: 'ios-image-outline',
+  icon: 'ios-images-outline',
   className: '',
   version: '1.0.0',
   componentType: 'base',
+  componentVisibled: true,
   type: 'image',
   dataType: 'Array',
   h: 3,

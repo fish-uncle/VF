@@ -5,6 +5,7 @@ const component = {
   className: '',
   version: '1.0.0',
   componentType: 'base',
+  componentVisibled: true,
   type: 'select',
   h: 2,
   disabled: false,
@@ -32,6 +33,11 @@ const component = {
   controlOthersUpdateTargetKeys: [],
   controlOthersHideTargetKeys: {},
   // defaultSelectIndex: 0,
+  events: [
+    'init',
+    'show',
+    'hide'
+  ],
   changeList: [
     'title',
     'labelTextAlign',

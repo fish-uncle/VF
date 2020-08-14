@@ -6,6 +6,7 @@ const component = {
   dataType: 'TimeRange',
   version: '1.0.0',
   componentType: 'base',
+  componentVisibled: true,
   type: 'timeRange',
   h: 2,
   placeholder: '',

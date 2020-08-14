@@ -6,6 +6,7 @@ const component = {
   version: '1.0.0',
   dataType: 'Null',
   componentType: 'modification',
+  componentVisibled: true,
   type: 'divider',
   h: 2,
   widthRatio: 100,

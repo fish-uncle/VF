@@ -5,6 +5,7 @@ const component = {
   className: '',
   version: '1.0.0',
   componentType: 'base',
+  componentVisibled: true,
   type: 'slider',
   dataType: 'Number',
   h: 2,

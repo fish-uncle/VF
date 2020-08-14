@@ -16,6 +16,7 @@ import Rate from '../func/form-rate/component'
 import Slider from '../func/form-slider/component'
 import ColorPicker from '../func/form-colorPicker/component'
 import Divider from '../func/form-divider/component'
+import Button from '../func/form-button/component'
 
 const xStart = 0; // 起始 x 轴
 const yStart1 = 80; // 基础组件 起始 y 轴
@@ -40,6 +41,7 @@ const list1 = [
   Slider,
   Image,
   ColorPicker,
+  Button,
 
 ];
 const list2 = [Divider, Html, Javascript];
