@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-radio-button-on',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'radio',
   h: 2,
   disabled: false,
@@ -30,6 +30,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'widthRatio',
     'disabled',

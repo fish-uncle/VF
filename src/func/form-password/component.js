@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-lock-outline',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'password',
   h: 2,
   placeholder: '',
@@ -17,6 +17,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'placeholder',
     'widthRatio',

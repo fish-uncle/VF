@@ -4,12 +4,16 @@ const component = {
   icon: 'ios-remove',
   className: '',
   version: '1.0.0',
-  business: true,
+  dataType: 'Null',
+  componentType: 'modification',
   type: 'divider',
   h: 2,
+  widthRatio: 100,
   dashed: false,
   changeList: [
     'dashed',
+    'widthRatio',
+    'width'
   ]
 }
 

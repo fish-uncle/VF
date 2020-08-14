@@ -4,7 +4,8 @@
       <left/>
       <div class="vf-help-content vf-scrollbar">
         <div class="markdown-body">
-          <div v-html="help.helpContent"/>
+          <div v-html="help.helpContent" v-if="help.helpType===1"/>
+          <component :is="currentComponent" v-if="help.helpType===2"/>
         </div>
       </div>
     </div>
@@ -16,16 +17,38 @@
   import {mapState} from "vuex";
 
   export default {
+    data() {
+      return {
+        currentComponent: null
+      }
+
+    },
     components: {Left},
     computed: mapState(["top", "help"]),
+    watch: {
+      '$route': function () {
+        this.init();
+      }
+    },
     methods: {
       async init() {
         const {name} = this.$route.params;
-        const content = await import(`./${name}-${this.$i18n.locale}.md`)
-        this.$store.commit('help/changeHelp', {
-          helpName: name,
-          helpContent: content
-        })
+        if (name === 'Feedback' || name === 'Friendship sponsorship') {
+          this.currentComponent = () => import(`./${this.help.helpName}`)
+          this.$store.commit('help/changeHelp', {
+            helpName: name,
+            helpContent: '',
+            helpType: 2
+          })
+        } else {
+          const content = await import(`./${name}-${this.$i18n.locale}.md`)
+          this.$store.commit('help/changeHelp', {
+            helpName: name,
+            helpContent: content,
+            helpType: 1
+          })
+        }
+
       }
     },
     beforeDestroy() {
@@ -53,6 +76,11 @@
       word-break: break-all;
       white-space: pre-wrap;
     }
+  }
 
+  .markdown-body {
+    ul, li {
+      list-style: circle;
+    }
   }
 </style>

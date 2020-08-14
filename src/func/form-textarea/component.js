@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-list-box-outline',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'textarea',
   h: 3,
   placeholder: '',
@@ -17,6 +17,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'placeholder',
     'widthRatio',

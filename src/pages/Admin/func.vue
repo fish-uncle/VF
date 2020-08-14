@@ -5,17 +5,17 @@
         {{$t('admin_left_title1')}}
       </h2>
       <ul class="pos-r fn-flex flex-row">
-        <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="!item.business"/>
+        <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.componentType==='base'"/>
       </ul>
       <h2>
         {{$t('admin_left_title2')}}
       </h2>
       <ul class="pos-r fn-flex flex-row">
-        <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.business"/>
+        <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.componentType==='modification'"/>
       </ul>
-      <!--      <div class="pos-a func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
+      <!--      <div class="pos-a vf-func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
     </div>
-    <div class="pos-a drag fn-flex"
+    <div class="pos-a vf-drag-item fn-flex"
          v-show="component.drag"
          :class="[component.drag?'active z-index-999':'',component.remove?'remove':'']"
          :style="{left:component.dragItem.x + 10 + 'px',top:component.dragItem.y - 30 - scrollTop+'px'}">
@@ -57,10 +57,10 @@
     }
   }
 </script>
-<style lang="less" scoped>
+<style lang="less">
   @import "../../less/conf";
 
-  .func-disabled {
+  .vf-func-disabled {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, .6);
@@ -97,7 +97,7 @@
     }
   }
 
-  .drag {
+  .vf-drag-item {
     width: 108px;
     height: 30px;
     background: #f4f6fc;

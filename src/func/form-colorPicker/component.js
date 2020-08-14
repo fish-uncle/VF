@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-color-palette-outline',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'colorPicker',
   h: 2,
   disabled: false,
@@ -16,6 +16,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'key',
     'disabled',

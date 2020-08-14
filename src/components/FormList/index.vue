@@ -1,8 +1,26 @@
 <template>
   <div>
-    <div v-for="(item,index) in center.list">
-      <f-component :value="item" :index="index"/>
-    </div>
+    <grid-layout
+      :layout.sync="center.list"
+      :col-num="24"
+      :row-height="30"
+      :is-draggable="false"
+      :is-resizable="false"
+      :is-mirrored="false"
+      :vertical-compact="true"
+      :margin="[0, 0]"
+      :use-css-transforms="true"
+    >
+      <grid-item v-for="(item,index) in center.list"
+                 :x="item.x"
+                 :y="item.y"
+                 :w="item.w"
+                 :h="item.dragItem.type==='javascript'?0:item.h"
+                 :i="item.i"
+                 :key="item.i">
+        <f-component :value="item" :index="index"/>
+      </grid-item>
+    </grid-layout>
   </div>
 </template>
 <script>

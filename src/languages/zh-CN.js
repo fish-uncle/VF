@@ -10,9 +10,11 @@ const language = {
 
   "admin_center_title1": "功能区",
   "admin_center_btn1": "清空",
-  "admin_center_btn2": "预览",
+  "admin_center_btn2": "当前预览",
   "admin_center_btn2_1": "数据预览",
   "admin_center_btn2_2": "组件预览",
+  "admin_center_btn2_3": "新页面预览",
+  "admin_center_btn3": "全组件预览",
 
   "admin_right_title1": "表单属性",
   "admin_right_title2": "字段属性",
@@ -26,6 +28,10 @@ const language = {
   "admin_right_btn23": "代码片段",
   "admin_right_btn24": "显示格式化",
   "admin_right_btn25": "自定义class名",
+  "admin_right_btn26": "整体宽度",
+  "admin_right_btn27": "最大上传文件大小",
+  "admin_right_btn28": "文件上传地址",
+  "admin_right_btn29": "文件格式限制",
 
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",
@@ -95,8 +101,29 @@ const language = {
   "buy_content3": "提供源代码",
   "buy_content4": "允许二次扩展开发",
 
+  "please_content1": "注：支付时备注你的大名，我会将捐赠名单晒出来，如果你想做一名匿名大侠，我会铭记于心的。",
+  "please_table1": "一杯精神气爽，码代码速度加快了",
+  "please_table2": "两个仙气飘飘，熬夜不是问题",
+  "please_table3": "三杯欲仙欲死，需求come",
+
   "model_preview_submit": "提交表单",
 
-  "verify-required": "是必填项",
+  "verify_required": "是必填项",
+
+  "component_javascript": "自定义js片段，仅在编辑时显示该文本，用于占位，请尽量放置在表单末端",
+
+  "feedback_h2_1": "意见反馈",
+  "feedback_p_1": "您在使用中遇到的问题或意见建议，请写下来告诉我，有则加冕，无则改之，或许在下一次改版中有你的宝贵建议。",
+  "feedback_h2_2": "联系方式",
+  "feedback_h2_3": "留言评论",
+
+  "Friendship sponsorship_h2_1": "友情赞助",
+  "Friendship sponsorship_p_1": "本项目由",
+  "Friendship sponsorship_p_2": "一人研发完成,如果觉得项目还能得到你的认可，可以",
+  "Friendship sponsorship_p_3": "请我喝一杯咖啡",
+  "Friendship sponsorship_p_4": "，我的创作会更有动力。",
+  "Friendship sponsorship_h2_2": "赞助列表",
+  "Friendship sponsorship_list_1": "支付宝转账",
+
 };
 export default language

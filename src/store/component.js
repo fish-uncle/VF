@@ -9,7 +9,7 @@ import Javascript from '../func/form-javascript/component'
 import Html from '../func/form-html/component'
 import TimePicker from '../func/form-timePicker/component'
 import TimeRange from '../func/form-timeRange/component'
-// import Image from '../components/form-image/component'
+import Image from '../func/form-image/component'
 import DateRange from '../func/form-dateRange/component'
 import DatePicker from '../func/form-datePicker/component'
 import Rate from '../func/form-rate/component'
@@ -33,16 +33,16 @@ const list1 = [
   Select,
   Multiple,
   Rate,
-  // Image,
   DatePicker,
   DateRange,
   TimePicker,
   TimeRange,
   Slider,
+  Image,
   ColorPicker,
 
 ];
-const list2 = [Divider, Javascript, Html];
+const list2 = [Divider, Html, Javascript];
 list1.forEach((item, index) => {
   item.xStart = xStart + index % 2 * xStep
   item.xEnd = xStart + width + index % 2 * xStep

@@ -1,10 +1,11 @@
 <template>
   <Date-picker class="f-date-picker"
                :class="[currentVal.dragItem.className]"
+               :style="{width:`${currentVal.dragItem.widthRatio}%`}"
                v-model="center[currentVal.dragItem.key]"
                :clearable="currentVal.dragItem.clearable"
                :placeholder="currentVal.dragItem.placeholder"
-               :format="currentVal.dragItem.format"
+               :format="currentVal.dragItem.timeFormat"
                @on-change="dateChange"
                :disabled="currentVal.dragItem.disabled"/>
 </template>

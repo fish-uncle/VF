@@ -4,8 +4,9 @@ const component = {
   icon: 'ios-options-outline',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'slider',
+  dataType: 'Number',
   h: 2,
   disabled: false,
   labelWidth: 100,
@@ -20,6 +21,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'widthRatio',
     'disabled',

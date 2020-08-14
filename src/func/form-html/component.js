@@ -4,13 +4,15 @@ const component = {
   icon: 'logo-html5',
   className: '',
   version: '1.0.0',
-  business: true,
+  dataType: 'Null',
+  componentType: 'modification',
   type: 'html',
   h: 2,
   disabled: false,
-  code: '<i class="f-code ivu-icon ivu-icon-logo-html5" style="font-size: 18px;"></i>',
+  code: '<div class="fn-clear"><label class="fn-fl" style="padding-right:10px;line-height:32px;text-align:right;width:100px;">html:</label><i class="fn-fl ivu-icon ivu-icon-logo-html5" style="font-size: 18px;"></i></div>',
   changeList: [
     'html',
+    'width',
   ]
 }
 

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[19],{60:function(e,i,l){"use strict";l.r(i);i.default={title_zh:"图片",title_en:"image",className:"",type:"image",h:5,disabled:!1,labelWidth:100,labelTextAlign:"right",required:!1,changeList:["title","labelTextAlign","labelWidth","key","disabled","required"]}}}]);

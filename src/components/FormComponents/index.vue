@@ -6,7 +6,7 @@
        `vf-${type}-box`,
        currentVal.lowerVersion?'lower-version':'']"
        @click="choose(index)">
-    <label class="fn-fl"
+    <label class="fn-fl vf-component-label"
            :class="currentVal.dragItem.required?'has-required':''"
            :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
       {{currentVal.dragItem[`title_${language.lang}`]}}:
@@ -82,7 +82,7 @@
   @import "../../less/conf";
 
   .vf-javascript-box, .vf-divider-box, .vf-html-box {
-    label {
+    .vf-component-label {
       display: none;
     }
   }
@@ -116,7 +116,7 @@
       }
     }
 
-    label {
+    .vf-component-label {
       font-size: 14px;
       padding-right: 10px;
       color: rgba(0, 0, 0, .65);

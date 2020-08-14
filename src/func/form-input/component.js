@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-create-outline',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'input',
   h: 2,
   placeholder: '',
@@ -17,6 +17,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'placeholder',
     'widthRatio',

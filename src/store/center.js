@@ -29,12 +29,12 @@ const store = {
       const i = Math.random(5).toString(32).replace('0.', '');
       const l = Math.random(5).toString(32).replace('0.', '')
       let key = `${newState.dragItem.type}_${i}`;
-      if (newState.dragItem.dataType === 'Array') {
+      if (newState.dragItem.dataType === 'TimeRange') {
         key += `;${l}`;
       }
       let newList = {
         x: 0,
-        w: 2,
+        w: 24,
         lowerVersion: false,
         h: newState.dragItem.h,
         y: h,
@@ -49,24 +49,19 @@ const store = {
         }
       };
       const data = state.data;
-      switch (newState.dragItem.type) {
-        case 'switch':
+      switch (newState.dragItem.dataType) {
+        case 'Boolean':
           data[key] = false;
           break;
-        case 'divider':
+        case 'Number':
+          data[key] = 0;
           break;
-        case 'javascript':
+        case 'Null':
           break;
-        case 'html':
-          break;
-        case 'multiple':
+        case 'Array':
           data[key] = [];
           break;
-        case 'dateRange':
-          data[key.replace(`;${l}`, '')] = '';
-          data[l] = '';
-          break;
-        case 'timeRange':
+        case 'TimeRange':
           data[key.replace(`;${l}`, '')] = '';
           data[l] = '';
           break;
@@ -76,6 +71,9 @@ const store = {
       state.data = data;
       state.isChange = true;
       state.list = [...state.list, newList];
+    },
+    setList: function (state, newState) {
+      state.list = newState.list
     },
     // 选中当前组件
     choose: function (state, newState) {

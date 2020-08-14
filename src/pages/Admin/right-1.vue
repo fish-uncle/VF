@@ -24,14 +24,18 @@
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
       <label>{{$t('admin_right_btn3')}}</label>
       <i-input v-model="item.dragItem.labelWidth"
-               @on-change="e=>inputChange(e,'labelWidth')"><span slot="append">px</span>
+               @on-change="e=>numberChange(e,'labelWidth')"><span slot="append">px</span>
       </i-input>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
       <label>{{$t('admin_right_btn4')}}</label>
-      <i-input v-model="item.dragItem.widthRatio"
-               @on-change="e=>inputChange(e,'widthRatio')"><span slot="append">%</span>
-      </i-input>
+      <Slider v-model="item.dragItem.widthRatio" :max="100">
+      </Slider>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('width')!==-1">
+      <label>{{$t('admin_right_btn26')}}</label>
+      <Slider v-model="item.w" :max="24">
+      </Slider>
     </div>
     <div class="vf-control" v-if="this.center.list.length > 0">
       <label>{{$t('admin_right_btn25')}}</label>
@@ -110,6 +114,11 @@
         delete data[item.dragItem.key];
         item.dragItem[key] = value;
         data[value] = keyValue;
+      },
+      numberChange(e,key){
+        const value = e.target.value;
+        let item = this.item;
+        item.dragItem[key] = Number(value);
       },
       inputChange(e, key) {
         const value = e.target.value;

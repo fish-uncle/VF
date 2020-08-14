@@ -1,5 +1,7 @@
 <template>
-  <Divider class="f-divider"  :class="[currentVal.dragItem.className]" :dashed="currentVal.dragItem.dashed"/>
+  <Divider class="f-divider"
+           :style="{width:`${currentVal.dragItem.widthRatio}%`}"
+           :class="[currentVal.dragItem.className]" :dashed="currentVal.dragItem.dashed"/>
 </template>
 <script>
   import {mapState} from 'vuex';
@@ -26,5 +28,6 @@
 <style lang="less">
   .f-divider {
     margin: 16px 0 0 0;
+    min-width: auto;
   }
 </style>

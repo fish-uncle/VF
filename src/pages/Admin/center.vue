@@ -3,7 +3,7 @@
     <div class="vf-fn">
       <h2>{{$t('admin_center_title1')}}</h2>
       <ul class="fn-flex flex-row">
-        <li class="pointer vf-fn-btn" @click="clear">
+        <li class="pointer vf-fn-btn" @click="handleClear">
           <Icon type="ios-trash-outline" size="18"/>
           {{$t('admin_center_btn1')}}
         </li>
@@ -16,14 +16,19 @@
           <DropdownMenu slot="list">
             <DropdownItem name="data">{{$t('admin_center_btn2_1')}}</DropdownItem>
             <DropdownItem name="preview">{{$t('admin_center_btn2_2')}}</DropdownItem>
+            <DropdownItem name="newPage">{{$t('admin_center_btn2_3')}}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
+        <li class="pointer vf-fn-btn" @click="handlePreviewAll">
+          <Icon type="ios-flash-outline" size="18"/>
+          {{$t('admin_center_btn3')}}
+        </li>
       </ul>
     </div>
     <div class="vf-drag pos-r">
       <grid-layout
         :layout.sync="center.list"
-        :col-num="2"
+        :col-num="24"
         :row-height="30"
         :is-draggable="true"
         :is-resizable="false"
@@ -50,7 +55,6 @@
   </div>
 </template>
 <script>
-  import VueGridLayout from 'vue-grid-layout';
   import {mapState} from 'vuex';
 
   export default {
@@ -58,10 +62,6 @@
       return {
         canAdd: false
       }
-    },
-    components: {
-      GridLayout: VueGridLayout.GridLayout,
-      GridItem: VueGridLayout.GridItem
     },
     computed: mapState(["center", "component"]),
     beforeDestroy() {
@@ -73,6 +73,9 @@
       document.addEventListener('mouseup', this.add);
     },
     methods: {
+      handlePreviewAll() {
+        window.open(`${location.origin}/#/previewAll`)
+      },
       handlePreview(name) {
         if (name === 'preview') {
           this.$store.commit('model/previewShow');
@@ -80,11 +83,14 @@
         if (name === 'data') {
           this.$store.commit('model/dataShow');
         }
+        if (name === 'newPage') {
+          this.$router.push('/preview');
+        }
       },
       layoutUpdatedEvent() {
         this.$store.commit('center/sort');
       },
-      clear() {
+      handleClear() {
         this.$store.commit('center/clear');
       },
       add() {
@@ -114,7 +120,7 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .vf-center-empty{
+  .vf-center-empty {
     font-size: 20px;
     top: 50%;
     width: 100%;

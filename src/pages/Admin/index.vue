@@ -53,7 +53,8 @@
       },
     },
     mounted() {
-      this.$store.commit('top/changeTop', {topIndex: 1})
+      this.$store.commit('top/changeTop', {topIndex: 1});
+      this.$store.commit('center/clear');
     }
   }
 </script>

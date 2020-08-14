@@ -4,8 +4,9 @@ const component = {
   icon: 'ios-switch-outline',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'switch',
+  dataType: 'Boolean',
   h: 2,
   disabled: false,
   labelWidth: 100,
@@ -15,6 +16,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'disabled',
     'required',

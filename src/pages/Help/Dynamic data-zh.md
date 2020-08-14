@@ -14,7 +14,7 @@
 
 附上一个测试ajax地址
 
-https://cdn.shenzhepei.com/VF/test.json
+https://cdn.shenzhepei.com/VF/select.json
 
 ### 第四步
 如果你想要修改你的数据格式

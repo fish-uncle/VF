@@ -2,7 +2,9 @@ import Vue from 'vue';
 import App from './App';
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
-import i18n from './languages'
+import i18n from './languages';
+import VueGridLayout from 'vue-grid-layout';
+
 Vue.use(ViewUI);
 
 import router from './router';
@@ -12,6 +14,8 @@ import FormComponent from './components/FormComponents';
 import FormList from './components/FormList';
 import JsonViewer from 'vue-json-viewer';
 
+Vue.component('grid-layout', VueGridLayout.GridLayout);
+Vue.component('grid-item', VueGridLayout.GridItem);
 Vue.component('f-component', FormComponent);
 Vue.component('f-list', FormList);
 Vue.config.productionTip = false;

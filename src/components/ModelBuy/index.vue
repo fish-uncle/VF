@@ -3,7 +3,7 @@
     <div>
       <Table border :columns="columns" :data="data"></Table>
     </div>
-    <div class="fn-flex flex-row pay">
+    <div class="fn-flex flex-row vf-pay">
       <div class="fn-flex flex-column text-center">
         <img :src="wechatpay" alt=""/>
         <span>{{$t('buy_wechat')}}</span>
@@ -13,7 +13,7 @@
         <span>{{$t('buy_alipay')}}</span>
       </div>
     </div>
-    <div class="mark">
+    <div class="vf-mark">
       {{$t('buy_description1')}}<a href="mailto:fishuncle@126.com">fishuncle@126.com</a>{{$t('buy_description2')}}
     </div>
   </Modal>
@@ -92,8 +92,8 @@
     }
   }
 </script>
-<style lang="less" scoped>
-  .pay {
+<style lang="less">
+  .vf-pay {
     margin: 20px 0;
 
     > div {
@@ -106,7 +106,7 @@
     }
   }
 
-  .mark {
+  .vf-mark {
     text-align: justify;
   }
 </style>

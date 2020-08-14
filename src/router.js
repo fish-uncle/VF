@@ -20,6 +20,16 @@ const router = new Router({
       name: 'Admin',
       component: () => import('./pages/Admin')
     },
+    {
+      path: '/preview',
+      name: 'Preview',
+      component: () => import('./pages/Preview')
+    },
+    {
+      path: '/previewAll',
+      name: 'PreviewAll',
+      component: () => import('./pages/PreviewAll')
+    },
   ]
 });
 

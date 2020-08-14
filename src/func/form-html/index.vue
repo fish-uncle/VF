@@ -1,5 +1,5 @@
 <template>
-  <div class="f-html"  :class="[currentVal.dragItem.className]" v-html="currentVal.dragItem.code"/>
+  <div class="f-html" :class="[currentVal.dragItem.className]" v-html="currentVal.dragItem.code"/>
 </template>
 <script>
   import {mapState} from 'vuex';

@@ -3,18 +3,18 @@
     <div>
       <Table border :columns="columns" :data="data"></Table>
     </div>
-    <div class="fn-flex flex-row pay">
+    <div class="fn-flex flex-row vf-pay">
       <div class="fn-flex flex-column text-center">
         <img :src="wechatpay" alt=""/>
-        <span>微信</span>
+        <span>{{$t('buy_wechat')}}</span>
       </div>
       <div class="fn-flex flex-column text-center">
         <img :src="alipay" alt=""/>
-        <span>支付宝</span>
+        <span>{{$t('buy_alipay')}}</span>
       </div>
     </div>
-    <div class="mark">
-      注：支付时备注你的大名，我会将捐赠名单晒出来，如果你想做一名匿名大侠，我会铭记于心的。
+    <div class="vf-mark">
+      {{$t('please_content1')}}
     </div>
   </Modal>
 </template>
@@ -96,17 +96,17 @@
         data: [
           {
             level: 1,
-            price: '¥10.00',
+            price: '¥10.00 / $1.50',
             content: '一杯精神气爽，码代码速度加快了',
           },
           {
             level: 2,
-            price: '¥25.00',
+            price: '¥25.00 / $4.00',
             content: '两个仙气飘飘，熬夜不是问题',
           },
           {
             level: 3,
-            price: '¥50.00',
+            price: '¥50.00 / $7.50',
             content: '三杯欲仙欲死，需求come',
           },
         ]
@@ -117,8 +117,8 @@
     }
   }
 </script>
-<style lang="less" scoped>
-  .pay {
+<style lang="less">
+  .vf-pay {
     margin: 20px 0;
 
     > div {
@@ -131,7 +131,7 @@
     }
   }
 
-  .mark {
+  .vf-mark {
     text-align: justify;
   }
 </style>

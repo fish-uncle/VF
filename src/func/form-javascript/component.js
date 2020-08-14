@@ -4,13 +4,15 @@ const component = {
   icon: 'logo-javascript',
   className: '',
   version: '1.0.0',
-  business: true,
+  dataType: 'Null',
+  componentType: 'modification',
   type: 'javascript',
   h: 2,
   disabled: false,
   code: 'console.log("javascript start!")',
   changeList: [
     'javascript',
+    'width',
   ]
 }
 

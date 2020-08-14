@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-arrow-dropdown',
   className: '',
   version: '1.0.0',
-  business: false,
+  componentType: 'base',
   type: 'select',
   h: 2,
   disabled: false,
@@ -36,6 +36,7 @@ const component = {
     'title',
     'labelTextAlign',
     'labelWidth',
+    'width',
 
     'placeholder',
     'widthRatio',

@@ -50,7 +50,7 @@
         }
         this.data = [];
         this.$store.commit('center/changeData', {
-          value: '',
+          value: [],
           key: this.currentVal.dragItem.key
         })
       },

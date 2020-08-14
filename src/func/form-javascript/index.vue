@@ -1,7 +1,10 @@
 <template>
   <div class="f-javascript"
-        :class="[currentVal.dragItem.className]">
-    自定义js片段，仅在编辑时显示该文本，用于占位
+       :class="[currentVal.dragItem.className]">
+    <div class="fn-clear">
+      <label class="fn-fl" style="padding-right:10px;line-height:32px;text-align:right;width:100px;">JS:</label>
+      {{$t('component_javascript')}}
+    </div>
   </div>
 </template>
 <script>
@@ -21,10 +24,11 @@
       }
     },
     mounted() {
-      eval(this.currentVal.dragItem.code);
+      this.init();
     },
     methods: {
       init() {
+        eval(this.currentVal.dragItem.code);
       },
     }
   }

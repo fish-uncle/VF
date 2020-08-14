@@ -43,3 +43,8 @@
     }
   }
 </script>
+<style lang="less">
+  .f-switch {
+    margin-top: 5px;
+  }
+</style>

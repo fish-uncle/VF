@@ -14,16 +14,16 @@
       </template>
       <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>
       <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>
-<!--      <MenuItem name="Basic components">{{$t('help_left_2_3')}}</MenuItem>-->
-<!--      <MenuItem name="Decorating components">{{$t('help_left_2_4')}}</MenuItem>-->
+      <!--      <MenuItem name="Basic components">{{$t('help_left_2_3')}}</MenuItem>-->
+      <!--      <MenuItem name="Decorating components">{{$t('help_left_2_4')}}</MenuItem>-->
     </Submenu>
-<!--    <Submenu name="3">-->
-<!--      <template slot="title">-->
-<!--        {{$t('help_left_3')}}-->
-<!--      </template>-->
-<!--      <MenuItem name="Custom components">{{$t('help_left_3_1')}}</MenuItem>-->
-<!--      <MenuItem name="Internationalization">{{$t('help_left_3_2')}}</MenuItem>-->
-<!--    </Submenu>-->
+    <!--    <Submenu name="3">-->
+    <!--      <template slot="title">-->
+    <!--        {{$t('help_left_3')}}-->
+    <!--      </template>-->
+    <!--      <MenuItem name="Custom components">{{$t('help_left_3_1')}}</MenuItem>-->
+    <!--      <MenuItem name="Internationalization">{{$t('help_left_3_2')}}</MenuItem>-->
+    <!--    </Submenu>-->
     <Submenu name="4">
       <template slot="title">
         {{$t('help_left_4')}}
@@ -41,11 +41,6 @@
     methods: {
       async handleSelect(name) {
         this.$router.push(`/help/${name}`);
-        const content = await import(`./${name}-${this.$i18n.locale}.md`)
-        this.$store.commit('help/changeHelp', {
-          helpName: name,
-          helpContent: content
-        })
       }
     }
   }

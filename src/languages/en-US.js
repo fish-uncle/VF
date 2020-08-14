@@ -10,9 +10,11 @@ const language = {
 
   "admin_center_title1": "Functional area",
   "admin_center_btn1": "clear",
-  "admin_center_btn2": "preview",
+  "admin_center_btn2": "preview current",
   "admin_center_btn2_1": "data preview",
   "admin_center_btn2_2": "components preview",
+  "admin_center_btn2_3": "new page preview",
+  "admin_center_btn3": "full component preview",
 
   "admin_right_title1": "Form properties",
   "admin_right_title2": "Field properties",
@@ -26,6 +28,10 @@ const language = {
   "admin_right_btn23": "Code snippet",
   "admin_right_btn24": "Display formatting",
   "admin_right_btn25": "Custom class name",
+  "admin_right_btn26": "Overall width",
+  "admin_right_btn27": "Maximum upload file size",
+  "admin_right_btn28": "File upload address",
+  "admin_right_btn29": "File format restrictions",
 
   "admin_right_btn5": "Is the component dashed",
   "admin_right_btn5_1": "YES",
@@ -95,8 +101,29 @@ const language = {
   "buy_content3": "Provide source code",
   "buy_content4": "Allow secondary extension development",
 
+  "please_content1": "Note: Please note your name when paying. I will publish the donation list. If you want to be an anonymous hero, I will bear it in mind.",
+  "please_table1": "A cup of spirit, code speed up",
+  "please_table2": "Staying up late is not a problem",
+  "please_table3": "Three cups for immortality and death",
+
   "model_preview_submit": "Submit Form",
 
-  "verify-required": "Is required",
+  "verify_required": "Is required",
+
+  "component_javascript": "Custom JS fragment, only display the text when editing, for occupation, Please try to place it at the end of the form",
+
+  "feedback_h2_1": "Feedback",
+  "feedback_p_1": "If you have any problems or suggestions in use, please write them down and tell me. If there are any, you may be crowned, otherwise, you may have your valuable suggestions in the next revision.",
+  "feedback_h2_2": "Contact information",
+  "feedback_h2_3": "Comments",
+
+  "Friendship sponsorship_h2_1": "Friendship sponsorship",
+  "Friendship sponsorship_p_1": "This project is developed by",
+  "Friendship sponsorship_p_2": "If you feel that the project can still be recognized by you, you can",
+  "Friendship sponsorship_p_3": "buy me a cup of coffee",
+  "Friendship sponsorship_p_4": ", and my creation will be more dynamic.",
+  "Friendship sponsorship_h2_2": "Sponsorship list",
+  "Friendship sponsorship_list_1": "Alipay transfer",
+
 }
 export default language

@@ -14,7 +14,7 @@ Match your `Ajax address` in the option data address
 
 Attach a test Ajax address
 
-https://cdn.shenzhepei.com/VF/test.json
+https://cdn.shenzhepei.com/VF/select.json
 
 ### Step four
 If you want to change your data format

@@ -7,21 +7,43 @@
     <div class="vf-control" v-if="this.center.list.length > 0">
       <label>{{$t('admin_right_btn7')}}</label>
       <i-input :value="item.dragItem.key"
-               @on-change="e=>keyChange(e)" v-if="item.dragItem.dataType!=='Array'"/>
+               @on-change="e=>keyChange(e)" v-if="item.dragItem.dataType!=='TimeRange'"/>
       <i-input :value="item.dragItem.key.split(';')[0]"
-               @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dragItem.dataType==='Array'"/>
+               @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dragItem.dataType==='TimeRange'"/>
       <i-input :value="item.dragItem.key.split(';')[1]"
-               @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.dataType==='Array'"/>
+               @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.dataType==='TimeRange'"/>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
       <label>{{$t('admin_right_btn8')}}</label>
       <i-input v-model="item.dragItem.placeholder"
                @on-change="e=>inputChange(e,'placeholder')"/>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('format')!==-1">
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('fileFormat')!==-1">
+      <label>{{$t('admin_right_btn29')}}</label>
+      <i-input v-model="item.dragItem.fileFormat"
+               @on-change="e=>inputChange(e,'fileFormat')"/>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('fileAccept')!==-1">
+      <label>{{$t('admin_right_btn29')}}</label>
+      <i-input v-model="item.dragItem.fileAccept"
+               @on-change="e=>inputChange(e,'fileAccept')"/>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('timeFormat')!==-1">
       <label>{{$t('admin_right_btn24')}}</label>
-      <i-input v-model="item.dragItem.format"
-               @on-change="e=>inputChange(e,'format')"/>
+      <i-input v-model="item.dragItem.timeFormat"
+               @on-change="e=>inputChange(e,'timeFormat')"/>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('maxSize')!==-1">
+      <label>{{$t('admin_right_btn27')}}</label>
+      <i-input v-model="item.dragItem.maxSize"
+               @on-change="e=>numberChange(e,'maxSize')"><span slot="append">kb</span>
+      </i-input>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('action')!==-1">
+      <label>{{$t('admin_right_btn28')}}</label>
+      <i-input v-model="item.dragItem.action"
+               @on-change="e=>inputChange(e,'action')">
+      </i-input>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('disabled')!==-1">
       <label>{{$t('admin_right_btn9')}}</label>
@@ -166,7 +188,7 @@
       }
     },
     computed: {
-      ...mapState(["center",'language']),
+      ...mapState(["center", 'language']),
       item() {
         if (this.center.list.length > 0) {
           return this.center.list[this.center.current]
@@ -177,7 +199,7 @@
       componentList() {
         let mockData = [];
         for (let i = 0; i <= this.center.list.length - 1; i++) {
-          if (this.item.dragItem.id !== this.center.list[i].dragItem.id && !this.center.list[i].dragItem.business) {
+          if (this.item.dragItem.id !== this.center.list[i].dragItem.id) {
             mockData.push({
               key: this.center.list[i].dragItem.id,
               label: this.center.list[i].dragItem[`title_${this.language.lang}`],
@@ -196,15 +218,17 @@
       },
       controlOthersHideChange(targetKeys, value) {
         let item = this.item;
-        if (item.dragItem.business) return;
-        const obj = Object.assign({}, item.dragItem.controlOthersHideTargetKeys);
-        obj[value] = targetKeys;
-        item.dragItem.controlOthersHideTargetKeys = obj;
+        if (item.dragItem.componentType === 'base') {
+          const obj = Object.assign({}, item.dragItem.controlOthersHideTargetKeys);
+          obj[value] = targetKeys;
+          item.dragItem.controlOthersHideTargetKeys = obj;
+        }
       },
       controlOthersUpdateChange(targetKeys) {
         let item = this.item;
-        if (item.dragItem.business) return;
-        item.dragItem.controlOthersUpdateTargetKeys = targetKeys;
+        if (item.dragItem.componentType === 'base') {
+          item.dragItem.controlOthersUpdateTargetKeys = targetKeys;
+        }
       },
       inputValueChange(e, index) {
         const value = e.target.value;
@@ -258,6 +282,11 @@
         delete data[item.dragItem.key];
         item.dragItem.key = value;
         data[value] = keyValue;
+      },
+      numberChange(e, key) {
+        const value = e.target.value;
+        let item = this.item;
+        item.dragItem[key] = Number(value);
       },
       inputChange(e, key) {
         const value = e.target.value;
