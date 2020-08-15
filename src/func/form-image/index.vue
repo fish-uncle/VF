@@ -1,5 +1,5 @@
 <template>
-  <div class="f-image" :class="[currentVal.dragItem.className,currentVal.dragItem.disabled?'f-image-disabled':'']"
+  <div class="f-image" :class="[currentVal.dragItem.className,currentVal.dragItem.disabled?'f-image-disabled':'',currentVal.dragItem.className]"
        :style="{width:`${currentVal.dragItem.widthRatio}%`}">
     <div class="f-image-upload-list" v-for="item in uploadList">
       <template v-if="item.status === 'finished'">

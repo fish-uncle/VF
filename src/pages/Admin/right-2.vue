@@ -13,11 +13,6 @@
       <i-input :value="item.dragItem.key.split(';')[1]"
                @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dragItem.dataType==='TimeRange'"/>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
-      <label>{{$t('admin_right_btn8')}}</label>
-      <i-input v-model="item.dragItem.placeholder"
-               @on-change="e=>inputChange(e,'placeholder')"/>
-    </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('fileFormat')!==-1">
       <label>{{$t('admin_right_btn29')}}</label>
       <i-input v-model="item.dragItem.fileFormat"
@@ -89,10 +84,13 @@
         <Radio :label="0">{{$t('admin_right_btn13_2')}}</Radio>
       </RadioGroup>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('defaultSelectIndex')!==-1">
-      <label>{{$t('admin_right_btn14')}}</label>
-      <i-input v-model="item.dragItem.defaultSelectIndex"
-               @on-change="e=>inputChange(e,'defaultSelectIndex')"/>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('columns')!==-1">
+      <label>{{$t('admin_right_btn30')}}</label>
+      <i-select v-model="item.dragItem.columns"
+                :clearable="true"
+                @on-change="e=>selectChange(e,'columns')">
+        <i-option v-for="(item,index) in columns" :value="item" :key="index">{{item}}</i-option>
+      </i-select>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('character')!==-1">
       <label>{{$t('admin_right_btn15')}}</label>
@@ -113,6 +111,11 @@
       <label>{{$t('admin_right_btn18')}}</label>
       <i-input v-model="item.dragItem.min"
                @on-change="e=>inputChange(e,'min')"/>
+    </div>
+    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('tableAjaxUrl')!==-1">
+      <label>{{$t('admin_right_btn31')}}</label>
+      <i-input v-model="item.dragItem.tableAjaxUrl"
+               @on-change="e=>inputChange(e,'tableAjaxUrl')"/>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('selectList')!==-1">
       <label>{{$t('admin_right_btn19')}}</label>
@@ -180,11 +183,13 @@
 </template>
 <script>
   import {mapState} from 'vuex';
+  import columns from "../../columns";
 
   export default {
     data() {
       return {
         tab: 1,
+        columns
       }
     },
     computed: {
@@ -210,6 +215,10 @@
       }
     },
     methods: {
+      selectChange(value,key) {
+        let item = this.item;
+        item.dragItem[key] = value;
+      },
       selectListUrlChange(e, key) {
         const value = e.target.value;
         let item = this.item;

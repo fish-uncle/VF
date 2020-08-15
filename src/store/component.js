@@ -17,6 +17,8 @@ import Slider from '../func/form-slider/component'
 import ColorPicker from '../func/form-colorPicker/component'
 import Divider from '../func/form-divider/component'
 import Button from '../func/form-button/component'
+import Table from '../func/form-table/component'
+import Text from '../func/form-text/component'
 
 const xStart = 0; // 起始 x 轴
 const yStart1 = 80; // 基础组件 起始 y 轴
@@ -41,10 +43,11 @@ const list1 = [
   Slider,
   Image,
   ColorPicker,
-  Button,
+  Table,
+  // Button,
 
 ];
-const list2 = [Divider, Html, Javascript];
+const list2 = [Divider, Text, Html, Javascript];
 list1.forEach((item, index) => {
   item.xStart = xStart + index % 2 * xStep
   item.xEnd = xStart + width + index % 2 * xStep

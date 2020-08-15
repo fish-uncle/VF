@@ -1,32 +1,50 @@
 <template>
-  <div class="f-image" :class="[currentVal.dragItem.className,currentVal.dragItem.disabled?'f-image-disabled':'']"
-       :style="{width:`${currentVal.dragItem.widthRatio}%`}">
-    <Upload :action="currentVal.dragItem.action" type="drag" :disabled="currentVal.dragItem.disabled">
-      <div style="padding: 20px 0">
-        <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-        <p>Click or drag files here to upload</p>
-      </div>
-    </Upload>
+  <div class="f-table" :style="{width:`${currentVal.dragItem.widthRatio}%`}" :class="[currentVal.dragItem.className]">
+    <Table :columns="columns" :data="data">
+    </Table>
   </div>
 </template>
 <script>
+  import request from '../../utils/request'
+
   export default {
     data() {
       return {
-        img: '',
         currentVal: this.value,
+        data: [],
+        total: 0,
+        page: 1
       }
     },
     props: ["value"],
+    computed: {
+      columns() {
+        if (this.currentVal.dragItem.columns) {
+          return require(`../../columns/${this.currentVal.dragItem.columns}`);
+        } else {
+          return []
+        }
+      }
+    },
     watch: {
       value(val) {
         this.currentVal = val;
       }
     },
+    mounted() {
+      this.init();
+    },
     methods: {
-      fileChange(e) {
-
-      }
+      init() {
+        if (this.currentVal.dragItem.tableAjaxUrl) {
+          request.post(this.currentVal.dragItem.tableAjaxUrl).then(res => {
+            if (res) {
+              this.data = res.list
+              this.total = res.total
+            }
+          })
+        }
+      },
     }
   }
 </script>

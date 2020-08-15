@@ -1,19 +1,18 @@
 const component = {
-  title_zh: '图片',
-  title_en: 'image',
-  icon: 'ios-image-outline',
+  title_zh: '表格',
+  title_en: 'table',
+  icon: 'ios-grid-outline',
   className: '',
   version: '1.0.0',
   componentType: 'base',
+  dataType: 'Null',
   componentVisibled: true,
-  type: 'image',
+  type: 'table',
   h: 5,
-  disabled: false,
-  action: '//jsonplaceholder.typicode.com/posts/',
-  labelWidth: 100,
+  columns: '',
+  tableAjaxUrl: '',
   widthRatio: 100,
   labelTextAlign: 'right',
-  required: false,
   changeList: [
     'title',
     'labelTextAlign',
@@ -22,8 +21,8 @@ const component = {
     'width',
 
     'key',
-    'disabled',
-    'required',
+    'columns',
+    'tableAjaxUrl',
   ]
 }
 

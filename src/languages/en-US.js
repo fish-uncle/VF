@@ -32,6 +32,8 @@ const language = {
   "admin_right_btn27": "Maximum upload file size",
   "admin_right_btn28": "File upload address",
   "admin_right_btn29": "File format restrictions",
+  "admin_right_btn30": "Column configuration",
+  "admin_right_btn31": "Table data address",
 
   "admin_right_btn5": "Is the component dashed",
   "admin_right_btn5_1": "YES",

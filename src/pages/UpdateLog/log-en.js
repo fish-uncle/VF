@@ -1,5 +1,13 @@
 const log = [
   {
+    version: '1.0.13',
+    time: '2020-08-15',
+    content: [
+      'Add plain text component f-text.',
+      'New table component f-table.',
+    ]
+  },
+  {
     version: '1.0.12',
     time: '2020-07-14',
     content: [
@@ -7,6 +15,13 @@ const log = [
       'Optimize feedback and add gitalk message function.',
       'Optimize f-javascript components, code input box.',
       'Optimize f-html components, code input box.',
+      'Optimize the f-divider component and increase the width of the component. The form attribute can be controlled.',
+      'Optimize the f-slider component and increase the width of the component. The form attribute can be controlled.',
+      'New picture component f-image.',
+      'New form attribute function, overall width.',
+      'Newly added layout function, the overall layout adopts 24 points method to drag the layout randomly.',
+      'New page preview.',
+      'New full component Preview.',
     ]
   },
   {
@@ -17,10 +32,10 @@ const log = [
       'Optimization help document, dynamic data.',
       'Optimization help document, quick use.',
       'New component icon ID.',
-      'New password text component f-password。',
-      'New JS fragment component f-javascript。',
-      'New Html fragment component f-javascript。',
-      'Optimize the way of component introduction and introduce dynamically。',
+      'New password text component f-password.',
+      'New JS fragment component f-javascript.',
+      'New Html fragment component f-javascript.',
+      'Optimize the way of component introduction and introduce dynamically.',
       'New time selection component f-timePicker.',
       'New time range component f-timeRange.',
       'New field property function, display format.',

@@ -1,5 +1,13 @@
 const log = [
   {
+    version: '1.0.13',
+    time: '2020-08-15',
+    content: [
+      '新增纯文本组件 f-text。',
+      '新增表格组件 f-table。',
+    ]
+  },
+  {
     version: '1.0.12',
     time: '2020-07-14',
     content: [

@@ -32,6 +32,8 @@ const language = {
   "admin_right_btn27": "最大上传文件大小",
   "admin_right_btn28": "文件上传地址",
   "admin_right_btn29": "文件格式限制",
+  "admin_right_btn30": "列配置",
+  "admin_right_btn31": "表格数据地址",
 
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",

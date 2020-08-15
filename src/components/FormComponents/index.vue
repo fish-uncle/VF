@@ -82,7 +82,7 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .vf-javascript-box, .vf-divider-box, .vf-html-box {
+  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-text-box, .vf-table-box {
     .vf-component-label {
       display: none;
     }
