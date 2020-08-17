@@ -21,13 +21,11 @@
       <center/>
       <modelData/>
       <modelPreview/>
-      <bottom/>
     </div>
   </div>
 </template>
 <script>
   import Center from './center'
-  import Bottom from './bottom'
   import Func from './func'
   import Right1 from './right-1'
   import Right2 from './right-2'
@@ -40,7 +38,6 @@
     computed: mapState(["right"]),
     components: {
       Center,
-      Bottom,
       ModelData,
       ModelPreview,
       Func,

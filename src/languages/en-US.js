@@ -107,6 +107,9 @@ const language = {
   "please_table1": "A cup of spirit, code speed up",
   "please_table2": "Staying up late is not a problem",
   "please_table3": "Three cups for immortality and death",
+  "please_columns1": "goods",
+  "please_columns2": "price",
+  "please_columns3": "explain",
 
   "model_preview_submit": "Submit Form",
 

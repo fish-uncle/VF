@@ -5,6 +5,7 @@
     <router-view/>
     <modelBuy/>
     <modelPlease/>
+    <bottom/>
   </div>
 </template>
 <script>
@@ -12,10 +13,11 @@
   import ModelBuy from './components/ModelBuy'
   import ModelPlease from './components/ModelPlease'
   import Top from './components/Top';
+  import Bottom from './components/Bottom';
 
   export default {
     components: {
-      ModelBuy, ModelPlease, Top
+      ModelBuy, ModelPlease, Top, Bottom
     },
     computed: {
       ...mapState(["model"]),

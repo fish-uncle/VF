@@ -49,7 +49,7 @@
                       c.show();
                     }
                   } else {
-                    const v = value.toString();
+                    const v = value ? value.toString() : value;
                     if (k === v) {
                       c.hide();
                     } else {

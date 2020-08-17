@@ -68,7 +68,7 @@
 <style lang="less">
   .vf-help-content {
     margin-left: 240px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 120px);
     padding: 40px 80px;
     overflow-y: auto;
 

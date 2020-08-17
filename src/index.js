@@ -4,7 +4,6 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 import i18n from './languages';
 import VueGridLayout from 'vue-grid-layout';
-
 Vue.use(ViewUI);
 
 import router from './router';

@@ -39,14 +39,18 @@
   export default {
     computed: mapState(["help"]),
     methods: {
-      async handleSelect(name) {
-        this.$router.push(`/help/${name}`);
+      handleSelect(name) {
+        const currentHash = decodeURIComponent(location.hash.replace('#', ''));
+        const nowHash = `/help/${name}`;
+        if (encodeURIComponent(currentHash.replace(/\s+/g, "")) !== encodeURIComponent(nowHash.replace(/\s+/g, ""))) {
+          this.$router.push(nowHash);
+        }
       }
     }
   }
 </script>
 <style lang="less">
   .vf-help-left {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 120px);
   }
 </style>

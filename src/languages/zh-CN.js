@@ -107,6 +107,9 @@ const language = {
   "please_table1": "一杯精神气爽，码代码速度加快了",
   "please_table2": "两个仙气飘飘，熬夜不是问题",
   "please_table3": "三杯欲仙欲死，需求come",
+  "please_columns1": "物品",
+  "please_columns2": "价格",
+  "please_columns3": "说明",
 
   "model_preview_submit": "提交表单",
 

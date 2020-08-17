@@ -13,7 +13,8 @@
     "build:test": "fish build test vue",
     "start": "fish start vue",
     "upload": "fish upload",
-    "update": "auto-vers -t"
+    "update": "auto-vers -t",
+    "sitemap": "node src/sitemap.js"
   },
   "author": "fish uncle",
   "license": "EPL",

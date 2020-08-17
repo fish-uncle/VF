@@ -46,7 +46,7 @@
 
   .vf-update-log {
     padding: 20px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 120px);
     overflow-y: auto;
 
     p {

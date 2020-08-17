@@ -1,7 +1,7 @@
 <template>
   <Modal v-model="model.pleaseVisible" :closable="false" :footer-hide="true" :scrollable="true" width="700">
     <div>
-      <Table border :columns="columns" :data="data"></Table>
+      <Table v-if="model.pleaseVisible" border :columns="columns" :data="data"></Table>
     </div>
     <div class="fn-flex flex-row vf-pay">
       <div class="fn-flex flex-column text-center">
@@ -26,9 +26,14 @@
       return {
         wechatpay: 'https://cdn.shenzhepei.com/hexo-theme-matery/public/medias/reward/wechat.jpg',
         alipay: 'https://cdn.shenzhepei.com/hexo-theme-matery/public/medias/reward/alipay.jpg',
-        columns: [
+      }
+    },
+    computed: {
+      ...mapState(["model", "center"]),
+      columns() {
+        return [
           {
-            title: '物品',
+            title: this.$t('please_columns1'),
             key: 'name',
             render: (h, params) => {
               if (params.row.level === 1)
@@ -85,35 +90,34 @@
             }
           },
           {
-            title: '价格',
+            title: this.$t('please_columns2'),
             key: 'price'
           },
           {
-            title: '说明',
+            title: this.$t('please_columns2'),
             key: 'content',
           }
-        ],
-        data: [
+        ]
+      },
+      data() {
+        return [
           {
             level: 1,
             price: '¥10.00 / $1.50',
-            content: '一杯精神气爽，码代码速度加快了',
+            content: this.$t('please_table1'),
           },
           {
             level: 2,
             price: '¥25.00 / $4.00',
-            content: '两个仙气飘飘，熬夜不是问题',
+            content: this.$t('please_table2'),
           },
           {
             level: 3,
             price: '¥50.00 / $7.50',
-            content: '三杯欲仙欲死，需求come',
+            content: this.$t('please_table3'),
           },
         ]
       }
-    },
-    computed: {
-      ...mapState(["model", "center"]),
     }
   }
 </script>
