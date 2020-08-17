@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[33],{333:function(e,o){throw new Error("Module parse failed: Unexpected token (1:0)\nFile was processed with these loaders:\n * ./node_modules/markdown-loader/index.js\n * ./node_modules/html-loader/dist/cjs.js\nYou may need an additional loader to handle the result of these loaders.\n> <p>// Module\n| var code = &quot;## 修饰组件&quot;;\n| // Exports")}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[33],{333:function(n,o){n.exports="<h2 id=修饰组件>修饰组件</h2> "}}]);

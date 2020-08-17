@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{331:function(e,o){throw new Error("Module parse failed: Unexpected token (1:0)\nFile was processed with these loaders:\n * ./node_modules/markdown-loader/index.js\n * ./node_modules/html-loader/dist/cjs.js\nYou may need an additional loader to handle the result of these loaders.\n> <p>// Module\n| var code = &quot;## 自定义组件 编写中，请耐心等待&quot;;\n| // Exports")}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{331:function(p,n){p.exports="<h2 id=自定义组件>自定义组件</h2> <p>编写中，请耐心等待</p> "}}]);
