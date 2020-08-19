@@ -1,5 +1,12 @@
 const log = [
   {
+    version: '1.0.14',
+    time: '2020-08-19',
+    content: [
+      'Change to valine no back-end comment system.',
+    ]
+  },
+  {
     version: '1.0.13',
     time: '2020-08-15',
     content: [

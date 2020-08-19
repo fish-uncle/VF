@@ -13,26 +13,23 @@
       QQ：184609680
     </p>
     <h2>{{$t('feedback_h2_3')}}</h2>
-    <div id="gitalk-container"></div>
+    <div id="vcomments"></div>
   </div>
 </template>
 <script>
-  import 'gitalk/dist/gitalk.css';
-  import Gitalk from 'gitalk';
+  import Valine from 'valine';
 
   export default {
     mounted() {
-      const gitalk = new Gitalk({
-        clientID: '0cb59d60368e6e9d44aa',
-        clientSecret: '8f0fe8f2b300b3a6887e5abed38581a2b6dda0ee',
-        repo: 'gitalk',      // The repository of store comments,
-        owner: 'fish-uncle',
-        admin: ['fish-uncle'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
+      new Valine({
+        el: '#vcomments',
+        appId: 'a28jr5SdbwSOV3DEyYeosiEp-gzGzoHsz',
+        appKey: '6SlGudmOCjpBADcTcR5gaMu0',
+        placeholder: '请输入内容',
+        path: 'VF',
+        avatar: 'robohash',
+        meta: ['nick', 'mail']
       })
-
-      gitalk.render('gitalk-container')
     }
   }
 </script>

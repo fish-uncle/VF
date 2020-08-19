@@ -21,7 +21,6 @@
       return {
         currentComponent: null
       }
-
     },
     components: {Left},
     computed: mapState(["top", "help"]),
@@ -32,7 +31,8 @@
     },
     methods: {
       async init() {
-        const {name} = this.$route.params;
+        let {name} = this.$route.params;
+        name = name.replace(/%20/g, '');
         if (name === 'Feedback' || name === 'Friendship sponsorship') {
           this.currentComponent = () => import(`./${this.help.helpName}`)
           this.$store.commit('help/changeHelp', {
