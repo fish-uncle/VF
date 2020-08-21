@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[32],{339:function(n,o){n.exports="<h2 id=decorating-components>Decorating components</h2> "}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[32],{340:function(n,o){n.exports="<h2 id=修饰组件>修饰组件</h2> "}}]);

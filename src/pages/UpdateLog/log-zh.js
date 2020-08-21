@@ -1,9 +1,17 @@
 const log = [
   {
-    version: '1.0.13',
+    version: '1.0.14',
     time: '2020-08-19',
     content: [
       '修改为valine无后端评论系统。',
+    ]
+  },
+  {
+    version: '1.0.13',
+    time: '2020-08-15',
+    content: [
+      '新增纯文本组件 f-text。',
+      '新增表格组件 f-table。',
     ]
   },
   {

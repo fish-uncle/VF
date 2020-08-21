@@ -17,13 +17,13 @@ axios.interceptors.request.use(function (config) {
 //   resultMsg：'错误信息'
 // }
 // 可自行判断 逻辑报错请求
+const locale = localStorage.getItem('locale');
+let errMessage = '网络异常，请重试';
+if (locale === 'en') {
+  errMessage = 'Network exception, please try again';
+}
 axios.interceptors.response.use(response => {
   const {data} = response;
-  const locale = localStorage.getItem('locale');
-  let errMessage = '网络异常，请重试';
-  if (locale === 'en') {
-    errMessage = 'Network exception, please try again';
-  }
   if (data) {
     if (data.resultCode === '0000') {
       return data.data
