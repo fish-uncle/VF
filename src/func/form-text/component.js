@@ -5,17 +5,11 @@ const component = {
   className: '',
   version: '1.0.0',
   componentType: 'modification',
-  componentVisibled: true,
   type: 'text',
-  h: 2,
   dataType: 'Null',
-  widthRatio: 100,
+  labelWidth: 0,
   character: '',
   changeList: [
-    'title',
-    'width',
-
-    'widthRatio',
   ]
 }
 

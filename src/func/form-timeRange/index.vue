@@ -1,5 +1,5 @@
 <template>
-  <Time-picker class="f-date-range" type="timerange" v-model="center[currentVal.dragItem.key]"
+  <Time-picker class="f-date-range" type="timerange" v-model="parent.data[currentVal.dragItem.key]"
                :class="[currentVal.dragItem.className]"
                :style="{width:`${currentVal.dragItem.widthRatio}%`}"
                :clearable="currentVal.dragItem.clearable"
@@ -9,32 +9,47 @@
                :disabled="currentVal.dragItem.disabled"/>
 </template>
 <script>
-  import {mapState} from 'vuex';
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
-        this.center[this.currentVal.dragItem.key] = '';
-        this.$store.commit('center/changeData', {
+      init () {
+        this.parent.changeData ({
           value: '',
+          key: this.currentVal.dragItem.key.split (';')[0]
+        })
+        this.parent.changeData ({
+          value: '',
+          key: this.currentVal.dragItem.key.split (';')[1]
+        })
+        this.parent.changeData ({
+          value: [],
           key: this.currentVal.dragItem.key
         })
       },
-      dateChange(value) {
-        this.$store.commit('center/changeDateRange', {
-          value,
+      dateChange (value) {
+        this.parent.changeData ({
+          value: value[0],
+          key: this.currentVal.dragItem.key.split (';')[0]
+        })
+        this.parent.changeData ({
+          value: value[1],
+          key: this.currentVal.dragItem.key.split (';')[1]
+        })
+        this.parent.changeData ({
+          value: value,
           key: this.currentVal.dragItem.key
         })
       }

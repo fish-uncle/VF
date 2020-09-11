@@ -8,7 +8,7 @@
       <li class="pointer" :class="top.topIndex===1?'active':''" @click="handleIndex">{{$t('top_home')}}</li>
       <li class="pointer" :class="top.topIndex===3?'active':''" @click="handleHelp">{{$t('top_documentation')}}</li>
       <li class="pointer" :class="top.topIndex===2?'active':''" @click="handleUpdateLog">{{$t('top_update_log')}}</li>
-      <li class="pointer" @click="handleBuyShow">{{$t('top_buy')}}</li>
+<!--      <li class="pointer" @click="handleBuyShow">{{$t('top_buy')}}</li>-->
     </ul>
     <i-select class="vf-lang pos-r" v-model="$i18n.locale" @on-change="handleLanguageChange">
       <i-option v-for="lang in langs" :key="lang.value" :value="lang.value">{{lang.title}}</i-option>

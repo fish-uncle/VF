@@ -4,15 +4,12 @@
            :class="[currentVal.dragItem.className]" :dashed="currentVal.dragItem.dashed"/>
 </template>
 <script>
-  import {mapState} from 'vuex';
-
   export default {
     data() {
       return {
         currentVal: this.value,
       }
     },
-    computed: mapState(["center"]),
     props: ["value"],
     watch: {
       value(val) {

@@ -5,37 +5,44 @@ const store = {
     dataVisible: false,
     buyVisible: false,
     pleaseVisible: false,
+    codeVisible: false,
     loading: false,
   },
   mutations: {
-    pleaseShow: function (state) {
+    codeShow (state) {
+      state.codeVisible = true;
+    },
+    codeHide (state) {
+      state.codeVisible = false;
+    },
+    pleaseShow (state) {
       state.pleaseVisible = true;
     },
-    pleaseHide: function (state) {
+    pleaseHide (state) {
       state.pleaseVisible = false;
     },
-    buyShow: function (state) {
+    buyShow (state) {
       state.buyVisible = true;
     },
-    buyHide: function (state) {
+    buyHide (state) {
       state.buyVisible = false;
     },
-    previewShow: function (state) {
+    previewShow (state) {
       state.previewVisible = true;
     },
-    previewHide: function (state) {
+    previewHide (state) {
       state.previewVisible = false;
     },
-    dataShow: function (state) {
+    dataShow (state) {
       state.dataVisible = true;
     },
-    dataHide: function (state) {
+    dataHide (state) {
       state.dataVisible = false;
     },
-    loadingHide: function (state) {
+    loadingHide (state) {
       state.loading = false
     },
-    loadingShow: function (state) {
+    loadingShow (state) {
       state.loading = true
     },
   }

@@ -5,15 +5,8 @@ const component = {
   className: '',
   version: '1.0.0',
   componentType: 'base',
-  componentVisibled: true,
   type: 'multiple',
-  h: 2,
-  disabled: false,
-  labelWidth: 100,
-  labelTextAlign: 'right',
   dataType: 'Array',
-  widthRatio: 100,
-  required: false,
   selectListUrl: '',
   selectList: [
     {
@@ -29,10 +22,8 @@ const component = {
   controlOthersUpdateTargetKeys: [],
   controlOthersHideTargetKeys: {},
   changeList: [
-    'title',
     'labelTextAlign',
     'labelWidth',
-    'width',
 
     'widthRatio',
     'disabled',

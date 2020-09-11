@@ -19,8 +19,8 @@
         </div>
       </div>
       <center/>
-      <modelData/>
       <modelPreview/>
+      <modelCode/>
     </div>
   </div>
 </template>
@@ -29,29 +29,29 @@
   import Func from './func'
   import Right1 from './right-1'
   import Right2 from './right-2'
-  import ModelData from '../../components/ModelData'
+  import ModelCode from '../../components/modelCode'
   import ModelPreview from '../../components/ModelPreview'
 
-  import {mapState} from 'vuex';
+  import { mapState } from 'vuex';
 
   export default {
-    computed: mapState(["right"]),
+    computed: mapState ([ "right" ]),
     components: {
       Center,
-      ModelData,
       ModelPreview,
+      ModelCode,
       Func,
       Right1,
       Right2,
     },
     methods: {
-      changeTab(tabIndex) {
-        this.$store.commit('right/changeTab', {tabIndex})
+      changeTab (tabIndex) {
+        this.$store.commit ('right/changeTab', { tabIndex })
       },
     },
-    mounted() {
-      this.$store.commit('top/changeTop', {topIndex: 1});
-      this.$store.commit('center/clear');
+    mounted () {
+      this.$store.commit ('top/changeTop', { topIndex: 1 });
+      this.$store.commit ('center/clear');
     }
   }
 </script>

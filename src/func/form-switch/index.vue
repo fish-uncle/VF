@@ -1,5 +1,5 @@
 <template>
-  <i-switch v-model="center[currentVal.dragItem.key]"
+  <i-switch v-model="parent.data[currentVal.dragItem.key]"
             class="f-switch"
             :class="[currentVal.dragItem.className]"
             :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
@@ -7,34 +7,33 @@
   </i-switch>
 </template>
 <script>
-  import {mapState} from "vuex";
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         data: false,
         currentVal: this.value,
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
-        this.center[this.currentVal.dragItem.key] = false;
-        this.$store.commit('center/changeData', {
+      init () {
+        this.parent.changeData ({
           value: false,
           key: this.currentVal.dragItem.key
         })
       },
-      clickChange() {
+      clickChange () {
         if (!this.currentVal.dragItem.disabled) {
           this.data = !this.data
-          this.$store.commit('center/changeData', {
+          this.parent.changeData ({
             value: this.data,
             key: this.currentVal.dragItem.key
           })

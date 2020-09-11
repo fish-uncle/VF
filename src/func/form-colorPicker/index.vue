@@ -7,36 +7,34 @@
                :disabled="currentVal.dragItem.disabled"/>
 </template>
 <script>
-  import {mapState} from 'vuex';
+
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       let color = '';
       return {
         color,
+        parent: findComponentUpward(this, 'FormList'),
         currentVal: this.value,
       }
     },
-    computed: {
-      ...mapState(["center"]),
-    },
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
-        this.color = this.center[this.currentVal.dragItem.key];
+        this.color = parent.data[this.currentVal.dragItem.key];
       }
     },
     methods: {
-      init() {
-        this.center[this.currentVal.dragItem.key] = '';
-        this.$store.commit('center/changeData', {
+      init () {
+        this.parent.changeData ({
           value: '',
           key: this.currentVal.dragItem.key
         })
       },
-      colorChange(value) {
-        this.$store.commit('center/changeData', {
+      colorChange (value) {
+        this.parent.changeData ({
           value,
           key: this.currentVal.dragItem.key
         })

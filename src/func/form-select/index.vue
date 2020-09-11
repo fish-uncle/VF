@@ -1,5 +1,5 @@
 <template>
-  <i-select v-model="center[currentVal.dragItem.key]"
+  <i-select v-model="parent.data[currentVal.dragItem.key]"
             class="f-select"
             :class="[currentVal.dragItem.className]"
             :placeholder="currentVal.dragItem.placeholder"
@@ -17,66 +17,96 @@
 </template>
 <script>
   import request from '../../utils/request'
-  import {mapState} from 'vuex';
-  import {findComponentUpward} from '../../utils'
+  import { findComponentUpward } from '../../utils'
 
-  let ajax = {};
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList')
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ 'value', 'edit' ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
-        this.init();
+        this.reset ();
+        this.init ();
       },
     },
-    mounted() {
-      this.init();
+    mounted () {
+      this.reset ();
     },
     methods: {
-      init() {
-        const key = this.currentVal.dragItem.diyKey ? this.currentVal.dragItem.diyKey : this.currentVal.dragItem.key;
-        ajax[key] = true;
+      reset(){
         if (this.currentVal.dragItem.selectListUrl) {
-          const data = {...this.center.data, ...this.currentVal.dragItem.customAjaxParams};
-          request.post(this.currentVal.dragItem.selectListUrl, data).then(res => {
-            ajax[key] = false;
-            this.$store.commit('center/changeSelectList', {
-              value: res,
-              key: this.currentVal.dragItem.key
-            })
-          }).catch(() => {
-            ajax[key] = false;
+          const data = { ...this.parent.data, ...this.currentVal.dragItem.customAjaxParams };
+          request.post (this.currentVal.dragItem.selectListUrl, data).then (res => {
+            if (this.edit) {
+              this.$store.commit ('center/changeSelectList', {
+                value: res,
+                key: this.currentVal.dragItem.key
+              })
+            } else {
+              this.parent.changeSelectList ({
+                value: res,
+                key: this.currentVal.dragItem.key
+              })
+            }
           })
-        } else {
-          ajax[key] = false;
         }
-        this.center[key] = '';
-        this.$store.commit('center/changeData', {
+        this.parent.changeData ({
           value: '',
-          key
+          key: this.currentVal.dragItem.key
         })
       },
-      clickChange(value) {
+      init () {
+        if (this.currentVal.dragItem.selectListUrl) {
+          const data = { ...this.parent.data, ...this.currentVal.dragItem.customAjaxParams };
+          request.post (this.currentVal.dragItem.selectListUrl, data).then (res => {
+            if (this.edit) {
+              this.$store.commit ('center/changeSelectList', {
+                value: res,
+                key: this.currentVal.dragItem.key
+              })
+            } else {
+              this.parent.changeSelectList ({
+                value: res,
+                key: this.currentVal.dragItem.key
+              })
+            }
+          })
+        }
+        this.parent.changeData ({
+          value: '',
+          key: this.currentVal.dragItem.key
+        })
+        console.log()
+        if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
+          if (this.parent) {
+            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+          }
+        }
+        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+          if (this.parent) {
+            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, '')
+          }
+        }
+      },
+      clickChange (value) {
         const key = this.currentVal.dragItem.diyKey ? this.currentVal.dragItem.diyKey : this.currentVal.dragItem.key;
-        this.$store.commit('center/changeData', {
+        this.parent.changeData ({
           value,
           key
         })
         if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate(this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
           }
         }
         if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide(this.currentVal.dragItem.controlOthersHideTargetKeys, value)
+            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, value)
           }
         }
       }

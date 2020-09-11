@@ -182,108 +182,111 @@
   </div>
 </template>
 <script>
-  import {mapState} from 'vuex';
+  import { mapState } from 'vuex';
   import columns from "../../columns";
 
   export default {
-    data() {
+    data () {
       return {
         tab: 1,
         columns
       }
     },
     computed: {
-      ...mapState(["center", 'language']),
-      item() {
-        if (this.center.list.length > 0) {
-          return this.center.list[this.center.current]
+      ...mapState ([ "center", 'language' ]),
+      item () {
+        if (this.center.list[this.center.currentScale][this.center.current]) {
+          return this.center.list[this.center.currentScale][this.center.current]
         } else {
-          return {dragItem: {changeList: []}}
+          return { dragItem: { changeList: [] } }
         }
       },
-      componentList() {
-        let mockData = [];
+      componentList () {
+        let componentList = [], result = [];
         for (let i = 0; i <= this.center.list.length - 1; i++) {
-          if (this.item.dragItem.id !== this.center.list[i].dragItem.id) {
-            mockData.push({
-              key: this.center.list[i].dragItem.id,
-              label: this.center.list[i].dragItem[`title_${this.language.lang}`],
+          componentList.push (...this.center.list[i])
+        }
+        for (let i = 0; i <= componentList.length - 1; i++) {
+          if (this.item.dragItem.id !== componentList[i].dragItem.id) {
+            result.push ({
+              key: componentList[i].dragItem.id,
+              label: componentList[i].dragItem[`title_${this.language.lang}`],
             });
           }
         }
-        return mockData;
+        return result;
       }
     },
     methods: {
-      selectChange(value,key) {
+      selectChange (value, key) {
         let item = this.item;
         item.dragItem[key] = value;
       },
-      selectListUrlChange(e, key) {
+      selectListUrlChange (e, key) {
         const value = e.target.value;
         let item = this.item;
         item.dragItem[key] = value;
-        this.$agent.$once({type: 'componentInit'})
+        this.$agent.$once ({ type: 'componentInit' })
       },
-      controlOthersHideChange(targetKeys, value) {
+      controlOthersHideChange (targetKeys, value) {
         let item = this.item;
         if (item.dragItem.componentType === 'base') {
-          const obj = Object.assign({}, item.dragItem.controlOthersHideTargetKeys);
+          const obj = Object.assign ({}, item.dragItem.controlOthersHideTargetKeys);
           obj[value] = targetKeys;
           item.dragItem.controlOthersHideTargetKeys = obj;
         }
       },
-      controlOthersUpdateChange(targetKeys) {
+      controlOthersUpdateChange (targetKeys) {
         let item = this.item;
         if (item.dragItem.componentType === 'base') {
           item.dragItem.controlOthersUpdateTargetKeys = targetKeys;
         }
       },
-      inputValueChange(e, index) {
+      inputValueChange (e, index) {
         const value = e.target.value;
         let item = this.item;
         item.dragItem.selectList[index].value = value;
       },
-      inputTitleChange(e, index) {
+      inputTitleChange (e, index) {
         const value = e.target.value;
         let item = this.item;
         item.dragItem.selectList[index].title = value;
       },
-      selectDelChange(index) {
+      selectDelChange (index) {
         let item = this.item;
         if (item.dragItem.selectList.length > 1) {
-          item.dragItem['selectList'].splice(index, 1)
+          item.dragItem['selectList'].splice (index, 1)
         }
       },
-      selectAddChange(index) {
+      selectAddChange (index) {
         let item = this.item;
-        item.dragItem['selectList'].splice(index + 1, 0, {title: '新建项标题', value: '新建项值'})
+        item.dragItem['selectList'].splice (index + 1, 0, { title: '新建项标题', value: '新建项值' })
         if (item.dragItem.selectList.length > 10 && item.h < 3) {
           item.h = 3;
         }
       },
-      checkChange(value, key) {
+      checkChange (value, key) {
         let item = this.item;
         item.dragItem[key] = value;
       },
-      dateRangeKeyChange(e, key) {
+      dateRangeKeyChange (e, key) {
         const value = e.target.value;
         let item = this.item;
         const data = this.center.data;
         let keyValue;
         if (key === '0') {
-          keyValue = data[item.dragItem.key.split(';')[0]];
-          delete data[item.dragItem.key.split(';')[0]];
-          item.dragItem.key = value + ';' + item.dragItem.key.split(';')[1];
+          keyValue = data[item.dragItem.key.split (';')[0]];
+          delete data[item.dragItem.key.split (';')[0]];
+          item.dragItem.key = value + ';' + item.dragItem.key.split (';')[1];
         }
         if (key === '1') {
-          keyValue = data[item.dragItem.key.split(';')[1]];
-          delete data[item.dragItem.key.split(';')[1]];
-          item.dragItem.key = item.dragItem.key.split(';')[0] + ';' + value;
+          keyValue = data[item.dragItem.key.split (';')[1]];
+          delete data[item.dragItem.key.split (';')[1]];
+          item.dragItem.key = item.dragItem.key.split (';')[0] + ';' + value;
         }
         data[value] = keyValue;
       },
-      keyChange(e) {
+      keyChange (e) {
         const value = e.target.value;
         let item = this.item;
         const data = this.center.data;
@@ -292,12 +295,12 @@
         item.dragItem.key = value;
         data[value] = keyValue;
       },
-      numberChange(e, key) {
+      numberChange (e, key) {
         const value = e.target.value;
         let item = this.item;
-        item.dragItem[key] = Number(value);
+        item.dragItem[key] = Number (value);
       },
-      inputChange(e, key) {
+      inputChange (e, key) {
         const value = e.target.value;
         let item = this.item;
         item.dragItem[key] = value;

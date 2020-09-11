@@ -1,42 +1,39 @@
 <template>
-  <Rate  v-model="center[currentVal.dragItem.key]"
-         class="f-rate"
-         :class="[currentVal.dragItem.className]"
-         :character="currentVal.dragItem.character"
-         :clearable="currentVal.dragItem.clearable"
-         :allow-half="true"
-         :show-text="currentVal.dragItem.showText"
-              :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
-  </Rate >
+  <Rate v-model="parent.data[currentVal.dragItem.key]"
+        class="f-rate"
+        :class="[currentVal.dragItem.className]"
+        :character="currentVal.dragItem.character"
+        :clearable="currentVal.dragItem.clearable"
+        :allow-half="true"
+        :show-text="currentVal.dragItem.showText"
+        :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
+  </Rate>
 </template>
 <script>
-  import request from "../../utils/request";
-  import {mapState} from "vuex";
-  import {findComponentUpward} from "../../utils";
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
-        this.center[this.currentVal.dragItem.key] = '';
-        this.$store.commit('center/changeData', {
+      init () {
+        this.parent.changeData ({
           value: '',
           key: this.currentVal.dragItem.key
         })
       },
-      clickChange(value) {
-        this.$store.commit('center/changeData', {
+      clickChange (value) {
+        this.parent.changeData ({
           value,
           key: this.currentVal.dragItem.key
         })

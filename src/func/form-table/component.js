@@ -6,21 +6,15 @@ const component = {
   version: '1.0.0',
   componentType: 'base',
   dataType: 'Null',
-  componentVisibled: true,
   type: 'table',
-  h: 5,
+  labelWidth: 0,
   columns: '',
   tableAjaxUrl: '',
-  widthRatio: 100,
-  labelTextAlign: 'right',
   changeList: [
-    'title',
     'labelTextAlign',
     'labelWidth',
     'widthRatio',
-    'width',
 
-    'key',
     'columns',
     'tableAjaxUrl',
   ]

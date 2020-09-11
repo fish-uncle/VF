@@ -15,58 +15,73 @@
 </template>
 <script>
   import request from "../../utils/request";
-  import {findComponentUpward} from "../../utils";
-  import {mapState} from "vuex";
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         data: [],
         currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList')
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ 'value', 'edit' ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
-        this.init();
+        this.init ();
       }
     },
-    mounted() {
-      this.init();
+    mounted () {
+      this.init ();
     },
     methods: {
-      init() {
+      init () {
         if (this.currentVal.dragItem.selectListUrl) {
-          const data ={...this.center.data, ...this.currentVal.dragItem.customAjaxParams};
-          request.post(this.currentVal.dragItem.selectListUrl,data).then(res => {
-            this.$store.commit('center/changeSelectList', {
-              value: res,
-              key: this.currentVal.dragItem.key
-            })
+          const data = { ...this.parent.data, ...this.currentVal.dragItem.customAjaxParams };
+          request.post (this.currentVal.dragItem.selectListUrl, data).then (res => {
+            if (this.edit) {
+              this.$store.commit ('center/changeSelectList', {
+                value: res,
+                key: this.currentVal.dragItem.key
+              })
+            } else {
+              this.parent.changeSelectList ({
+                value: res,
+                key: this.currentVal.dragItem.key
+              })
+            }
           })
         }
         this.data = [];
-        this.$store.commit('center/changeData', {
+        this.parent.changeData ({
           value: [],
           key: this.currentVal.dragItem.key
         })
+        if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
+          if (this.parent) {
+            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+          }
+        }
+        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+          if (this.parent) {
+            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, [])
+          }
+        }
       },
-      clickChange() {
-        this.$store.commit('center/changeData', {
+      clickChange () {
+        this.parent.changeData ({
           value: this.data,
           key: this.currentVal.dragItem.key
         })
         if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate(this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
           }
         }
         if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide(this.currentVal.dragItem.controlOthersHideTargetKeys, this.data)
+            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, this.data)
           }
         }
       }

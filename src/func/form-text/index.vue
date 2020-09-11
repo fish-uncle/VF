@@ -1,24 +1,21 @@
 <template>
-  <div>{{currentVal.dragItem[`title_${language.lang}`]}}</div>
+  <div>{{currentVal.dragItem[`title_${language}`]}}</div>
 </template>
 <script>
-  import {mapState} from "vuex";
-
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
       }
     },
-    computed: mapState(["center", "language"]),
-    props: ["value"],
+    props: [ "value", "language" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
+      init () {
       },
     }
   }

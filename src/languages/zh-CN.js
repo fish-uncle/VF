@@ -8,13 +8,17 @@ const language = {
   "admin_left_title1": "基础组件",
   "admin_left_title2": "修饰组件",
 
+  "admin_center": "从左侧拖拽添加组件",
+
   "admin_center_title1": "功能区",
   "admin_center_btn1": "清空",
   "admin_center_btn2": "当前预览",
   "admin_center_btn2_1": "数据预览",
   "admin_center_btn2_2": "组件预览",
-  "admin_center_btn2_3": "新页面预览",
+  "admin_center_btn2_3": "代码预览",
   "admin_center_btn3": "全组件预览",
+  "admin_center_btn4_1": "当前编辑第",
+  "admin_center_btn4_2": "区域",
 
   "admin_right_title1": "表单属性",
   "admin_right_title2": "字段属性",

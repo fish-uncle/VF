@@ -1,28 +1,23 @@
 <template>
-  <div class="fn-clear vf-component pos-r"
-       v-show="visible"
-       :style="{width:`${currentVal.dragItem.width}%`}"
-       :class="[index===center.current&&edit?'active':'',
-       edit?'vf-component-edit':'',
-       `vf-${type}-box`,
-       currentVal.lowerVersion?'lower-version':'']"
-       @click="choose(index)">
-    <div class="vf-component-model pos-a z-index-9"/>
-    <label class="fn-fl vf-component-label"
-           :class="currentVal.dragItem.required?'has-required':''"
-           :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
-      {{currentVal.dragItem[`title_${language.lang}`]}}:
-    </label>
-    <div :style="{marginLeft:`${currentVal.dragItem.labelWidth}px`}">
-      <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language.lang"></component>
+  <transition name="fade">
+    <div class="fn-clear vf-component pos-r"
+         v-show="visible"
+         transiton="fade"
+         :class="[`vf-${type}-box`]"
+         :style="{width:`${currentVal.dragItem.width}%`}"
+         @click="choose(index)">
+      <label class="fn-fl vf-component-label"
+             :class="currentVal.dragItem.required?'has-required':''"
+             :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
+        {{currentVal.dragItem[`title_${language}`]}}:
+      </label>
+      <div :style="{marginLeft:`${currentVal.dragItem.labelWidth}px`}">
+        <component :is="currentComponent" :value="currentVal" :language="language"></component>
+      </div>
     </div>
-    <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center" @click="del">
-      <Icon type="md-trash"/>
-    </div>
-  </div>
+  </transition>
 </template>
 <script>
-  import { mapState } from 'vuex';
   import { cssStyle2DomStyle, findComponentUpward } from '../../utils';
 
   export default {
@@ -37,8 +32,7 @@
         type: ''
       }
     },
-    computed: mapState ([ "center", "language" ]),
-    props: [ "value", "index", 'edit' ],
+    props: [ "value", "index", 'edit', 'language' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -76,7 +70,6 @@
         this.$el.parentNode.removeChild (this.$el);
         this.$store.commit ('center/remove', { index: this.index });
         this.$store.commit ('right/changeTab', { tabIndex: 1 });
-        this.$agent.$once ({ type: 'formDataRemove', key: this.currentVal.dragItem.key });
       },
       choose (index) {
         if (!this.edit)
@@ -89,13 +82,6 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .vf-component-model {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-
   .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-text-box, .vf-table-box {
     .vf-component-label {
       display: none;
@@ -104,32 +90,13 @@
 
   .vf-javascript-box {
     display: none;
-
-    &.vf-component-edit {
-      display: block;
-    }
   }
-
 
   .vf-component {
     border: 2px solid rgba(0, 0, 0, 0);
     border-radius: 4px;
     padding: 10px;
     transition: all .3s;
-
-    &.vf-component-edit {
-      &:hover {
-        border: 2px solid @themeColor_04;
-      }
-
-      &.active {
-        border: 2px solid @themeColor;
-      }
-
-      &.lower-version {
-        background: rgba(255, 153, 0, 0.32);
-      }
-    }
 
     .vf-component-label {
       font-size: 14px;
@@ -143,21 +110,6 @@
           color: red;
         }
       }
-    }
-  }
-
-  .vf-component-del {
-    bottom: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    user-select: none;
-    background-color: @themeColor;
-    color: #fff;
-    border-radius: 4px;
-
-    &:hover {
-      background-color: @themeColor_07;
     }
   }
 </style>

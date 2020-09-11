@@ -27,7 +27,7 @@ const width = 108; // 拖动块宽度
 const height = 30; // 拖动块高度
 const yStep = 40; // 拖动块间隔高度
 const xStep = 118; // 拖动块间隔宽度
-const list1 = [
+const _list1 = [
   Input,
   Textarea,
   Password,
@@ -47,20 +47,34 @@ const list1 = [
   // Button,
 
 ];
-const list2 = [Divider, Text, Html, Javascript];
-list1.forEach((item, index) => {
+const _list2 = [ Divider, Text, Html, Javascript ];
+const obj = {
+  labelWidth: 120,
+  width: 100,
+  widthRatio: 100,
+  labelTextAlign: 'right',
+  required: false,
+  disabled: false,
+}
+const changeList = [
+  'title', 'width', 'key'
+]
+
+const list1 = _list1.map ((item, index) => {
   item.xStart = xStart + index % 2 * xStep
   item.xEnd = xStart + width + index % 2 * xStep
-  item.yStart = yStart1 + parseInt(index / 2) * yStep
-  item.yEnd = yStart1 + height + parseInt(index / 2) * yStep
+  item.yStart = yStart1 + parseInt (index / 2) * yStep
+  item.yEnd = yStart1 + height + parseInt (index / 2) * yStep
+  return { ...obj, ...item, changeList: [ ...changeList, ...item.changeList ] }
 })
-list2.forEach((item, index) => {
+const list2 = _list2.map ((item, index) => {
   item.xStart = xStart + index % 2 * xStep
   item.xEnd = xStart + width + index % 2 * xStep
-  item.yStart = yStart2 + parseInt(index / 2) * yStep + Math.ceil(list1.length / 2) * yStep
-  item.yEnd = yStart2 + height + parseInt(index / 2) * yStep + Math.ceil(list1.length / 2) * yStep
+  item.yStart = yStart2 + parseInt (index / 2) * yStep + Math.ceil (_list1.length / 2) * yStep
+  item.yEnd = yStart2 + height + parseInt (index / 2) * yStep + Math.ceil (_list1.length / 2) * yStep
+  return { ...obj, ...item, changeList: [ ...changeList, ...item.changeList ] }
 })
-const list = [...list1, ...list2]
+const list = [ ...list1, ...list2 ]
 ;
 const store = {
   namespaced: true,
@@ -71,11 +85,11 @@ const store = {
     dragItem: {}
   },
   mutations: {
-    drag: function (state, newState) {
+    drag (state, newState) {
       state.drag = true;
       state.dragItem = newState.dragItem;
     },
-    remove: function (state) {
+    remove (state) {
       state.remove = true;
       state.drag = false;
       state.dragItem = {
@@ -83,7 +97,7 @@ const store = {
         x: state.dragItem.xStart,
         y: state.dragItem.yStart
       };
-      setTimeout(() => {
+      setTimeout (() => {
         state.remove = false;
       }, 300);
     }

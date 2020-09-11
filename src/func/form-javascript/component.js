@@ -6,14 +6,11 @@ const component = {
   version: '1.0.0',
   dataType: 'Null',
   componentType: 'modification',
-  componentVisibled: false,
   type: 'javascript',
-  h: 2,
-  disabled: false,
   code: 'console.log("javascript start!")',
+  labelWidth: 0,
   changeList: [
     'javascript',
-    'width',
   ]
 }
 

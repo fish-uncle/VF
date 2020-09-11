@@ -1,43 +1,40 @@
 <template>
-  <Slider  v-model="center[currentVal.dragItem.key]"
-           class="f-slider"
-           :style="{width:`${currentVal.dragItem.widthRatio}%`}"
-           :class="[currentVal.dragItem.className]"
-           :step="Number(currentVal.dragItem.step)"
-           :max="Number(currentVal.dragItem.max)"
-           :min="Number(currentVal.dragItem.min)"
-           :show-input="center[currentVal.dragItem.showInput]"
-         :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
-  </Slider >
+  <Slider v-model="parent.data[currentVal.dragItem.key]"
+          class="f-slider"
+          :style="{width:`${currentVal.dragItem.widthRatio}%`}"
+          :class="[currentVal.dragItem.className]"
+          :step="Number(currentVal.dragItem.step)"
+          :max="Number(currentVal.dragItem.max)"
+          :min="Number(currentVal.dragItem.min)"
+          :show-input="parent.data[currentVal.dragItem.showInput]"
+          :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
+  </Slider>
 </template>
 <script>
-  import request from "../../utils/request";
-  import {mapState} from "vuex";
-  import {findComponentUpward} from "../../utils";
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
-        this.center[this.currentVal.dragItem.key] = '';
-        this.$store.commit('center/changeData', {
+      init () {
+        this.parent.changeData ({
           value: '',
           key: this.currentVal.dragItem.key
         })
       },
-      clickChange(value) {
-        this.$store.commit('center/changeData', {
+      clickChange (value) {
+        this.parent.changeData ({
           value,
           key: this.currentVal.dragItem.key
         })

@@ -2,7 +2,7 @@
   <i-input type="textarea"
            clas="f-textarea"
            :class="[currentVal.dragItem.className]"
-           v-model="center[currentVal.dragItem.key]"
+           v-model="parent.data[currentVal.dragItem.key]"
            :disabled="currentVal.dragItem.disabled"
            :placeholder="currentVal.dragItem.placeholder"
            :style="{width:`${currentVal.dragItem.widthRatio}%`}"
@@ -10,32 +10,31 @@
   />
 </template>
 <script>
-  import {mapState} from "vuex";
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
+        parent: findComponentUpward(this, 'FormList')
       }
     },
-    computed: mapState(["center"]),
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
-        this.center[this.currentVal.dragItem.key] = '';
-        this.$store.commit('center/changeData', {
+      init () {
+        this.parent.changeData ({
           value: '',
           key: this.currentVal.dragItem.key
         })
       },
-      inputChange(e) {
+      inputChange (e) {
         const value = e.target.value;
-        this.$store.commit('center/changeData', {
+        this.parent.changeData ({
           value,
           key: this.currentVal.dragItem.key
         })

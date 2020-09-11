@@ -8,13 +8,17 @@ const language = {
   "admin_left_title1": "Basic components",
   "admin_left_title2": "Decorating components",
 
+  "admin_center": "Drag and drop to add components from the left",
+
   "admin_center_title1": "Functional area",
   "admin_center_btn1": "clear",
   "admin_center_btn2": "preview current",
   "admin_center_btn2_1": "data preview",
   "admin_center_btn2_2": "components preview",
-  "admin_center_btn2_3": "new page preview",
+  "admin_center_btn2_3": "code preview",
   "admin_center_btn3": "full component preview",
+  "admin_center_btn4_1": "Current edition No",
+  "admin_center_btn4_2": "region",
 
   "admin_right_title1": "Form properties",
   "admin_right_title2": "Field properties",

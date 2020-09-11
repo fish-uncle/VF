@@ -1,5 +1,6 @@
 <template>
-  <div class="f-image" :class="[currentVal.dragItem.className,currentVal.dragItem.disabled?'f-image-disabled':'',currentVal.dragItem.className]"
+  <div class="f-image"
+       :class="[currentVal.dragItem.className,currentVal.dragItem.disabled?'f-image-disabled':'',currentVal.dragItem.className]"
        :style="{width:`${currentVal.dragItem.widthRatio}%`}">
     <div class="f-image-upload-list" v-for="item in uploadList">
       <template v-if="item.status === 'finished'">
@@ -37,62 +38,65 @@
   </div>
 </template>
 <script>
+  import { findComponentUpward } from "../../utils";
+
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
         visible: false,
         uploadList: [],
         imgUrl: '',
+        parent: findComponentUpward (this, 'FormList'),
       }
     },
     computed: {
-      fileFormat() {
-        return this.currentVal.dragItem.fileFormat.split(',')
+      fileFormat () {
+        return this.currentVal.dragItem.fileFormat.split (',')
       }
     },
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
-    mounted() {
-      this.init();
+    mounted () {
+      this.init ();
     },
     methods: {
-      init() {
+      init () {
         const fileList = this.uploadList = this.$refs.upload.fileList;
-        const list = fileList.map(item => item.url);
-        this.$store.commit('center/changeData', {
+        const list = fileList.map (item => item.url);
+        this.parent.changeData ({
           value: list,
           key: this.currentVal.dragItem.key
         })
       },
-      handleExceededError() {
-        this.$Message.error(`当前文件大小超出${this.currentVal.dragItem.maxSize}kb`)
+      handleExceededError () {
+        this.$Message.error (`当前文件大小超出${this.currentVal.dragItem.maxSize}kb`)
       },
-      handleFormatError() {
-        this.$Message.error('当前文件格式不符合要求')
+      handleFormatError () {
+        this.$Message.error ('当前文件格式不符合要求')
       },
-      handleRemove(file) {
+      handleRemove (file) {
         const fileList = this.$refs.upload.fileList;
-        this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
-        const list = fileList.map(item => item.url);
-        this.$store.commit('center/changeData', {
+        this.$refs.upload.fileList.splice (fileList.indexOf (file), 1);
+        const list = fileList.map (item => item.url);
+        this.parent.changeData ({
           value: list,
           key: this.currentVal.dragItem.key
         })
       },
-      handleView(url) {
+      handleView (url) {
         this.imgUrl = url;
         this.visible = true;
       },
-      handleSuccess(response, file, fileList) {
+      handleSuccess (response, file, fileList) {
         file.url = response.data;
         file.name = response.data;
-        const list = fileList.map(item => item.url);
-        this.$store.commit('center/changeData', {
+        const list = fileList.map (item => item.url);
+        this.parent.changeData ({
           value: list,
           key: this.currentVal.dragItem.key
         })

@@ -2,7 +2,7 @@
   <div class="f-password pos-r" :style="{width:`${currentVal.dragItem.widthRatio}%`}"
        :class="[currentVal.dragItem.className]">
     <i-input
-      v-model="center[currentVal.dragItem.key]"
+      v-model="parent.data[currentVal.dragItem.key]"
       :disabled="currentVal.dragItem.disabled"
       :placeholder="currentVal.dragItem.placeholder"
       :style="{width:`100%`}"
@@ -14,16 +14,16 @@
   </div>
 </template>
 <script>
-  import {mapState} from "vuex";
+  import { findComponentUpward } from "../../utils";
 
   export default {
     data() {
       return {
         currentVal: this.value,
-        see: true
+        see: true,
+        parent: findComponentUpward (this, 'FormList'),
       }
     },
-    computed: mapState(["center"]),
     props: ["value"],
     watch: {
       value(val) {
@@ -32,15 +32,14 @@
     },
     methods: {
       init() {
-        this.center[this.currentVal.dragItem.key] = '';
-        this.$store.commit('center/changeData', {
+        this.parent.changeData ({
           value: '',
           key: this.currentVal.dragItem.key
         })
       },
       inputChange(e) {
         const value = e.target.value;
-        this.$store.commit('center/changeData', {
+        this.parent.changeData ({
           value,
           key: this.currentVal.dragItem.key
         })

@@ -6,7 +6,7 @@ const store = {
     helpContent: '',
   },
   mutations: {
-    changeHelp: function (state, newState) {
+    changeHelp (state, newState) {
       state.helpName = newState.helpName
       state.helpContent = newState.helpContent ? newState.helpContent.default : ''
       state.helpType = newState.helpType

@@ -15,14 +15,14 @@ const routes = [
     component: () => import('./pages/Admin')
   },
   {
-    path: '/preview',
-    name: 'Preview',
-    component: () => import('./pages/Preview')
-  },
-  {
     path: '/previewAll',
     name: 'PreviewAll',
     component: () => import('./pages/PreviewAll')
+  },
+  {
+    path: '/Test',
+    name: 'Test',
+    component: () => import('./pages/Test')
   },
 ];
 module.exports = routes;

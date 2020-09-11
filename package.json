@@ -1,6 +1,6 @@
 {
   "name": "VF",
-  "version": "1.0.14",
+  "version": "1.1.0",
   "description": "基于Vue的表单设计器，让表单开发简单而高效",
   "main": "index.js",
   "keywords": [
@@ -26,15 +26,14 @@
     "valine": "^1.4.14",
     "view-design": "^4.3.2",
     "vue": "^2.6.11",
-    "vue-codemirror": "^4.0.6",
-    "vue-grid-layout": "^2.3.7",
     "vue-i18n": "^8.20.0",
     "vue-json-viewer": "^2.2.11",
     "vue-router": "^3.4.0",
+    "vue2-ace-editor": "0.0.15",
+    "vuedraggable": "^2.24.1",
     "vuex": "^3.2.0"
   },
   "devDependencies": {
-    "@fish/cli": "^1.0.10",
     "auto-vers": "^1.0.3"
   }
 }

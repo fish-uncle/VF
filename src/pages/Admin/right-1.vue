@@ -34,7 +34,7 @@
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('width')!==-1">
       <label>{{$t('admin_right_btn26')}}</label>
-      <Slider v-model="item.w" :max="24">
+      <Slider v-model="item.dragItem.width" :max="100">
       </Slider>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
@@ -50,30 +50,26 @@
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('javascript')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
-      <codemirror :value="item.dragItem.code"
-                  :options="javascript"
-                  @input="newCode=>onCmCodeChange(newCode,'code')"/>
+      <editor v-model="item.dragItem.code"
+              @init="editorInit" lang="html" theme="javascript" height="400"></editor>
     </div>
     <div class="vf-control" v-if="item.dragItem.changeList.indexOf('html')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
-      <codemirror :value="item.dragItem.code"
-                  :options="html"
-                  @input="newCode=>onCmCodeChange(newCode,'code')"/>
+      <editor v-model="item.dragItem.code"
+              @init="editorInit" lang="html" theme="chrome"  height="400"></editor>
     </div>
   </div>
 </template>
 <script>
-  import {mapState} from 'vuex';
-  import {codemirror} from 'vue-codemirror';
-  import 'codemirror/lib/codemirror.css';
-  import 'codemirror/theme/material.css';
+  import { mapState } from 'vuex';
 
   export default {
-    data(){
+    data () {
       return {
         html: {
           tabSize: 4,
           mode: 'text/html',
+          inputStyle: 'contenteditable',
           theme: 'material',
           lineNumbers: true,
           line: true,
@@ -81,7 +77,8 @@
         },
         javascript: {
           tabSize: 4,
-          mode: 'text/javascript',
+          mode: 'javascript',
+          inputStyle: 'contenteditable',
           theme: 'material',
           lineNumbers: true,
           line: true,
@@ -89,29 +86,35 @@
         }
       }
     },
-    components: {
-      codemirror
-    },
     computed: {
-      ...mapState(["center", "language"]),
-      item() {
+      ...mapState ([ "center", "language" ]),
+      item () {
         if (this.center.list.length > 0) {
-          return this.center.list[this.center.current] ? this.center.list[this.center.current] : {dragItem: {changeList: []}}
+          return this.center.list[this.center.currentScale][this.center.current] ?
+            this.center.list[this.center.currentScale][this.center.current] : { dragItem: { changeList: [] } }
         } else {
-          return {dragItem: {changeList: []}}
+          return { dragItem: { changeList: [] } }
         }
       }
     },
     methods: {
-      onCmCodeChange(newCode, key) {
+      editorInit: function () {
+        require('brace/ext/language_tools') //language extension prerequsite...
+        require('brace/mode/html')
+        require('brace/mode/javascript')    //language
+        require('brace/mode/less')
+        require('brace/theme/chrome')
+        require('brace/snippets/javascript') //snippet
+      },
+      onCmCodeChange (newCode, key) {
         let item = this.item;
         item.dragItem[key] = newCode;
       },
-      checkChange(value, key) {
+      checkChange (value, key) {
         let item = this.item;
         item.dragItem[key] = value;
       },
-      keyChange(e, key) {
+      keyChange (e, key) {
         const value = e.target.value;
         let item = this.item;
         const data = this.center.data;
@@ -120,12 +123,12 @@
         item.dragItem[key] = value;
         data[value] = keyValue;
       },
-      numberChange(e,key){
+      numberChange (e, key) {
         const value = e.target.value;
         let item = this.item;
-        item.dragItem[key] = Number(value);
+        item.dragItem[key] = Number (value);
       },
-      inputChange(e, key) {
+      inputChange (e, key) {
         const value = e.target.value;
         let item = this.item;
         item.dragItem[key] = value;
@@ -135,22 +138,7 @@
 </script>
 <style lang="less">
   @import "../../less/conf";
-  .CodeMirror-vscrollbar{
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 1px;
-    }
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: #535353;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background: #ededed;
-    }
-  }
   .vf-right {
     width: 440px;
     margin-top: 10px;

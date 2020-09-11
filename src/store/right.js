@@ -4,7 +4,7 @@ const store = {
     tabIndex: 1,
   },
   mutations: {
-    changeTab: function (state, newState) {
+    changeTab (state, newState) {
       state.tabIndex = newState.tabIndex
     },
   }

@@ -5,14 +5,7 @@ const component = {
   className: '',
   version: '1.0.0',
   componentType: 'base',
-  componentVisibled: true,
   type: 'radio',
-  h: 2,
-  disabled: false,
-  labelWidth: 100,
-  labelTextAlign: 'right',
-  widthRatio: 100,
-  required: false,
   selectList: [
     {
       value: 1,
@@ -28,10 +21,8 @@ const component = {
   controlOthersUpdateTargetKeys: [],
   controlOthersHideTargetKeys: {},
   changeList: [
-    'title',
     'labelTextAlign',
     'labelWidth',
-    'width',
 
     'widthRatio',
     'disabled',

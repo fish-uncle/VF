@@ -5,15 +5,8 @@ const component = {
   className: '',
   version: '1.0.0',
   componentType: 'base',
-  componentVisibled: true,
   type: 'select',
-  h: 2,
-  disabled: false,
   placeholder: '',
-  labelWidth: 100,
-  labelTextAlign: 'right',
-  widthRatio: 100,
-  required: false,
   addLink: [],
   clearable: true,
   removeLink: [],
@@ -39,10 +32,8 @@ const component = {
     'hide'
   ],
   changeList: [
-    'title',
     'labelTextAlign',
     'labelWidth',
-    'width',
 
     'placeholder',
     'widthRatio',

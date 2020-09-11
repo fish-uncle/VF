@@ -4,7 +4,7 @@ const store = {
     topIndex: 1,
   },
   mutations: {
-    changeTop: function (state, newState) {
+    changeTop (state, newState) {
       state.topIndex = newState.topIndex
     },
   }

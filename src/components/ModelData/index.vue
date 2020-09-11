@@ -2,7 +2,7 @@
   <Modal v-model="model.dataVisible" :closable="false" :footer-hide="true" :scrollable="true">
     <json-viewer
       v-if="model.dataVisible"
-      :value="center.data"
+      :value="data"
       :expand-depth=5
       copyable
       boxed
@@ -10,11 +10,10 @@
   </Modal>
 </template>
 <script>
-  import {mapState} from 'vuex';
+  import { mapState } from 'vuex';
 
   export default {
-    computed: {
-      ...mapState(["model", "center"]),
-    }
+    computed: mapState ([ "model" ]),
+    props: [ 'data' ],
   }
 </script>

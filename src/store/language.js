@@ -1,10 +1,10 @@
 const store = {
   namespaced: true,
   state: {
-    lang: localStorage.getItem("locale") || 'zh',
+    lang: localStorage.getItem ("locale") || 'zh',
   },
   mutations: {
-    change: function (state, newState) {
+    change (state, newState) {
       state.lang = newState.lang
     },
   }

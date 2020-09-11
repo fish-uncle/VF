@@ -1,5 +1,16 @@
 const log = [
   {
+    version: '1.1.0',
+    time: '2020-09-10',
+    content: [
+      'Optimize the layout structure and add 1:0, 1:1, 2:1, 1:2 modes.',
+      'After optimizing the dynamic explicit and implicit control, the component does not move up.',
+      'Optimization linkage algorithm.',
+      'Remove new page preview',
+      'New code preview function'
+    ]
+  },
+  {
     version: '1.0.14',
     time: '2020-08-19',
     content: [
