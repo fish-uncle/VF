@@ -33,7 +33,7 @@
       async init() {
         let {name} = this.$route.params;
         name = name.replace(/%20/g, '');
-        if (name === 'Feedback' || name === 'Friendship sponsorship' || 'First example') {
+        if (name === 'Feedback' || name === 'Friendship sponsorship' || name === 'First example') {
           this.currentComponent = () => import(`./${this.help.helpName}`)
           this.$store.commit('help/changeHelp', {
             helpName: name,
