@@ -77,7 +77,9 @@
               ...Select,
               title_zh: '下拉（看我）',
               key: 'select2', id: 'select2',
-              selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=2',
+              labelWidth: 120,
+              widthRatio: 100,
+              labelTextAlign: 'right',
               width: 50,
               controlOthersUpdateTargetKeys: [ 'select3' ]
             }
@@ -87,6 +89,9 @@
               ...Select,
               title_zh: '下拉（看我）',
               key: 'select3', id: 'select3',
+              labelWidth: 120,
+              widthRatio: 100,
+              labelTextAlign: 'right',
               selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=3',
               width: 50,
               controlOthersUpdateTargetKeys: [ 'select4' ]
@@ -97,6 +102,9 @@
               ...Select,
               title_zh: '下拉（看我）',
               key: 'select4', id: 'select4',
+              labelWidth: 120,
+              widthRatio: 100,
+              labelTextAlign: 'right',
               selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=4',
               width: 50,
               controlOthersUpdateTargetKeys: [ 'test_hide_key' ]

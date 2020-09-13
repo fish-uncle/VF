@@ -40,6 +40,7 @@ const log = [
       'Newly added layout function, the overall layout adopts 24 points method to drag the layout randomly.',
       'New page preview.',
       'New full component Preview.',
+      'Optimization help document，First Example.',
     ]
   },
   {

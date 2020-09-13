@@ -85,6 +85,7 @@ const language = {
   "help_left_1": "Guide",
   "help_left_1_1": "Introduce",
   "help_left_1_2": "Catalogue introduction",
+  "help_left_1_3": "First example",
   "help_left_2": "Basic functions",
   "help_left_2_1": "Quick use",
   "help_left_2_2": "Dynamic data",

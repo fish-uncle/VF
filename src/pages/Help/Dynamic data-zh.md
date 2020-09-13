@@ -17,25 +17,6 @@
 https://cdn.shenzhepei.com/VF/select.json
 
 ### 第四步
-如果你想要修改你的数据格式
-
-store/center.js
-
-```javascript
-// 初始化 列表
-changeSelectList: function (state, newState) {
-  const list = state.list;
-  list.forEach(item => {
-    if (item.dragItem.key === newState.key) {
-      item.dragItem.ajaxList = newState.value;
-    }
-  })
-  state.list = list;
-},
-```
-这里的newState.value就是传入值，进行相应的格式化就行了
-
-### 第五步
 如果你想要修改你的ajax请求整体返回格式
 
 utils/request.js

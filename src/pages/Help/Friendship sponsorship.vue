@@ -13,6 +13,7 @@
           <span>2020-08-07</span>
           <img class="circle" src="https://cdn.shenzhepei.com/VF/sponsorship/1.jpg"/>
           <span>{{$t('Friendship sponsorship_list_1')}}</span>
+          <i>¥10.00</i>
         </div>
       </li>
     </ul>
@@ -30,6 +31,12 @@
       img {
         margin: 0 10px;
         width: 30px;
+      }
+
+      i {
+        margin-left: 10px;
+        font-style: normal;
+        line-height: 30px;
       }
     }
   }

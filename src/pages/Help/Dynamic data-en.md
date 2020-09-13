@@ -17,25 +17,6 @@ Attach a test Ajax address
 https://cdn.shenzhepei.com/VF/select.json
 
 ### Step four
-If you want to change your data format
-
-store/center.js
-
-```javascript
-// Initialization list
-changeSelectList: function (state, newState) {
-  const list = state.list;
-  list.forEach(item => {
-    if (item.dragItem.key === newState.key) {
-      item.dragItem.ajaxList = newState.value;
-    }
-  })
-  state.list = list;
-},
-```
-there newState.value Just pass in the value and format it accordingly
-
-### Step five
 If you want to modify the overall return format of your Ajax request
 
 utils/request.js

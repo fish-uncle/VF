@@ -85,6 +85,7 @@ const language = {
   "help_left_1": "指南",
   "help_left_1_1": "介绍",
   "help_left_1_2": "目录介绍",
+  "help_left_1_3": "第一个示例",
   "help_left_2": "基础功能",
   "help_left_2_1": "快速使用",
   "help_left_2_2": "动态数据",

@@ -7,6 +7,7 @@
       </template>
       <MenuItem name="Introduce">{{$t('help_left_1_1')}}</MenuItem>
       <MenuItem name="Catalogue introduction">{{$t('help_left_1_2')}}</MenuItem>
+      <MenuItem name="First example">{{$t('help_left_1_3')}}</MenuItem>
     </Submenu>
     <Submenu name="2">
       <template slot="title">

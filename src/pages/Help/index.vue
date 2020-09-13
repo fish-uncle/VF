@@ -2,7 +2,7 @@
   <div>
     <div class="fn-clear">
       <left/>
-      <div class="vf-help-content vf-scrollbar">
+      <div class="vf-help-content">
         <div class="markdown-body">
           <div v-html="help.helpContent" v-if="help.helpType===1"/>
           <component :is="currentComponent" v-if="help.helpType===2"/>
@@ -33,7 +33,7 @@
       async init() {
         let {name} = this.$route.params;
         name = name.replace(/%20/g, '');
-        if (name === 'Feedback' || name === 'Friendship sponsorship') {
+        if (name === 'Feedback' || name === 'Friendship sponsorship' || 'First example') {
           this.currentComponent = () => import(`./${this.help.helpName}`)
           this.$store.commit('help/changeHelp', {
             helpName: name,

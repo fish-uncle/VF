@@ -28,7 +28,7 @@
     methods: {
       init () {
         this.parent.changeData ({
-          value: '',
+          value: '1',
           key: this.currentVal.dragItem.key
         })
       },
