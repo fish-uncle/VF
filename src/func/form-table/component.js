@@ -2,8 +2,6 @@ const component = {
   title_zh: '表格',
   title_en: 'table',
   icon: 'ios-grid-outline',
-  className: '',
-  version: '1.0.0',
   componentType: 'base',
   dataType: 'Null',
   type: 'table',

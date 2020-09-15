@@ -1,5 +1,16 @@
 const log = [
   {
+    version: '1.1.1',
+    time: '2020-09-15',
+    content: [
+      'New regular check function.',
+      'Fix the error report after the components are interchanged.',
+      'Optimization of error collection method for required and regular check.',
+      'Optimize drag effect.',
+      'New form setting.',
+    ]
+  },
+  {
     version: '1.1.0',
     time: '2020-09-10',
     content: [

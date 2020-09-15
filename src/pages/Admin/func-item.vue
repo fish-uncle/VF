@@ -5,56 +5,11 @@
   </li>
 </template>
 <script>
-  import {mapState} from 'vuex';
+  import { mapState } from 'vuex';
 
   export default {
-    props: ['item'],
-    computed: mapState(["component", "model", "language"]),
-    mounted() {
-      document.addEventListener('mouseup', this.remove);
-      document.addEventListener('mousedown', this.drag);
-      document.addEventListener('mousemove', this.move);
-    },
-    beforeDestroy() {
-      document.removeEventListener('mouseup', this.remove);
-      document.removeEventListener('mousedown', this.drag);
-      document.removeEventListener('mousemove', this.move);
-    },
-    methods: {
-      move(e) {
-        if (this.component.drag) {
-          const item = this.component.dragItem;
-          const x = e.x - item.xPoint + item.xStart;
-          const y = e.y - item.yPoint + item.yStart;
-          const dragItem = {
-            ...item, x, y
-          };
-          this.$store.commit('component/drag', {dragItem})
-        }
-      },
-      drag(e) {
-        const item = this.item;
-        const x = e.x - 10 + document.documentElement.scrollLeft;
-        const y = e.y - 41 + document.documentElement.scrollTop;
-        if (x >= item.xStart && x <= item.xEnd && y >= item.yStart && y <= item.yEnd) {
-          const dragItem = {
-            ...item,
-            x: item.xStart,
-            y: item.yStart,
-            xPoint: e.x,
-            yPoint: e.y
-          };
-          if (!this.model.visible) {
-            this.$store.commit('component/drag', {dragItem})
-          }
-        }
-      },
-      remove(e) {
-        if (this.component.drag) {
-          this.$store.commit('component/remove')
-        }
-      }
-    }
+    props: [ 'item' ],
+    computed: mapState ([ 'component', 'model', 'language' ]),
   }
 </script>
 <style lang="less">
@@ -73,12 +28,31 @@
     border-radius: 4px;
     align-items: center;
     padding-left: 8px;
-    span{
+    transition: all .3s;
+
+    span {
       margin-left: 5px;
     }
+
     &:hover {
       color: @themeColor;
       border: 1px dashed @themeColor;
+    }
+
+
+  }
+
+  .vf-drag-box {
+    .vf-func-item {
+      &.sortable-ghost {
+        height: 0;
+        width: 100%;
+        border: 2px solid @move-color;
+
+        span, i {
+          display: none;
+        }
+      }
     }
   }
 </style>

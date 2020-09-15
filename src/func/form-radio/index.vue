@@ -1,13 +1,13 @@
 <template>
-  <RadioGroup class="f-radio fn-flex flex-row" v-model="parent.data[currentVal.dragItem.key]"
-              :class="[currentVal.dragItem.className]"
+  <RadioGroup class="vf-radio fn-flex flex-row" v-model="parent.data[currentVal.key]"
+              :class="[currentVal.className,error?'vf-error':'']"
               @on-change="clickChange">
-    <Radio v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"
-           :disabled="currentVal.dragItem.disabled" :label="item.value" :key="item.value">
+    <Radio v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
+           :disabled="currentVal.disabled" :label="item.value" :key="item.value">
       {{item.title}}
     </Radio>
-    <Radio v-if="currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.ajaxList" :label="item.value"
-           :disabled="currentVal.dragItem.disabled" :key="item.value">
+    <Radio v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList" :label="item.value"
+           :disabled="currentVal.disabled" :key="item.value">
       {{item.title}}
     </Radio>
   </RadioGroup>
@@ -23,7 +23,7 @@
         parent: findComponentUpward (this, 'FormList')
       }
     },
-    props: [ "value", 'edit' ],
+    props: [ "value", 'edit', 'error' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -31,50 +31,53 @@
     },
     methods: {
       init () {
-        if (this.currentVal.dragItem.selectListUrl) {
-          const data = { ...parent.data, ...this.currentVal.dragItem.customAjaxParams };
-          request.post (this.currentVal.dragItem.selectListUrl, data).then (res => {
+        if (this.currentVal.selectListUrl) {
+          const data = { ...parent.data, ...this.currentVal.customAjaxParams };
+          request.post (this.currentVal.selectListUrl, data).then (res => {
             if (this.edit) {
               this.$store.commit ('center/changeSelectList', {
                 value: res,
-                key: this.currentVal.dragItem.key
+                key: this.currentVal.key
               })
             } else {
               this.parent.changeSelectList ({
                 value: res,
-                key: this.currentVal.dragItem.key
+                key: this.currentVal.key
               })
             }
           })
         }
         this.parent.changeData ({
           value: '',
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
-        if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
+        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
-        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+        if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, '')
+            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, '')
           }
         }
       },
       clickChange (value) {
         this.parent.changeData ({
           value,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
-        if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
+        if (this.error) {
+          this.parent.errorHide (this.currentVal.id);
+        }
+        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
-        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+        if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, value)
+            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, value)
           }
         }
       }
@@ -82,10 +85,21 @@
   }
 </script>
 <style lang="less">
-  .f-radio {
+  @import "../../less/conf";
+
+  .vf-radio {
     height: 32px;
     align-items: center;
     display: flex !important;
     display: -webkit-flex !important;
+
+    &.vf-error {
+      .ivu-radio-inner {
+        border-color: @error-color;
+        outline: 0;
+        box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+      }
+    }
   }
+
 </style>

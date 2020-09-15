@@ -1,9 +1,8 @@
 <template>
-  <i-switch v-model="parent.data[currentVal.dragItem.key]"
-            class="f-switch"
-            :class="[currentVal.dragItem.className]"
-            :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
-    <i/>
+  <i-switch v-model="parent.data[currentVal.key]"
+            class="vf-switch"
+            :class="[currentVal.className]"
+            :disabled="currentVal.disabled" @on-change="clickChange">
   </i-switch>
 </template>
 <script>
@@ -27,15 +26,15 @@
       init () {
         this.parent.changeData ({
           value: false,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       clickChange () {
-        if (!this.currentVal.dragItem.disabled) {
+        if (!this.currentVal.disabled) {
           this.data = !this.data
           this.parent.changeData ({
             value: this.data,
-            key: this.currentVal.dragItem.key
+            key: this.currentVal.key
           })
         }
       }
@@ -43,7 +42,7 @@
   }
 </script>
 <style lang="less">
-  .f-switch {
+  .vf-switch {
     margin-top: 5px;
   }
 </style>

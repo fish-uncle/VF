@@ -1,62 +1,62 @@
 <template>
   <div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('title')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('title')!==-1">
       <label>{{$t('admin_right_btn1')}}</label>
-      <i-input v-model="item.dragItem[`title_${language.lang}`]"
+      <i-input v-model="item[`title_${language.lang}`]"
                @on-change="e=>inputChange(e,`title_${language.lang}`)"/>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelTextAlign')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('labelTextAlign')!==-1">
       <label>{{$t('admin_right_btn2')}}</label>
-      <RadioGroup v-model="item.dragItem.labelTextAlign" type="button" size="large"
+      <RadioGroup v-model="item.labelTextAlign" type="button" size="large"
                   @on-change="value=>checkChange(value,'labelTextAlign')">
         <Radio label="left">{{$t('admin_right_btn2_1')}}</Radio>
         <Radio label="right">{{$t('admin_right_btn2_2')}}</Radio>
       </RadioGroup>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('dashed')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('dashed')!==-1">
       <label>{{$t('admin_right_btn5')}}</label>
-      <RadioGroup v-model="item.dragItem.dashed?1:0" type="button" size="large"
+      <RadioGroup v-model="item.dashed?1:0" type="button" size="large"
                   @on-change="value=>checkChange(!!value,'dashed')">
         <Radio :label="1">{{$t('admin_right_btn5_1')}}</Radio>
         <Radio :label="0">{{$t('admin_right_btn5_2')}}</Radio>
       </RadioGroup>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('labelWidth')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('labelWidth')!==-1">
       <label>{{$t('admin_right_btn3')}}</label>
-      <i-input v-model="item.dragItem.labelWidth"
+      <i-input v-model="item.labelWidth"
                @on-change="e=>numberChange(e,'labelWidth')"><span slot="append">px</span>
       </i-input>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('widthRatio')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('widthRatio')!==-1">
       <label>{{$t('admin_right_btn4')}}</label>
-      <Slider v-model="item.dragItem.widthRatio" :max="100">
+      <Slider v-model="item.widthRatio" :max="100">
       </Slider>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('width')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('width')!==-1">
       <label>{{$t('admin_right_btn26')}}</label>
-      <Slider v-model="item.dragItem.width" :max="100">
+      <Slider v-model="item.width" :max="100">
       </Slider>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('placeholder')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('placeholder')!==-1">
       <label>{{$t('admin_right_btn8')}}</label>
-      <i-input v-model="item.dragItem.placeholder"
+      <i-input v-model="item.placeholder"
                @on-change="e=>inputChange(e,'placeholder')"/>
     </div>
-    <div class="vf-control" v-if="this.center.list.length > 0">
+    <div class="vf-control" v-if="item.changeList.indexOf('className')!==-1">
       <label>{{$t('admin_right_btn25')}}</label>
-      <i-input v-model="item.dragItem.className"
+      <i-input v-model="item.className"
                @on-change="e=>inputChange(e,'className')">
       </i-input>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('javascript')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('javascript')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
-      <editor v-model="item.dragItem.code"
+      <editor v-model="item.code"
               @init="editorInit" lang="html" theme="javascript" height="400"></editor>
     </div>
-    <div class="vf-control" v-if="item.dragItem.changeList.indexOf('html')!==-1">
+    <div class="vf-control" v-if="item.changeList.indexOf('html')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
-      <editor v-model="item.dragItem.code"
-              @init="editorInit" lang="html" theme="chrome"  height="400"></editor>
+      <editor v-model="item.code"
+              @init="editorInit" lang="html" theme="chrome" height="400"></editor>
     </div>
   </div>
 </template>
@@ -91,47 +91,47 @@
       item () {
         if (this.center.list.length > 0) {
           return this.center.list[this.center.currentScale][this.center.current] ?
-            this.center.list[this.center.currentScale][this.center.current] : { dragItem: { changeList: [] } }
+            this.center.list[this.center.currentScale][this.center.current] : { changeList: [] }
         } else {
-          return { dragItem: { changeList: [] } }
+          return { changeList: [] }
         }
       }
     },
     methods: {
       editorInit: function () {
-        require('brace/ext/language_tools') //language extension prerequsite...
-        require('brace/mode/html')
-        require('brace/mode/javascript')    //language
-        require('brace/mode/less')
-        require('brace/theme/chrome')
-        require('brace/snippets/javascript') //snippet
+        require ('brace/ext/language_tools') //language extension prerequsite...
+        require ('brace/mode/html')
+        require ('brace/mode/javascript')    //language
+        require ('brace/mode/less')
+        require ('brace/theme/chrome')
+        require ('brace/snippets/javascript') //snippet
       },
       onCmCodeChange (newCode, key) {
         let item = this.item;
-        item.dragItem[key] = newCode;
+        item[key] = newCode;
       },
       checkChange (value, key) {
         let item = this.item;
-        item.dragItem[key] = value;
+        item[key] = value;
       },
       keyChange (e, key) {
         const value = e.target.value;
         let item = this.item;
         const data = this.center.data;
-        const keyValue = data[item.dragItem.key];
-        delete data[item.dragItem.key];
-        item.dragItem[key] = value;
+        const keyValue = data[item.key];
+        delete data[item.key];
+        item[key] = value;
         data[value] = keyValue;
       },
       numberChange (e, key) {
         const value = e.target.value;
         let item = this.item;
-        item.dragItem[key] = Number (value);
+        item[key] = Number (value);
       },
       inputChange (e, key) {
         const value = e.target.value;
         let item = this.item;
-        item.dragItem[key] = value;
+        item[key] = value;
       }
     }
   }
@@ -183,7 +183,7 @@
       }
     }
 
-    .ivu-input-wrapper {
+    .ivu-input-wrapper, .ivu-select {
       margin-bottom: 10px;
     }
   }

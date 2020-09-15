@@ -10,7 +10,7 @@
   import { mapState } from 'vuex';
 
   export default {
-    computed: mapState ([ "model", "center" ]),
+    computed: mapState ([ 'model', 'center' ]),
     methods: {
       handleSubmit () {
         if (!this.$refs.form.verifyRequired.bind (this) ()) {

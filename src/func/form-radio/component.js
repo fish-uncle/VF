@@ -2,8 +2,6 @@ const component = {
   title_zh: '单项选择',
   title_en: 'radio',
   icon: 'ios-radio-button-on',
-  className: '',
-  version: '1.0.0',
   componentType: 'base',
   type: 'radio',
   selectList: [

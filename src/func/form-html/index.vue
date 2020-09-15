@@ -1,5 +1,5 @@
 <template>
-  <div class="f-html" :class="[currentVal.dragItem.className]" v-html="currentVal.dragItem.code"/>
+  <div class="vf-html" :class="[currentVal.className]" v-html="currentVal.code"/>
 </template>
 <script>
   export default {

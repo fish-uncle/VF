@@ -10,18 +10,22 @@ const language = {
 
   "admin_center": "Drag and drop to add components from the left",
 
+  "multiform1": "Open multi form",
+  "multiform2": "Form ID",
+  "multiform3": "Form name",
+
   "admin_center_title1": "Functional area",
   "admin_center_btn1": "clear",
-  "admin_center_btn2": "preview current",
+  "admin_center_btn2": "preview",
   "admin_center_btn2_1": "data preview",
   "admin_center_btn2_2": "components preview",
   "admin_center_btn2_3": "code preview",
-  "admin_center_btn3": "full component preview",
-  "admin_center_btn4_1": "Current edition No",
-  "admin_center_btn4_2": "region",
+  "admin_center_btn2_4": "full preview",
+  "admin_center_btn3": "form setting",
 
   "admin_right_title1": "Form properties",
   "admin_right_title2": "Field properties",
+  "admin_right_title3": "Check properties",
 
   "admin_right_btn1": "Component title",
   "admin_right_btn2": "Component Title Alignment",
@@ -38,6 +42,12 @@ const language = {
   "admin_right_btn29": "File format restrictions",
   "admin_right_btn30": "Column configuration",
   "admin_right_btn31": "Table data address",
+  "admin_right_btn32": "Whether to turn on regular checking",
+  "admin_right_btn33": "Display type",
+  "admin_right_btn33_1": "Sum of numbers",
+  "admin_right_btn33_2": "String concatenation",
+  "admin_right_btn33_3": "All components",
+  "admin_right_btn33_4": "Connected components",
 
   "admin_right_btn5": "Is the component dashed",
   "admin_right_btn5_1": "YES",

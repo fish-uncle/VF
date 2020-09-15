@@ -20,13 +20,6 @@ import Button from '../func/form-button/component'
 import Table from '../func/form-table/component'
 import Text from '../func/form-text/component'
 
-const xStart = 0; // 起始 x 轴
-const yStart1 = 80; // 基础组件 起始 y 轴
-const yStart2 = 120; // 修饰组件 起始 y 轴
-const width = 108; // 拖动块宽度
-const height = 30; // 拖动块高度
-const yStep = 40; // 拖动块间隔高度
-const xStep = 118; // 拖动块间隔宽度
 const _list1 = [
   Input,
   Textarea,
@@ -55,52 +48,27 @@ const obj = {
   labelTextAlign: 'right',
   required: false,
   disabled: false,
+  regular: '',
+  className: '',
+  version: process.env.pkg.version,
+  reg: false,
 }
 const changeList = [
-  'title', 'width', 'key'
+  'title', 'width', 'key', 'className'
 ]
 
-const list1 = _list1.map ((item, index) => {
-  item.xStart = xStart + index % 2 * xStep
-  item.xEnd = xStart + width + index % 2 * xStep
-  item.yStart = yStart1 + parseInt (index / 2) * yStep
-  item.yEnd = yStart1 + height + parseInt (index / 2) * yStep
+const list1 = _list1.map (item => {
   return { ...obj, ...item, changeList: [ ...changeList, ...item.changeList ] }
 })
-const list2 = _list2.map ((item, index) => {
-  item.xStart = xStart + index % 2 * xStep
-  item.xEnd = xStart + width + index % 2 * xStep
-  item.yStart = yStart2 + parseInt (index / 2) * yStep + Math.ceil (_list1.length / 2) * yStep
-  item.yEnd = yStart2 + height + parseInt (index / 2) * yStep + Math.ceil (_list1.length / 2) * yStep
+const list2 = _list2.map (item => {
   return { ...obj, ...item, changeList: [ ...changeList, ...item.changeList ] }
 })
 const list = [ ...list1, ...list2 ]
-;
 const store = {
   namespaced: true,
   state: {
     list,
-    drag: false,
-    remove: false,
-    dragItem: {}
   },
-  mutations: {
-    drag (state, newState) {
-      state.drag = true;
-      state.dragItem = newState.dragItem;
-    },
-    remove (state) {
-      state.remove = true;
-      state.drag = false;
-      state.dragItem = {
-        ...state.dragItem,
-        x: state.dragItem.xStart,
-        y: state.dragItem.yStart
-      };
-      setTimeout (() => {
-        state.remove = false;
-      }, 300);
-    }
-  }
+  mutations: {}
 };
 export default store

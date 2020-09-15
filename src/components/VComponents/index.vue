@@ -4,15 +4,20 @@
          v-show="visible"
          transiton="fade"
          :class="[`vf-${type}-box`]"
-         :style="{width:`${currentVal.dragItem.width}%`}"
+         :style="{width:`${currentVal.width}%`}"
          @click="choose(index)">
       <label class="fn-fl vf-component-label"
-             :class="currentVal.dragItem.required?'has-required':''"
-             :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
-        {{currentVal.dragItem[`title_${language}`]}}:
+             :class="currentVal.required?'has-required':''"
+             :style="{width:`${currentVal.labelWidth}px`,textAlign:currentVal.labelTextAlign}">
+        {{currentVal[`title_${language}`]}}:
       </label>
-      <div :style="{marginLeft:`${currentVal.dragItem.labelWidth}px`}">
-        <component :is="currentComponent" :value="currentVal" :language="language"></component>
+      <div :style="{marginLeft:`${currentVal.labelWidth}px`}">
+        <component :is="currentComponent" :value="currentVal" :language="language" :error="error"
+                    @change="change"></component>
+      </div>
+      <div v-if="error" class="pos-a vf-component-error-msg" :style="{left:`${currentVal.labelWidth+10}px`}">
+        {{errorType==='required'?'该项为必填项':''}}
+        {{errorType==='reg'?'该项格式不正确':''}}
       </div>
     </div>
   </transition>
@@ -28,25 +33,43 @@
         currentVal: this.value,
         id: null,
         visible: true,
+        error: false,
         currentComponent: null,
-        type: ''
+        type: '',
+        errorType: ''
       }
     },
     props: [ "value", "index", 'edit', 'language' ],
     watch: {
       value (val) {
         this.currentVal = val;
+        this.id = this.currentVal.id;
+        const type = cssStyle2DomStyle (this.currentVal.type);
+        this.type = type;
+        this.currentComponent = () => import(`../../func/form-${type}`)
+        if (this.edit) {
+          this.$agent.$on ('componentInit', this.init)
+        }
+        this.parent.childMounted ({
+          errorHide: this.errorHide,
+          errorShow: this.errorShow,
+          visibleStatus: this.visibleStatus,
+          show: this.show, hide: this.hide, init: this.init, id: this.id
+        });
       }
     },
     mounted () {
-      this.id = this.currentVal.dragItem.id;
-      const type = cssStyle2DomStyle (this.currentVal.dragItem.type);
+      this.id = this.currentVal.id;
+      const type = cssStyle2DomStyle (this.currentVal.type);
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
       if (this.edit) {
         this.$agent.$on ('componentInit', this.init)
       }
       this.parent.childMounted ({
+        errorHide: this.errorHide,
+        errorShow: this.errorShow,
+        visibleStatus: this.visibleStatus,
         show: this.show, hide: this.hide, init: this.init, id: this.id
       });
     },
@@ -56,6 +79,19 @@
       }
     },
     methods: {
+      change(){
+
+      },
+      visibleStatus(){
+        return this.visible
+      },
+      errorShow (type) {
+        this.error = true
+        this.errorType = type
+      },
+      errorHide () {
+        this.error = false
+      },
       show () {
         this.visible = true;
       },
@@ -82,7 +118,11 @@
 <style lang="less">
   @import "../../less/conf";
 
-  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-text-box, .vf-table-box {
+  .vf-component-error-msg {
+    color: @error-color;
+  }
+
+  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {
     .vf-component-label {
       display: none;
     }
@@ -98,6 +138,10 @@
     padding: 10px;
     transition: all .3s;
 
+    &.vf-component-error {
+
+    }
+
     .vf-component-label {
       font-size: 14px;
       padding-right: 10px;
@@ -107,7 +151,7 @@
       &.has-required {
         &:before {
           content: '*';
-          color: red;
+          color: @error-color;
         }
       }
     }

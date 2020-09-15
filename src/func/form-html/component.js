@@ -2,8 +2,6 @@ const component = {
   title_zh: 'html片段',
   title_en: 'html',
   icon: 'logo-html5',
-  className: '',
-  version: '1.0.0',
   dataType: 'Null',
   componentType: 'modification',
   type: 'html',

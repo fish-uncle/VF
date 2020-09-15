@@ -10,18 +10,22 @@ const language = {
 
   "admin_center": "从左侧拖拽添加组件",
 
+  "multiform1": "开启多表单",
+  "multiform2": "表单id",
+  "multiform3": "表单名",
+
   "admin_center_title1": "功能区",
   "admin_center_btn1": "清空",
   "admin_center_btn2": "当前预览",
   "admin_center_btn2_1": "数据预览",
   "admin_center_btn2_2": "组件预览",
   "admin_center_btn2_3": "代码预览",
-  "admin_center_btn3": "全组件预览",
-  "admin_center_btn4_1": "当前编辑第",
-  "admin_center_btn4_2": "区域",
+  "admin_center_btn2_4": "全组件预览",
+  "admin_center_btn3": "表单设置",
 
   "admin_right_title1": "表单属性",
   "admin_right_title2": "字段属性",
+  "admin_right_title3": "校验属性",
 
   "admin_right_btn1": "组件标题",
   "admin_right_btn2": "组件标题对齐",
@@ -38,6 +42,12 @@ const language = {
   "admin_right_btn29": "文件格式限制",
   "admin_right_btn30": "列配置",
   "admin_right_btn31": "表格数据地址",
+  "admin_right_btn32": "是否开启正则校验",
+  "admin_right_btn33": "显示类型",
+  "admin_right_btn33_1": "数字求和",
+  "admin_right_btn33_2": "字符串连接",
+  "admin_right_btn33_3": "所有组件",
+  "admin_right_btn33_4": "连接的组件",
 
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",

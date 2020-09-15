@@ -1,12 +1,12 @@
 <template>
-  <Rate v-model="parent.data[currentVal.dragItem.key]"
-        class="f-rate"
-        :class="[currentVal.dragItem.className]"
-        :character="currentVal.dragItem.character"
-        :clearable="currentVal.dragItem.clearable"
+  <Rate v-model="parent.data[currentVal.key]"
+        class="vf-rate"
+        :class="[currentVal.className]"
+        :character="currentVal.character"
+        :clearable="currentVal.clearable"
         :allow-half="true"
-        :show-text="currentVal.dragItem.showText"
-        :disabled="currentVal.dragItem.disabled" @on-change="clickChange">
+        :show-text="currentVal.showText"
+        :disabled="currentVal.disabled" @on-change="clickChange">
   </Rate>
 </template>
 <script>
@@ -29,13 +29,13 @@
       init () {
         this.parent.changeData ({
           value: '',
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       clickChange (value) {
         this.parent.changeData ({
           value,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       }
     }

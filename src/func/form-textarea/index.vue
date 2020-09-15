@@ -1,11 +1,11 @@
 <template>
   <i-input type="textarea"
-           clas="f-textarea"
-           :class="[currentVal.dragItem.className]"
-           v-model="parent.data[currentVal.dragItem.key]"
-           :disabled="currentVal.dragItem.disabled"
-           :placeholder="currentVal.dragItem.placeholder"
-           :style="{width:`${currentVal.dragItem.widthRatio}%`}"
+           clas="vf-textarea"
+           :class="[currentVal.className,error?'vf-error':'']"
+           v-model="parent.data[currentVal.key]"
+           :disabled="currentVal.disabled"
+           :placeholder="currentVal.placeholder"
+           :style="{width:`${currentVal.widthRatio}%`}"
            @on-change="inputChange"
   />
 </template>
@@ -16,10 +16,10 @@
     data () {
       return {
         currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList')
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    props: [ "value" ],
+    props: [ 'value', 'error' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -29,16 +29,35 @@
       init () {
         this.parent.changeData ({
           value: '',
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       inputChange (e) {
         const value = e.target.value;
+        if (this.error) {
+          this.parent.errorHide (this.currentVal.id);
+        }
         this.parent.changeData ({
           value,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
+        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
+          if (this.parent) {
+            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
+          }
+        }
       }
     }
   }
 </script>
+<style lang="less">
+  @import "../../less/conf";
+
+  .vf-textarea.vf-error {
+    input {
+      border-color: @error-color;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+    }
+  }
+</style>

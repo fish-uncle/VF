@@ -1,7 +1,7 @@
 <template>
-  <Divider class="f-divider"
-           :style="{width:`${currentVal.dragItem.widthRatio}%`}"
-           :class="[currentVal.dragItem.className]" :dashed="currentVal.dragItem.dashed"/>
+  <Divider class="vf-divider"
+           :style="{width:`${currentVal.widthRatio}%`}"
+           :class="[currentVal.className]" :dashed="currentVal.dashed"/>
 </template>
 <script>
   export default {
@@ -23,7 +23,7 @@
   }
 </script>
 <style lang="less">
-  .f-divider {
+  .vf-divider {
     margin: 16px 0 0 0;
     min-width: auto;
   }

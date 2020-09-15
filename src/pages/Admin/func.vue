@@ -4,57 +4,68 @@
       <h2>
         {{$t('admin_left_title1')}}
       </h2>
-      <ul class="pos-r fn-flex flex-row">
+      <draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+                 :clone="handleClone"
+                 :move="handleMove"
+                 :group="{ name: 'people', pull: 'clone', put: false }">
         <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.componentType==='base'"/>
-      </ul>
+      </draggable>
       <h2>
         {{$t('admin_left_title2')}}
       </h2>
-      <ul class="pos-r fn-flex flex-row">
-        <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.componentType==='modification'"/>
-      </ul>
-      <!--      <div class="pos-a vf-func-disabled z-index-9" v-if="!center.id" :style="{height:scrollHeight}"/>-->
-    </div>
-    <div class="pos-a vf-drag-item fn-flex"
-         v-show="component.drag"
-         :class="[component.drag?'active z-index-999':'',component.remove?'remove':'']"
-         :style="{left:component.dragItem.x + 10 + 'px',top:component.dragItem.y - 30 - scrollTop+'px'}">
-      <Icon :type="component.dragItem.icon" v-if="component.dragItem.icon" color="rgb(18, 120, 245)" size="18"/>
-      <span>{{component.dragItem[`title_${language.lang}`]}}</span>
+      <draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+                 :clone="handleClone"
+                 :move="handleMove"
+                 :group="{ name: 'people', pull: 'clone', put: false }">
+        <func-item v-for="(item,key) in component.list" :item="item" :key="key"
+                   v-if="item.componentType==='modification'"/>
+      </draggable>
     </div>
   </div>
 </template>
 <script>
   import FuncItem from './func-item';
-  import {mapState} from 'vuex';
+  import { mapState } from 'vuex';
 
   export default {
-    data() {
+    data () {
       return {
-        scrollTop: 0,
-        scrollHeight: '100%',
+        i: '',
+        l: ''
       }
     },
     components: {
       FuncItem,
     },
-    beforeDestroy() {
-      const func = document.getElementById('func');
-      if (func)
-        func.removeEventListener("scroll", this.handleScroll);
+    computed: mapState ([ "component", 'center', 'language' ]),
+    mounted () {
+      this.init ();
     },
-    computed: mapState(["component", 'center', 'language']),
     methods: {
-      handleScroll(e) {
-        const func = document.getElementById('func');
-        this.scrollTop = func.scrollTop
+      init () {
+        this.i = Math.random (5).toString (32).replace ('0.', '')
+        this.l = Math.random (5).toString (32).replace ('0.', '')
+      },
+      handleMove: function (evt) {
+        if (evt.to.className === 'vf-drag-content') {
+          return true
+        } else {
+          return false
+        }
+      },
+      handleClone: function (evt) {
+        let dragItem = evt
+        let key = `${dragItem.type}_${this.i}`
+        if (dragItem.dataType === 'TimeRange') {
+          key += `;${this.l}`
+        }
+        dragItem.key = key
+        dragItem.id = key
+        dragItem = JSON.parse (JSON.stringify (dragItem))
+        this.init ()
+        return dragItem
       }
     },
-    mounted() {
-      const func = document.getElementById('func');
-      this.scrollHeight = func.scrollHeight + 'px';
-      func.addEventListener('scroll', this.handleScroll, true);
-    }
   }
 </script>
 <style lang="less">
@@ -94,38 +105,6 @@
       &:nth-child(2n) {
         margin-right: 0;
       }
-    }
-  }
-
-  .vf-drag-item {
-    width: 108px;
-    height: 30px;
-    background: #f4f6fc;
-    font-size: 14px;
-    cursor: move;
-    line-height: 30px;
-    user-select: none;
-    opacity: 0;
-    color: @themeColor;
-    border: 1px dashed @themeColor;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    align-items: center;
-    padding-left: 8px;
-
-    span {
-      margin-left: 5px;
-    }
-
-    &.active {
-      opacity: 0.8;
-    }
-
-    &.remove {
-      transition: all .5s;
     }
   }
 </style>

@@ -6,7 +6,6 @@
 </template>
 <script>
   import { mapState } from 'vuex';
-  import { findComponentsDownward } from '../../utils'
   import ModelData from "../ModelData";
 
   export default {
@@ -21,13 +20,12 @@
     },
     name: 'FormList',
     computed: {
-      ...mapState ([ "center" ]),
+      ...mapState ([ 'center' ]),
       viewScale () {
         return this.center.viewScale.split (':')
       }
     },
     beforeDestroy () {
-      this.$agent.$off ('formData', this.dataAdd)
       this.$agent.$off ('formData', this.dataRemove)
     },
     methods: {
@@ -100,10 +98,12 @@
       },
       changeData ({ key, value }) {
         this.data[key] = value
-      }
+      },
+      getData () {
+        return this.data
+      },
     },
     mounted () {
-      this.$agent.$on ('formDataAdd', this.dataAdd)
       this.$agent.$on ('formDataRemove', this.dataRemove)
     }
   }

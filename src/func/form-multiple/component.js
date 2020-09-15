@@ -2,8 +2,6 @@ const component = {
   title_zh: '多项选择',
   title_en: 'multiple',
   icon: 'ios-checkbox-outline',
-  className: '',
-  version: '1.0.0',
   componentType: 'base',
   type: 'multiple',
   dataType: 'Array',

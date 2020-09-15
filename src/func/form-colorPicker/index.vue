@@ -1,10 +1,10 @@
 <template>
   <ColorPicker v-model="color"
-               class="f-color-picker"
-               :class="[currentVal.dragItem.className]"
+               class="vf-color-picker"
+               :class="[currentVal.className,error?'vf-error':'']"
                @on-change="colorChange"
-               :alpha="currentVal.dragItem.alpha"
-               :disabled="currentVal.dragItem.disabled"/>
+               :alpha="currentVal.alpha"
+               :disabled="currentVal.disabled"/>
 </template>
 <script>
 
@@ -15,30 +15,44 @@
       let color = '';
       return {
         color,
-        parent: findComponentUpward(this, 'FormList'),
+        parent: findComponentUpward (this, 'FormList'),
         currentVal: this.value,
       }
     },
-    props: [ "value" ],
+    props: [ 'value', 'error' ],
     watch: {
       value (val) {
         this.currentVal = val;
-        this.color = parent.data[this.currentVal.dragItem.key];
+        this.color = parent.data[this.currentVal.key];
       }
     },
     methods: {
       init () {
         this.parent.changeData ({
           value: '',
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       colorChange (value) {
+        if (this.error) {
+          this.parent.errorHide (this.currentVal.id);
+        }
         this.parent.changeData ({
           value,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       }
     }
   }
 </script>
+<style lang="less">
+  @import "../../less/conf";
+
+  .vf-color-picker.vf-error {
+    .ivu-color-picker-input {
+      border-color: @error-color;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+    }
+  }
+</style>

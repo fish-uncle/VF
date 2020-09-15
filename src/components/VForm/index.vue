@@ -43,16 +43,20 @@
       }
     },
     methods: {
+      errorHide (id) {
+        this.child[id].errorHide ()
+      },
       childMounted (obj) {
         this.child[obj.id] = obj
       },
       init () {
+        this.data = {};
         let componentList = [];
         for (let i = 0; i <= this.currentList.length - 1; i++) {
           componentList.push (...this.currentList[i])
         }
         for (let i = 0; i <= componentList.length - 1; i++) {
-          this.dataAdd ({ dragItem: componentList[i].dragItem })
+          this.dataAdd ({ dragItem: componentList[i] })
         }
       },
       controlOthersHide (controlOthersHideTargetKeys, value) {
@@ -87,47 +91,56 @@
       verifyRequired () {
         const data = this.data;
         let error = false;
-        let errorIndex = 0;
+        let errorObj = {};
         let componentList = [];
         for (let i = 0; i <= this.currentList.length - 1; i++) {
           componentList.push (...this.currentList[i])
         }
         for (let i = 0; i <= componentList.length - 1; i++) {
           const item = componentList[i];
-          if (item.dragItem.required && item.dragItem.componentType === 'base') {
-            const d = data[item.dragItem.key]
-            if (item.dragItem.dataType === 'TimeRange') {
-              const key = item.dragItem.key.split (';');
-              key.forEach (child => {
-                if ((typeof data[child] === 'string' && data[child] === '') || typeof data[child] === 'undefined' || data[child] === null) {
-                  error = true;
-                  errorIndex = i;
+          if (item.componentType === 'base' && this.child[item.id].visibleStatus ()) {
+            if (item.required) {
+              const d = data[item.key]
+              if (item.dataType === 'TimeRange') {
+                const key = item.key.split (';');
+                key.forEach (child => {
+                  if ((typeof data[child] === 'string' && data[child] === '') || typeof data[child] === 'undefined' || data[child] === null) {
+                    error = true;
+                    errorObj[item.id] = 'required'
+                  }
+                })
+                if (error) {
+                  break;
                 }
-              })
-              if (error) {
-                break;
+              } else if (item.dataType === 'Array') {
+                if (d.length <= 0) {
+                  error = true
+                  errorObj[item.id] = 'required'
+                  break;
+                }
+              } else {
+                if ((typeof d === 'string' && d === '') || typeof d === 'undefined' || d === null) {
+                  error = true;
+                  errorObj[item.id] = 'required'
+                  break;
+                }
               }
-            } else if (item.dragItem.dataType === 'Array') {
-              if (d.length <= 0) {
-                error = true
-                errorIndex = i;
-                break;
-              }
-            } else {
-              if ((typeof d === 'string' && d === '') || typeof d === 'undefined' || d === null) {
+            }
+            if (item.reg && item.regular) {
+              const d = data[item.key]
+              if (!new RegExp (item.regular).test (d)) {
                 error = true;
-                errorIndex = i;
-                break;
+                errorObj[item.id] = 'reg'
               }
             }
           }
         }
         if (error) {
-          const title = `title_${this.language}`;
-          const msg = `${componentList[errorIndex].dragItem[title]}${this.$t ('verify_required')}`
-          this.$Message.error (msg)
+          for (let key in errorObj) {
+            this.child[key].errorShow (errorObj[key]);
+          }
         }
-        return error;
+        return error
       },
       changeData ({ key, value }) {
         this.data[key] = value
@@ -166,8 +179,8 @@
         const currentList = this.currentList
         currentList.forEach (child => {
           child.forEach (item => {
-            if (item.dragItem.key === key) {
-              item.dragItem.ajaxList = value
+            if (item.key === key) {
+              item.ajaxList = value
             }
           })
         })

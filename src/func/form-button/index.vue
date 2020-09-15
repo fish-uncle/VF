@@ -1,5 +1,5 @@
 <template>
-  <Button type="primary">{{currentVal.dragItem.placeholder}}</Button>
+  <Button type="primary">{{currentVal.placeholder}}</Button>
 </template>
 <script>
   export default {

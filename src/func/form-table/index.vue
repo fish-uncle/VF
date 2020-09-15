@@ -1,5 +1,5 @@
 <template>
-  <div class="f-table" :style="{width:`${currentVal.dragItem.widthRatio}%`}" :class="[currentVal.dragItem.className]">
+  <div class="vf-table" :style="{width:`${currentVal.widthRatio}%`}" :class="[currentVal.className]">
     <Table :columns="columns" :data="data">
     </Table>
   </div>
@@ -19,8 +19,8 @@
     props: ["value"],
     computed: {
       columns() {
-        if (this.currentVal.dragItem.columns) {
-          return require(`../../columns/${this.currentVal.dragItem.columns}`);
+        if (this.currentVal.columns) {
+          return require(`../../columns/${this.currentVal.columns}`);
         } else {
           return []
         }
@@ -36,8 +36,8 @@
     },
     methods: {
       init() {
-        if (this.currentVal.dragItem.tableAjaxUrl) {
-          request.post(this.currentVal.dragItem.tableAjaxUrl).then(res => {
+        if (this.currentVal.tableAjaxUrl) {
+          request.post(this.currentVal.tableAjaxUrl).then(res => {
             if (res) {
               this.data = res.list
               this.total = res.total

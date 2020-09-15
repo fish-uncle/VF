@@ -1,15 +1,15 @@
 <template>
-  <i-select v-model="parent.data[currentVal.dragItem.key]"
-            class="f-select"
-            :class="[currentVal.dragItem.className]"
-            :placeholder="currentVal.dragItem.placeholder"
-            :disabled="currentVal.dragItem.disabled" :style="{width:`${currentVal.dragItem.widthRatio}%`}"
-            @on-change="clickChange" :clearable="currentVal.dragItem.clearable">
-    <i-option v-if="!currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.selectList"
+  <i-select v-model="parent.data[currentVal.key]"
+            class="vf-select"
+            :class="[currentVal.className,error?'vf-error':'']"
+            :placeholder="currentVal.placeholder"
+            :disabled="currentVal.disabled" :style="{width:`${currentVal.widthRatio}%`}"
+            @on-change="clickChange" :clearable="currentVal.clearable">
+    <i-option v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
               :value="item.value" :key="item.value">
       <span>{{item.title}}</span>
     </i-option>
-    <i-option v-if="currentVal.dragItem.selectListUrl" v-for="item in currentVal.dragItem.ajaxList"
+    <i-option v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList"
               :value="item.value" :key="item.value">
       <span>{{item.title}}</span>
     </i-option>
@@ -26,7 +26,7 @@
         parent: findComponentUpward (this, 'FormList')
       }
     },
-    props: [ 'value', 'edit' ],
+    props: [ 'value', 'edit', 'error' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -38,78 +38,91 @@
       this.reset ();
     },
     methods: {
-      reset(){
-        if (this.currentVal.dragItem.selectListUrl) {
-          const data = { ...this.parent.data, ...this.currentVal.dragItem.customAjaxParams };
-          request.post (this.currentVal.dragItem.selectListUrl, data).then (res => {
+      reset () {
+        if (this.currentVal.selectListUrl) {
+          const data = { ...this.parent.data, ...this.currentVal.customAjaxParams };
+          request.post (this.currentVal.selectListUrl, data).then (res => {
             if (this.edit) {
               this.$store.commit ('center/changeSelectList', {
                 value: res,
-                key: this.currentVal.dragItem.key
+                key: this.currentVal.key
               })
             } else {
               this.parent.changeSelectList ({
                 value: res,
-                key: this.currentVal.dragItem.key
+                key: this.currentVal.key
               })
             }
           })
         }
         this.parent.changeData ({
           value: '',
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       init () {
-        if (this.currentVal.dragItem.selectListUrl) {
-          const data = { ...this.parent.data, ...this.currentVal.dragItem.customAjaxParams };
-          request.post (this.currentVal.dragItem.selectListUrl, data).then (res => {
+        if (this.currentVal.selectListUrl) {
+          const data = { ...this.parent.data, ...this.currentVal.customAjaxParams };
+          request.post (this.currentVal.selectListUrl, data).then (res => {
             if (this.edit) {
               this.$store.commit ('center/changeSelectList', {
                 value: res,
-                key: this.currentVal.dragItem.key
+                key: this.currentVal.key
               })
             } else {
               this.parent.changeSelectList ({
                 value: res,
-                key: this.currentVal.dragItem.key
+                key: this.currentVal.key
               })
             }
           })
         }
         this.parent.changeData ({
           value: '',
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
-        console.log()
-        if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
+        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
-        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+        if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, '')
+            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, '')
           }
         }
       },
       clickChange (value) {
-        const key = this.currentVal.dragItem.diyKey ? this.currentVal.dragItem.diyKey : this.currentVal.dragItem.key;
+        const key = this.currentVal.diyKey ? this.currentVal.diyKey : this.currentVal.key;
         this.parent.changeData ({
           value,
           key
         })
-        if (this.currentVal.dragItem.controlOthersUpdateTargetKeys.length) {
+        if (this.error) {
+          this.parent.errorHide (this.currentVal.id);
+        }
+        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.dragItem.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
-        if (this.currentVal.dragItem.controlOthersHideTargetKeys) {
+        if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.dragItem.controlOthersHideTargetKeys, value)
+            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, value)
           }
         }
       }
     }
   }
 </script>
+<style lang="less">
+  @import "../../less/conf";
+
+  .vf-select.vf-error {
+    .ivu-select-selection {
+      border-color: @error-color;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+    }
+  }
+</style>

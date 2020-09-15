@@ -9,7 +9,7 @@
 
   export default {
     computed: {
-      ...mapState ([ "model", "center" ]),
+      ...mapState ([ 'model', 'center' ]),
       html () {
         const model_preview_submit = this.$t ('model_preview_submit')
         const lt = '<'
@@ -17,7 +17,7 @@
         const viewScale = this.center.viewScale
         return `<template>
   <div>
-    <v-form ref="form" :view-scale="viewScale" :list="list"/>
+    <v-form ref="form" :view-scale="viewScale" :list="list"></v-form>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">${model_preview_submit}${lt}/Button>
     </div>

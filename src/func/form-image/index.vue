@@ -1,11 +1,12 @@
 <template>
-  <div class="f-image"
-       :class="[currentVal.dragItem.className,currentVal.dragItem.disabled?'f-image-disabled':'',currentVal.dragItem.className]"
-       :style="{width:`${currentVal.dragItem.widthRatio}%`}">
-    <div class="f-image-upload-list" v-for="item in uploadList">
+  <div class="vf-image"
+       :class="[currentVal.className,currentVal.disabled?'f-image-disabled':'',
+       currentVal.className,error?'vf-error':'']"
+       :style="{width:`${currentVal.widthRatio}%`}">
+    <div class="vf-image-upload-list" v-for="item in uploadList">
       <template v-if="item.status === 'finished'">
         <img :src="item.url"/>
-        <div class="f-image-upload-list-cover">
+        <div class="vf-image-upload-list-cover">
           <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
           <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
         </div>
@@ -15,18 +16,18 @@
       </template>
     </div>
     <Upload ref="upload"
-            :action="currentVal.dragItem.action"
-            :default-file-list="currentVal.dragItem.defaultList"
+            :action="currentVal.action"
+            :default-file-list="currentVal.defaultList"
             type="drag"
-            :max-size="currentVal.dragItem.maxSize"
+            :max-size="currentVal.maxSize"
             :show-upload-list="false"
             :format="fileFormat"
-            :accept="currentVal.dragItem.fileAccept"
+            :accept="currentVal.fileAccept"
             :multiple="true"
             :on-success="handleSuccess"
             :on-format-error="handleFormatError"
             :on-exceeded-size="handleExceededError"
-            :disabled="currentVal.dragItem.disabled"
+            :disabled="currentVal.disabled"
             style="display: inline-block;width:58px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
         <Icon type="ios-camera" size="20"></Icon>
@@ -52,10 +53,10 @@
     },
     computed: {
       fileFormat () {
-        return this.currentVal.dragItem.fileFormat.split (',')
+        return this.currentVal.fileFormat.split (',')
       }
     },
-    props: [ "value" ],
+    props: [ 'value', 'error' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -70,11 +71,11 @@
         const list = fileList.map (item => item.url);
         this.parent.changeData ({
           value: list,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       handleExceededError () {
-        this.$Message.error (`当前文件大小超出${this.currentVal.dragItem.maxSize}kb`)
+        this.$Message.error (`当前文件大小超出${this.currentVal.maxSize}kb`)
       },
       handleFormatError () {
         this.$Message.error ('当前文件格式不符合要求')
@@ -85,7 +86,7 @@
         const list = fileList.map (item => item.url);
         this.parent.changeData ({
           value: list,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
       },
       handleView (url) {
@@ -98,14 +99,25 @@
         const list = fileList.map (item => item.url);
         this.parent.changeData ({
           value: list,
-          key: this.currentVal.dragItem.key
+          key: this.currentVal.key
         })
+        if (this.error) {
+          this.parent.errorHide (this.currentVal.id);
+        }
       }
     }
   }
 </script>
 <style lang="less">
-  .f-image-upload-list {
+  @import "../../less/conf";
+  .vf-image.vf-error {
+    .ivu-upload {
+      border-color: @error-color;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+    }
+  }
+  .vf-image-upload-list {
     display: inline-block;
     width: 60px;
     height: 60px;
@@ -120,7 +132,7 @@
     margin-right: 4px;
 
     &:hover {
-      .f-image-upload-list-cover {
+      .vf-image-upload-list-cover {
         opacity: 1;
       }
     }
@@ -131,7 +143,7 @@
     }
   }
 
-  .f-image-upload-list-cover {
+  .vf-image-upload-list-cover {
     opacity: 0;
     transition: all .3s;
     position: absolute;

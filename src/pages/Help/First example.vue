@@ -18,7 +18,7 @@
         const viewScale = '12:12'
         return `<template>
   <div>
-    <v-form ref="form" :view-scale="viewScale" :list="list"/>
+    <v-form ref="form" :view-scale="viewScale" :list="list"></v-form>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">${model_preview_submit}${lt}/Button>
     </div>

@@ -1,19 +1,18 @@
 <template>
   <div class="fn-clear vf-component pos-r"
        v-show="visible"
-       :style="{width:`${currentVal.dragItem.width}%`}"
+       :style="{width:`${currentVal.width}%`}"
        :class="[index===center.current&&edit?'active':'',
        edit?'vf-component-edit':'',
-       `vf-${type}-box`,
-       currentVal.lowerVersion?'lower-version':'']"
+       `vf-${type}-box`]"
        @click="choose(index)">
     <div class="vf-component-model pos-a z-index-9"/>
     <label class="fn-fl vf-component-label"
-           :class="currentVal.dragItem.required?'has-required':''"
-           :style="{width:`${currentVal.dragItem.labelWidth}px`,textAlign:currentVal.dragItem.labelTextAlign}">
-      {{currentVal.dragItem[`title_${language.lang}`]}}:
+           :class="currentVal.required?'has-required':''"
+           :style="{width:`${currentVal.labelWidth}px`,textAlign:currentVal.labelTextAlign}">
+      {{currentVal[`title_${language.lang}`]}}:
     </label>
-    <div :style="{marginLeft:`${currentVal.dragItem.labelWidth}px`}">
+    <div :style="{marginLeft:`${currentVal.labelWidth}px`}">
       <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language.lang"></component>
     </div>
     <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center" @click="del">
@@ -45,8 +44,8 @@
       }
     },
     mounted () {
-      this.id = this.currentVal.dragItem.id;
-      const type = cssStyle2DomStyle (this.currentVal.dragItem.type);
+      this.id = this.currentVal.id;
+      const type = cssStyle2DomStyle (this.currentVal.type);
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
       if (this.edit) {
@@ -72,11 +71,9 @@
         this.$children[0].init ();
       },
       del () {
-        this.$destroy (true);
-        this.$el.parentNode.removeChild (this.$el);
         this.$store.commit ('center/remove', { index: this.index });
         this.$store.commit ('right/changeTab', { tabIndex: 1 });
-        this.$agent.$once ({ type: 'formDataRemove', key: this.currentVal.dragItem.key });
+        this.$agent.$once ({ type: 'formDataRemove', key: this.currentVal.key });
       },
       choose (index) {
         if (!this.edit)
@@ -96,7 +93,7 @@
     left: 0;
   }
 
-  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-text-box, .vf-table-box {
+  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {
     .vf-component-label {
       display: none;
     }
@@ -125,9 +122,16 @@
       &.active {
         border: 2px solid @themeColor;
       }
+    }
 
-      &.lower-version {
-        background: rgba(255, 153, 0, 0.32);
+    &.sortable-ghost {
+      height: 0;
+      padding: 0;
+      width: 100%;
+      border: 2px solid @move-color !important;
+
+      span, i, .vf-component-del, label, input, div {
+        display: none;
       }
     }
 
@@ -154,7 +158,7 @@
     user-select: none;
     background-color: @themeColor;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 2px;
 
     &:hover {
       background-color: @themeColor_07;

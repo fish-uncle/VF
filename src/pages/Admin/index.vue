@@ -13,14 +13,19 @@
             <h2 class="pointer" :class="right.tabIndex===2?'active':''" @click="changeTab(2)">
               {{$t('admin_right_title2')}}
             </h2>
+            <h2 class="pointer" :class="right.tabIndex===3?'active':''" @click="changeTab(3)">
+              {{$t('admin_right_title3')}}
+            </h2>
           </div>
           <right-1 v-if="right.tabIndex===1"/>
           <right-2 v-if="right.tabIndex===2"/>
+          <right-3 v-if="right.tabIndex===3"/>
         </div>
       </div>
       <center/>
       <modelPreview/>
       <modelCode/>
+      <modelMultiForm/>
     </div>
   </div>
 </template>
@@ -29,8 +34,10 @@
   import Func from './func'
   import Right1 from './right-1'
   import Right2 from './right-2'
+  import Right3 from './right-3'
   import ModelCode from '../../components/modelCode'
   import ModelPreview from '../../components/ModelPreview'
+  import modelMultiForm from '../../components/ModelMultiForm'
 
   import { mapState } from 'vuex';
 
@@ -39,10 +46,12 @@
     components: {
       Center,
       ModelPreview,
+      modelMultiForm,
       ModelCode,
       Func,
       Right1,
       Right2,
+      Right3,
     },
     methods: {
       changeTab (tabIndex) {
