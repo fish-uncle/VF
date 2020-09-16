@@ -7,11 +7,11 @@
             @on-change="clickChange" :clearable="currentVal.clearable">
     <i-option v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
               :value="item.value" :key="item.value">
-      <span>{{item.title}}</span>
+      <span>{{item.label}}</span>
     </i-option>
     <i-option v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList"
               :value="item.value" :key="item.value">
-      <span>{{item.title}}</span>
+      <span>{{item.label}}</span>
     </i-option>
   </i-select>
 </template>

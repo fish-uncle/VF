@@ -4,11 +4,11 @@
               @on-change="clickChange">
     <Radio v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
            :disabled="currentVal.disabled" :label="item.value" :key="item.value">
-      {{item.title}}
+      {{item.label}}
     </Radio>
     <Radio v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList" :label="item.value"
            :disabled="currentVal.disabled" :key="item.value">
-      {{item.title}}
+      {{item.label}}
     </Radio>
   </RadioGroup>
 </template>

@@ -111,7 +111,7 @@
           <span>{{$t('admin_right_btn19_4')}}</span>
         </li>
         <li class="fn-flex flex-row" v-for="(child,index) in item.selectList">
-          <i-input style="width: 195px" v-model="child.title"
+          <i-input style="width: 195px" v-model="child.label"
 
                    @on-change="e=>inputTitleChange(e,index)"/>
           <i-input style="width: 195px;margin-left: 10px;" v-model="child.value"
@@ -154,7 +154,7 @@
       <label>{{$t('admin_right_btn22')}}</label>
       <ul>
         <li v-for="child in item.ajaxList" v-if="item.selectListUrl">
-          <span>{{$t('admin_right_btn22_1')}} <strong>{{child.title}}</strong> {{$t('admin_right_btn22_2')}}</span>
+          <span>{{$t('admin_right_btn22_1')}} <strong>{{child.label}}</strong> {{$t('admin_right_btn22_2')}}</span>
           <Transfer
             not-found-text=""
             :data="componentList"
@@ -163,7 +163,7 @@
             @on-change="targetKeys=>controlOthersHideChange(targetKeys,child.value)"></Transfer>
         </li>
         <li v-for="child in item.selectList" v-if="!item.selectListUrl">
-          <span>{{$t('admin_right_btn22_1')}} <strong>{{child.title}}</strong> {{$t('admin_right_btn22_2')}}</span>
+          <span>{{$t('admin_right_btn22_1')}} <strong>{{child.label}}</strong> {{$t('admin_right_btn22_2')}}</span>
           <Transfer
             not-found-text=""
             :data="componentList"
@@ -244,7 +244,7 @@
       inputTitleChange (e, index) {
         const value = e.target.value;
         let item = this.item;
-        item.selectList[index].title = value;
+        item.selectList[index].label = value;
       },
       selectDelChange (index) {
         let item = this.item;
@@ -254,7 +254,7 @@
       },
       selectAddChange (index) {
         let item = this.item;
-        item['selectList'].splice (index + 1, 0, { title: '新建项标题', value: '新建项值' })
+        item['selectList'].splice (index + 1, 0, { label: '新建项标题', value: '新建项值' })
         if (item.selectList.length > 10 && item.h < 3) {
           item.h = 3;
         }

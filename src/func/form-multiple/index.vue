@@ -5,11 +5,11 @@
                   @on-change="clickChange">
     <Checkbox v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
               :label="item.value" :key="item.value">
-      <span>{{item.title}}</span>
+      <span>{{item.label}}</span>
     </Checkbox>
     <Checkbox v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList" :label="item.value"
               :key="item.value">
-      <span>{{item.title}}</span>
+      <span>{{item.label}}</span>
     </Checkbox>
   </Checkbox-group>
 </template>

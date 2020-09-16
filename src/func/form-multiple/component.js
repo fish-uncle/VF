@@ -9,11 +9,11 @@ const component = {
   selectList: [
     {
       value: 1,
-      title: '1'
+      label: '1'
     },
     {
       value: 2,
-      title: '2'
+      label: '2'
     }
   ],
   ajaxList: [],
