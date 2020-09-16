@@ -1,17 +1,20 @@
-# VF
-> Vue Form
-> 基于Vue的表单设计器，让表单开发简单而高效
+## 介绍
 
-| 套餐        | 价格 |  说明  |
-| --------   |-----:| :----: |
-|永久VIP套餐|¥500.00|支持永久更新到最新版本<br/>支持技术咨询服务<br/>提供源代码<br/>允许二次扩展开发|
+VF，即Vue Form，一个为Vue而设计的可视化表单设计器。
+
+基于 vue 和 [view-design](https://www.iviewui.com/) 实现开发的，内置了10多余个基础组件，可扩展性的自定义组件，可以让表单开发简单而高效。
+
+本项目为非开源项目，请遵守[EPL](https://choosealicense.com/licenses/epl-2.0/)协议规则。
+
+下面就会把本项目的使用方式本着简单，易用的原则，一一讲解给大家。
+
+[项目地址](https://vf.shenzhepei.com)
+
+本项目由[Fish Uncle](https://github.com/fish-uncle)<fishuncle@126.com>一人研发完成,如果觉得项目还能得到你的认可，可以请我喝一杯咖啡，
+我的创作会更有动力。
 
  <img src="https://cdn.shenzhepei.com/hexo-theme-matery/public/medias/reward/wechat.jpg" width = "100" height = "100"/>
  <img src="https://cdn.shenzhepei.com/hexo-theme-matery/public/medias/reward/alipay.jpg" width = "100" height = "100"/>
  
  <span style="display:inline-block;width:100px;text-align:center;">微信</span>
  <span style="display:inline-block;width:100px;text-align:center;">支付宝</span>
- 
-> 注：支付时备注邮件，1个工作日内发送到指定邮箱，如需更换邮箱，请及时发送邮件至<a href="mailto:fishuncle@126.com">fishuncle@126.com</a>告知。
-
-[更多文档](https://vf.shenzhepei.com/#/help/介绍)
