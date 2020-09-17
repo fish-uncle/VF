@@ -4,16 +4,17 @@
          v-show="visible"
          transiton="fade"
          :class="[`vf-${type}-box`]"
-         :style="{width:`${currentVal.width}%`}"
+         :style="{width:`${currentVal.width/24*100}%`}"
          @click="choose(index)">
       <label class="fn-fl vf-component-label"
              :class="currentVal.required?'has-required':''"
-             :style="{width:`${currentVal.labelWidth}px`,textAlign:currentVal.labelTextAlign}">
+             :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
         {{currentVal[`title_${language}`]}}:
       </label>
-      <div :style="{marginLeft:`${currentVal.labelWidth}px`}">
-        <component :is="currentComponent" :value="currentVal" :language="language" :error="error"
-                    @change="change"></component>
+      <div :style="{marginLeft:`${currentLabelWidth}`}">
+        <component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
+                   :error="error"></component>
+        <span class="vf-component-read" v-if="status==='read'">{{parent.data[currentVal.key]}}</span>
       </div>
       <div v-if="error" class="pos-a vf-component-error-msg" :style="{left:`${currentVal.labelWidth+10}px`}">
         {{errorType==='required'?'该项为必填项':''}}
@@ -39,7 +40,23 @@
         errorType: ''
       }
     },
-    props: [ "value", "index", 'edit', 'language' ],
+    computed: {
+      currentLabelTextAlign () {
+        if (this.currentVal.labelTextAlign) {
+          return this.currentVal.labelTextAlign
+        } else {
+          return this.labelTextAlign
+        }
+      },
+      currentLabelWidth () {
+        if (this.currentVal.labelWidth) {
+          return `${this.currentVal.labelWidth}px`
+        } else {
+          return `${this.labelWidth}px`
+        }
+      }
+    },
+    props: [ "value", "index", 'language', 'status', 'labelWidth', 'labelTextAlign' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -47,9 +64,6 @@
         const type = cssStyle2DomStyle (this.currentVal.type);
         this.type = type;
         this.currentComponent = () => import(`../../func/form-${type}`)
-        if (this.edit) {
-          this.$agent.$on ('componentInit', this.init)
-        }
         this.parent.childMounted ({
           errorHide: this.errorHide,
           errorShow: this.errorShow,
@@ -63,9 +77,6 @@
       const type = cssStyle2DomStyle (this.currentVal.type);
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
-      if (this.edit) {
-        this.$agent.$on ('componentInit', this.init)
-      }
       this.parent.childMounted ({
         errorHide: this.errorHide,
         errorShow: this.errorShow,
@@ -73,16 +84,8 @@
         show: this.show, hide: this.hide, init: this.init, id: this.id
       });
     },
-    beforeDestroy () {
-      if (this.edit) {
-        this.$agent.$off ('componentInit', this.init)
-      }
-    },
     methods: {
-      change(){
-
-      },
-      visibleStatus(){
+      visibleStatus () {
         return this.visible
       },
       errorShow (type) {
@@ -120,6 +123,11 @@
 
   .vf-component-error-msg {
     color: @error-color;
+  }
+
+  .vf-component-read {
+    font-size: 14px;
+    line-height: 32px;
   }
 
   .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {

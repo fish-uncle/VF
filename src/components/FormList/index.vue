@@ -26,7 +26,8 @@
       }
     },
     beforeDestroy () {
-      this.$agent.$off ('formData', this.dataRemove)
+      this.$agent.$off ('formDataRemove', this.dataRemove)
+      this.$agent.$off ('formDataAdd', this.dataAdd)
     },
     methods: {
       controlOthersHide (controlOthersHideTargetKeys, value) {
@@ -105,6 +106,7 @@
     },
     mounted () {
       this.$agent.$on ('formDataRemove', this.dataRemove)
+      this.$agent.$on ('formDataAdd', this.dataAdd)
     }
   }
 </script>

@@ -49,15 +49,8 @@
 </template>
 <script>
   import { mapState } from 'vuex';
-  import columns from "../../columns";
 
   export default {
-    data () {
-      return {
-        tab: 1,
-        columns
-      }
-    },
     computed: {
       ...mapState ([ 'center', 'language' ]),
       item () {

@@ -19,7 +19,7 @@
         parent: findComponentUpward (this, 'FormList')
       }
     },
-    props: [ "value", "error" ],
+    props: [ 'value', 'error' ],
     watch: {
       value (val) {
         this.currentVal = val;

@@ -1,9 +1,9 @@
-import { Message } from "view-design";
-
 const store = {
   namespaced: true,
   state: {
     list: [ [], [] ],
+    labelWidth: 120,
+    labelTextAlign: 'right',
     viewScale: '12:12',
     currentScale: 0,
     current: 0,
@@ -17,6 +17,14 @@ const store = {
     isChange: false
   },
   mutations: {
+    // 修改宽度
+    labelWidthChange (state, newState) {
+      state.labelWidth = newState.labelWidth
+    },
+    // 修改对齐
+    labelTextAlignChange (state, newState) {
+      state.labelTextAlign = newState.labelTextAlign
+    },
     // 删除表单
     multiFormChangeDel (state, newState) {
       const multiForm = state.multiForm
@@ -27,7 +35,7 @@ const store = {
     multiFormChangeAdd (state, newState) {
       const multiForm = state.multiForm
       multiForm.push ({
-        key: `form${newState.key}`,
+        key: `${newState.key}`,
         name: `未命名表单${newState.key}`
       })
     },

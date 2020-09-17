@@ -4,6 +4,8 @@
       <div :class="['ivu-col',`ivu-col-span-${scale}`]" v-for="(scale,scaleIndex) in scale">
         <div class="fn-flex flex-row" :style="{width:'100%',flexWrap:'wrap'}">
           <v-component :edit="false" :language="language" :value="item" :index="index"
+                       :labelWidth="labelWidth" :labelTextAlign="labelTextAlign"
+                       :status="status"
                        v-for="(item,index) in currentList[scaleIndex]"/>
         </div>
       </div>
@@ -16,7 +18,10 @@
       return {
         data: {},
         currentList: [ [], [] ],
-        child: {}
+        child: {},
+        labelWidth: 120,
+        status: 'edit', // edit 编辑 ，read 只读
+        labelTextAlign: 'right',
       }
     },
     computed: {
@@ -33,6 +38,7 @@
     },
     props: {
       list: {
+        type: Array,
         default: [ [], [] ]
       },
       viewScale: {
@@ -43,6 +49,12 @@
       }
     },
     methods: {
+      statusEdit () {
+        this.status = 'edit'
+      },
+      statusRead () {
+        this.status = 'read'
+      },
       errorHide (id) {
         this.child[id].errorHide ()
       },

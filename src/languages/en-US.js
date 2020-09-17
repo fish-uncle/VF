@@ -23,9 +23,10 @@ const language = {
   "admin_center_btn2_4": "full preview",
   "admin_center_btn3": "form setting",
 
-  "admin_right_title1": "Form properties",
-  "admin_right_title2": "Field properties",
-  "admin_right_title3": "Check properties",
+  "admin_right_title1": "Form",
+  "admin_right_title2": "Field",
+  "admin_right_title3": "Check",
+  "admin_right_title4": "Setting",
 
   "admin_right_btn1": "Component title",
   "admin_right_btn2": "Component Title Alignment",
@@ -127,6 +128,8 @@ const language = {
   "please_columns3": "explain",
 
   "model_preview_submit": "Submit Form",
+  "model_preview_edit": "Edit",
+  "model_preview_read": "Read",
 
   "verify_required": "Is required",
 

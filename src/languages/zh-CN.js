@@ -26,6 +26,7 @@ const language = {
   "admin_right_title1": "表单属性",
   "admin_right_title2": "字段属性",
   "admin_right_title3": "校验属性",
+  "admin_right_title4": "表单设置",
 
   "admin_right_btn1": "组件标题",
   "admin_right_btn2": "组件标题对齐",
@@ -127,6 +128,8 @@ const language = {
   "please_columns3": "说明",
 
   "model_preview_submit": "提交表单",
+  "model_preview_edit": "编辑",
+  "model_preview_read": "只读",
 
   "verify_required": "是必填项",
 

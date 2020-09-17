@@ -34,7 +34,7 @@
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('width')!==-1">
       <label>{{$t('admin_right_btn26')}}</label>
-      <Slider v-model="item.width" :max="100">
+      <Slider v-model="item.width" :max="24">
       </Slider>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('placeholder')!==-1">

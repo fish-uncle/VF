@@ -3,6 +3,8 @@
     <v-form ref="form" :view-scale="viewScale" :list="list"/>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">{{$t('model_preview_submit')}}</Button>
+      <Button type="primary" @click="handleEdit">{{$t('model_preview_edit')}}</Button>
+      <Button type="primary" @click="handleRead">{{$t('model_preview_read')}}</Button>
     </div>
   </div>
 </template>
@@ -19,6 +21,12 @@
     },
     computed: mapState ([ "component" ]),
     methods: {
+      handleEdit () {
+        this.$refs.form.statusEdit ()
+      },
+      handleRead () {
+        this.$refs.form.statusRead ()
+      },
       handleSubmit () {
         if (!this.$refs.form.verifyRequired.bind (this) ()) {
           console.log (this.$refs.form.getData ());
@@ -26,7 +34,7 @@
       },
       mockList () {
         let result = [];
-        const component = this.component.list;
+        const component = JSON.parse (JSON.stringify (this.component.list));
         const i = Math.floor (Math.random () * (component.length - 1));
         const j = Math.floor (Math.random () * (component.length - 1));
         component.forEach ((dragItem, index) => {
@@ -74,9 +82,7 @@
             ...Select,
             title_zh: '下拉（看我）',
             key: 'select2', id: 'select2',
-            labelWidth: 120,
             widthRatio: 100,
-            labelTextAlign: 'right',
             width: 50,
             controlOthersUpdateTargetKeys: [ 'select3' ]
           },
@@ -84,9 +90,7 @@
             ...Select,
             title_zh: '下拉（看我）',
             key: 'select3', id: 'select3',
-            labelWidth: 120,
             widthRatio: 100,
-            labelTextAlign: 'right',
             selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=3',
             width: 50,
             controlOthersUpdateTargetKeys: [ 'select4' ]
@@ -95,14 +99,19 @@
             ...Select,
             title_zh: '下拉（看我）',
             key: 'select4', id: 'select4',
-            labelWidth: 120,
             widthRatio: 100,
-            labelTextAlign: 'right',
             selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=4',
             width: 50,
             controlOthersUpdateTargetKeys: [ 'test_hide_key' ]
           }
         )
+        result.forEach (item => {
+          delete item.icon
+          delete item.labelWidth
+          delete item.labelTextAlign
+          delete item.changeList
+          delete item.version
+        })
         this.list = [ result, [] ]
       }
     },

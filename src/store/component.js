@@ -43,7 +43,7 @@ const _list1 = [
 const _list2 = [ Divider, Text, Html, Javascript ];
 const obj = {
   labelWidth: 120,
-  width: 100,
+  width: 24,
   widthRatio: 100,
   labelTextAlign: 'right',
   required: false,

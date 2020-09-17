@@ -1,7 +1,7 @@
 <template>
   <div class="fn-clear vf-component pos-r"
        v-show="visible"
-       :style="{width:`${currentVal.width}%`}"
+       :style="{width:`${currentVal.width/24*100}%`}"
        :class="[index===center.current&&edit?'active':'',
        edit?'vf-component-edit':'',
        `vf-${type}-box`]"
@@ -48,17 +48,11 @@
       const type = cssStyle2DomStyle (this.currentVal.type);
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
-      if (this.edit) {
-        this.$agent.$on ('componentInit', this.init)
-      }
       this.parent.childMounted ({
         show: this.show, hide: this.hide, init: this.init, id: this.id
       });
     },
     beforeDestroy () {
-      if (this.edit) {
-        this.$agent.$off ('componentInit', this.init)
-      }
     },
     methods: {
       show () {

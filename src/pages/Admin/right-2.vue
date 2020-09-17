@@ -220,7 +220,6 @@
         const value = e.target.value;
         let item = this.item;
         item[key] = value;
-        this.$agent.$once ({ type: 'componentInit' })
       },
       othersUpdateChange (targetKeys) {
         let item = this.item;

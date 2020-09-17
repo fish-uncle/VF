@@ -6,16 +6,9 @@ const store = {
     buyVisible: false,
     pleaseVisible: false,
     codeVisible: false,
-    multiFormVisible: false,
     loading: false,
   },
   mutations: {
-    multiFormShow (state) {
-      state.multiFormVisible = true;
-    },
-    multiFormHide (state) {
-      state.multiFormVisible = false;
-    },
     codeShow (state) {
       state.codeVisible = true;
     },

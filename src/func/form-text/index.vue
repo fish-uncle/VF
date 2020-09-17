@@ -1,5 +1,5 @@
 <template>
-  <div class="vf-text">{{content}}</div>
+  <div class="vf-text">{{text}}</div>
 </template>
 <script>
   import { findComponentUpward } from "../../utils";
@@ -18,27 +18,39 @@
         this.currentVal = val;
       }
     },
+    computed: {
+      text () {
+        let result = ''
+        this.currentVal.others.forEach (item => {
+          result += [item].toString ()
+        })
+        return this.parent.data
+      }
+    },
+    mounted () {
+      console.log (this.currentVal)
+    },
     methods: {
-      init () {
-        if (this.currentVal.others.length) {
-          if (this.currentVal.showStyle === 'string') {
-            let result = ''
-            this.currentVal.others.forEach (item => {
-              result += this.parent.getData ()[item].toString ()
-            })
-            this.content = result
-          }
-          if (this.currentVal.showStyle === 'count') {
-            let result = 0
-            this.currentVal.others.forEach (item => {
-              result += Number (this.parent.getData ()[item])
-            })
-            this.content = result
-          }
-        } else {
-          this.content = '无'
-        }
-      },
+      // init () {
+      //   if (this.currentVal.others.length) {
+      //     if (this.currentVal.showStyle === 'string') {
+      //       let result = ''
+      //       this.currentVal.others.forEach (item => {
+      //         result += this.parent.getData ()[item].toString ()
+      //       })
+      //       this.content = result
+      //     }
+      //     if (this.currentVal.showStyle === 'count') {
+      //       let result = 0
+      //       this.currentVal.others.forEach (item => {
+      //         result += Number (this.parent.getData ()[item])
+      //       })
+      //       this.content = result
+      //     }
+      //   } else {
+      //     this.content = '无'
+      //   }
+      // },
     }
   }
 </script>

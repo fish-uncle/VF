@@ -20,10 +20,6 @@
             <DropdownItem name="all">{{$t('admin_center_btn2_4')}}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        <li class="pointer vf-fn-btn" @click="handleMultiForm">
-          <Icon type="ios-flash-outline" size="18"/>
-          {{$t('admin_center_btn3')}}
-        </li>
         <li class="pointer vf-fn-btn" :style="{marginLeft:'auto'}">
           <i-select v-model="center.viewScale" @on-change="handleViewScale">
             <i-option value="24:0">1:0</i-option>
@@ -47,9 +43,9 @@
              @click="()=>handleCurrentScale(scaleIndex)">
           <draggable class="vf-drag-content" v-model="center.list[scaleIndex]" group="people"
                      @change="handleCenterChange">
-            <f-component :value="item" :index="index" :edit="scaleIndex===center.currentScale"
-                         :key="item.id"
-                         v-for="(item,index) in center.list[scaleIndex]"/>
+              <f-component :value="item" :index="index" :edit="scaleIndex===center.currentScale"
+                           :key="item.id"
+                           v-for="(item,index) in center.list[scaleIndex]"/>
           </draggable>
           <div class="vf-center-empty pos-a text-center" v-if="!center.list[scaleIndex].length">
             {{$t('admin_center')}}
@@ -85,9 +81,6 @@
       },
       handleViewScale (viewScale) {
         this.$store.commit ('center/viewScaleChange', { viewScale });
-      },
-      handleMultiForm () {
-        this.$store.commit ('model/multiFormShow');
       },
       handlePreview (name) {
         if (name === 'preview') {
