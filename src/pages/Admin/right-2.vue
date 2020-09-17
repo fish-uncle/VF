@@ -134,12 +134,8 @@
         <Radio label="count">{{$t('admin_right_btn33_1')}}</Radio>
         <Radio label="string">{{$t('admin_right_btn33_2')}}</Radio>
       </RadioGroup>
-      <Transfer
-        not-found-text=""
-        :data="componentList"
-        :titles="[$t('admin_right_btn33_3'),$t('admin_right_btn33_4')]"
-        :target-keys="item.others"
-        @on-change="othersUpdateChange"></Transfer>
+      <editor v-model="item.code"
+              @init="editorInit" theme="chrome" height="400"></editor>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('controlOthersUpdate')!==-1">
       <label>{{$t('admin_right_btn21')}}</label>
@@ -220,10 +216,6 @@
         const value = e.target.value;
         let item = this.item;
         item[key] = value;
-      },
-      othersUpdateChange (targetKeys) {
-        let item = this.item;
-        item.others = targetKeys;
       },
       controlOthersHideChange (targetKeys, value) {
         let item = this.item;

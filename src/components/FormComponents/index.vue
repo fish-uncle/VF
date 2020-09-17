@@ -8,7 +8,7 @@
        @click="choose(index)">
     <div class="vf-component-model pos-a z-index-9"/>
     <label class="fn-fl vf-component-label"
-           :class="currentVal.rules.required?'has-required':''"
+           :class="currentRequired?'has-required':''"
            :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
       {{currentTitle}}:
     </label>
@@ -21,8 +21,8 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex';
-  import { cssStyle2DomStyle, findComponentUpward } from '../../utils';
+  import { mapState } from 'vuex'
+  import { cssStyle2DomStyle, findComponentUpward } from '../../utils'
 
   export default {
     name: 'FormComponents',
@@ -38,6 +38,9 @@
     },
     computed: {
       ...mapState ([ 'center' ]),
+      currentRequired () {
+        return this.currentVal.rules ? this.currentVal.rules.required : false
+      },
       currentLabelTextAlign () {
         if (this.currentVal.labelTextAlign) {
           return this.currentVal.labelTextAlign
@@ -68,17 +71,18 @@
     props: [ 'value', 'index', 'edit', 'language', 'labelTextAlign', 'labelWidth' ],
     watch: {
       value (val) {
-        this.currentVal = val;
+        this.currentVal = val
       }
     },
     mounted () {
-      this.id = this.currentVal.id;
-      const type = cssStyle2DomStyle (this.currentVal.type);
-      this.type = type;
+      this.id = this.currentVal.id
+      const type = cssStyle2DomStyle (this.currentVal.type)
+      this.type = type
       this.currentComponent = () => import(`../../func/form-${type}`)
       this.parent.childMounted ({
+        key: this.currentVal.key,
         show: this.show, hide: this.hide, init: this.init, id: this.id
-      });
+      })
     },
     beforeDestroy () {
     },

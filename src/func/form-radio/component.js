@@ -17,6 +17,11 @@ const component = {
   // defaultSelectIndex: 0,
   controlOthersUpdateTargetKeys: [],
   controlOthersHideTargetKeys: {},
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
   changeList: [
     'labelTextAlign',
     'labelWidth',
@@ -29,6 +34,7 @@ const component = {
     'controlOthersUpdate',
     'controlOthersHide',
     'props',
+    'rules',
   ]
 }
 

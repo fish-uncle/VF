@@ -4,6 +4,11 @@ const component = {
   icon: 'ios-list-box-outline',
   type: 'textarea',
   placeholder: '',
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
   changeList: [
     'labelTextAlign',
     'labelWidth',
@@ -11,7 +16,8 @@ const component = {
     'placeholder',
     'widthRatio',
     'disabled',
-    'props'
+    'props',
+    'rules',
   ]
 }
 

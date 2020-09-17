@@ -7,6 +7,11 @@ const component = {
   placeholder: '',
   timeFormat: "HH’mm’ss",
   clearable: true,
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
   changeList: [
     'labelTextAlign',
     'labelWidth',
@@ -17,6 +22,7 @@ const component = {
     'disabled',
     'clearable',
     'props',
+    'rules',
   ]
 }
 

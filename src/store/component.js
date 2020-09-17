@@ -18,7 +18,7 @@ import ColorPicker from '../func/form-colorPicker/component'
 import Divider from '../func/form-divider/component'
 import Button from '../func/form-button/component'
 import Table from '../func/form-table/component'
-import Text from '../func/form-text/component'
+import DynamicText from '../func/form-dynamicText/component'
 
 const _list1 = [
   Input,
@@ -40,7 +40,7 @@ const _list1 = [
   // Button,
 
 ];
-const _list2 = [ Divider, Text, Html, Javascript ];
+const _list2 = [ Divider, DynamicText, Html, Javascript ];
 const obj = {
   labelWidth: 120,
   width: 24,
@@ -50,15 +50,10 @@ const obj = {
   className: '',
   props: {},
   version: process.env.pkg.version,
-  rules: {
-    required: false,
-    pattern: '',
-    message: '该项格式不正确'
-  },
 }
 let changeList = {}
 const _changeList = [
-  'title', 'width', 'key', 'className', 'rules'
+  'title', 'width', 'key', 'className'
 ]
 
 const list1 = _list1.map (item => {

@@ -5,7 +5,7 @@
        :style="{width:`${currentVal.width/24*100}%`}"
        @click="choose(index)">
     <label class="fn-fl vf-component-label"
-           :class="currentVal.rules.required?'has-required':''"
+           :class="currentRequired?'has-required':''"
            :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
       {{currentTitle}}:
     </label>
@@ -38,6 +38,9 @@
       }
     },
     computed: {
+      currentRequired () {
+        return this.currentVal.rules ? this.currentVal.rules.required : false
+      },
       currentTitle () {
         if (this.currentVal.title) {
           return this.currentVal.title
@@ -74,6 +77,7 @@
         this.type = type;
         this.currentComponent = () => import(`../../func/form-${type}`)
         this.parent.childMounted ({
+          key: this.currentVal.key,
           errorHide: this.errorHide,
           errorShow: this.errorShow,
           visibleStatus: this.visibleStatus,
@@ -87,6 +91,7 @@
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
       this.parent.childMounted ({
+        key: this.currentVal.key,
         errorHide: this.errorHide,
         errorShow: this.errorShow,
         visibleStatus: this.visibleStatus,

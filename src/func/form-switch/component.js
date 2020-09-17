@@ -4,12 +4,18 @@ const component = {
   icon: 'ios-switch-outline',
   type: 'switch',
   dataType: 'Boolean',
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
   changeList: [
     'labelTextAlign',
     'labelWidth',
 
     'disabled',
     'props',
+    'rules',
   ]
 }
 

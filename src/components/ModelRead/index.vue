@@ -26,6 +26,12 @@
             item.changeList = this.component.changeList[item.type]
             item.title_zh = item.title
             item.title_en = item.title
+            if (!item.labelWidth) {
+              item.labelWidth = config.labelWidth
+            }
+            if (!item.labelTextAlign) {
+              item.labelTextAlign = config.labelTextAlign
+            }
           })
         })
         this.$store.commit ('center/set', {

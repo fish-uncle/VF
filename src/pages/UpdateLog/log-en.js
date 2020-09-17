@@ -7,6 +7,11 @@ const log = [
       'New form unified settings, component width, component alignment.',
       'Fix data preview issues.',
       'Add custom props.',
+      'Add async validator package and optimize validate method.',
+      'Add custom verification.',
+      'Fix field ID modification.',
+      'New read configuration.',
+      'Optimize dynamic text.',
     ]
   },
   {

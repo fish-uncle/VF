@@ -4,6 +4,11 @@ const component = {
   icon: 'ios-color-palette-outline',
   type: 'colorPicker',
   alpha: false,
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
   changeList: [
     'labelTextAlign',
     'labelWidth',
@@ -11,6 +16,7 @@ const component = {
     'disabled',
     'alpha',
     'props',
+    'rules',
   ]
 }
 

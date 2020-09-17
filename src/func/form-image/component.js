@@ -9,6 +9,11 @@ const component = {
   fileFormat: 'jpg,jpeg,png',
   fileAccept: 'image/*',
   defaultList: [],
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
   changeList: [
     'labelTextAlign',
     'labelWidth',
@@ -20,6 +25,8 @@ const component = {
 
     'disabled',
     'props',
+    'rules',
+
   ]
 }
 
