@@ -1,5 +1,8 @@
 <template>
-  <div class="vf-table" :style="{width:`${currentVal.widthRatio}%`}" :class="[currentVal.className]">
+  <div class="vf-table"
+       v-bind="currentVal.props"
+       :style="{width:`${currentVal.widthRatio}%`}"
+       :class="[currentVal.className]">
     <Table :columns="columns" :data="data">
     </Table>
   </div>
@@ -16,7 +19,7 @@
         page: 1
       }
     },
-    props: ["value"],
+    props: ['value','language'],
     computed: {
       columns() {
         if (this.currentVal.columns) {

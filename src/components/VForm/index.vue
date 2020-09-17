@@ -13,6 +13,8 @@
   </div>
 </template>
 <script>
+  import Schema from 'async-validator'
+
   export default {
     data () {
       return {
@@ -100,59 +102,33 @@
           this.child[item].init ()
         })
       },
-      verifyRequired () {
-        const data = this.data;
-        let error = false;
-        let errorObj = {};
-        let componentList = [];
+      reset () {
+        this.init ()
+      },
+      validate () {
+        const data = this.data
+        let componentList = [], descriptor = {};
         for (let i = 0; i <= this.currentList.length - 1; i++) {
           componentList.push (...this.currentList[i])
         }
         for (let i = 0; i <= componentList.length - 1; i++) {
           const item = componentList[i];
-          if (item.componentType === 'base' && this.child[item.id].visibleStatus ()) {
-            if (item.required) {
-              const d = data[item.key]
-              if (item.dataType === 'TimeRange') {
-                const key = item.key.split (';');
-                key.forEach (child => {
-                  if ((typeof data[child] === 'string' && data[child] === '') || typeof data[child] === 'undefined' || data[child] === null) {
-                    error = true;
-                    errorObj[item.id] = 'required'
-                  }
-                })
-                if (error) {
-                  break;
-                }
-              } else if (item.dataType === 'Array') {
-                if (d.length <= 0) {
-                  error = true
-                  errorObj[item.id] = 'required'
-                  break;
-                }
-              } else {
-                if ((typeof d === 'string' && d === '') || typeof d === 'undefined' || d === null) {
-                  error = true;
-                  errorObj[item.id] = 'required'
-                  break;
-                }
-              }
-            }
-            if (item.reg && item.regular) {
-              const d = data[item.key]
-              if (!new RegExp (item.regular).test (d)) {
-                error = true;
-                errorObj[item.id] = 'reg'
-              }
+          if (item.dataType !== 'Null' && this.child[item.id].visibleStatus ()) {
+            descriptor[item.key] = {
+              ...item.rules,
+              id: item.id,
+              pattern: new RegExp (item.rules.pattern)
             }
           }
         }
-        if (error) {
-          for (let key in errorObj) {
-            this.child[key].errorShow (errorObj[key]);
+        const validator = new Schema (descriptor);
+        validator.validate (data, (errors) => {
+          if (errors) {
+            errors.forEach (item => {
+              this.child[descriptor[item.field].id].errorShow (item.message);
+            })
           }
-        }
-        return error
+        });
       },
       changeData ({ key, value }) {
         this.data[key] = value
@@ -164,26 +140,26 @@
         const data = this.data
         switch (dragItem.dataType) {
           case 'Boolean':
-            data[dragItem.key] = false
+            this.$set (data, dragItem.key, false)
             break
           case 'Number':
-            data[dragItem.key] = 0
+            this.$set (data, dragItem.key, 0)
             break
           case 'Null':
             break
           case 'Array':
-            data[dragItem.key] = []
+            this.$set (data, dragItem.key, [])
             break
           case 'TimeRange':
-            data[dragItem.key] = []
-            data[dragItem.key.split (';') [0]] = ''
-            data[dragItem.key.split (';') [1]] = ''
+            this.$set (data, dragItem.key, [])
+            this.$set (data, dragItem.key.split (';') [0], '')
+            this.$set (data, dragItem.key.split (';') [1], '')
             break
           case undefined:
-            data[dragItem.key] = ''
+            this.$set (data, dragItem.key, '')
             break
           default:
-            data[dragItem.key] = ''
+            this.$set (data, dragItem.key, '')
         }
         this.data = data
       },
@@ -198,6 +174,9 @@
         })
         this.currentList = currentList
       },
+    },
+    mounted () {
+      this.init ()
     }
   }
 </script>

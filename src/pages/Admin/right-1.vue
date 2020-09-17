@@ -48,6 +48,11 @@
                @on-change="e=>inputChange(e,'className')">
       </i-input>
     </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('props')!==-1">
+      <label>props</label>
+      <editor :value="propsVal" @input="value=>editorChange(value,'props')"
+              @init="editorInit" lang="json" theme="javascript" height="100"></editor>
+    </div>
     <div class="vf-control" v-if="item.changeList.indexOf('javascript')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
       <editor v-model="item.code"
@@ -61,7 +66,8 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex';
+  import { mapState } from 'vuex'
+  import { obj2Str, str2Obj } from '../../utils'
 
   export default {
     data () {
@@ -88,6 +94,9 @@
     },
     computed: {
       ...mapState ([ "center", "language" ]),
+      propsVal () {
+        return obj2Str (this.item.props)
+      },
       item () {
         if (this.center.list.length > 0) {
           return this.center.list[this.center.currentScale][this.center.current] ?
@@ -98,13 +107,13 @@
       }
     },
     methods: {
-      editorInit: function () {
-        require ('brace/ext/language_tools') //language extension prerequsite...
-        require ('brace/mode/html')
-        require ('brace/mode/javascript')    //language
-        require ('brace/mode/less')
-        require ('brace/theme/chrome')
-        require ('brace/snippets/javascript') //snippet
+      editorChange: function (value, key) {
+        let item = this.item;
+        try {
+          item[key] = str2Obj (value)
+        } catch (e) {
+
+        }
       },
       onCmCodeChange (newCode, key) {
         let item = this.item;
@@ -113,15 +122,6 @@
       checkChange (value, key) {
         let item = this.item;
         item[key] = value;
-      },
-      keyChange (e, key) {
-        const value = e.target.value;
-        let item = this.item;
-        const data = this.center.data;
-        const keyValue = data[item.key];
-        delete data[item.key];
-        item[key] = value;
-        data[value] = keyValue;
       },
       numberChange (e, key) {
         const value = e.target.value;

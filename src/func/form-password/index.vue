@@ -3,6 +3,7 @@
        :class="[currentVal.className,error?'vf-error':'']">
     <i-input
       v-model="parent.data[currentVal.key]"
+      v-bind="currentVal.props"
       :disabled="currentVal.disabled"
       :placeholder="currentVal.placeholder"
       :style="{width:`100%`}"
@@ -46,11 +47,6 @@
           value,
           key: this.currentVal.key
         })
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
-          }
-        }
       }
     }
   }

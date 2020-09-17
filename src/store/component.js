@@ -46,28 +46,35 @@ const obj = {
   width: 24,
   widthRatio: 100,
   labelTextAlign: 'right',
-  required: false,
   disabled: false,
-  regular: '',
   className: '',
+  props: {},
   version: process.env.pkg.version,
-  reg: false,
+  rules: {
+    required: false,
+    pattern: '',
+    message: '该项格式不正确'
+  },
 }
-const changeList = [
-  'title', 'width', 'key', 'className'
+let changeList = {}
+const _changeList = [
+  'title', 'width', 'key', 'className', 'rules'
 ]
 
 const list1 = _list1.map (item => {
-  return { ...obj, ...item, changeList: [ ...changeList, ...item.changeList ] }
+  changeList[item.type] = [ ..._changeList, ...item.changeList ]
+  return { ...obj, ...item, componentType: 'base', changeList: [ ..._changeList, ...item.changeList ] }
 })
 const list2 = _list2.map (item => {
-  return { ...obj, ...item, changeList: [ ...changeList, ...item.changeList ] }
+  changeList[item.type] = [ ..._changeList, ...item.changeList ]
+  return { ...obj, ...item, componentType: 'modification', changeList: [ ..._changeList, ...item.changeList ] }
 })
 const list = [ ...list1, ...list2 ]
 const store = {
   namespaced: true,
   state: {
     list,
+    changeList
   },
   mutations: {}
 };

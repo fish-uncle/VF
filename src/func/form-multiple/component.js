@@ -2,7 +2,6 @@ const component = {
   title_zh: '多项选择',
   title_en: 'multiple',
   icon: 'ios-checkbox-outline',
-  componentType: 'base',
   type: 'multiple',
   dataType: 'Array',
   selectListUrl: '',
@@ -25,11 +24,11 @@ const component = {
 
     'widthRatio',
     'disabled',
-    'required',
     'selectList',
     'selectListUrl',
     'controlOthersUpdate',
     'controlOthersHide',
+    'props',
   ]
 }
 

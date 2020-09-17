@@ -3,7 +3,6 @@ const component = {
   title_en: 'timeRange',
   icon: 'ios-time-outline',
   dataType: 'TimeRange',
-  componentType: 'base',
   type: 'timeRange',
   placeholder: '',
   timeFormat: "HH’mm’ss",
@@ -16,8 +15,8 @@ const component = {
     'timeFormat',
     'placeholder',
     'disabled',
-    'required',
     'clearable',
+    'props',
   ]
 }
 

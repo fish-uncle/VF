@@ -2,7 +2,6 @@ const component = {
   title_zh: '星级评分',
   title_en: 'rate',
   icon: 'ios-star-outline',
-  componentType: 'base',
   type: 'rate',
   dataType: 'Number',
   placeholder: '',
@@ -16,10 +15,10 @@ const component = {
     'placeholder',
     'widthRatio',
     'disabled',
-    'required',
     'clearable',
     'character',
     'showText',
+    'props',
   ]
 }
 

@@ -1,5 +1,15 @@
 const log = [
   {
+    version: '1.1.2',
+    time: '2020-09-17',
+    content: [
+      'Add edit status, read-only status.',
+      'New form unified settings, component width, component alignment.',
+      'Fix data preview issues.',
+      'Add custom props.',
+    ]
+  },
+  {
     version: '1.1.1',
     time: '2020-09-15',
     content: [

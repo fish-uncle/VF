@@ -1,5 +1,6 @@
 <template>
   <Date-picker class="vf-date-range"
+               v-bind="currentVal.props"
                :class="[currentVal.className,error?'vf-error':'']"
                :style="{width:`${currentVal.widthRatio}%`}"
                type="daterange"

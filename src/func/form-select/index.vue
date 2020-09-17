@@ -1,5 +1,6 @@
 <template>
   <i-select v-model="parent.data[currentVal.key]"
+            v-bind="currentVal.props"
             class="vf-select"
             :class="[currentVal.className,error?'vf-error':'']"
             :placeholder="currentVal.placeholder"

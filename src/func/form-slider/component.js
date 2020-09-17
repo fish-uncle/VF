@@ -2,7 +2,6 @@ const component = {
   title_zh: '滑块',
   title_en: 'slider',
   icon: 'ios-options-outline',
-  componentType: 'base',
   type: 'slider',
   dataType: 'Number',
   showInput: false,
@@ -19,6 +18,7 @@ const component = {
     'step',
     'max',
     'min',
+    'props',
   ]
 }
 

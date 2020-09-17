@@ -2,7 +2,6 @@ const component = {
   title_zh: '下拉选择',
   title_en: 'select',
   icon: 'ios-arrow-dropdown',
-  componentType: 'base',
   type: 'select',
   placeholder: '',
   addLink: [],
@@ -36,13 +35,13 @@ const component = {
     'placeholder',
     'widthRatio',
     'disabled',
-    'required',
     'clearable',
     // 'defaultSelectIndex',
     'selectList',
     'selectListUrl',
     'controlOthersUpdate',
     'controlOthersHide',
+    'props',
   ]
 }
 

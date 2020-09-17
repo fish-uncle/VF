@@ -1,5 +1,6 @@
 <template>
   <Divider class="vf-divider"
+           v-bind="currentVal.props"
            :style="{width:`${currentVal.widthRatio}%`}"
            :class="[currentVal.className]" :dashed="currentVal.dashed"/>
 </template>

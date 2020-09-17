@@ -2,7 +2,6 @@ const component = {
   title_zh: '图片',
   title_en: 'image',
   icon: 'ios-images-outline',
-  componentType: 'base',
   type: 'image',
   dataType: 'Array',
   action: '',
@@ -20,7 +19,7 @@ const component = {
     'fileAccept',
 
     'disabled',
-    'required',
+    'props',
   ]
 }
 

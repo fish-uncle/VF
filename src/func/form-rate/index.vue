@@ -1,5 +1,6 @@
 <template>
   <Rate v-model="parent.data[currentVal.key]"
+        v-bind="currentVal.props"
         class="vf-rate"
         :class="[currentVal.className]"
         :character="currentVal.character"

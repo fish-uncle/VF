@@ -1,6 +1,7 @@
 <template>
   <i-input
     class="vf-input"
+    v-bind="currentVal.props"
     :class="[currentVal.className,error?'vf-error':'']"
     v-model="parent.data[currentVal.key]"
     :disabled="currentVal.disabled"
@@ -41,11 +42,6 @@
           value,
           key: this.currentVal.key
         })
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
-          }
-        }
       }
     }
   }

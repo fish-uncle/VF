@@ -1,5 +1,6 @@
 <template>
-  <i-input type="textarea"
+  <i-input v-bind="currentVal.props"
+           type="textarea"
            clas="vf-textarea"
            :class="[currentVal.className,error?'vf-error':'']"
            v-model="parent.data[currentVal.key]"
@@ -41,11 +42,6 @@
           value,
           key: this.currentVal.key
         })
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
-          }
-        }
       }
     }
   }

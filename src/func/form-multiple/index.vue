@@ -1,5 +1,6 @@
 <template>
   <Checkbox-group class="vf-multiple fn-flex flex-row" v-model="data"
+                  v-bind="currentVal.props"
                   :class="[currentVal.className,error?'vf-error':'']"
                   :style="{width:`${currentVal.widthRatio}%`}"
                   @on-change="clickChange">

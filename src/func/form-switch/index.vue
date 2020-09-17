@@ -1,5 +1,6 @@
 <template>
   <i-switch v-model="parent.data[currentVal.key]"
+            v-bind="currentVal.props"
             class="vf-switch"
             :class="[currentVal.className]"
             :disabled="currentVal.disabled" @on-change="clickChange">

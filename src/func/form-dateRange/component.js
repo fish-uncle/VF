@@ -3,7 +3,6 @@ const component = {
   title_en: 'dateRange',
   icon: 'ios-calendar-outline',
   dataType: 'TimeRange',
-  componentType: 'base',
   type: 'dateRange',
   placeholder: '',
   timeFormat:"yyyy-MM-dd",
@@ -16,8 +15,8 @@ const component = {
     'timeFormat',
     'placeholder',
     'disabled',
-    'required',
     'clearable',
+    'props',
   ]
 }
 

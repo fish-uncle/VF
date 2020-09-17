@@ -1,27 +1,24 @@
 <template>
-  <transition name="fade">
-    <div class="fn-clear vf-component pos-r"
-         v-show="visible"
-         transiton="fade"
-         :class="[`vf-${type}-box`]"
-         :style="{width:`${currentVal.width/24*100}%`}"
-         @click="choose(index)">
-      <label class="fn-fl vf-component-label"
-             :class="currentVal.required?'has-required':''"
-             :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
-        {{currentVal[`title_${language}`]}}:
-      </label>
-      <div :style="{marginLeft:`${currentLabelWidth}`}">
-        <component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
-                   :error="error"></component>
-        <span class="vf-component-read" v-if="status==='read'">{{parent.data[currentVal.key]}}</span>
-      </div>
-      <div v-if="error" class="pos-a vf-component-error-msg" :style="{left:`${currentVal.labelWidth+10}px`}">
-        {{errorType==='required'?'该项为必填项':''}}
-        {{errorType==='reg'?'该项格式不正确':''}}
-      </div>
+  <div class="fn-clear vf-component pos-r"
+       v-show="visible"
+       :class="[`vf-${type}-box`]"
+       :style="{width:`${currentVal.width/24*100}%`}"
+       @click="choose(index)">
+    <label class="fn-fl vf-component-label"
+           :class="currentVal.rules.required?'has-required':''"
+           :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
+      {{currentTitle}}:
+    </label>
+    <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
+      <component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
+                 :error="error"></component>
+      <span class="vf-component-read" v-if="status==='read'">{{parent.data[currentVal.key]}}</span>
     </div>
-  </transition>
+    <div v-if="error && status==='edit' " class="pos-a vf-component-error-msg"
+         :style="{left:`${currentVal.labelWidth+10}px`}">
+      {{errorMsg}}
+    </div>
+  </div>
 </template>
 <script>
   import { cssStyle2DomStyle, findComponentUpward } from '../../utils';
@@ -37,10 +34,18 @@
         error: false,
         currentComponent: null,
         type: '',
-        errorType: ''
+        errorMsg: ''
       }
     },
     computed: {
+      currentTitle () {
+        if (this.currentVal.title) {
+          return this.currentVal.title
+        }
+        if (this.currentVal[`title_${this.language}`]) {
+          return this.currentVal[`title_${this.language}`]
+        }
+      },
       currentLabelTextAlign () {
         if (this.currentVal.labelTextAlign) {
           return this.currentVal.labelTextAlign
@@ -52,11 +57,15 @@
         if (this.currentVal.labelWidth) {
           return `${this.currentVal.labelWidth}px`
         } else {
-          return `${this.labelWidth}px`
+          if (typeof this.currentVal.labelWidth === 'number') {
+            return `${this.currentVal.labelWidth}px`
+          } else {
+            return `${this.labelWidth}px`
+          }
         }
       }
     },
-    props: [ "value", "index", 'language', 'status', 'labelWidth', 'labelTextAlign' ],
+    props: [ 'value', 'index', 'language', 'status', 'labelWidth', 'labelTextAlign', 'props' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -88,9 +97,9 @@
       visibleStatus () {
         return this.visible
       },
-      errorShow (type) {
+      errorShow (msg) {
         this.error = true
-        this.errorType = type
+        this.errorMsg = msg
       },
       errorHide () {
         this.error = false
@@ -133,6 +142,10 @@
   .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {
     .vf-component-label {
       display: none;
+    }
+
+    .vf-component-content {
+      margin-left: 0 !important;
     }
   }
 

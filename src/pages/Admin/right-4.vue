@@ -58,7 +58,6 @@
         const key = Math.random (5).toString (32).replace ('0.', '')
         this.$store.commit ('center/multiFormChangeAdd', { key: `form${key}` })
         localStorage.setItem (`form${key}`, JSON.stringify ({ list: [ [], [] ], viewScale: '12:12' }))
-        console.log (this.center.multiForm)
       },
       inputValueChange (e, index) {
         const value = e.target.value

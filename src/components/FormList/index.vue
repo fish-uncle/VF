@@ -66,36 +66,43 @@
         const data = this.data
         switch (dragItem.dataType) {
           case 'Boolean':
-            data[dragItem.key] = false
+            this.$set (data, dragItem.key, false)
             break
           case 'Number':
-            data[dragItem.key] = 0
+            this.$set (data, dragItem.key, 0)
             break
           case 'Null':
             break
           case 'Array':
-            data[dragItem.key] = []
+            this.$set (data, dragItem.key, [])
             break
           case 'TimeRange':
-            data[dragItem.key] = []
-            data[dragItem.key.split (';') [0]] = ''
-            data[dragItem.key.split (';') [1]] = ''
+            this.$set (data, dragItem.key, [])
+            this.$set (data, dragItem.key.split (';') [0], '')
+            this.$set (data, dragItem.key.split (';') [1], '')
+            break
+          case undefined:
+            this.$set (data, dragItem.key, '')
             break
           default:
-            data[dragItem.key] = ''
+            this.$set (data, dragItem.key, '')
         }
         this.data = data
+      },
+      dataChange ({oldKey, newKey}) {
+        const data = this.data[oldKey]
+        this.$delete (this.data, oldKey)
+        this.$set (this.data, newKey, data)
       },
       dataRemove ({ key }) {
         const data = this.data
         if (key.indexOf (';') !== '-1') {
           const _key = key.split (';')
           _key.forEach (item => {
-            delete data[item]
+            this.$delete (data, item)
           })
         }
-        delete data[key]
-        this.data = data
+        this.$delete (data, key)
       },
       changeData ({ key, value }) {
         this.data[key] = value
@@ -107,6 +114,7 @@
     mounted () {
       this.$agent.$on ('formDataRemove', this.dataRemove)
       this.$agent.$on ('formDataAdd', this.dataAdd)
+      this.$agent.$on ('formDataChange', this.dataChange)
     }
   }
 </script>

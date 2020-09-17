@@ -263,30 +263,29 @@
         item[key] = value;
       },
       dateRangeKeyChange (e, key) {
-        const value = e.target.value;
-        let item = this.item;
-        const data = this.center.data;
-        let keyValue;
+        const value = e.target.value
+        let item = this.item
         if (key === '0') {
-          keyValue = data[item.key.split (';')[0]];
-          delete data[item.key.split (';')[0]];
-          item.key = value + ';' + item.key.split (';')[1];
+          const newKey = value + ';' + item.key.split (';')[1]
+          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key.split (';')[0], newKey: value })
+          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key, newKey })
+          item.key = newKey
+          this.$store.commit ('center/changeKey', { key: newKey, id: item.id })
         }
         if (key === '1') {
-          keyValue = data[item.key.split (';')[1]];
-          delete data[item.key.split (';')[1]];
-          item.key = item.key.split (';')[0] + ';' + value;
+          const newKey = item.key.split (';')[0] + ';' + value
+          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key.split (';')[1], newKey: value })
+          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key, newKey })
+          item.key = newKey
+          this.$store.commit ('center/changeKey', { key: newKey, id: item.id })
         }
-        data[value] = keyValue;
       },
       keyChange (e) {
-        const value = e.target.value;
-        let item = this.item;
-        const data = this.center.data;
-        const keyValue = data[item.key];
-        delete data[item.key];
-        item.key = value;
-        data[value] = keyValue;
+        const value = e.target.value
+        let item = this.item
+        this.$agent.$once ({ type: 'formDataChange', oldKey: item.key, newKey: value })
+        item.key = value
+        this.$store.commit ('center/changeKey', { key: value, id: item.id })
       },
       numberChange (e, key) {
         const value = e.target.value;

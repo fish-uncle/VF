@@ -1,8 +1,10 @@
 <template>
   <div>
-    <v-form ref="form" :view-scale="viewScale" :list="list"/>
+    <v-form ref="form" :language="language" :view-scale="viewScale" :list="list" :labelWidth="labelWidth"
+            :labelTextAlign="labelTextAlign"/>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">{{$t('model_preview_submit')}}</Button>
+      <Button type="primary" @click="handleReset">{{$t('model_preview_reset')}}</Button>
       <Button type="primary" @click="handleEdit">{{$t('model_preview_edit')}}</Button>
       <Button type="primary" @click="handleRead">{{$t('model_preview_read')}}</Button>
     </div>
@@ -16,11 +18,17 @@
     data () {
       return {
         list: [ [], [] ],
-        viewScale: '24:0'
+        viewScale: '24:0',
+        labelWidth: 120,
+        labelTextAlign: 'right',
+        language: 'zh'
       }
     },
     computed: mapState ([ "component" ]),
     methods: {
+      handleReset(){
+        this.$refs.form.reset ()
+      },
       handleEdit () {
         this.$refs.form.statusEdit ()
       },
@@ -28,7 +36,7 @@
         this.$refs.form.statusRead ()
       },
       handleSubmit () {
-        if (!this.$refs.form.verifyRequired.bind (this) ()) {
+        if (!this.$refs.form.validate.bind (this) ()) {
           console.log (this.$refs.form.getData ());
         }
       },
@@ -74,7 +82,7 @@
           }
           result.push ({
             ...dragItem,
-            key, id: key, width: 50
+            key, id: key, width: 12
           })
         });
         result.push (
@@ -83,7 +91,7 @@
             title_zh: '下拉（看我）',
             key: 'select2', id: 'select2',
             widthRatio: 100,
-            width: 50,
+            width: 12,
             controlOthersUpdateTargetKeys: [ 'select3' ]
           },
           {
@@ -92,7 +100,7 @@
             key: 'select3', id: 'select3',
             widthRatio: 100,
             selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=3',
-            width: 50,
+            width: 12,
             controlOthersUpdateTargetKeys: [ 'select4' ]
           },
           {
@@ -101,7 +109,7 @@
             key: 'select4', id: 'select4',
             widthRatio: 100,
             selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=4',
-            width: 50,
+            width: 12,
             controlOthersUpdateTargetKeys: [ 'test_hide_key' ]
           }
         )
@@ -111,6 +119,10 @@
           delete item.labelTextAlign
           delete item.changeList
           delete item.version
+          delete item.componentType
+          item.title = item.title_zh
+          delete item.title_zh
+          delete item.title_en
         })
         this.list = [ result, [] ]
       }

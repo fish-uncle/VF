@@ -66,9 +66,11 @@ const store = {
       state.current = newState.index
     },
     // 设置组件
-    set (state, newState) {
+    set (state, newState = { viewScale: '12:12', labelWidth: 120, labelTextAlign: 'right' }) {
       state.list = newState.list
       state.viewScale = newState.viewScale
+      state.labelWidth = newState.labelWidth
+      state.labelTextAlign = newState.labelTextAlign
     },
     // 清空组件
     clear (state) {
@@ -92,8 +94,20 @@ const store = {
       const list = state.list
       list.forEach (child => {
         child.forEach (item => {
-          if (item.dragItem.key === newState.key) {
-            item.dragItem.ajaxList = newState.value
+          if (item.key === newState.key) {
+            item.ajaxList = newState.value
+          }
+        })
+      })
+      state.list = list
+    },
+    // 修改
+    changeKey (state, newState) {
+      const list = state.list
+      list.forEach (child => {
+        child.forEach (item => {
+          if (item.id === newState.id) {
+            item.key = newState.key
           }
         })
       })

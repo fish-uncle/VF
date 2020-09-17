@@ -1,5 +1,7 @@
 <template>
-  <RadioGroup class="vf-radio fn-flex flex-row" v-model="parent.data[currentVal.key]"
+  <RadioGroup class="vf-radio fn-flex flex-row"
+              v-model="parent.data[currentVal.key]"
+              v-bind="currentVal.props"
               :class="[currentVal.className,error?'vf-error':'']"
               @on-change="clickChange">
     <Radio v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"

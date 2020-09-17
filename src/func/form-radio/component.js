@@ -2,7 +2,6 @@ const component = {
   title_zh: '单项选择',
   title_en: 'radio',
   icon: 'ios-radio-button-on',
-  componentType: 'base',
   type: 'radio',
   selectList: [
     {
@@ -24,12 +23,12 @@ const component = {
 
     'widthRatio',
     'disabled',
-    'required',
     // 'defaultSelectIndex',
     'selectList',
     'selectListUrl',
     'controlOthersUpdate',
     'controlOthersHide',
+    'props',
   ]
 }
 

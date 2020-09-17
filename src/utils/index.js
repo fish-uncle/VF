@@ -32,3 +32,23 @@ export function cssStyle2DomStyle (sName) {
     return b.toUpperCase () + c.toLowerCase ();
   });
 }
+
+// obj to string
+export function obj2Str (obj) {
+  return JSON.stringify (obj, function (key, val) {
+    if (typeof val === 'function') {
+      return val + '';
+    }
+    return val;
+  })
+}
+
+// string to obj to
+export function str2Obj (str) {
+  return JSON.parse (str, function (k, v) {
+    if (v.indexOf && v.indexOf ('function') > -1) {
+      return eval ("(function(){return " + v + " })()")
+    }
+    return v;
+  });
+}

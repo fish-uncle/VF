@@ -4,6 +4,7 @@ import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import i18n from './languages'
 import draggable from 'vuedraggable'
+
 Vue.use (ViewUI)
 
 import router from './router'
@@ -23,7 +24,15 @@ Vue.component ('f-list', FormList)
 
 Vue.component ('v-component', FormComponentUse)
 Vue.component ('v-form', FormListUse)
-
+Vue.prototype.editorInit = function () {
+  require ('brace/ext/language_tools') //language extension prerequsite...
+  require ('brace/mode/html')
+  require ('brace/mode/javascript')    //language
+  require ('brace/mode/less')
+  require ('brace/mode/json')
+  require ('brace/theme/chrome')
+  require ('brace/snippets/javascript') //snippet
+}
 Vue.config.productionTip = false
 Vue.use (plugins)
 Vue.use (JsonViewer)

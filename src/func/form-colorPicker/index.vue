@@ -1,5 +1,6 @@
 <template>
   <ColorPicker v-model="color"
+               v-bind="currentVal.props"
                class="vf-color-picker"
                :class="[currentVal.className,error?'vf-error':'']"
                @on-change="colorChange"

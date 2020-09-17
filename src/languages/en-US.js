@@ -21,7 +21,7 @@ const language = {
   "admin_center_btn2_2": "components preview",
   "admin_center_btn2_3": "code preview",
   "admin_center_btn2_4": "full preview",
-  "admin_center_btn3": "form setting",
+  "admin_center_btn3": "read configuration",
 
   "admin_right_title1": "Form",
   "admin_right_title2": "Field",
@@ -43,7 +43,7 @@ const language = {
   "admin_right_btn29": "File format restrictions",
   "admin_right_btn30": "Column configuration",
   "admin_right_btn31": "Table data address",
-  "admin_right_btn32": "Whether to turn on regular checking",
+  "admin_right_btn32": "Regular checking",
   "admin_right_btn33": "Display type",
   "admin_right_btn33_1": "Sum of numbers",
   "admin_right_btn33_2": "String concatenation",
@@ -127,9 +127,13 @@ const language = {
   "please_columns2": "price",
   "please_columns3": "explain",
 
+  "model_preview_add": "Add",
   "model_preview_submit": "Submit Form",
   "model_preview_edit": "Edit",
   "model_preview_read": "Read",
+  "model_preview_reset": "Reset",
+
+  "model_read": "read",
 
   "verify_required": "Is required",
 

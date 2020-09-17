@@ -21,7 +21,7 @@ const language = {
   "admin_center_btn2_2": "组件预览",
   "admin_center_btn2_3": "代码预览",
   "admin_center_btn2_4": "全组件预览",
-  "admin_center_btn3": "表单设置",
+  "admin_center_btn3": "读取配置",
 
   "admin_right_title1": "表单属性",
   "admin_right_title2": "字段属性",
@@ -43,7 +43,7 @@ const language = {
   "admin_right_btn29": "文件格式限制",
   "admin_right_btn30": "列配置",
   "admin_right_btn31": "表格数据地址",
-  "admin_right_btn32": "是否开启正则校验",
+  "admin_right_btn32": "正则校验",
   "admin_right_btn33": "显示类型",
   "admin_right_btn33_1": "数字求和",
   "admin_right_btn33_2": "字符串连接",
@@ -127,9 +127,13 @@ const language = {
   "please_columns2": "价格",
   "please_columns3": "说明",
 
+  "model_preview_add": "加一个",
   "model_preview_submit": "提交表单",
   "model_preview_edit": "编辑",
   "model_preview_read": "只读",
+  "model_preview_reset": "重置",
+
+  "model_read": "读取",
 
   "verify_required": "是必填项",
 

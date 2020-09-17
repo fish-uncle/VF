@@ -29,6 +29,7 @@
       <center/>
       <modelPreview/>
       <modelCode/>
+      <modelRead/>
     </div>
   </div>
 </template>
@@ -39,8 +40,9 @@
   import Right2 from './right-2'
   import Right3 from './right-3'
   import Right4 from './right-4'
-  import ModelCode from '../../components/modelCode'
+  import ModelCode from '../../components/ModelCode'
   import ModelPreview from '../../components/ModelPreview'
+  import ModelRead from '../../components/ModelRead'
 
   import { mapState } from 'vuex';
 
@@ -50,6 +52,7 @@
       Center,
       ModelPreview,
       ModelCode,
+      ModelRead,
       Func,
       Right1,
       Right2,

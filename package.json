@@ -19,6 +19,7 @@
   "author": "fish uncle",
   "license": "EPL",
   "dependencies": {
+    "async-validator": "^3.4.0",
     "axios": "^0.19.2",
     "date-fns": "^2.14.0",
     "highlight.js": "^10.1.2",

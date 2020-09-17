@@ -16,6 +16,7 @@
       </template>
     </div>
     <Upload ref="upload"
+            v-bind="currentVal.props"
             :action="currentVal.action"
             :default-file-list="currentVal.defaultList"
             type="drag"

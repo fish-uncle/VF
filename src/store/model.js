@@ -2,6 +2,7 @@ const store = {
   namespaced: true,
   state: {
     previewVisible: false,
+    readVisible: false,
     dataVisible: false,
     buyVisible: false,
     pleaseVisible: false,
@@ -9,6 +10,12 @@ const store = {
     loading: false,
   },
   mutations: {
+    readShow (state) {
+      state.readVisible = true;
+    },
+    readHide (state) {
+      state.readVisible = false;
+    },
     codeShow (state) {
       state.codeVisible = true;
     },

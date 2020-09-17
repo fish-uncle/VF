@@ -1,5 +1,6 @@
 <template>
   <Slider v-model="parent.data[currentVal.key]"
+          v-bind="currentVal.props"
           class="vf-slider"
           :style="{width:`${currentVal.widthRatio}%`}"
           :class="[currentVal.className]"

@@ -1,5 +1,7 @@
 <template>
-  <Time-picker class="vf-time-picker" type="time" v-model="parent.data[currentVal.key]"
+  <Time-picker class="vf-time-picker"
+               v-bind="currentVal.props"
+               type="time" v-model="parent.data[currentVal.key]"
                :class="[currentVal.className,error?'vf-error':'']"
                :style="{width:`${currentVal.widthRatio}%`}"
                :clearable="currentVal.clearable"

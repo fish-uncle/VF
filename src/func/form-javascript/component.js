@@ -3,10 +3,8 @@ const component = {
   title_en: 'javascript',
   icon: 'logo-javascript',
   dataType: 'Null',
-  componentType: 'modification',
   type: 'javascript',
   code: 'console.log("javascript start!")',
-  labelWidth: 0,
   changeList: [
     'javascript',
   ]

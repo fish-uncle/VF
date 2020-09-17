@@ -8,11 +8,11 @@
        @click="choose(index)">
     <div class="vf-component-model pos-a z-index-9"/>
     <label class="fn-fl vf-component-label"
-           :class="currentVal.required?'has-required':''"
-           :style="{width:`${currentVal.labelWidth}px`,textAlign:currentVal.labelTextAlign}">
-      {{currentVal[`title_${language.lang}`]}}:
+           :class="currentVal.rules.required?'has-required':''"
+           :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
+      {{currentTitle}}:
     </label>
-    <div :style="{marginLeft:`${currentVal.labelWidth}px`}">
+    <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
       <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language.lang"></component>
     </div>
     <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center" @click="del">
@@ -36,8 +36,36 @@
         type: ''
       }
     },
-    computed: mapState ([ "center", "language" ]),
-    props: [ "value", "index", 'edit' ],
+    computed: {
+      ...mapState ([ 'center' ]),
+      currentLabelTextAlign () {
+        if (this.currentVal.labelTextAlign) {
+          return this.currentVal.labelTextAlign
+        } else {
+          return this.labelTextAlign
+        }
+      },
+      currentLabelWidth () {
+        if (this.currentVal.labelWidth) {
+          return `${this.currentVal.labelWidth}px`
+        } else {
+          if (typeof this.currentVal.labelWidth === 'number') {
+            return `${this.currentVal.labelWidth}px`
+          } else {
+            return `${this.labelWidth}px`
+          }
+        }
+      },
+      currentTitle () {
+        if (this.currentVal.title) {
+          return this.currentVal.title
+        }
+        if (this.currentVal[`title_${this.language}`]) {
+          return this.currentVal[`title_${this.language}`]
+        }
+      }
+    },
+    props: [ 'value', 'index', 'edit', 'language', 'labelTextAlign', 'labelWidth' ],
     watch: {
       value (val) {
         this.currentVal = val;
@@ -90,6 +118,10 @@
   .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {
     .vf-component-label {
       display: none;
+    }
+
+    .vf-component-content {
+      margin-left: 0 !important;
     }
   }
 
