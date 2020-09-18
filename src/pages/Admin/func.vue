@@ -26,26 +26,14 @@
 <script>
   import FuncItem from './func-item';
   import { mapState } from 'vuex';
+  import { uuid } from "../../utils";
 
   export default {
-    data () {
-      return {
-        i: '',
-        l: ''
-      }
-    },
     components: {
       FuncItem,
     },
     computed: mapState ([ "component", 'center', 'language' ]),
-    mounted () {
-      this.init ();
-    },
     methods: {
-      init () {
-        this.i = Math.random (5).toString (32).replace ('0.', '')
-        this.l = Math.random (5).toString (32).replace ('0.', '')
-      },
       handleMove: function (evt) {
         if (evt.to.className === 'vf-drag-content') {
           return true
@@ -55,9 +43,11 @@
       },
       handleClone: function (evt) {
         let dragItem = evt
-        let key = `${dragItem.type}_${this.i}`
+        const i = uuid()
+        const l = uuid()
+        let key = `${dragItem.type}_${i}`
         if (dragItem.dataType === 'TimeRange') {
-          key += `;${this.l}`
+          key += `;${l}`
         }
         dragItem.key = key
         dragItem.id = key
@@ -65,7 +55,6 @@
         dragItem.labelWidth = this.center.labelWidth
         dragItem.labelTextAlign = this.center.labelTextAlign
         this.$agent.$once ({ type: 'formDataAdd', dragItem })
-        this.init ()
         return dragItem
       }
     },

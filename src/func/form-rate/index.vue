@@ -27,7 +27,7 @@
       }
     },
     methods: {
-      init () {
+      update () {
         this.parent.changeData ({
           value: '',
           key: this.currentVal.key

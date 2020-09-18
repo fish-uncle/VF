@@ -31,7 +31,7 @@
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('clearable')!==-1">
       <label>{{$t('admin_right_btn11')}}</label>
-      <RadioGroup v-model="item.clearable?1:0" type="button" size="large"
+      <RadioGroup :value="item.clearable?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'clearable')">
         <Radio :label="1">{{$t('admin_right_btn11_1')}}</Radio>

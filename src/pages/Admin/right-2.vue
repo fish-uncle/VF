@@ -13,6 +13,13 @@
       <i-input :value="item.key.split(';')[1]"
                @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dataType==='TimeRange'"/>
     </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('group')!==-1">
+      <label>{{$t('group2')}}</label>
+      <i-select :clearable="true"
+                v-model="item.group">
+        <i-option :value="item.id" v-for="item in center.group">{{item.key}}</i-option>
+      </i-select>
+    </div>
     <div class="vf-control" v-if="item.changeList.indexOf('fileFormat')!==-1">
       <label>{{$t('admin_right_btn29')}}</label>
       <i-input v-model="item.fileFormat"
@@ -42,7 +49,7 @@
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('disabled')!==-1">
       <label>{{$t('admin_right_btn9')}}</label>
-      <RadioGroup v-model="item.disabled?1:0" type="button" size="large"
+      <RadioGroup :value="item.disabled?1:0" type="button" size="large"
                   @on-change="value=>checkChange(!!value,'disabled')">
         <Radio :label="1">{{$t('admin_right_btn9_1')}}</Radio>
         <Radio :label="0">{{$t('admin_right_btn9_2')}}</Radio>
@@ -50,7 +57,7 @@
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('alpha')!==-1">
       <label>{{$t('admin_right_btn12')}}</label>
-      <RadioGroup v-model="item.alpha?1:0" type="button" size="large"
+      <RadioGroup :value="item.alpha?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'alpha')">
         <Radio :label="1">{{$t('admin_right_btn12_1')}}</Radio>
@@ -59,7 +66,7 @@
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('showText')!==-1">
       <label>{{$t('admin_right_btn13')}}</label>
-      <RadioGroup v-model="item.showText?1:0" type="button" size="large"
+      <RadioGroup :value="item.showText?1:0" type="button" size="large"
 
                   @on-change="value=>checkChange(!!value,'showText')">
         <Radio :label="1">{{$t('admin_right_btn13_1')}}</Radio>

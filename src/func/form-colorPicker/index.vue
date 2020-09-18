@@ -1,5 +1,5 @@
 <template>
-  <ColorPicker v-model="color"
+  <ColorPicker v-model="parent.data[currentVal.key]"
                v-bind="currentVal.props"
                class="vf-color-picker"
                :class="[currentVal.className,error?'vf-error':'']"
@@ -8,14 +8,11 @@
                :disabled="currentVal.disabled"/>
 </template>
 <script>
-
-  import { findComponentUpward } from "../../utils";
+  import { findComponentUpward } from '../../utils'
 
   export default {
     data () {
-      let color = '';
       return {
-        color,
         parent: findComponentUpward (this, 'FormList'),
         currentVal: this.value,
       }
@@ -23,12 +20,11 @@
     props: [ 'value', 'error' ],
     watch: {
       value (val) {
-        this.currentVal = val;
-        this.color = parent.data[this.currentVal.key];
+        this.currentVal = val
       }
     },
     methods: {
-      init () {
+      update () {
         this.parent.changeData ({
           value: '',
           key: this.currentVal.key
@@ -36,7 +32,7 @@
       },
       colorChange (value) {
         if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
+          this.parent.errorHide (this.currentVal.id)
         }
         this.parent.changeData ({
           value,

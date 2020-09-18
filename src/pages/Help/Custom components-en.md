@@ -1,2 +1,2 @@
 ## Custom components
-编写中，请耐心等待
+Writing, please wait patiently

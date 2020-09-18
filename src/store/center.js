@@ -8,6 +8,13 @@ const store = {
     currentScale: 0,
     current: 0,
     multiFormId: 'form0',
+    group: [
+      {
+        color: 'rgba(255,255,255,0)',
+        key: 'test',
+        id: 'group0',
+      }
+    ],
     multiForm: [
       {
         name: '未命名表单1',
@@ -31,11 +38,26 @@ const store = {
       multiForm.splice (newState.index, 1)
       state.multiForm = multiForm
     },
+    // 删除表单
+    groupChangeDel (state, newState) {
+      const group = state.group
+      group.splice (newState.index, 1)
+      state.group = group
+    },
+    // 新增表单
+    groupChangeAdd (state, newState) {
+      const group = state.group
+      group.push ({
+        id: newState.key,
+        key: newState.key,
+        color: 'rgba(255,255,255,0)'
+      })
+    },
     // 新增表单
     multiFormChangeAdd (state, newState) {
       const multiForm = state.multiForm
       multiForm.push ({
-        key: `${newState.key}`,
+        key: newState.key,
         name: `未命名表单${newState.key}`
       })
     },
@@ -66,11 +88,20 @@ const store = {
       state.current = newState.index
     },
     // 设置组件
-    set (state, newState = { viewScale: '12:12', labelWidth: 120, labelTextAlign: 'right' }) {
+    set (state, newState) {
       state.list = newState.list
-      state.viewScale = newState.viewScale
-      state.labelWidth = newState.labelWidth
-      state.labelTextAlign = newState.labelTextAlign
+      if (newState.viewScale) {
+        state.viewScale = newState.viewScale
+      }
+      if (newState.labelWidth) {
+        state.labelWidth = newState.labelWidth
+      }
+      if (newState.labelTextAlign) {
+        state.labelTextAlign = newState.labelTextAlign
+      }
+      if (newState.group) {
+        state.group = newState.group
+      }
     },
     // 清空组件
     clear (state) {

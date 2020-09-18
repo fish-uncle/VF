@@ -1,7 +1,7 @@
 <template>
-  <Modal width="1000" v-model="model.codeVisible" :closable="false" :footer-hide="true" :scrollable="true">
+  <Modal width="780" v-model="model.codeVisible" :closable="false" :footer-hide="true" :scrollable="true">
     <editor :value="html"
-            @init="editorInit" lang="html" theme="chrome" width="968" height="620"></editor>
+            @init="editorInit" lang="html" theme="chrome" width="750" height="700"></editor>
   </Modal>
 </template>
 <script>
@@ -18,6 +18,7 @@
         const lt = '<'
         let list = JSON.parse (JSON.stringify (this.center.list))
         const viewScale = this.center.viewScale
+        const group = this.center.group
         const labelWidth = this.center.labelWidth
         const labelTextAlign = this.center.labelTextAlign
         list.forEach (child => {
@@ -37,10 +38,10 @@
             delete item.componentType
           })
         })
-
         return `<template>
   <div>
-    <v-form ref="form" :language="language" :view-scale="viewScale" :list="list" :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
+    <v-form ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
+    :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
     </v-form>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">${model_preview_submit}${lt}/Button>
@@ -58,13 +59,15 @@
         viewScale: '${viewScale}',
         labelWidth: ${labelWidth},
         labelTextAlign: '${labelTextAlign}',
-        language: 'zh'
+        language: 'zh',
+        group: ${JSON.stringify (group)}
       }
     },
     methods: {
       handleSubmit () {
-        if (!this.$refs.form.validate.bind (this) ()) {
+        if (!this.$refs.form.validate ()) {
           console.log (this.$refs.form.getData ());
+          console.log (this.$refs.form.getDataByGroup ());
         }
       },
       handleReset(){

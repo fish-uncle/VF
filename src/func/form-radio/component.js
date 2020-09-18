@@ -5,11 +5,11 @@ const component = {
   type: 'radio',
   selectList: [
     {
-      value: 1,
+      value: '11',
       label: '1'
     },
     {
-      value: 2,
+      value: '22',
       label: '2'
     }
   ],

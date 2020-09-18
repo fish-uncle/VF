@@ -14,6 +14,11 @@ const language = {
   "multiform2": "Form ID",
   "multiform3": "Form name",
 
+  "group1": "Open group",
+  "group2": "group id",
+  "group3": "color",
+  "group4": "group key",
+
   "admin_center_title1": "Functional area",
   "admin_center_btn1": "clear",
   "admin_center_btn2": "preview",

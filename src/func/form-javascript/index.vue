@@ -21,10 +21,10 @@
       }
     },
     mounted() {
-      this.init();
+      this.update();
     },
     methods: {
-      init() {
+      update() {
         eval(this.currentVal.code);
       },
     }

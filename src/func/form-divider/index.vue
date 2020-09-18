@@ -6,19 +6,19 @@
 </template>
 <script>
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
       }
     },
-    props: ["value"],
+    props: [ "value" ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init() {
+      update () {
       },
     }
   }

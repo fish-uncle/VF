@@ -32,7 +32,7 @@
       }
     },
     methods: {
-      init () {
+      update () {
         if (this.currentVal.selectListUrl) {
           const data = { ...parent.data, ...this.currentVal.customAjaxParams };
           request.post (this.currentVal.selectListUrl, data).then (res => {

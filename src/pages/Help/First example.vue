@@ -2,7 +2,7 @@
   <div>
     <h2>{{$t('help_left_1_3')}}</h2>
     <editor :value="html"
-            @init="editorInit" lang="html" theme="chrome" width="968" height="580"></editor>
+            @init="editorInit" lang="html" theme="chrome" width="100%" height="640"></editor>
   </div>
 </template>
 <script>
@@ -28,9 +28,12 @@
         const viewScale = '12:12'
         const labelWidth = 120
         const labelTextAlign = 'right'
+        const group = []
         return `<template>
   <div>
-    <v-form ref="form" :view-scale="viewScale" :list="list" :labelWidth="labelWidth" :labelTextAlign="labelTextAlign"></v-form>
+    <v-form ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
+    :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
+    </v-form>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">${model_preview_submit}${lt}/Button>
       <Button type="primary" @click="handleReset">${model_preview_reset}${lt}/Button>
@@ -46,13 +49,16 @@
         list: ${JSON.stringify (list)},
         viewScale: '${viewScale}',
         labelWidth: ${labelWidth},
-        labelTextAlign: '${labelTextAlign}'
+        labelTextAlign: '${labelTextAlign}',
+        language: 'zh',
+        group: ${JSON.stringify (group)}
       }
     },
     methods: {
       handleSubmit () {
         if (!this.$refs.form.validate.bind (this) ()) {
           console.log (this.$refs.form.getData ());
+          console.log (this.$refs.form.getDataByGroup ());
         }
       },
       handleReset(){

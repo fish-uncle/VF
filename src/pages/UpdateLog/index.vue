@@ -17,24 +17,24 @@
 </template>
 <script>
   export default {
-    data() {
+    data () {
       return {
         log: []
       }
     },
-    beforeDestroy() {
-      this.$agent.$off('languageChange', this.init)
+    beforeDestroy () {
+      this.$agent.$off ('languageChange', this.init)
     },
     methods: {
-      async init() {
+      async init () {
         const log = await import(`./log-${this.$i18n.locale}`);
         this.log = log.default;
       }
     },
-    mounted() {
-      this.$store.commit('top/changeTop', {topIndex: 2});
-      this.$agent.$on('languageChange', this.init);
-      this.init();
+    mounted () {
+      this.$store.commit ('top/changeTop', { topIndex: 2 });
+      this.$agent.$on ('languageChange', this.init);
+      this.init ();
     }
   }
 </script>

@@ -3,22 +3,16 @@
        :class="[currentVal.className,currentVal.disabled?'f-image-disabled':'',
        currentVal.className,error?'vf-error':'']"
        :style="{width:`${currentVal.widthRatio}%`}">
-    <div class="vf-image-upload-list" v-for="item in uploadList">
-      <template v-if="item.status === 'finished'">
-        <img :src="item.url"/>
-        <div class="vf-image-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
-          <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
-        </div>
-      </template>
-      <template v-else>
-        <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
-      </template>
+    <div class="vf-image-upload-list" v-for="item in parent.data[currentVal.key]">
+      <img :src="item.url"/>
+      <div class="vf-image-upload-list-cover">
+        <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
+        <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
+      </div>
     </div>
     <Upload ref="upload"
             v-bind="currentVal.props"
             :action="currentVal.action"
-            :default-file-list="currentVal.defaultList"
             type="drag"
             :max-size="currentVal.maxSize"
             :show-upload-list="false"
@@ -68,10 +62,11 @@
     },
     methods: {
       init () {
-        const fileList = this.uploadList = this.$refs.upload.fileList;
-        const list = fileList.map (item => item.url);
+        this.uploadList = this.parent.data[this.currentVal.key]
+      },
+      update () {
         this.parent.changeData ({
-          value: list,
+          value: [],
           key: this.currentVal.key
         })
       },
@@ -84,7 +79,9 @@
       handleRemove (file) {
         const fileList = this.$refs.upload.fileList;
         this.$refs.upload.fileList.splice (fileList.indexOf (file), 1);
-        const list = fileList.map (item => item.url);
+        const list = fileList.map (item => {
+          return { url: item.url, name: item.name }
+        });
         this.parent.changeData ({
           value: list,
           key: this.currentVal.key
@@ -97,11 +94,7 @@
       handleSuccess (response, file, fileList) {
         file.url = response.data;
         file.name = response.data;
-        const list = fileList.map (item => item.url);
-        this.parent.changeData ({
-          value: list,
-          key: this.currentVal.key
-        })
+        this.parent.data[this.currentVal.key].push ({ url: response.data, name: response.data })
         if (this.error) {
           this.parent.errorHide (this.currentVal.id);
         }
@@ -111,6 +104,7 @@
 </script>
 <style lang="less">
   @import "../../less/conf";
+
   .vf-image.vf-error {
     .ivu-upload {
       border-color: @error-color;
@@ -118,6 +112,7 @@
       box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
     }
   }
+
   .vf-image-upload-list {
     display: inline-block;
     width: 60px;

@@ -1,5 +1,5 @@
 <template>
-  <Menu class="fn-fl vf-help-left" :open-names="['1','2','3','4']" :active-name="help.helpName"
+  <Menu class="fn-fl vf-help-left" :open-names="['1','2','3','4','5']" :active-name="help.helpName"
         @on-select="handleSelect">
     <Submenu name="1">
       <template slot="title">
@@ -15,17 +15,30 @@
       </template>
       <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>
       <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>
-      <!--      <MenuItem name="Basic components">{{$t('help_left_2_3')}}</MenuItem>-->
-      <!--      <MenuItem name="Decorating components">{{$t('help_left_2_4')}}</MenuItem>-->
+      <MenuItem name="Basic components">{{$t('help_left_2_3')}}</MenuItem>
+      <MenuItem name="Decorating components">{{$t('help_left_2_4')}}</MenuItem>
     </Submenu>
-    <!--    <Submenu name="3">-->
-    <!--      <template slot="title">-->
-    <!--        {{$t('help_left_3')}}-->
-    <!--      </template>-->
-    <!--      <MenuItem name="Custom components">{{$t('help_left_3_1')}}</MenuItem>-->
-    <!--      <MenuItem name="Internationalization">{{$t('help_left_3_2')}}</MenuItem>-->
-    <!--    </Submenu>-->
+    <Submenu name="3">
+      <template slot="title">
+        API
+      </template>
+      <MenuItem name="statusEdit">statusEdit</MenuItem>
+      <MenuItem name="statusRead">statusRead</MenuItem>
+      <MenuItem name="reset">reset</MenuItem>
+      <MenuItem name="validate">validate</MenuItem>
+      <MenuItem name="getData">getData</MenuItem>
+      <MenuItem name="getDataByGroup">getDataByGroup</MenuItem>
+      <MenuItem name="changeData">changeData</MenuItem>
+      <MenuItem name="changeSelectList">changeSelectList</MenuItem>
+    </Submenu>
     <Submenu name="4">
+      <template slot="title">
+        {{$t('help_left_3')}}
+      </template>
+      <MenuItem name="Custom components">{{$t('help_left_3_1')}}</MenuItem>
+      <MenuItem name="Internationalization">{{$t('help_left_3_2')}}</MenuItem>
+    </Submenu>
+    <Submenu name="5">
       <template slot="title">
         {{$t('help_left_4')}}
       </template>
@@ -35,16 +48,16 @@
   </Menu>
 </template>
 <script>
-  import {mapState} from "vuex";
+  import { mapState } from "vuex";
 
   export default {
-    computed: mapState(["help"]),
+    computed: mapState ([ "help" ]),
     methods: {
-      handleSelect(name) {
-        const currentHash = decodeURIComponent(location.hash.replace('#', ''));
+      handleSelect (name) {
+        const currentHash = decodeURIComponent (location.hash.replace ('#', ''));
         const nowHash = `/help/${name}`;
-        if (encodeURIComponent(currentHash.replace(/\s+/g, "")) !== encodeURIComponent(nowHash.replace(/\s+/g, ""))) {
-          this.$router.push(nowHash);
+        if (encodeURIComponent (currentHash.replace (/\s+/g, "")) !== encodeURIComponent (nowHash.replace (/\s+/g, ""))) {
+          this.$router.push (nowHash);
         }
       }
     }

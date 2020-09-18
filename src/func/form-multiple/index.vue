@@ -1,14 +1,17 @@
 <template>
-  <Checkbox-group class="vf-multiple fn-flex flex-row" v-model="data"
+  <Checkbox-group class="vf-multiple fn-flex flex-row"
+                  v-model="parent.data[currentVal.key]"
                   v-bind="currentVal.props"
                   :class="[currentVal.className,error?'vf-error':'']"
                   :style="{width:`${currentVal.widthRatio}%`}"
                   @on-change="clickChange">
     <Checkbox v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
+              :disabled="currentVal.disabled"
               :label="item.value" :key="item.value">
       <span>{{item.label}}</span>
     </Checkbox>
     <Checkbox v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList" :label="item.value"
+              :disabled="currentVal.disabled"
               :key="item.value">
       <span>{{item.label}}</span>
     </Checkbox>
@@ -21,7 +24,6 @@
   export default {
     data () {
       return {
-        data: [],
         currentVal: this.value,
         parent: findComponentUpward (this, 'FormList')
       }
@@ -37,6 +39,13 @@
       this.init ();
     },
     methods: {
+      update () {
+        this.init ()
+        this.parent.changeData ({
+          value: [],
+          key: this.currentVal.key
+        })
+      },
       init () {
         if (this.currentVal.selectListUrl) {
           const data = { ...this.parent.data, ...this.currentVal.customAjaxParams };
@@ -54,11 +63,6 @@
             }
           })
         }
-        this.data = [];
-        this.parent.changeData ({
-          value: [],
-          key: this.currentVal.key
-        })
         if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
             this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
@@ -71,10 +75,6 @@
         }
       },
       clickChange () {
-        this.parent.changeData ({
-          value: this.data,
-          key: this.currentVal.key
-        })
         if (this.error) {
           this.parent.errorHide (this.currentVal.id);
         }

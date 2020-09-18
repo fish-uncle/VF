@@ -26,8 +26,9 @@
       }
     },
     beforeDestroy () {
-      this.$agent.$off ('formDataRemove', this.dataRemove)
-      this.$agent.$off ('formDataAdd', this.dataAdd)
+      this.$agent.$off ('formDataRemove', this.handleChangeKeyForRemove)
+      this.$agent.$off ('formDataAdd', this.handleChangeKeyForDrag)
+      this.$agent.$off ('formDataChange', this.handleChangeKeyForChangeList)
     },
     methods: {
       controlOthersHide (controlOthersHideTargetKeys, value) {
@@ -56,13 +57,13 @@
       },
       controlOthersUpdate (controlOthersUpdateTargetKeys) {
         controlOthersUpdateTargetKeys.forEach (item => {
-          this.child[item].init ()
+          this.child[item].update ()
         })
       },
       childMounted (obj) {
         this.child[obj.id] = obj
       },
-      dataAdd ({ dragItem }) {
+      handleChangeKeyForDrag ({ dragItem }) {
         const data = this.data
         switch (dragItem.dataType) {
           case 'Boolean':
@@ -89,12 +90,12 @@
         }
         this.data = data
       },
-      dataChange ({oldKey, newKey}) {
+      handleChangeKeyForChangeList ({ oldKey, newKey }) {
         const data = this.data[oldKey]
         this.$delete (this.data, oldKey)
         this.$set (this.data, newKey, data)
       },
-      dataRemove ({ key }) {
+      handleChangeKeyForRemove ({ key }) {
         const data = this.data
         if (key.indexOf (';') !== '-1') {
           const _key = key.split (';')
@@ -112,9 +113,9 @@
       },
     },
     mounted () {
-      this.$agent.$on ('formDataRemove', this.dataRemove)
-      this.$agent.$on ('formDataAdd', this.dataAdd)
-      this.$agent.$on ('formDataChange', this.dataChange)
+      this.$agent.$on ('formDataRemove', this.handleChangeKeyForRemove)
+      this.$agent.$on ('formDataAdd', this.handleChangeKeyForDrag)
+      this.$agent.$on ('formDataChange', this.handleChangeKeyForChangeList)
     }
   }
 </script>

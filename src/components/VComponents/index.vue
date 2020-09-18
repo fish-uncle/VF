@@ -2,8 +2,7 @@
   <div class="fn-clear vf-component pos-r"
        v-show="visible"
        :class="[`vf-${type}-box`]"
-       :style="{width:`${currentVal.width/24*100}%`}"
-       @click="choose(index)">
+       :style="{width:`${currentVal.width/24*100}%`}">
     <label class="fn-fl vf-component-label"
            :class="currentRequired?'has-required':''"
            :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
@@ -12,7 +11,7 @@
     <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
       <component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
                  :error="error"></component>
-      <span class="vf-component-read" v-if="status==='read'">{{parent.data[currentVal.key]}}</span>
+      <component v-if="status==='read'" :is="readComponent" :value="currentVal" :language="language"></component>
     </div>
     <div v-if="error && status==='edit' " class="pos-a vf-component-error-msg"
          :style="{left:`${currentVal.labelWidth+10}px`}">
@@ -21,7 +20,7 @@
   </div>
 </template>
 <script>
-  import { cssStyle2DomStyle, findComponentUpward } from '../../utils';
+  import { cssStyle2DomStyle, findComponentUpward } from '../../utils'
 
   export default {
     name: 'FormComponents',
@@ -33,6 +32,7 @@
         visible: true,
         error: false,
         currentComponent: null,
+        readComponent: null,
         type: '',
         errorMsg: ''
       }
@@ -76,6 +76,7 @@
         const type = cssStyle2DomStyle (this.currentVal.type);
         this.type = type;
         this.currentComponent = () => import(`../../func/form-${type}`)
+        this.readComponent = () => import(`../../func/form-${type}/read`)
         this.parent.childMounted ({
           key: this.currentVal.key,
           errorHide: this.errorHide,
@@ -90,6 +91,7 @@
       const type = cssStyle2DomStyle (this.currentVal.type);
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
+      this.readComponent = () => import(`../../func/form-${type}/read`)
       this.parent.childMounted ({
         key: this.currentVal.key,
         errorHide: this.errorHide,
@@ -110,24 +112,13 @@
         this.error = false
       },
       show () {
-        this.visible = true;
+        this.visible = true
       },
       hide () {
-        this.visible = false;
+        this.visible = false
       },
-      init () {
-        this.$children[0].init ();
-      },
-      del () {
-        this.$destroy (true);
-        this.$el.parentNode.removeChild (this.$el);
-        this.$store.commit ('center/remove', { index: this.index });
-        this.$store.commit ('right/changeTab', { tabIndex: 1 });
-      },
-      choose (index) {
-        if (!this.edit)
-          return
-        this.$store.commit ('center/choose', { index });
+      update () {
+        this.$children[0].update ()
       }
     }
   }
@@ -142,6 +133,7 @@
   .vf-component-read {
     font-size: 14px;
     line-height: 32px;
+    word-break: break-all;
   }
 
   .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {

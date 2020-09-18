@@ -8,7 +8,6 @@ const component = {
   maxSize: 2048,
   fileFormat: 'jpg,jpeg,png',
   fileAccept: 'image/*',
-  defaultList: [],
   rules: {
     required: false,
     pattern: '',

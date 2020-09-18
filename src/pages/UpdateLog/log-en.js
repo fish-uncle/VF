@@ -1,7 +1,7 @@
 const log = [
   {
     version: '1.1.2',
-    time: '2020-09-17',
+    time: '2020-09-18',
     content: [
       'Add edit status, read-only status.',
       'New form unified settings, component width, component alignment.',
@@ -12,6 +12,8 @@ const log = [
       'Fix field ID modification.',
       'New read configuration.',
       'Optimize dynamic text.',
+      'New grouping function,Data can be obtained according to the grouping.',
+      'New data can be obtained according to hiding.',
     ]
   },
   {

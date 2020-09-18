@@ -10,6 +10,11 @@ const language = {
 
   "admin_center": "从左侧拖拽添加组件",
 
+  "group1": "开启分组",
+  "group2": "组id",
+  "group3": "色值",
+  "group4": "组key",
+
   "multiform1": "开启多表单",
   "multiform2": "表单id",
   "multiform3": "表单名",

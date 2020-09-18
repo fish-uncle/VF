@@ -31,31 +31,15 @@
     watch: {
       value (val) {
         this.currentVal = val;
-        this.reset ();
-        this.init ();
+        this.init ()
       },
     },
     mounted () {
-      this.reset ();
+      this.init ()
     },
     methods: {
-      reset () {
-        if (this.currentVal.selectListUrl) {
-          const data = { ...this.parent.data, ...this.currentVal.customAjaxParams };
-          request.post (this.currentVal.selectListUrl, data).then (res => {
-            if (this.edit) {
-              this.$store.commit ('center/changeSelectList', {
-                value: res,
-                key: this.currentVal.key
-              })
-            } else {
-              this.parent.changeSelectList ({
-                value: res,
-                key: this.currentVal.key
-              })
-            }
-          })
-        }
+      update () {
+        this.init ()
         this.parent.changeData ({
           value: '',
           key: this.currentVal.key
@@ -78,10 +62,6 @@
             }
           })
         }
-        this.parent.changeData ({
-          value: '',
-          key: this.currentVal.key
-        })
         if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
             this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
@@ -94,11 +74,6 @@
         }
       },
       clickChange (value) {
-        const key = this.currentVal.diyKey ? this.currentVal.diyKey : this.currentVal.key;
-        this.parent.changeData ({
-          value,
-          key
-        })
         if (this.error) {
           this.parent.errorHide (this.currentVal.id);
         }

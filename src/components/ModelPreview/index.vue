@@ -3,6 +3,7 @@
     <v-form ref="form" :view-scale="center.viewScale" :list="center.list"
             :labelTextAlign="center.labelTextAlign"
             :language="language.lang"
+            :group="center.group"
             :labelWidth="center.labelWidth"/>
     <div class="text-center">
       <Button type="primary" @click="handleAdd">{{$t('model_preview_add')}}</Button>
@@ -15,6 +16,7 @@
 </template>
 <script>
   import { mapState } from 'vuex'
+  import { uuid } from '../../utils'
 
   export default {
     data () {
@@ -34,7 +36,7 @@
       handleAdd () {
         const list = this.center.list
         const dragItem = JSON.parse (JSON.stringify (this.component.list[0]))
-        const id = Math.random (5).toString (32).replace ('0.', '')
+        const id = uuid ()
         dragItem.id = id
         dragItem.key = id
         dragItem.labelWidth = this.center.labelWidth
@@ -44,8 +46,9 @@
         this.$store.commit ('center/set', { list, viewScale })
       },
       handleSubmit () {
-        if (!this.$refs.form.validate.bind (this) ()) {
+        if (!this.$refs.form.validate ()) {
           console.log (this.$refs.form.getData ());
+          console.log (this.$refs.form.getDataByGroup ());
         }
       },
       handleReset () {

@@ -11,7 +11,7 @@
   import request from '../../utils/request'
 
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
         data: [],
@@ -19,28 +19,28 @@
         page: 1
       }
     },
-    props: ['value','language'],
+    props: [ 'value', 'language' ],
     computed: {
-      columns() {
+      columns () {
         if (this.currentVal.columns) {
-          return require(`../../columns/${this.currentVal.columns}`);
+          return require (`../../columns/${this.currentVal.columns}`);
         } else {
           return []
         }
       }
     },
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
-    mounted() {
-      this.init();
+    mounted () {
+      this.update ();
     },
     methods: {
-      init() {
+      update () {
         if (this.currentVal.tableAjaxUrl) {
-          request.post(this.currentVal.tableAjaxUrl).then(res => {
+          request.post (this.currentVal.tableAjaxUrl).then (res => {
             if (res) {
               this.data = res.list
               this.total = res.total

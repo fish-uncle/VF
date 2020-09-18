@@ -38,7 +38,8 @@
           list: config.list,
           viewScale: config.viewScale,
           labelWidth: config.labelWidth,
-          labelTextAlign: config.labelTextAlign
+          labelTextAlign: config.labelTextAlign,
+          group: config.group
         })
       }
     }

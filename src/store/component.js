@@ -53,7 +53,7 @@ const obj = {
 }
 let changeList = {}
 const _changeList = [
-  'title', 'width', 'key', 'className'
+  'title', 'width', 'key', 'className', 'group'
 ]
 
 const list1 = _list1.map (item => {

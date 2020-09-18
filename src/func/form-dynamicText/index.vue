@@ -29,8 +29,12 @@
             arr.forEach (item => {
               const i = item.replace (/[${}]/g, '')
               if (i) {
-                const key = this.parent.child[i].key
-                result_n += Number (data[key])
+                const child = this.parent.child[i]
+                const key = child.key
+                const d = data[key]
+                if (child && d) {
+                  result_n += Number (d)
+                }
               }
             })
             return result_n
@@ -40,8 +44,12 @@
               if (/(\$\{[0-9a-zA-Z_]*})/g.test (item)) {
                 const i = item.replace (/[${}]/g, '')
                 if (i) {
-                  const key = this.parent.child[i].key
-                  result_s += data[key].toString () || '--'
+                  const child = this.parent.child[i]
+                  const key = child.key
+                  const d = data[key]
+                  if (child && d) {
+                    result_s += d.toString ()
+                  }
                 }
               } else {
                 result_s += item

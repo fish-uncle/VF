@@ -52,3 +52,7 @@ export function str2Obj (str) {
     return v;
   });
 }
+
+export function uuid () {
+  return Math.random (5).toString (32).replace ('0.', '')
+}

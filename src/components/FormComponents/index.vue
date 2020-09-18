@@ -1,7 +1,7 @@
 <template>
   <div class="fn-clear vf-component pos-r"
        v-show="visible"
-       :style="{width:`${currentVal.width/24*100}%`}"
+       :style="{width:`${currentVal.width/24*100}%`,background:currentGroupColor}"
        :class="[index===center.current&&edit?'active':'',
        edit?'vf-component-edit':'',
        `vf-${type}-box`]"
@@ -15,7 +15,7 @@
     <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
       <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language.lang"></component>
     </div>
-    <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center" @click="del">
+    <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center" @click="handleDelete">
       <Icon type="md-trash"/>
     </div>
   </div>
@@ -38,6 +38,19 @@
     },
     computed: {
       ...mapState ([ 'center' ]),
+      currentGroupColor () {
+        if (this.currentVal.group) {
+          let color = ''
+          this.center.group.forEach (item => {
+            if (item.id === this.currentVal.group) {
+              color = item.color
+            }
+          })
+          return color
+        } else {
+          return 'rgba(255,255,255,0)'
+        }
+      },
       currentRequired () {
         return this.currentVal.rules ? this.currentVal.rules.required : false
       },
@@ -93,10 +106,10 @@
       hide () {
         this.visible = false;
       },
-      init () {
-        this.$children[0].init ();
+      update () {
+        this.$children[0].update ();
       },
-      del () {
+      handleDelete () {
         this.$store.commit ('center/remove', { index: this.index });
         this.$store.commit ('right/changeTab', { tabIndex: 1 });
         this.$agent.$once ({ type: 'formDataRemove', key: this.currentVal.key });

@@ -30,15 +30,16 @@
           {
             title: 'English',
             value: 'en',
-          } ],
+          }
+        ],
         version: process.env.pkg.version
       }
     },
     methods: {
       handleLanguageChange (data) {
-        document.title = this.$t ('top_description');
-        localStorage.setItem ("locale", data);
-        this.$agent.$once ({ type: 'languageChange', data });
+        document.title = this.$t ('top_description')
+        localStorage.setItem ("locale", data)
+        this.$agent.$once ({ type: 'languageChange', data })
         this.$store.commit ('language/change', { lang: data })
       },
       handleIndex () {
@@ -46,15 +47,15 @@
           this.$router.push ('/')
       },
       handleBuyShow () {
-        this.$store.commit ('model/buyShow');
+        this.$store.commit ('model/buyShow')
       },
       handleUpdateLog () {
         if (this.$route.name !== 'UpdateLog')
-          this.$router.push ('/updateLog');
+          this.$router.push ('/updateLog')
       },
       handleHelp () {
         if (this.$route.name !== 'Help')
-          this.$router.push ('/help/Introduce');
+          this.$router.push ('/help/Introduce')
       }
     }
   }

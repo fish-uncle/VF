@@ -11,8 +11,9 @@
   </div>
 </template>
 <script>
-  import { mapState } from "vuex";
+  import { mapState } from 'vuex'
   import Select from '../../func/form-select/component'
+  import { uuid } from '../../utils'
 
   export default {
     data () {
@@ -26,7 +27,7 @@
     },
     computed: mapState ([ "component" ]),
     methods: {
-      handleReset(){
+      handleReset () {
         this.$refs.form.reset ()
       },
       handleEdit () {
@@ -36,7 +37,7 @@
         this.$refs.form.statusRead ()
       },
       handleSubmit () {
-        if (!this.$refs.form.validate.bind (this) ()) {
+        if (!this.$refs.form.validate ()) {
           console.log (this.$refs.form.getData ());
         }
       },
@@ -46,8 +47,8 @@
         const i = Math.floor (Math.random () * (component.length - 1));
         const j = Math.floor (Math.random () * (component.length - 1));
         component.forEach ((dragItem, index) => {
-          const key_i = Math.random (5).toString (32).replace ('0.', '')
-          const key_l = Math.random (5).toString (32).replace ('0.', '')
+          const key_i = uuid ()
+          const key_l = uuid ()
           let key = `${dragItem.type}_${key_i}`
           if (dragItem.dataType === 'TimeRange') {
             key += `;${key_l}`
@@ -56,12 +57,6 @@
           j === index ? dragItem.required = true : void 0;
           if (dragItem.type === 'image') {
             dragItem.action = 'https://cdn.shenzhepei.com/VF/upload.json'
-            dragItem.defaultList = [
-              {
-                'name': '1.jpg',
-                'url': 'https://cdn.shenzhepei.com/VF/images/1.jpg'
-              },
-            ]
           }
           if (dragItem.type === 'input') {
             key = 'test_hide_key'

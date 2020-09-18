@@ -12,7 +12,7 @@
   </Slider>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import { findComponentUpward } from '../../utils'
 
   export default {
     data () {
@@ -21,14 +21,14 @@
         parent: findComponentUpward (this, 'FormList')
       }
     },
-    props: [ "value" ],
+    props: [ 'value' ],
     watch: {
       value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      init () {
+      update () {
         this.parent.changeData ({
           value: '',
           key: this.currentVal.key
