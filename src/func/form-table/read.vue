@@ -1,5 +1,5 @@
 <template>
-  <index :language="language" :value="value"/>
+  <index :language="language" :value="value" :status="status"/>
 </template>
 <script>
   import index from './index'
@@ -8,6 +8,6 @@
     components: {
       index
     },
-    props: [ 'language', 'value' ]
+    props: [ 'language', 'value', 'status' ]
   }
 </script>

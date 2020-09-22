@@ -4,14 +4,18 @@
               v-bind="currentVal.props"
               :class="[currentVal.className,error?'vf-error':'']"
               @on-change="clickChange">
-    <Radio v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
-           :disabled="currentVal.disabled" :label="item.value" :key="item.value">
-      {{item.label}}
-    </Radio>
-    <Radio v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList" :label="item.value"
-           :disabled="currentVal.disabled" :key="item.value">
-      {{item.label}}
-    </Radio>
+    <template v-if="!currentVal.selectListUrl">
+      <Radio v-for="item in currentVal.selectList"
+             :disabled="currentVal.disabled" :label="item.value" :key="item.value">
+        {{item.label}}
+      </Radio>
+    </template>
+    <template v-if="currentVal.selectListUrl">
+      <Radio v-for="item in currentVal.ajaxList" :label="item.value"
+             :disabled="currentVal.disabled" :key="item.value">
+        {{item.label}}
+      </Radio>
+    </template>
   </RadioGroup>
 </template>
 <script>

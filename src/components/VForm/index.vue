@@ -1,15 +1,6 @@
 <template>
-  <div>
-    <Row type="flex">
-      <div :class="['ivu-col',`ivu-col-span-${scale}`]" v-for="(scale,scaleIndex) in scale">
-        <div class="fn-flex flex-row" :style="{width:'100%',flexWrap:'wrap'}">
-          <v-component :edit="false" :language="language" :value="item" :index="index"
-                       :labelWidth="labelWidth" :labelTextAlign="labelTextAlign"
-                       :status="status"
-                       v-for="(item,index) in currentList[scaleIndex]"/>
-        </div>
-      </div>
-    </Row>
+  <div class="vf-form">
+    <slot/>
   </div>
 </template>
 <script>
@@ -19,41 +10,41 @@
     data () {
       return {
         data: {},
-        currentList: [ [], [] ],
+        // currentList: [ [], [] ],
         child: {},
-        labelWidth: 120,
-        status: 'edit',
-        labelTextAlign: 'right',
+        // labelWidth: 120,
+        status: 'read',
+        // labelTextAlign: 'right',
       }
     },
-    computed: {
-      scale () {
-        return this.viewScale.split (':')
-      }
-    },
+    // computed: {
+    //   scale () {
+    //     return this.viewScale.split (':')
+    //   }
+    // },
     name: 'FormList',
-    watch: {
-      list (val) {
-        this.currentList = val
-        this.init ()
-      }
-    },
-    props: {
-      group: {
-        type: Array,
-        default: []
-      },
-      list: {
-        type: Array,
-        default: [ [], [] ]
-      },
-      viewScale: {
-        default: '12:12'
-      },
-      language: {
-        default: 'zh'
-      }
-    },
+    // watch: {
+    //   list (val) {
+    //     this.currentList = val
+    //     this.init ()
+    //   }
+    // },
+    // props: {
+    //   group: {
+    //     type: Array,
+    //     default: []
+    //   },
+    //   list: {
+    //     type: Array,
+    //     default: [ [], [] ]
+    //   },
+    //   viewScale: {
+    //     default: '12:12'
+    //   },
+    //   language: {
+    //     default: 'zh'
+    //   }
+    // },
     methods: {
       // 编辑状态
       statusEdit () {
@@ -70,16 +61,16 @@
       childMounted (obj) {
         this.child[obj.id] = obj
       },
-      init () {
-        this.data = {};
-        let componentList = [];
-        for (let i = 0; i <= this.currentList.length - 1; i++) {
-          componentList.push (...this.currentList[i])
-        }
-        for (let i = 0; i <= componentList.length - 1; i++) {
-          this.handleChangeKeyForDrag ({ dragItem: componentList[i] })
-        }
-      },
+      // init () {
+      //   this.data = {};
+      //   let componentList = [];
+      //   for (let i = 0; i <= this.currentList.length - 1; i++) {
+      //     componentList.push (...this.currentList[i])
+      //   }
+      //   for (let i = 0; i <= componentList.length - 1; i++) {
+      //     this.handleChangeKeyForDrag ({ dragItem: componentList[i] })
+      //   }
+      // },
       // 控制其他隐藏
       controlOthersHide (controlOthersHideTargetKeys, value) {
         for (let key in controlOthersHideTargetKeys) {
@@ -119,100 +110,100 @@
         }
       },
       // 校验 form
-      validate () {
-        const data = this.data
-        let error = false
-        let componentList = [], descriptor = {};
-        for (let i = 0; i <= this.currentList.length - 1; i++) {
-          componentList.push (...this.currentList[i])
-        }
-        for (let i = 0; i <= componentList.length - 1; i++) {
-          const item = componentList[i];
-          if (item.dataType !== 'Null' && this.child[item.id].visibleStatus ()) {
-            descriptor[item.key] = {
-              ...item.rules,
-              id: item.id,
-              pattern: new RegExp (item.rules.pattern)
-            }
-          }
-        }
-        const validator = new Schema (descriptor);
-        validator.validate (data, (errors) => {
-          if (errors) {
-            error = true
-            errors.forEach (item => {
-              this.child[descriptor[item.field].id].errorShow (item.message);
-            })
-          }
-        });
-        return error
-      },
+      // validate () {
+      //   const data = this.data
+      //   let error = false
+      //   let componentList = [], descriptor = {};
+      //   for (let i = 0; i <= this.currentList.length - 1; i++) {
+      //     componentList.push (...this.currentList[i])
+      //   }
+      //   for (let i = 0; i <= componentList.length - 1; i++) {
+      //     const item = componentList[i];
+      //     if (item.dataType !== 'Null' && this.child[item.id].visibleStatus ()) {
+      //       descriptor[item.key] = {
+      //         ...item.rules,
+      //         id: item.id,
+      //         pattern: new RegExp (item.rules.pattern)
+      //       }
+      //     }
+      //   }
+      //   const validator = new Schema (descriptor);
+      //   validator.validate (data, (errors) => {
+      //     if (errors) {
+      //       error = true
+      //       errors.forEach (item => {
+      //         this.child[descriptor[item.field].id].errorShow (item.message);
+      //       })
+      //     }
+      //   });
+      //   return error
+      // },
       changeData ({ key, value }) {
         this.data[key] = value
       },
       // 获取 form 数据
-      getData () {
-        const data = JSON.parse (JSON.stringify (this.data))
-        let componentList = [];
-        for (let i = 0; i <= this.currentList.length - 1; i++) {
-          componentList.push (...this.currentList[i])
-        }
-        for (let i = 0; i <= componentList.length - 1; i++) {
-          if (componentList[i].dataType === 'TimeRange') {
-            delete data[componentList[i].key]
-            if (!this.child[componentList[i].id].visibleStatus ()) {
-              delete data[componentList[i].key.split (';')[0]]
-              delete data[componentList[i].key.split (';')[1]]
-            }
-          }
-          if (!this.child[componentList[i].id].visibleStatus ()) {
-            delete data[componentList[i].key]
-          }
-        }
-        return data
-      },
+      // getData () {
+      //   const data = JSON.parse (JSON.stringify (this.data))
+      //   let componentList = [];
+      //   for (let i = 0; i <= this.currentList.length - 1; i++) {
+      //     componentList.push (...this.currentList[i])
+      //   }
+      //   for (let i = 0; i <= componentList.length - 1; i++) {
+      //     if (componentList[i].dataType === 'MultiData') {
+      //       delete data[componentList[i].key]
+      //       if (!this.child[componentList[i].id].visibleStatus ()) {
+      //         delete data[componentList[i].key.split (';')[0]]
+      //         delete data[componentList[i].key.split (';')[1]]
+      //       }
+      //     }
+      //     if (!this.child[componentList[i].id].visibleStatus ()) {
+      //       delete data[componentList[i].key]
+      //     }
+      //   }
+      //   return data
+      // },
       // 获取 form 数据 进行了分组
-      getDataByGroup () {
-        const data = JSON.parse (JSON.stringify (this.data))
-        let componentList = [];
-        for (let i = 0; i <= this.currentList.length - 1; i++) {
-          componentList.push (...this.currentList[i])
-        }
-        for (let i = 0; i <= componentList.length - 1; i++) {
-          if (componentList[i].group) {
-            let have = false
-            this.group.forEach (item => {
-              if (componentList[i].group === item.id) {
-                have = item.key
-              }
-            })
-            if (have) {
-              if (!data[have]) {
-                data[have] = {}
-              }
-              if (!this.child[componentList[i].id].visibleStatus ()) {
-                delete data[componentList[i].key]
-                if (componentList[i].dataType === 'TimeRange') {
-                  delete data[componentList[i].key.split (';')[0]]
-                  delete data[componentList[i].key.split (';')[1]]
-                }
-              } else {
-                if (componentList[i].dataType === 'TimeRange') {
-                  data[have][componentList[i].key.split (';')[0]] = data[componentList[i].key.split (';')[0]]
-                  data[have][componentList[i].key.split (';')[1]] = data[componentList[i].key.split (';')[1]]
-                  delete data[componentList[i].key]
-                  delete data[componentList[i].key.split (';')[0]]
-                  delete data[componentList[i].key.split (';')[1]]
-                } else {
-                  data[have][componentList[i].key] = data[componentList[i].key]
-                  delete data[componentList[i].key]
-                }
-              }
-            }
-          }
-        }
-        return data
-      },
+      // getDataByGroup () {
+      //   const data = JSON.parse (JSON.stringify (this.data))
+      //   let componentList = [];
+      //   for (let i = 0; i <= this.currentList.length - 1; i++) {
+      //     componentList.push (...this.currentList[i])
+      //   }
+      //   for (let i = 0; i <= componentList.length - 1; i++) {
+      //     if (componentList[i].group) {
+      //       let have = false
+      //       this.group.forEach (item => {
+      //         if (componentList[i].group === item.id) {
+      //           have = item.key
+      //         }
+      //       })
+      //       if (have) {
+      //         if (!data[have]) {
+      //           data[have] = {}
+      //         }
+      //         if (!this.child[componentList[i].id].visibleStatus ()) {
+      //           delete data[componentList[i].key]
+      //           if (componentList[i].dataType === 'MultiData') {
+      //             delete data[componentList[i].key.split (';')[0]]
+      //             delete data[componentList[i].key.split (';')[1]]
+      //           }
+      //         } else {
+      //           if (componentList[i].dataType === 'MultiData') {
+      //             data[have][componentList[i].key.split (';')[0]] = data[componentList[i].key.split (';')[0]]
+      //             data[have][componentList[i].key.split (';')[1]] = data[componentList[i].key.split (';')[1]]
+      //             delete data[componentList[i].key]
+      //             delete data[componentList[i].key.split (';')[0]]
+      //             delete data[componentList[i].key.split (';')[1]]
+      //           } else {
+      //             data[have][componentList[i].key] = data[componentList[i].key]
+      //             delete data[componentList[i].key]
+      //           }
+      //         }
+      //       }
+      //     }
+      //   }
+      //   return data
+      // },
       handleChangeKeyForDrag ({ dragItem }) {
         const data = this.data
         switch (dragItem.dataType) {
@@ -223,6 +214,9 @@
             this.$set (data, dragItem.key, 0)
             break
           case 'Null':
+            break
+          case 'Table':
+            this.$set (data, dragItem.key, [])
             break
           case 'Array':
             this.$set (data, dragItem.key, [])
@@ -240,20 +234,20 @@
         }
         this.data = data
       },
-      changeSelectList ({ key, value }) {
-        const currentList = this.currentList
-        currentList.forEach (child => {
-          child.forEach (item => {
-            if (item.key === key) {
-              item.ajaxList = value
-            }
-          })
-        })
-        this.currentList = currentList
-      },
+      // changeSelectList ({ key, value }) {
+      //   const currentList = this.currentList
+      //   currentList.forEach (child => {
+      //     child.forEach (item => {
+      //       if (item.key === key) {
+      //         item.ajaxList = value
+      //       }
+      //     })
+      //   })
+      //   this.currentList = currentList
+      // },
     },
-    mounted () {
-      this.init ()
-    }
+    // mounted () {
+    //   this.init ()
+    // }
   }
 </script>

@@ -8,14 +8,15 @@
        @click="choose(index)">
     <div class="vf-component-model pos-a z-index-9"/>
     <label class="fn-fl vf-component-label"
-           :class="currentRequired?'has-required':''"
+           :class="[currentRequired?'has-required':'',currentLabelWidth==='0px'?'fn-hide':'']"
            :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
       {{currentTitle}}:
     </label>
     <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
       <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language.lang"></component>
     </div>
-    <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center" @click="handleDelete">
+    <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center"
+         @click="handleDelete">
       <Icon type="md-trash"/>
     </div>
   </div>
@@ -94,7 +95,7 @@
       this.currentComponent = () => import(`../../func/form-${type}`)
       this.parent.childMounted ({
         key: this.currentVal.key,
-        show: this.show, hide: this.hide, init: this.init, id: this.id
+        show: this.show, hide: this.hide, update: this.update, id: this.id
       })
     },
     beforeDestroy () {

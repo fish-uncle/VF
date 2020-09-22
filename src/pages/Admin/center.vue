@@ -45,7 +45,7 @@
              :class="['vf-drag','ivu-col',`ivu-col-span-${item}`,scaleIndex===center.currentScale?'vf-drag-active':'']"
              v-for="(item,scaleIndex) in viewScale"
              @click="()=>handleCurrentScale(scaleIndex)">
-          <draggable class="vf-drag-content" v-model="center.list[scaleIndex]" group="people"
+          <draggable class="vf-drag-content fn-flex flex-row" v-model="center.list[scaleIndex]" group="people"
                      @change="handleCenterChange">
             <f-component :value="item" :index="index" :edit="scaleIndex===center.currentScale"
                          :key="item.id"
@@ -149,7 +149,8 @@
   }
 
   .vf-drag-content {
-    min-height: calc(100vh - 222px);
+    flex-wrap: wrap;
+    min-height: 52px;
   }
 
   .vue-grid-item {

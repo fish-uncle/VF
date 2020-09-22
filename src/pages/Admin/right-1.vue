@@ -107,7 +107,7 @@
       }
     },
     methods: {
-      editorChange: function (value, key) {
+      editorChange (value, key) {
         let item = this.item;
         try {
           item[key] = str2Obj (value)

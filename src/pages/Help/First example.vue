@@ -31,9 +31,9 @@
         const group = []
         return `<template>
   <div>
-    <v-form ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
+    <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
     :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
-    </v-form>
+    </v-list>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">${model_preview_submit}${lt}/Button>
       <Button type="primary" @click="handleReset">${model_preview_reset}${lt}/Button>

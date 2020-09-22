@@ -20,6 +20,16 @@
         <func-item v-for="(item,key) in component.list" :item="item" :key="key"
                    v-if="item.componentType==='modification'"/>
       </draggable>
+<!--      <h2>-->
+<!--        {{$t('admin_left_title3')}}-->
+<!--      </h2>-->
+<!--      <draggable tag="ul" class="fn-flex flex-row" v-model="component.list"-->
+<!--                 :clone="handleClone"-->
+<!--                 :move="handleMove"-->
+<!--                 :group="{ name: 'people', pull: 'clone', put: false }">-->
+<!--        <func-item v-for="(item,key) in component.list" :item="item" :key="key"-->
+<!--                   v-if="item.componentType==='senior'"/>-->
+<!--      </draggable>-->
     </div>
   </div>
 </template>
@@ -35,7 +45,7 @@
     computed: mapState ([ "component", 'center', 'language' ]),
     methods: {
       handleMove: function (evt) {
-        if (evt.to.className === 'vf-drag-content') {
+        if (evt.to.className === 'vf-drag-content fn-flex flex-row') {
           return true
         } else {
           return false
@@ -43,8 +53,8 @@
       },
       handleClone: function (evt) {
         let dragItem = evt
-        const i = uuid()
-        const l = uuid()
+        const i = uuid ()
+        const l = uuid ()
         let key = `${dragItem.type}_${i}`
         if (dragItem.dataType === 'TimeRange') {
           key += `;${l}`

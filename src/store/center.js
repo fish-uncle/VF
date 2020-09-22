@@ -4,7 +4,7 @@ const store = {
     list: [ [], [] ],
     labelWidth: 120,
     labelTextAlign: 'right',
-    viewScale: '12:12',
+    viewScale: '24:0',
     currentScale: 0,
     current: 0,
     multiFormId: 'form0',

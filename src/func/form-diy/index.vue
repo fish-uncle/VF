@@ -1,52 +1,44 @@
 <template>
-  <i-input
-    class="vf-input"
-    v-bind="currentVal.props"
+  <div
+    class="vf-diy"
     :class="[currentVal.className,error?'vf-error':'']"
     v-model="parent.data[currentVal.key]"
-    :disabled="currentVal.disabled"
-    :placeholder="currentVal.placeholder"
     :style="{width:`${currentVal.widthRatio}%`}"
     @on-change="inputChange"
   />
 </template>
 <script>
-  import {findComponentUpward} from "../../utils";
+  import { findComponentUpward } from "../../utils";
 
   export default {
-    data() {
+    data () {
       return {
         currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList')
+        parent: findComponentUpward (this, 'FormList')
       }
     },
-    props: ['value', 'error'],
+    props: [ 'value', 'error' ],
     watch: {
-      value(val) {
+      value (val) {
         this.currentVal = val;
       }
     },
     methods: {
-      update() {
-        this.parent.changeData({
+      update () {
+        this.parent.changeData ({
           value: '',
           key: this.currentVal.key
         })
       },
-      inputChange(e) {
+      inputChange (e) {
         const value = e.target.value;
         if (this.error) {
-          this.parent.errorHide(this.currentVal.id);
+          this.parent.errorHide (this.currentVal.id);
         }
-        this.parent.changeData({
+        this.parent.changeData ({
           value,
           key: this.currentVal.key
         })
-        if (this.currentVal.events) {
-          if (this.currentVal.events.onChange) {
-            this.currentVal.events.onChange(e, value)
-          }
-        }
       }
     }
   }

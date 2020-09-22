@@ -4,14 +4,15 @@
        :class="[`vf-${type}-box`]"
        :style="{width:`${currentVal.width/24*100}%`}">
     <label class="fn-fl vf-component-label"
-           :class="currentRequired?'has-required':''"
+           :class="[currentRequired?'has-required':'',currentLabelWidth==='0px'?'fn-hide':'']"
            :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
       {{currentTitle}}:
     </label>
     <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
       <component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
+                 :status="status"
                  :error="error"></component>
-      <component v-if="status==='read'" :is="readComponent" :value="currentVal" :language="language"></component>
+      <component v-if="status==='read'" :is="readComponent" :value="currentVal" :language="language" :status="status"></component>
     </div>
     <div v-if="error && status==='edit' " class="pos-a vf-component-error-msg"
          :style="{left:`${currentVal.labelWidth+10}px`}">
@@ -68,7 +69,12 @@
         }
       }
     },
-    props: [ 'value', 'index', 'language', 'status', 'labelWidth', 'labelTextAlign', 'props' ],
+    props: {
+      value: {}, status: {}, labelWidth: {}, labelTextAlign: {}, props: {},
+      language: {
+        default: 'zh'
+      }
+    },
     watch: {
       value (val) {
         this.currentVal = val;
@@ -77,13 +83,15 @@
         this.type = type;
         this.currentComponent = () => import(`../../func/form-${type}`)
         this.readComponent = () => import(`../../func/form-${type}/read`)
-        this.parent.childMounted ({
-          key: this.currentVal.key,
-          errorHide: this.errorHide,
-          errorShow: this.errorShow,
-          visibleStatus: this.visibleStatus,
-          show: this.show, hide: this.hide, init: this.init, id: this.id
-        });
+        if (parent) {
+          this.parent.childMounted ({
+            key: this.currentVal.key,
+            errorHide: this.errorHide,
+            errorShow: this.errorShow,
+            visibleStatus: this.visibleStatus,
+            show: this.show, hide: this.hide, update: this.update, id: this.id
+          });
+        }
       }
     },
     mounted () {
@@ -92,13 +100,15 @@
       this.type = type;
       this.currentComponent = () => import(`../../func/form-${type}`)
       this.readComponent = () => import(`../../func/form-${type}/read`)
-      this.parent.childMounted ({
-        key: this.currentVal.key,
-        errorHide: this.errorHide,
-        errorShow: this.errorShow,
-        visibleStatus: this.visibleStatus,
-        show: this.show, hide: this.hide, init: this.init, id: this.id
-      });
+      if (parent) {
+        this.parent.childMounted ({
+          key: this.currentVal.key,
+          errorHide: this.errorHide,
+          errorShow: this.errorShow,
+          visibleStatus: this.visibleStatus,
+          show: this.show, hide: this.hide, update: this.update, id: this.id
+        });
+      }
     },
     methods: {
       visibleStatus () {

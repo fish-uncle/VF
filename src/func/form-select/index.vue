@@ -6,14 +6,18 @@
             :placeholder="currentVal.placeholder"
             :disabled="currentVal.disabled" :style="{width:`${currentVal.widthRatio}%`}"
             @on-change="clickChange" :clearable="currentVal.clearable">
-    <i-option v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
-              :value="item.value" :key="item.value">
-      <span>{{item.label}}</span>
-    </i-option>
-    <i-option v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList"
-              :value="item.value" :key="item.value">
-      <span>{{item.label}}</span>
-    </i-option>
+    <template v-if="!currentVal.selectListUrl">
+      <i-option v-for="item in currentVal.selectList"
+                :value="item.value" :key="item.value">
+        {{item.label}}
+      </i-option>
+    </template>
+    <template v-if="currentVal.selectListUrl">
+      <i-option v-for="item in currentVal.ajaxList"
+                :value="item.value" :key="item.value">
+       {{item.label}}
+      </i-option>
+    </template>
   </i-select>
 </template>
 <script>

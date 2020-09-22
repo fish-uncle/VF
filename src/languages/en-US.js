@@ -7,6 +7,7 @@ const language = {
 
   "admin_left_title1": "Basic components",
   "admin_left_title2": "Decorating components",
+  "admin_left_title3": "Senior components",
 
   "admin_center": "Drag and drop to add components from the left",
 

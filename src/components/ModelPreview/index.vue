@@ -1,6 +1,6 @@
 <template>
   <Modal width="1000" v-model="model.previewVisible" :closable="false" :footer-hide="true" :scrollable="true">
-    <v-form ref="form" :view-scale="center.viewScale" :list="center.list"
+    <v-list ref="form" :view-scale="center.viewScale" :list="center.list"
             :labelTextAlign="center.labelTextAlign"
             :language="language.lang"
             :group="center.group"

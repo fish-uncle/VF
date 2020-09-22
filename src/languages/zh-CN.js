@@ -7,6 +7,7 @@ const language = {
 
   "admin_left_title1": "基础组件",
   "admin_left_title2": "修饰组件",
+  "admin_left_title3": "高级组件",
 
   "admin_center": "从左侧拖拽添加组件",
 

@@ -1,7 +1,7 @@
 const log = [
   {
     version: '1.1.2',
-    time: '2020-09-18',
+    time: '2020-09-21',
     content: [
       'Add edit status, read-only status.',
       'New form unified settings, component width, component alignment.',

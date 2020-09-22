@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-form ref="form" :language="language" :view-scale="viewScale" :list="list" :labelWidth="labelWidth"
+    <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :labelWidth="labelWidth"
             :labelTextAlign="labelTextAlign"/>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">{{$t('model_preview_submit')}}</Button>
@@ -50,7 +50,7 @@
           const key_i = uuid ()
           const key_l = uuid ()
           let key = `${dragItem.type}_${key_i}`
-          if (dragItem.dataType === 'TimeRange') {
+          if (dragItem.dataType === 'MultiData') {
             key += `;${key_l}`
           }
           i === index ? dragItem.required = true : void 0;

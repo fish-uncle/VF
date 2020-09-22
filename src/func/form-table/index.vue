@@ -3,7 +3,7 @@
        v-bind="currentVal.props"
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className]">
-    <Table :columns="columns" :data="data">
+    <Table :columns="currentColumns" :data="data">
     </Table>
   </div>
 </template>
@@ -21,9 +21,9 @@
     },
     props: [ 'value', 'language' ],
     computed: {
-      columns () {
+      currentColumns () {
         if (this.currentVal.columns) {
-          return require (`../../columns/${this.currentVal.columns}`);
+          return this.currentVal.columns
         } else {
           return []
         }

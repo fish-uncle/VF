@@ -7,11 +7,11 @@
     <div class="vf-control" v-if="this.center.list.length > 0">
       <label>{{$t('admin_right_btn7')}}</label>
       <i-input :value="item.key"
-               @on-change="e=>keyChange(e)" v-if="item.dataType!=='TimeRange'"/>
+               @on-change="e=>keyChange(e)" v-if="item.dataType!=='MultiData'"/>
       <i-input :value="item.key.split(';')[0]"
-               @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dataType==='TimeRange'"/>
+               @on-change="e=>dateRangeKeyChange(e,'0')" v-if="item.dataType==='MultiData'"/>
       <i-input :value="item.key.split(';')[1]"
-               @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dataType==='TimeRange'"/>
+               @on-change="e=>dateRangeKeyChange(e,'1')" v-if="item.dataType==='MultiData'"/>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('group')!==-1">
       <label>{{$t('group2')}}</label>
@@ -75,11 +75,24 @@
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('columns')!==-1">
       <label>{{$t('admin_right_btn30')}}</label>
-      <i-select v-model="item.columns"
-                :clearable="true"
-                @on-change="e=>selectChange(e,'columns')">
-        <i-option v-for="(item,index) in columns" :value="item" :key="index">{{item}}</i-option>
-      </i-select>
+      <ul class="vf-select-list">
+        <li class="fn-flex flex-row">
+          <span style="width: 125px">title</span>
+          <span style="width: 125px">key</span>
+          <span>type</span>
+        </li>
+        <li class="fn-flex flex-row" v-for="(child,index) in item.columns">
+          <i-input style="width: 125px" v-model="child.title"
+                   @on-change="e=>columnsTitleChange(e,index)"/>
+          <i-input style="width: 125px;margin-left: 10px;" v-model="child.key"
+                   @on-change="e=>columnsKeyChange(e,index)"/>
+          <i-input style="width: 125px;margin-left: 10px;" v-model="child.type"
+                   @on-change="e=>columnsValueChange(e,index)"/>
+          <span :class="item.columns.length>1?'':'disabled'" class="vf-select-del text-center pointer"
+                @click="columnsDelChange(index)">-</span>
+          <span class="vf-select-add text-center pointer" @click="columnsAddChange(index)">+</span>
+        </li>
+      </ul>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('character')!==-1">
       <label>{{$t('admin_right_btn15')}}</label>
@@ -179,14 +192,13 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex';
-  import columns from "../../columns";
+  import { mapState } from 'vuex'
+  import { obj2Str, str2Obj } from '../../utils'
 
   export default {
     data () {
       return {
         tab: 1,
-        columns
       }
     },
     computed: {
@@ -216,50 +228,72 @@
     },
     methods: {
       selectChange (value, key) {
-        let item = this.item;
-        item[key] = value;
+        let item = this.item
+        item[key] = value
       },
       selectListUrlChange (e, key) {
-        const value = e.target.value;
-        let item = this.item;
-        item[key] = value;
+        const value = e.target.value
+        let item = this.item
+        item[key] = value
       },
       controlOthersHideChange (targetKeys, value) {
-        let item = this.item;
-        const obj = Object.assign ({}, item.controlOthersHideTargetKeys);
-        obj[value] = targetKeys;
-        item.controlOthersHideTargetKeys = obj;
+        let item = this.item
+        const obj = Object.assign ({}, item.controlOthersHideTargetKeys)
+        obj[value] = targetKeys
+        item.controlOthersHideTargetKeys = obj
       },
       controlOthersUpdateChange (targetKeys) {
-        let item = this.item;
-        item.controlOthersUpdateTargetKeys = targetKeys;
+        let item = this.item
+        item.controlOthersUpdateTargetKeys = targetKeys
       },
       inputValueChange (e, index) {
-        const value = e.target.value;
-        let item = this.item;
-        item.selectList[index].value = value;
+        const value = e.target.value
+        let item = this.item
+        item.selectList[index].value = value
       },
       inputTitleChange (e, index) {
-        const value = e.target.value;
-        let item = this.item;
-        item.selectList[index].label = value;
+        const value = e.target.value
+        let item = this.item
+        item.selectList[index].label = value
       },
       selectDelChange (index) {
-        let item = this.item;
+        let item = this.item
         if (item.selectList.length > 1) {
           item['selectList'].splice (index, 1)
         }
       },
       selectAddChange (index) {
-        let item = this.item;
+        let item = this.item
         item['selectList'].splice (index + 1, 0, { label: '新建项标题', value: '新建项值' })
-        if (item.selectList.length > 10 && item.h < 3) {
-          item.h = 3;
+      },
+      columnsValueChange (e, index) {
+        const value = e.target.value
+        let item = this.item
+        item.columns[index].value = value
+      },
+      columnsKeyChange (e, index) {
+        const value = e.target.value
+        let item = this.item
+        item.columns[index].key = value
+      },
+      columnsTitleChange (e, index) {
+        const value = e.target.value
+        let item = this.item
+        item.columns[index].title = value
+      },
+      columnsDelChange (index) {
+        let item = this.item
+        if (item.columns.length > 1) {
+          item['columns'].splice (index, 1)
         }
       },
+      columnsAddChange (index) {
+        let item = this.item
+        item['columns'].splice (index + 1, 0, { key: 'key', title: 'title', type: 'input' })
+      },
       checkChange (value, key) {
-        let item = this.item;
-        item[key] = value;
+        let item = this.item
+        item[key] = value
       },
       dateRangeKeyChange (e, key) {
         const value = e.target.value
@@ -287,14 +321,14 @@
         this.$store.commit ('center/changeKey', { key: value, id: item.id })
       },
       numberChange (e, key) {
-        const value = e.target.value;
-        let item = this.item;
-        item[key] = Number (value);
+        const value = e.target.value
+        let item = this.item
+        item[key] = Number (value)
       },
       inputChange (e, key) {
-        const value = e.target.value;
-        let item = this.item;
-        item[key] = value;
+        const value = e.target.value
+        let item = this.item
+        item[key] = value
       }
     }
   }

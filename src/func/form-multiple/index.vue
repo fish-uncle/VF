@@ -5,16 +5,20 @@
                   :class="[currentVal.className,error?'vf-error':'']"
                   :style="{width:`${currentVal.widthRatio}%`}"
                   @on-change="clickChange">
-    <Checkbox v-if="!currentVal.selectListUrl" v-for="item in currentVal.selectList"
-              :disabled="currentVal.disabled"
-              :label="item.value" :key="item.value">
-      <span>{{item.label}}</span>
-    </Checkbox>
-    <Checkbox v-if="currentVal.selectListUrl" v-for="item in currentVal.ajaxList" :label="item.value"
-              :disabled="currentVal.disabled"
-              :key="item.value">
-      <span>{{item.label}}</span>
-    </Checkbox>
+    <template v-if="!currentVal.selectListUrl">
+      <Checkbox v-for="item in currentVal.selectList"
+                :disabled="currentVal.disabled"
+                :label="item.value" :key="item.value">
+        <span>{{item.label}}</span>
+      </Checkbox>
+    </template>
+    <template v-if="currentVal.selectListUrl">
+      <Checkbox v-for="item in currentVal.ajaxList" :label="item.value"
+                :disabled="currentVal.disabled"
+                :key="item.value">
+        <span>{{item.label}}</span>
+      </Checkbox>
+    </template>
   </Checkbox-group>
 </template>
 <script>

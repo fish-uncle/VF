@@ -74,10 +74,13 @@
             break
           case 'Null':
             break
+          case 'Table':
+            this.$set (data, dragItem.key, [])
+            break
           case 'Array':
             this.$set (data, dragItem.key, [])
             break
-          case 'TimeRange':
+          case 'MultiData':
             this.$set (data, dragItem.key, [])
             this.$set (data, dragItem.key.split (';') [0], '')
             this.$set (data, dragItem.key.split (';') [1], '')

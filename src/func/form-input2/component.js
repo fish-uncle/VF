@@ -1,12 +1,10 @@
 const component = {
-  title_zh: '时间范围',
-  title_en: 'timeRange',
-  icon: 'ios-time-outline',
+  title_zh: '双文本',
+  title_en: 'input2',
+  icon: 'ios-book-outline',
+  type: 'input2',
   dataType: 'MultiData',
-  type: 'timeRange',
   placeholder: '',
-  timeFormat: "HH’mm’ss",
-  clearable: true,
   rules: {
     required: false,
     pattern: '',
@@ -15,12 +13,9 @@ const component = {
   changeList: [
     'labelTextAlign',
     'labelWidth',
-    'widthRatio',
 
-    'timeFormat',
     'placeholder',
     'disabled',
-    'clearable',
     'props',
     'rules',
   ]

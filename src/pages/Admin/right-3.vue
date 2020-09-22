@@ -47,8 +47,8 @@
   export default {
     computed: {
       ...mapState ([ 'center', 'language' ]),
-      requiredVal(){
-        return this.item.rules.required?1:0
+      requiredVal () {
+        return this.item.rules.required ? 1 : 0
       },
       rulesVal () {
         return obj2Str (this.item.rules)
@@ -62,7 +62,7 @@
       },
     },
     methods: {
-      editorChange: function (value) {
+      editorChange (value) {
         let item = this.item;
         try {
           item.rules = str2Obj (value);
