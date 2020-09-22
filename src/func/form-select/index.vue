@@ -15,51 +15,39 @@
     <template v-if="currentVal.selectListUrl">
       <i-option v-for="item in currentVal.ajaxList"
                 :value="item.value" :key="item.value">
-       {{item.label}}
+        {{item.label}}
       </i-option>
     </template>
   </i-select>
 </template>
 <script>
   import request from '../../utils/request'
-  import { findComponentUpward } from '../../utils'
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ 'value', 'edit', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-        this.init ()
-      },
-    },
-    mounted () {
-      this.init ()
+    mixins: [func],
+    mounted() {
+      this.init()
     },
     methods: {
-      update () {
-        this.init ()
-        this.parent.changeData ({
+      update() {
+        this.init()
+        this.parent.changeData({
           value: '',
           key: this.currentVal.key
         })
       },
-      init () {
+      init() {
         if (this.currentVal.selectListUrl) {
-          const data = { ...this.parent.data, ...this.currentVal.customAjaxParams };
-          request.post (this.currentVal.selectListUrl, data).then (res => {
+          const data = {...this.parent.data, ...this.currentVal.customAjaxParams};
+          request.post(this.currentVal.selectListUrl, data).then(res => {
             if (this.edit) {
-              this.$store.commit ('center/changeSelectList', {
+              this.$store.commit('center/changeSelectList', {
                 value: res,
                 key: this.currentVal.key
               })
             } else {
-              this.parent.changeSelectList ({
+              this.parent.changeSelectList({
                 value: res,
                 key: this.currentVal.key
               })
@@ -68,27 +56,32 @@
         }
         if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, '')
+            this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, '')
           }
         }
       },
-      clickChange (value) {
+      clickChange(value) {
         if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
+          this.parent.errorHide(this.currentVal.id);
         }
         if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, value)
+            this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, value)
+          }
+        }
+        if (this.currentVal.events) {
+          if (this.currentVal.events.onChange) {
+            this.currentVal.events.onChange(value)
           }
         }
       }

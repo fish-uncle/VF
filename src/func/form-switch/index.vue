@@ -7,36 +7,22 @@
   </i-switch>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        data: false,
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ "value" ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     methods: {
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: false,
           key: this.currentVal.key
         })
       },
-      clickChange () {
-        if (!this.currentVal.disabled) {
-          this.data = !this.data
-          this.parent.changeData ({
-            value: this.data,
-            key: this.currentVal.key
-          })
+      clickChange() {
+        if (this.currentVal.events) {
+          if (this.currentVal.events.onChange) {
+            this.currentVal.events.onChange(this.parent.data[this.currentVal.key])
+          }
         }
       }
     }

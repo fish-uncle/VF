@@ -11,37 +11,35 @@
   />
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ 'value', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     methods: {
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: '',
           key: this.currentVal.key
         })
       },
-      inputChange (e) {
-        const value = e.target.value;
-        if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
-        }
-        this.parent.changeData ({
-          value,
-          key: this.currentVal.key
-        })
+      inputChange(e) {
+        const _self = this;
+        if (this.timeout !== null) clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => {
+          const value = e.target.value;
+          if (_self.error) {
+            _self.parent.errorHide(this.currentVal.id);
+          }
+          _self.parent.changeData({
+            value,
+            key: _self.currentVal.key
+          })
+          if (_self.currentVal.events) {
+            if (_self.currentVal.events.onChange) {
+              _self.currentVal.events.onChange(value, e)
+            }
+          }
+        }, 1000)
       }
     }
   }

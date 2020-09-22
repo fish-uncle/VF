@@ -8,36 +8,30 @@
                :disabled="currentVal.disabled"/>
 </template>
 <script>
-  import { findComponentUpward } from '../../utils'
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        parent: findComponentUpward (this, 'FormList'),
-        currentVal: this.value,
-      }
-    },
-    props: [ 'value', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val
-      }
-    },
+    mixins: [func],
     methods: {
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: '',
           key: this.currentVal.key
         })
       },
-      colorChange (value) {
+      colorChange(value) {
         if (this.error) {
-          this.parent.errorHide (this.currentVal.id)
+          this.parent.errorHide(this.currentVal.id)
         }
-        this.parent.changeData ({
+        this.parent.changeData({
           value,
           key: this.currentVal.key
         })
+        if (this.currentVal.events) {
+          if (this.currentVal.events.onChange) {
+            this.currentVal.events.onChange(value)
+          }
+        }
       }
     }
   }

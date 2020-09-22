@@ -33,52 +33,50 @@
   </div>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ 'value', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     methods: {
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: '',
           key: this.currentVal.key
         })
       },
-      clickChange (value) {
+      clickChange(value) {
         if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
+          this.parent.errorHide(this.currentVal.id);
         }
         if (this.currentVal.controlOthersUpdateTargetKeys.length) {
           if (this.parent) {
-            this.parent.controlOthersUpdate (this.currentVal.controlOthersUpdateTargetKeys)
+            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
-            this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, value)
+            this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, value)
           }
         }
       },
-      inputChange (e) {
-        const value = e.target.value;
-        if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
-        }
-        this.parent.changeData ({
-          value,
-          key: this.currentVal.key
-        })
+      inputChange(e) {
+        const _self = this;
+        if (this.timeout !== null) clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => {
+          const value = e.target.value;
+          if (_self.error) {
+            _self.parent.errorHide(this.currentVal.id);
+          }
+          _self.parent.changeData({
+            value,
+            key: _self.currentVal.key
+          })
+          if (_self.currentVal.events) {
+            if (_self.currentVal.events.onChange) {
+              _self.currentVal.events.onChange(value, e)
+            }
+          }
+        }, 1000)
       }
     }
   }

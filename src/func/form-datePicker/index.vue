@@ -11,42 +11,37 @@
                :disabled="currentVal.disabled"/>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList'),
-      }
-    },
-    props: [ 'value', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     methods: {
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: '',
           key: this.currentVal.key
         })
       },
-      dateChange (value) {
+      dateChange(value) {
         if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
+          this.parent.errorHide(this.currentVal.id);
         }
-        this.parent.changeData ({
+        this.parent.changeData({
           value,
           key: this.currentVal.key
         })
+        if (this.currentVal.events) {
+          if (this.currentVal.events.onChange) {
+            this.currentVal.events.onChange(value)
+          }
+        }
       }
     }
   }
 </script>
 <style lang="less">
   @import "../../less/conf";
+
   .vf-date-picker.vf-error {
     input {
       border-color: @error-color;

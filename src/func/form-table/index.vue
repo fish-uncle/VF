@@ -9,19 +9,19 @@
 </template>
 <script>
   import request from '../../utils/request'
+  import func from '../../mixins/func'
 
   export default {
-    data () {
+    mixins: [func],
+    data() {
       return {
-        currentVal: this.value,
         data: [],
         total: 0,
         page: 1
       }
     },
-    props: [ 'value', 'language' ],
     computed: {
-      currentColumns () {
+      currentColumns() {
         if (this.currentVal.columns) {
           return this.currentVal.columns
         } else {
@@ -29,18 +29,13 @@
         }
       }
     },
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
-    mounted () {
-      this.update ();
+    mounted() {
+      this.update();
     },
     methods: {
-      update () {
+      update() {
         if (this.currentVal.tableAjaxUrl) {
-          request.post (this.currentVal.tableAjaxUrl).then (res => {
+          request.post(this.currentVal.tableAjaxUrl).then(res => {
             if (res) {
               this.data = res.list
               this.total = res.total

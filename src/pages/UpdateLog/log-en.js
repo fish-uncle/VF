@@ -1,7 +1,7 @@
 const log = [
   {
     version: '1.1.2',
-    time: '2020-09-21',
+    time: '2020-09-22',
     content: [
       'Add edit status, read-only status.',
       'New form unified settings, component width, component alignment.',
@@ -14,6 +14,9 @@ const log = [
       'Optimize dynamic text.',
       'New grouping function,Data can be obtained according to the grouping.',
       'New data can be obtained according to hiding.',
+      'New advanced table component f-table2.',
+      'Add component value change callback event.',
+      'Add debounce function in component.',
     ]
   },
   {

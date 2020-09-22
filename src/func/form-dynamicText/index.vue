@@ -2,53 +2,41 @@
   <div class="vf-text">{{text}}</div>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        content: '',
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ "value", "language" ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     computed: {
-      text () {
-        const arr = this.currentVal.code.match (/(\$\{[0-9a-zA-Z_]*})/g)
-        const split = this.currentVal.code.split (/(\$\{[0-9a-zA-Z_]*})/g)
+      text() {
+        const arr = this.currentVal.code.match(/(\$\{[0-9a-zA-Z_]*})/g)
+        const split = this.currentVal.code.split(/(\$\{[0-9a-zA-Z_]*})/g)
         if (arr) {
           const data = this.parent.data
           let result_s = '', result_n = 0
           if (this.currentVal.showStyle === 'count') {
-            arr.forEach (item => {
-              const i = item.replace (/[${}]/g, '')
+            arr.forEach(item => {
+              const i = item.replace(/[${}]/g, '')
               if (i) {
                 const child = this.parent.child[i]
                 const key = child.key
                 const d = data[key]
                 if (child && d) {
-                  result_n += Number (d)
+                  result_n += Number(d)
                 }
               }
             })
             return result_n
           }
           if (this.currentVal.showStyle === 'string') {
-            split.forEach (item => {
-              if (/(\$\{[0-9a-zA-Z_]*})/g.test (item)) {
-                const i = item.replace (/[${}]/g, '')
+            split.forEach(item => {
+              if (/(\$\{[0-9a-zA-Z_]*})/g.test(item)) {
+                const i = item.replace(/[${}]/g, '')
                 if (i) {
                   const child = this.parent.child[i]
                   const key = child.key
                   const d = data[key]
                   if (child && d) {
-                    result_s += d.toString ()
+                    result_s += d.toString()
                   }
                 }
               } else {

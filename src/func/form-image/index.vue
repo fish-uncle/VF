@@ -34,69 +34,62 @@
   </div>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
+    mixins: [func],
+    data() {
       return {
-        currentVal: this.value,
         visible: false,
         uploadList: [],
         imgUrl: '',
-        parent: findComponentUpward (this, 'FormList'),
       }
     },
     computed: {
-      fileFormat () {
-        return this.currentVal.fileFormat.split (',')
+      fileFormat() {
+        return this.currentVal.fileFormat.split(',')
       }
     },
-    props: [ 'value', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
-    mounted () {
-      this.init ();
+    mounted() {
+      this.init();
     },
     methods: {
-      init () {
+      init() {
         this.uploadList = this.parent.data[this.currentVal.key]
       },
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: [],
           key: this.currentVal.key
         })
       },
-      handleExceededError () {
-        this.$Message.error (`当前文件大小超出${this.currentVal.maxSize}kb`)
+      handleExceededError() {
+        this.$Message.error(`当前文件大小超出${this.currentVal.maxSize}kb`)
       },
-      handleFormatError () {
-        this.$Message.error ('当前文件格式不符合要求')
+      handleFormatError() {
+        this.$Message.error('当前文件格式不符合要求')
       },
-      handleRemove (file) {
+      handleRemove(file) {
         const fileList = this.$refs.upload.fileList;
-        this.$refs.upload.fileList.splice (fileList.indexOf (file), 1);
-        const list = fileList.map (item => {
-          return { url: item.url, name: item.name }
+        this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+        const list = fileList.map(item => {
+          return {url: item.url, name: item.name}
         });
-        this.parent.changeData ({
+        this.parent.changeData({
           value: list,
           key: this.currentVal.key
         })
       },
-      handleView (url) {
+      handleView(url) {
         this.imgUrl = url;
         this.visible = true;
       },
-      handleSuccess (response, file, fileList) {
+      handleSuccess(response, file, fileList) {
         file.url = response.data;
         file.name = response.data;
-        this.parent.data[this.currentVal.key].push ({ url: response.data, name: response.data })
+        this.parent.data[this.currentVal.key].push({url: response.data, name: response.data})
         if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
+          this.parent.errorHide(this.currentVal.id);
         }
       }
     }

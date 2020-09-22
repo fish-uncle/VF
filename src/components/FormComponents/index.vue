@@ -22,27 +22,18 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex'
-  import { cssStyle2DomStyle, findComponentUpward } from '../../utils'
+  import {mapState} from 'vuex'
+  import formComponent from '../../mixins/formComponent'
 
   export default {
     name: 'FormComponents',
-    data () {
-      return {
-        parent: findComponentUpward (this, 'FormList'),
-        currentVal: this.value,
-        id: null,
-        visible: true,
-        currentComponent: null,
-        type: ''
-      }
-    },
+    mixins: [formComponent],
     computed: {
-      ...mapState ([ 'center' ]),
-      currentGroupColor () {
+      ...mapState(['center']),
+      currentGroupColor() {
         if (this.currentVal.group) {
           let color = ''
-          this.center.group.forEach (item => {
+          this.center.group.forEach(item => {
             if (item.id === this.currentVal.group) {
               color = item.color
             }
@@ -52,73 +43,23 @@
           return 'rgba(255,255,255,0)'
         }
       },
-      currentRequired () {
-        return this.currentVal.rules ? this.currentVal.rules.required : false
-      },
-      currentLabelTextAlign () {
-        if (this.currentVal.labelTextAlign) {
-          return this.currentVal.labelTextAlign
-        } else {
-          return this.labelTextAlign
-        }
-      },
-      currentLabelWidth () {
-        if (this.currentVal.labelWidth) {
-          return `${this.currentVal.labelWidth}px`
-        } else {
-          if (typeof this.currentVal.labelWidth === 'number') {
-            return `${this.currentVal.labelWidth}px`
-          } else {
-            return `${this.labelWidth}px`
-          }
-        }
-      },
-      currentTitle () {
-        if (this.currentVal.title) {
-          return this.currentVal.title
-        }
-        if (this.currentVal[`title_${this.language}`]) {
-          return this.currentVal[`title_${this.language}`]
-        }
-      }
     },
-    props: [ 'value', 'index', 'edit', 'language', 'labelTextAlign', 'labelWidth' ],
+    props: ['value', 'index', 'edit', 'language', 'labelTextAlign', 'labelWidth'],
     watch: {
-      value (val) {
+      value(val) {
         this.currentVal = val
       }
     },
-    mounted () {
-      this.id = this.currentVal.id
-      const type = cssStyle2DomStyle (this.currentVal.type)
-      this.type = type
-      this.currentComponent = () => import(`../../func/form-${type}`)
-      this.parent.childMounted ({
-        key: this.currentVal.key,
-        show: this.show, hide: this.hide, update: this.update, id: this.id
-      })
-    },
-    beforeDestroy () {
-    },
     methods: {
-      show () {
-        this.visible = true;
+      handleDelete() {
+        this.$store.commit('center/remove', {index: this.index});
+        this.$store.commit('right/changeTab', {tabIndex: 1});
+        this.$agent.$once({type: 'formDataRemove', key: this.currentVal.key});
       },
-      hide () {
-        this.visible = false;
-      },
-      update () {
-        this.$children[0].update ();
-      },
-      handleDelete () {
-        this.$store.commit ('center/remove', { index: this.index });
-        this.$store.commit ('right/changeTab', { tabIndex: 1 });
-        this.$agent.$once ({ type: 'formDataRemove', key: this.currentVal.key });
-      },
-      choose (index) {
+      choose(index) {
         if (!this.edit)
           return
-        this.$store.commit ('center/choose', { index });
+        this.$store.commit('center/choose', {index});
       }
     }
   }

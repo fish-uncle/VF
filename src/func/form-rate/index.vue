@@ -11,33 +11,27 @@
   </Rate>
 </template>
 <script>
-  import { findComponentUpward } from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ "value" ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     methods: {
-      update () {
-        this.parent.changeData ({
+      update() {
+        this.parent.changeData({
           value: '',
           key: this.currentVal.key
         })
       },
-      clickChange (value) {
-        this.parent.changeData ({
+      clickChange(value) {
+        this.parent.changeData({
           value,
           key: this.currentVal.key
         })
+        if (this.currentVal.events) {
+          if (this.currentVal.events.onChange) {
+            this.currentVal.events.onChange(value)
+          }
+        }
       }
     }
   }

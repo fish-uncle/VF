@@ -22,25 +22,13 @@
   </Checkbox-group>
 </template>
 <script>
-  import request from "../../utils/request";
-  import { findComponentUpward } from "../../utils";
+  import request from '../../utils/request'
+  import func from '../../mixins/func'
 
   export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ 'value', 'edit', 'error' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-        this.init ();
-      }
-    },
+    mixins: [func],
     mounted () {
-      this.init ();
+      this.init ()
     },
     methods: {
       update () {
@@ -90,6 +78,11 @@
         if (this.currentVal.controlOthersHideTargetKeys) {
           if (this.parent) {
             this.parent.controlOthersHide (this.currentVal.controlOthersHideTargetKeys, this.data)
+          }
+        }
+        if (this.currentVal.events) {
+          if (this.currentVal.events.onChange) {
+            this.currentVal.events.onChange(this.parent.data[this.currentVal.key])
           }
         }
       }

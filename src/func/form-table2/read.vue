@@ -4,7 +4,7 @@
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
     <Button @click="tableCreate">添加</Button>
-    <Button @click="tableCreate">添加</Button>
+    <Button @click="tableSave">保存</Button>
     <v-form ref="form">
       <Table :columns="currentColumns" :data="parent.data[currentVal.key]">
       </Table>
@@ -34,6 +34,8 @@
           const status = this.status
           const columns = JSON.parse(JSON.stringify(this.currentVal.columns))
           const form = this.$refs.form
+          const parent = this.parent
+          const key = this.currentVal.key
           columns.forEach(item => {
             item.render = (h, {row, column, index}) => {
               form.changeData({
@@ -53,6 +55,20 @@
                       pattern: '',
                       message: '该项格式不正确'
                     },
+                    events: {
+                      onChange: (value) => {
+                        form.changeData({
+                          key: `${column.key}${index}`,
+                          value: value
+                        })
+                        let val = JSON.parse(JSON.stringify(parent.data))
+                        val[key][index][column.key] = value
+                        parent.changeData({
+                          key,
+                          value: val[key]
+                        })
+                      }
+                    }
                   }
                 }
               })
@@ -74,14 +90,14 @@
       this.isMounted = true
     },
     methods: {
+      tableSave() {
+        console.log(this.$refs.form.validate())
+      },
       tableCreate() {
         this.parent.changeData({
           value: [
             {
               test: '111',
-            },
-            {
-              test: '222',
             },
           ],
           key: this.currentVal.key

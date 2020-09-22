@@ -4,7 +4,7 @@
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
     <Button @click="tableCreate">添加</Button>
-    <Button @click="tableCreate">添加</Button>
+    <Button @click="tableSave">保存</Button>
     <v-form ref="form">
       <Table :columns="currentColumns" :data="parent.data[currentVal.key]">
       </Table>
@@ -13,19 +13,16 @@
 </template>
 <script>
   import request from '../../utils/request'
-  import {findComponentUpward} from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
+    mixins: [func],
     data() {
       return {
-        currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList'),
         total: 0,
         page: 1,
-        isMounted: false
       }
     },
-    props: ['value', 'language', 'status'],
     computed: {
       currentColumns() {
         if (!this.isMounted)
@@ -56,7 +53,7 @@
                       message: '该项格式不正确'
                     },
                     events: {
-                      onChange: (e, value) => {
+                      onChange: (value) => {
                         form.changeData({
                           key: `${column.key}${index}`,
                           value: value
@@ -80,16 +77,13 @@
         }
       }
     },
-    watch: {
-      value(val) {
-        this.currentVal = val;
-      }
-    },
     mounted() {
       this.update()
-      this.isMounted = true
     },
     methods: {
+      tableSave() {
+        console.log(this.$refs.form.validate())
+      },
       tableCreate() {
         this.parent.changeData({
           value: [

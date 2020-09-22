@@ -8,18 +8,10 @@
   </div>
 </template>
 <script>
+  import func from '../../mixins/func'
+
   export default {
-    data() {
-      return {
-        currentVal: this.value,
-      }
-    },
-    props: ["value"],
-    watch: {
-      value(val) {
-        this.currentVal = val;
-      }
-    },
+    mixins: [func],
     mounted() {
       this.update();
     },
