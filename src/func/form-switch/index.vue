@@ -21,7 +21,8 @@
       clickChange() {
         if (this.currentVal.events) {
           if (this.currentVal.events.onChange) {
-            this.currentVal.events.onChange(this.parent.data[this.currentVal.key])
+            const fun = new Function('value', this.currentVal.events.onChange)
+            fun(this.parent.data[this.currentVal.key])
           }
         }
       }

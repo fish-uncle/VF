@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     currentRequired() {
-      return this.currentVal.rules ? this.currentVal.rules.required : false
+      return this.currentVal.required
     },
     currentLabelTextAlign() {
       if (this.currentVal.labelTextAlign) {
@@ -81,12 +81,30 @@ export default {
     },
     show() {
       this.visible = true
+      if (this.currentVal.events) {
+        if (this.currentVal.events.onChange) {
+          const fun = new Function(this.currentVal.events.onShow)
+          fun()
+        }
+      }
     },
     hide() {
       this.visible = false
+      if (this.currentVal.events) {
+        if (this.currentVal.events.onChange) {
+          const fun = new Function(this.currentVal.events.onHide)
+          fun()
+        }
+      }
     },
     update() {
       this.$children[0].update()
+      if (this.currentVal.events) {
+        if (this.currentVal.events.onUpdate) {
+          const fun = new Function(this.currentVal.events.onUpdate)
+          fun()
+        }
+      }
     }
   }
 }

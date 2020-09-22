@@ -32,7 +32,8 @@ const language = {
   "admin_right_title1": "表单属性",
   "admin_right_title2": "字段属性",
   "admin_right_title3": "校验属性",
-  "admin_right_title4": "表单设置",
+  "admin_right_title4": "事件设置",
+  "admin_right_title5": "表单设置",
 
   "admin_right_btn1": "组件标题",
   "admin_right_btn2": "组件标题对齐",
@@ -55,6 +56,7 @@ const language = {
   "admin_right_btn33_2": "字符串连接",
   "admin_right_btn33_3": "所有组件",
   "admin_right_btn33_4": "连接的组件",
+  "admin_right_btn34": "标题",
 
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",

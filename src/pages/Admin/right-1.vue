@@ -13,6 +13,10 @@
         <Radio label="right">{{$t('admin_right_btn2_2')}}</Radio>
       </RadioGroup>
     </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('content')!==-1">
+      <label>{{$t('admin_right_btn34')}}</label>
+      <i-input v-model="item.content"></i-input>
+    </div>
     <div class="vf-control" v-if="item.changeList.indexOf('dashed')!==-1">
       <label>{{$t('admin_right_btn5')}}</label>
       <RadioGroup :value="item.dashed?1:0" type="button" size="large"
@@ -51,7 +55,7 @@
     <div class="vf-control" v-if="item.changeList.indexOf('props')!==-1">
       <label>props</label>
       <editor :value="propsVal" @input="value=>editorChange(value,'props')"
-              @init="editorInit" lang="json" theme="javascript" height="100"></editor>
+              @init="editorInit" lang="jsoniq" theme="javascript" height="100"></editor>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('javascript')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>

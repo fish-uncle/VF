@@ -62,7 +62,7 @@
     word-break: break-all;
   }
 
-  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-table-box {
+  .vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-title-box {
     .vf-component-label {
       display: none;
     }

@@ -3,13 +3,14 @@ const component = {
   title_en: 'text',
   icon: 'ios-paper-outline',
   type: 'dynamicText',
-  dataType: 'Null',
   text: '文本',
   showStyle: 'count',
   others: [],
   code: '',
   changeList: [
-    'showOthers'
+    'title',
+    'showOthers',
+    'widthRatio'
   ]
 }
 

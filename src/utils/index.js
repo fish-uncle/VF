@@ -1,3 +1,5 @@
+const JSON5 = require('json5')
+
 // Find components upward
 function findComponentUpward(context, componentName, componentNames) {
   if (typeof componentName === 'string') {
@@ -35,22 +37,12 @@ export function cssStyle2DomStyle(sName) {
 
 // obj to string
 export function obj2Str(obj) {
-  return JSON.stringify(obj, function (key, val) {
-    if (typeof val === 'function') {
-      return val + '';
-    }
-    return val;
-  })
+  return JSON5.stringify(obj)
 }
 
 // string to obj to
 export function str2Obj(str) {
-  return JSON.parse(str, function (k, v) {
-    if (v.indexOf && v.indexOf('function') > -1) {
-      return eval("(function(){return " + v + " })()")
-    }
-    return v;
-  });
+  return JSON5.parse(str);
 }
 
 export function uuid() {

@@ -34,18 +34,19 @@
       inputChange(e) {
         const _self = this;
         if (this.timeout !== null) clearTimeout(this.timeout)
+        if (_self.error) {
+          _self.parent.errorHide(this.currentVal.id);
+        }
         this.timeout = setTimeout(() => {
           const value = e.target.value;
-          if (_self.error) {
-            _self.parent.errorHide(this.currentVal.id);
-          }
           _self.parent.changeData({
             value,
             key: _self.currentVal.key
           })
           if (_self.currentVal.events) {
             if (_self.currentVal.events.onChange) {
-              _self.currentVal.events.onChange(value, e)
+              const fun = new Function('value', 'e', _self.currentVal.events.onChange)
+              fun(value, e)
             }
           }
         }, 1000)

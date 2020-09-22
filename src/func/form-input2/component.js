@@ -5,19 +5,8 @@ const component = {
   type: 'input2',
   dataType: 'MultiData',
   placeholder: '',
-  rules: {
-    required: false,
-    pattern: '',
-    message: '该项格式不正确'
-  },
   changeList: [
-    'labelTextAlign',
-    'labelWidth',
-
     'placeholder',
-    'disabled',
-    'props',
-    'rules',
   ]
 }
 

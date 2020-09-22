@@ -29,7 +29,8 @@
         })
         if (this.currentVal.events) {
           if (this.currentVal.events.onChange) {
-            this.currentVal.events.onChange(value)
+            const fun = new Function('value', this.currentVal.events.onChange)
+            fun(value)
           }
         }
       }

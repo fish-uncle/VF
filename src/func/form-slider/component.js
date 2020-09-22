@@ -8,23 +8,11 @@ const component = {
   step: '10',
   max: '100',
   min: '0',
-  rules: {
-    required: false,
-    pattern: '',
-    message: '该项格式不正确'
-  },
   changeList: [
-    'labelTextAlign',
-    'labelWidth',
-
-    'widthRatio',
-    'disabled',
     'showInput',
     'step',
     'max',
     'min',
-    'props',
-    'rules',
   ]
 }
 

@@ -1,6 +1,6 @@
 <template>
   <Modal v-model="model.readVisible" :closable="false" :footer-hide="true" :scrollable="true">
-    <editor v-model="config" @init="editorInit" lang="json"
+    <editor v-model="config" @init="editorInit" lang="jsoniq"
             theme="javascript" height="400"></editor>
     <div class="text-center">
       <Button type="primary" @click="handleRead">{{$t('model_read')}}</Button>
@@ -8,24 +8,24 @@
   </Modal>
 </template>
 <script>
-  import { mapState } from 'vuex'
-  import { str2Obj } from '../../utils'
+  import {mapState} from 'vuex'
+  import {str2Obj} from '../../utils'
 
   export default {
-    data () {
+    data() {
       return {
         config: ''
       }
     },
-    computed: mapState ([ 'model', 'component' ]),
+    computed: mapState(['model', 'component']),
     methods: {
-      handleRead () {
-        const config = str2Obj (this.config)
-        config.list.forEach (child => {
-          child.forEach (item => {
+      handleRead() {
+        const config = str2Obj(this.config)
+        config.list.forEach(child => {
+          child.forEach(item => {
             item.changeList = this.component.changeList[item.type]
-            item.title_zh = item.title
-            item.title_en = item.title
+            item.title_zh = item.title_zh || item.title
+            item.title_en = item.title_en || item.title
             if (!item.labelWidth) {
               item.labelWidth = config.labelWidth
             }
@@ -34,7 +34,7 @@
             }
           })
         })
-        this.$store.commit ('center/set', {
+        this.$store.commit('center/set', {
           list: config.list,
           viewScale: config.viewScale,
           labelWidth: config.labelWidth,

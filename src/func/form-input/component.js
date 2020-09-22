@@ -4,20 +4,8 @@ const component = {
   icon: 'ios-create-outline',
   type: 'input',
   placeholder: '',
-  rules: {
-    required: false,
-    pattern: '',
-    message: '该项格式不正确'
-  },
   changeList: [
-    'labelTextAlign',
-    'labelWidth',
-
     'placeholder',
-    'widthRatio',
-    'disabled',
-    'props',
-    'rules',
   ]
 }
 

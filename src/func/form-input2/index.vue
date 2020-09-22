@@ -73,7 +73,8 @@
           })
           if (_self.currentVal.events) {
             if (_self.currentVal.events.onChange) {
-              _self.currentVal.events.onChange(value, e)
+              const fun = new Function('value', 'e', _self.currentVal.events.onChange)
+              fun(value, e)
             }
           }
         }, 1000)

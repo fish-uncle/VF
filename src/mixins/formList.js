@@ -1,13 +1,19 @@
 import Schema from 'async-validator'
+import {str2Obj} from '../utils'
 
 export default {
   data() {
     return {
       data: {},
+      tableData: {},
       child: {}
     }
   },
   methods: {
+    // 修改值
+    changeTableData({key, value}) {
+      this.$set(this.tableData, key, value)
+    },
     // 修改值
     changeData({key, value}) {
       this.data[key] = value
@@ -123,7 +129,7 @@ export default {
         case 'Null':
           break
         case 'Table':
-          this.$set(data, dragItem.key, [])
+          this.$set(this.tableData, dragItem.key, [])
           break
         case 'Array':
           this.$set(data, dragItem.key, [])
@@ -176,10 +182,19 @@ export default {
       for (let i = 0; i <= componentList.length - 1; i++) {
         const item = componentList[i];
         if (item.dataType !== 'Null' && this.child[item.id].visibleStatus()) {
-          descriptor[item.key] = {
-            ...item.rules,
-            id: item.id,
-            pattern: new RegExp(item.rules.pattern)
+          if (item.rules) {
+            const rules = str2Obj(item.rules)
+            descriptor[item.key] = {
+              id: item.id,
+              message: rules.message,
+              required: item.required
+            }
+            if (rules.pattern) {
+              descriptor[item.key]['pattern'] = new RegExp(rules.pattern)
+            }
+            if (rules.validator) {
+              descriptor[item.key]['validator'] = new Function('rule', 'value', rules.validator)
+            }
           }
         }
       }

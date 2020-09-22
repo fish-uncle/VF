@@ -32,7 +32,8 @@ const language = {
   "admin_right_title1": "Form",
   "admin_right_title2": "Field",
   "admin_right_title3": "Check",
-  "admin_right_title4": "Setting",
+  "admin_right_title4": "Event",
+  "admin_right_title5": "Setting",
 
   "admin_right_btn1": "Component title",
   "admin_right_btn2": "Component Title Alignment",
@@ -55,6 +56,7 @@ const language = {
   "admin_right_btn33_2": "String concatenation",
   "admin_right_btn33_3": "All components",
   "admin_right_btn33_4": "Connected components",
+  "admin_right_btn34": "Title",
 
   "admin_right_btn5": "Is the component dashed",
   "admin_right_btn5_1": "YES",

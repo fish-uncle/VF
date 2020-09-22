@@ -9,7 +9,7 @@ export default {
       isMounted: false
     }
   },
-  props: ['value', 'error', 'language', 'edit'],
+  props: ['value', 'error', 'language', 'edit', 'status'],
   watch: {
     value(val) {
       this.currentVal = val

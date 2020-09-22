@@ -2,7 +2,7 @@ const component = {
   title_zh: '常规表格',
   title_en: 'table',
   icon: 'ios-grid-outline',
-  dataType: 'Null',
+  dataType: 'Table',
   type: 'table',
   labelWidth: 0,
   columns: [

@@ -31,7 +31,7 @@ Vue.prototype.editorInit = function () {
   require ('brace/mode/html')
   require ('brace/mode/javascript')    //language
   require ('brace/mode/less')
-  require ('brace/mode/json')
+  require ('brace/mode/jsoniq')
   require ('brace/theme/chrome')
   require ('brace/snippets/javascript') //snippet
 }

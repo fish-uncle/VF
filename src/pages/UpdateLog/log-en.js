@@ -17,6 +17,8 @@ const log = [
       'New advanced table component f-table2.',
       'Add component value change callback event.',
       'Add debounce function in component.',
+      'New event configuration.',
+      'New title component f-title.',
     ]
   },
   {

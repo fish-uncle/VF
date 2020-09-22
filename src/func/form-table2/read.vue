@@ -6,26 +6,23 @@
     <Button @click="tableCreate">添加</Button>
     <Button @click="tableSave">保存</Button>
     <v-form ref="form">
-      <Table :columns="currentColumns" :data="parent.data[currentVal.key]">
+      <Table :columns="currentColumns" :data="parent.tableData[currentVal.key]">
       </Table>
     </v-form>
   </div>
 </template>
 <script>
   import request from '../../utils/request'
-  import {findComponentUpward} from "../../utils";
+  import func from '../../mixins/func'
 
   export default {
+    mixins: [func],
     data() {
       return {
-        currentVal: this.value,
-        parent: findComponentUpward(this, 'FormList'),
         total: 0,
         page: 1,
-        isMounted: false
       }
     },
-    props: ['value', 'language', 'status'],
     computed: {
       currentColumns() {
         if (!this.isMounted)
@@ -40,7 +37,7 @@
             item.render = (h, {row, column, index}) => {
               form.changeData({
                 key: `${column.key}${index}`,
-                value: this.parent.data[this.currentVal.key][index][column.key]
+                value: this.parent.tableData[this.currentVal.key][index][column.key]
               })
               return h('v-component', {
                 props: {
@@ -80,21 +77,15 @@
         }
       }
     },
-    watch: {
-      value(val) {
-        this.currentVal = val;
-      }
-    },
     mounted() {
       this.update()
-      this.isMounted = true
     },
     methods: {
       tableSave() {
-        console.log(this.$refs.form.validate())
+        // console.log(this.$refs.form.validate())
       },
       tableCreate() {
-        this.parent.changeData({
+        this.parent.changeTableData({
           value: [
             {
               test: '111',

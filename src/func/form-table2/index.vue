@@ -6,7 +6,7 @@
     <Button @click="tableCreate">添加</Button>
     <Button @click="tableSave">保存</Button>
     <v-form ref="form">
-      <Table :columns="currentColumns" :data="parent.data[currentVal.key]">
+      <Table :columns="currentColumns" :data="parent.tableData[currentVal.key]">
       </Table>
     </v-form>
   </div>
@@ -37,7 +37,7 @@
             item.render = (h, {row, column, index}) => {
               form.changeData({
                 key: `${column.key}${index}`,
-                value: this.parent.data[this.currentVal.key][index][column.key]
+                value: this.parent.tableData[this.currentVal.key][index][column.key]
               })
               return h('v-component', {
                 props: {
@@ -82,10 +82,10 @@
     },
     methods: {
       tableSave() {
-        console.log(this.$refs.form.validate())
+        // console.log(this.$refs.form.validate())
       },
       tableCreate() {
-        this.parent.changeData({
+        this.parent.changeTableData({
           value: [
             {
               test: '111',
