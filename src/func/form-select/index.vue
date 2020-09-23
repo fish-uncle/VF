@@ -54,9 +54,11 @@
             }
           })
         }
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+        if (this.currentVal.controlOthersUpdateTargetKeys) {
+          if (this.currentVal.controlOthersUpdateTargetKeys.length) {
+            if (this.parent) {
+              this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+            }
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
@@ -64,14 +66,17 @@
             this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, '')
           }
         }
+
       },
       clickChange(value) {
         if (this.error) {
           this.parent.errorHide(this.currentVal.id);
         }
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+        if (this.currentVal.controlOthersUpdateTargetKeys) {
+          if (this.currentVal.controlOthersUpdateTargetKeys.length) {
+            if (this.parent) {
+              this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+            }
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
@@ -79,12 +84,7 @@
             this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, value)
           }
         }
-        if (this.currentVal.events) {
-          if (this.currentVal.events.onChange) {
-            const fun = new Function('value', this.currentVal.events.onChange)
-            fun(value)
-          }
-        }
+        this.eventsOnChange()
       }
     }
   }

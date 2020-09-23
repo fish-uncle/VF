@@ -23,24 +23,11 @@
         })
       },
       inputChange(e) {
-        const _self = this;
-        if (this.timeout !== null) clearTimeout(this.timeout)
+        const _self = this
         if (_self.error) {
-          _self.parent.errorHide(this.currentVal.id);
+          _self.parent.errorHide(this.currentVal.id)
         }
-        this.timeout = setTimeout(() => {
-          const value = e.target.value;
-          _self.parent.changeData({
-            value,
-            key: _self.currentVal.key
-          })
-          if (_self.currentVal.events) {
-            if (_self.currentVal.events.onChange) {
-              const fun = new Function('value', 'e', _self.currentVal.events.onChange)
-              fun(value, e)
-            }
-          }
-        }, 1000)
+        this.eventsOnChange(e)
       }
     }
   }

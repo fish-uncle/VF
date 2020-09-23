@@ -13,7 +13,9 @@ const component = {
       label: '2'
     }
   ],
+  customAjaxParams: {},
   ajaxList: [],
+  selectListUrl: '',
   // defaultSelectIndex: 0,
   controlOthersUpdateTargetKeys: [],
   controlOthersHideTargetKeys: {},

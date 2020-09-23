@@ -1,6 +1,6 @@
 {
-  "name": "VF",
-  "version": "1.1.2",
+  "name": "eslink-vf",
+  "version": "1.1.3",
   "description": "基于Vue的表单设计器，让表单开发简单而高效",
   "main": "index.js",
   "keywords": [
@@ -17,25 +17,30 @@
     "sitemap": "node src/sitemap.js"
   },
   "author": "fish uncle",
-  "license": "EPL",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fish-uncle/VF.git"
+  },
   "dependencies": {
     "async-validator": "^3.4.0",
     "axios": "^0.19.2",
     "date-fns": "^2.16.1",
-    "highlight.js": "^10.1.2",
     "json5": "^2.1.3",
-    "markdown-it-vue": "^1.1.3",
-    "valine": "^1.4.14",
-    "view-design": "^4.3.2",
-    "vue": "^2.6.11",
-    "vue-i18n": "^8.20.0",
-    "vue-json-viewer": "^2.2.11",
-    "vue-router": "^3.4.0",
-    "vue2-ace-editor": "0.0.15",
-    "vuedraggable": "^2.24.1",
-    "vuex": "^3.2.0"
+    "throttle-debounce": "^2.3.0",
+    "view-design": "^4.3.2"
   },
   "devDependencies": {
-    "auto-vers": "^1.0.3"
+    "auto-vers": "^1.0.3",
+    "highlight.js": "^10.2.0",
+    "markdown-it-vue": "^1.1.3",
+    "valine": "^1.4.14",
+    "vue": "^2.6.12",
+    "vue-i18n": "^8.21.1",
+    "vue-json-viewer": "^2.2.14",
+    "vue-router": "^3.4.3",
+    "vue2-ace-editor": "0.0.15",
+    "vuedraggable": "^2.24.1",
+    "vuex": "^3.5.1"
   }
 }

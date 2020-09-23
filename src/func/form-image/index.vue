@@ -91,12 +91,7 @@
         if (this.error) {
           this.parent.errorHide(this.currentVal.id);
         }
-        if (this.currentVal.events) {
-          if (this.currentVal.events.onChange) {
-            const fun = new Function('value', this.currentVal.events.onChange)
-            fun(this.parent.data[this.currentVal.key])
-          }
-        }
+        this.eventsOnChange()
       }
     }
   }

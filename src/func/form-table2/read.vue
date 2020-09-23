@@ -3,8 +3,8 @@
        v-bind="currentVal.props"
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
-    <Button @click="tableCreate">添加</Button>
-    <Button @click="tableSave">保存</Button>
+    <Button @click="tableCreate" v-if="status==='edit'">添加</Button>
+    <Button @click="tableSave" v-if="status==='edit'">保存</Button>
     <v-form ref="form">
       <Table :columns="currentColumns" :data="parent.tableData[currentVal.key]">
       </Table>
@@ -45,22 +45,27 @@
                   value: {
                     id: `${column.key}${index}`,
                     key: `${column.key}${index}`,
-                    type: 'input',
+                    type: column.type,
+                    selectList: [
+                      {
+                        value: '11',
+                        label: '1'
+                      },
+                      {
+                        value: '22',
+                        label: '2'
+                      }
+                    ],
                     labelWidth: 0,
-                    rules: {
-                      required: true,
-                      pattern: '',
-                      message: '该项格式不正确'
-                    },
                     events: {
                       onChange: (value) => {
                         form.changeData({
                           key: `${column.key}${index}`,
                           value: value
                         })
-                        let val = JSON.parse(JSON.stringify(parent.data))
+                        let val = JSON.parse(JSON.stringify(parent.tableData))
                         val[key][index][column.key] = value
-                        parent.changeData({
+                        parent.changeTableData({
                           key,
                           value: val[key]
                         })
@@ -85,12 +90,17 @@
         // console.log(this.$refs.form.validate())
       },
       tableCreate() {
+        if (this.status !== 'edit') {
+          return
+        }
+        const value = {}
+        this.currentVal.columns.forEach(item => {
+          value[item.key] = ''
+        })
+        const tableData = JSON.parse(JSON.stringify(this.parent.tableData[this.currentVal.key]))
+        tableData.push(value)
         this.parent.changeTableData({
-          value: [
-            {
-              test: '111',
-            },
-          ],
+          value: tableData,
           key: this.currentVal.key
         })
       },

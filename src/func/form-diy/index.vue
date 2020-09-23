@@ -4,7 +4,6 @@
     :class="[currentVal.className,error?'vf-error':'']"
     v-model="parent.data[currentVal.key]"
     :style="{width:`${currentVal.widthRatio}%`}"
-    @on-change="inputChange"
   />
 </template>
 <script>
@@ -12,24 +11,6 @@
 
   export default {
     mixins: [func],
-    methods: {
-      update () {
-        this.parent.changeData ({
-          value: '',
-          key: this.currentVal.key
-        })
-      },
-      inputChange (e) {
-        const value = e.target.value;
-        if (this.error) {
-          this.parent.errorHide (this.currentVal.id);
-        }
-        this.parent.changeData ({
-          value,
-          key: this.currentVal.key
-        })
-      }
-    }
   }
 </script>
 <style lang="less">

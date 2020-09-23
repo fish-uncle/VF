@@ -183,9 +183,13 @@ export default {
         const item = componentList[i];
         if (item.dataType !== 'Null' && this.child[item.id].visibleStatus()) {
           if (item.rules) {
+            console.log(item.rules)
             const rules = str2Obj(item.rules)
+            console.log(2)
+            const type = item.dataType ? item.dataType.toLowerCase() : 'string'
             descriptor[item.key] = {
               id: item.id,
+              type,
               message: rules.message,
               required: item.required
             }

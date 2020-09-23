@@ -19,36 +19,19 @@ https://cdn.shenzhepei.com/VF/select.json
 ### 第四步
 如果你想要修改你的ajax请求整体返回格式
 
-utils/request.js
+只需要将你的axios实例，在eslink-vf加载前暴露到window.vf_request下就行了
+```shell script
+import Vue from 'vue'
+import App from './App'
+import ViewUI from 'view-design'
 
-```javascript
-// {
-//   data: '数据',
-//   resultCode: '0000',
-//   resultMsg：'错误信息'
-// }
-// 可自行判断 逻辑报错请求
-axios.interceptors.response.use(response => {
-  const {data} = response;
-  const locale = localStorage.getItem('locale');
-  let errMessage = '网络异常，请重试';
-  if (locale === 'en') {
-    errMessage = 'Network exception, please try again';
-  }
-  if (data) {
-    if (data.resultCode === '0000') {
-      return data.data
-    } else {
-      Message.error(data.returnMessage || errMessage)
-      return Promise.reject(false);
-    }
-  } else {
-    Message.error(errMessage)
-    return Promise.reject(false);
-  }
-}, function (e) {
-  Message.error(errMessage);
-  return Promise.reject(false);
-});
+import request from './utils/request'
+
+window.vf_request = request
+import {VList} from '@fish/eslink-vf'
+
+Vue.use(ViewUI)
+Vue.config.productionTip = false
+Vue.component('v-list', VList)
 ```
 

@@ -14,10 +14,16 @@
 </template>
 <script>
   import formList from '../../mixins/formList'
+  import FormComponentUse from '../VComponents'
+  import {Row} from 'view-design'
 
   export default {
     name: 'FormList',
     mixins: [formList],
+    components: {
+      'v-component': FormComponentUse,
+      Row
+    },
     data() {
       return {
         currentList: [[], []],
@@ -55,8 +61,9 @@
     },
     methods: {
       init() {
-        this.data = {};
-        let componentList = [];
+        this.data = {}
+        let componentList = []
+        this.currentList = this.list
         for (let i = 0; i <= this.currentList.length - 1; i++) {
           componentList.push(...this.currentList[i])
         }

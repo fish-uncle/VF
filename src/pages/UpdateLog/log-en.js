@@ -1,5 +1,23 @@
 const log = [
   {
+    version: '1.1.3',
+    time: '2020-09-23',
+    content: [
+      'Optimize advanced tables.',
+      'open source.',
+      'New diy component f-diy.',
+      'Improve the documents of API Department.',
+      'New events document.',
+      'New verification document.',
+      'Publish npm.',
+      'Fix calibration report errors bug.',
+      'Fix advanced table bugs.',
+      'Fix diy component report errors bugs.',
+      'Add throttle-debounce to optimize event anti shake.',
+      'Add custom Axios instances.'
+    ]
+  },
+  {
     version: '1.1.2',
     time: '2020-09-22',
     content: [

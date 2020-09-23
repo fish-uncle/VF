@@ -1,30 +1,36 @@
 <template>
   <div>
     <h2>{{$t('help_left_1_3')}}</h2>
-    <editor :value="html"
-            @init="editorInit" lang="html" theme="chrome" width="100%" height="640"></editor>
+    <pre>
+      <code class="html">{{html}}</code>
+    </pre>
   </div>
 </template>
 <script>
-  import { mapState } from "vuex"
+  import {mapState} from "vuex"
 
   export default {
     computed: {
-      ...mapState ([ 'component' ]),
-      html () {
-        const model_preview_submit = this.$t ('model_preview_submit')
-        const model_preview_edit = this.$t ('model_preview_edit')
-        const model_preview_read = this.$t ('model_preview_read')
-        const model_preview_reset = this.$t ('model_preview_reset')
+      ...mapState(['component']),
+      html() {
+        const model_preview_submit = this.$t('model_preview_submit')
+        const model_preview_edit = this.$t('model_preview_edit')
+        const model_preview_read = this.$t('model_preview_read')
+        const model_preview_reset = this.$t('model_preview_reset')
         const lt = '<'
-        const test = JSON.parse (JSON.stringify (this.component.list[0]))
+        const test = JSON.parse(JSON.stringify(this.component.list[0]))
         delete test.changeList
         delete test.version
         delete test.icon
         delete test.labelWidth
         delete test.componentType
         delete test.labelTextAlign
-        const list = [ [ test ], [] ]
+        delete test.title_en
+        test.key = 'input'
+        test.title = test.title_zh
+        delete test.title_zh
+        test.id = 'input'
+        const list = [[test], []]
         const viewScale = '12:12'
         const labelWidth = 120
         const labelTextAlign = 'right'
@@ -46,12 +52,12 @@
   export default {
     data () {
       return {
-        list: ${JSON.stringify (list)},
+        list: ${JSON.stringify(list)},
         viewScale: '${viewScale}',
         labelWidth: ${labelWidth},
         labelTextAlign: '${labelTextAlign}',
         language: 'zh',
-        group: ${JSON.stringify (group)}
+        group: ${JSON.stringify(group)}
       }
     },
     methods: {

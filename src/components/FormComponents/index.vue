@@ -13,7 +13,7 @@
       {{currentTitle}}:
     </label>
     <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
-      <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language.lang"></component>
+      <component :is="currentComponent" :value="currentVal" :edit="edit" :language="language"></component>
     </div>
     <div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center"
          @click="handleDelete">

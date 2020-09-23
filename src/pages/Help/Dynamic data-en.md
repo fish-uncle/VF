@@ -19,36 +19,19 @@ https://cdn.shenzhepei.com/VF/select.json
 ### Step four
 If you want to modify the overall return format of your Ajax request
 
-utils/request.js
+Just expose your axios instance to the window.vf_request Just ask
 
-```javascript
-// {
-//   data: 'data',
-//   resultCode: '0000',
-//   resultMsg：'error message'
-// }
-// It can judge logic error request by itself
-axios.interceptors.response.use(response => {
-  const {data} = response;
-  const locale = localStorage.getItem('locale');
-  let errMessage = '网络异常，请重试';
-  if (locale === 'en') {
-    errMessage = 'Network exception, please try again';
-  }
-  if (data) {
-    if (data.resultCode === '0000') {
-      return data.data
-    } else {
-      Message.error(data.returnMessage || errMessage)
-      return Promise.reject(false);
-    }
-  } else {
-    Message.error(errMessage)
-    return Promise.reject(false);
-  }
-}, function (e) {
-  Message.error(errMessage);
-  return Promise.reject(false);
-});
+```shell script
+import Vue from 'vue'
+import App from './App'
+import ViewUI from 'view-design'
+
+import request from './utils/request'
+
+window.vf_request = request
+import {VList} from '@fish/eslink-vf'
+
+Vue.use(ViewUI)
+Vue.config.productionTip = false
+Vue.component('v-list', VList)
 ```
-

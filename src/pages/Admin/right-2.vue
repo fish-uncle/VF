@@ -86,8 +86,11 @@
                    @on-change="e=>columnsTitleChange(e,index)"/>
           <i-input style="width: 125px;margin-left: 10px;" v-model="child.key"
                    @on-change="e=>columnsKeyChange(e,index)"/>
-          <i-input style="width: 125px;margin-left: 10px;" v-model="child.type"
-                   @on-change="e=>columnsValueChange(e,index)"/>
+          <i-select style="width: 125px;margin-left: 10px;" v-model="child.type"
+                    @on-change="e=>columnsValueChange(e,index)">
+            <i-option value="input">input</i-option>
+            <i-option value="select">select</i-option>
+          </i-select>
           <span :class="item.columns.length>1?'':'disabled'" class="vf-select-del text-center pointer"
                 @click="columnsDelChange(index)">-</span>
           <span class="vf-select-add text-center pointer" @click="columnsAddChange(index)">+</span>
@@ -192,31 +195,31 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
 
   export default {
-    data () {
+    data() {
       return {
         tab: 1,
       }
     },
     computed: {
-      ...mapState ([ 'center', 'language' ]),
-      item () {
+      ...mapState(['center', 'language']),
+      item() {
         if (this.center.list[this.center.currentScale][this.center.current]) {
           return this.center.list[this.center.currentScale][this.center.current]
         } else {
-          return { changeList: [] }
+          return {changeList: []}
         }
       },
-      componentList () {
+      componentList() {
         let componentList = [], result = [];
         for (let i = 0; i <= this.center.list.length - 1; i++) {
-          componentList.push (...this.center.list[i])
+          componentList.push(...this.center.list[i])
         }
         for (let i = 0; i <= componentList.length - 1; i++) {
           if (this.item.id !== componentList[i].id) {
-            result.push ({
+            result.push({
               key: componentList[i].id,
               label: componentList[i][`title_${this.language.lang}`],
             });
@@ -226,105 +229,104 @@
       }
     },
     methods: {
-      selectChange (value, key) {
+      selectChange(value, key) {
         let item = this.item
         item[key] = value
       },
-      selectListUrlChange (e, key) {
+      selectListUrlChange(e, key) {
         const value = e.target.value
         let item = this.item
         item[key] = value
       },
-      controlOthersHideChange (targetKeys, value) {
+      controlOthersHideChange(targetKeys, value) {
         let item = this.item
-        const obj = Object.assign ({}, item.controlOthersHideTargetKeys)
+        const obj = Object.assign({}, item.controlOthersHideTargetKeys)
         obj[value] = targetKeys
         item.controlOthersHideTargetKeys = obj
       },
-      controlOthersUpdateChange (targetKeys) {
+      controlOthersUpdateChange(targetKeys) {
         let item = this.item
         item.controlOthersUpdateTargetKeys = targetKeys
       },
-      inputValueChange (e, index) {
+      inputValueChange(e, index) {
         const value = e.target.value
         let item = this.item
         item.selectList[index].value = value
       },
-      inputTitleChange (e, index) {
+      inputTitleChange(e, index) {
         const value = e.target.value
         let item = this.item
         item.selectList[index].label = value
       },
-      selectDelChange (index) {
+      selectDelChange(index) {
         let item = this.item
         if (item.selectList.length > 1) {
-          item['selectList'].splice (index, 1)
+          item['selectList'].splice(index, 1)
         }
       },
-      selectAddChange (index) {
+      selectAddChange(index) {
         let item = this.item
-        item['selectList'].splice (index + 1, 0, { label: '新建项标题', value: '新建项值' })
+        item['selectList'].splice(index + 1, 0, {label: '新建项标题', value: '新建项值'})
       },
-      columnsValueChange (e, index) {
-        const value = e.target.value
+      columnsValueChange(value, index) {
         let item = this.item
         item.columns[index].value = value
       },
-      columnsKeyChange (e, index) {
+      columnsKeyChange(e, index) {
         const value = e.target.value
         let item = this.item
         item.columns[index].key = value
       },
-      columnsTitleChange (e, index) {
+      columnsTitleChange(e, index) {
         const value = e.target.value
         let item = this.item
         item.columns[index].title = value
       },
-      columnsDelChange (index) {
+      columnsDelChange(index) {
         let item = this.item
         if (item.columns.length > 1) {
-          item['columns'].splice (index, 1)
+          item['columns'].splice(index, 1)
         }
       },
-      columnsAddChange (index) {
+      columnsAddChange(index) {
         let item = this.item
-        item['columns'].splice (index + 1, 0, { key: 'key', title: 'title', type: 'input' })
+        item['columns'].splice(index + 1, 0, {key: 'key', title: 'title', type: 'input'})
       },
-      checkChange (value, key) {
+      checkChange(value, key) {
         let item = this.item
         item[key] = value
       },
-      dateRangeKeyChange (e, key) {
+      dateRangeKeyChange(e, key) {
         const value = e.target.value
         let item = this.item
         if (key === '0') {
-          const newKey = value + ';' + item.key.split (';')[1]
-          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key.split (';')[0], newKey: value })
-          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key, newKey })
+          const newKey = value + ';' + item.key.split(';')[1]
+          this.$agent.$once({type: 'formDataChange', oldKey: item.key.split(';')[0], newKey: value})
+          this.$agent.$once({type: 'formDataChange', oldKey: item.key, newKey})
           item.key = newKey
-          this.$store.commit ('center/changeKey', { key: newKey, id: item.id })
+          this.$store.commit('center/changeKey', {key: newKey, id: item.id})
         }
         if (key === '1') {
-          const newKey = item.key.split (';')[0] + ';' + value
-          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key.split (';')[1], newKey: value })
-          this.$agent.$once ({ type: 'formDataChange', oldKey: item.key, newKey })
+          const newKey = item.key.split(';')[0] + ';' + value
+          this.$agent.$once({type: 'formDataChange', oldKey: item.key.split(';')[1], newKey: value})
+          this.$agent.$once({type: 'formDataChange', oldKey: item.key, newKey})
           item.key = newKey
-          this.$store.commit ('center/changeKey', { key: newKey, id: item.id })
+          this.$store.commit('center/changeKey', {key: newKey, id: item.id})
         }
       },
-      keyChange (e) {
+      keyChange(e) {
         const value = e.target.value
         let item = this.item
-        this.$agent.$once ({ type: 'formDataChange', oldKey: item.key, newKey: value })
+        this.$agent.$once({type: 'formDataChange', oldKey: item.key, newKey: value})
         item.key = value
-        this.$store.commit ('center/changeKey', { key: value, id: item.id })
+        this.$store.commit('center/changeKey', {key: value, id: item.id})
       },
-      numberChange (e, key) {
+      numberChange(e, key) {
         const value = e.target.value
         let item = this.item
-        item[key] = Number (value)
+        item[key] = Number(value)
       },
-      inputChange (e, key) {
+      inputChange(e, key) {
         const value = e.target.value
         let item = this.item
         item[key] = value

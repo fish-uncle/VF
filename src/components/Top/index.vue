@@ -8,6 +8,9 @@
       <li class="pointer" :class="top.topIndex===1?'active':''" @click="handleIndex">{{$t('top_home')}}</li>
       <li class="pointer" :class="top.topIndex===3?'active':''" @click="handleHelp">{{$t('top_documentation')}}</li>
       <li class="pointer" :class="top.topIndex===2?'active':''" @click="handleUpdateLog">{{$t('top_update_log')}}</li>
+      <li class="pointer" @click="handleGithub">
+        <Icon type="logo-github"/>
+      </li>
       <!--      <li class="pointer" @click="handleBuyShow">{{$t('top_buy')}}</li>-->
     </ul>
     <i-select class="vf-lang pos-r" v-model="$i18n.locale" @on-change="handleLanguageChange">
@@ -16,11 +19,11 @@
   </div>
 </template>
 <script>
-  import { mapState } from "vuex";
+  import {mapState} from "vuex";
 
   export default {
-    computed: mapState ([ "top" ]),
-    data () {
+    computed: mapState(["top"]),
+    data() {
       return {
         langs: [
           {
@@ -36,26 +39,29 @@
       }
     },
     methods: {
-      handleLanguageChange (data) {
-        document.title = this.$t ('top_description')
-        localStorage.setItem ("locale", data)
-        this.$agent.$once ({ type: 'languageChange', data })
-        this.$store.commit ('language/change', { lang: data })
+      handleGithub() {
+        window.open('https://github.com/fish-uncle/VF')
       },
-      handleIndex () {
+      handleLanguageChange(data) {
+        document.title = this.$t('top_description')
+        localStorage.setItem("locale", data)
+        this.$agent.$once({type: 'languageChange', data})
+        this.$store.commit('language/change', {lang: data})
+      },
+      handleIndex() {
         if (this.$route.name !== 'Admin')
-          this.$router.push ('/')
+          this.$router.push('/')
       },
-      handleBuyShow () {
-        this.$store.commit ('model/buyShow')
+      handleBuyShow() {
+        this.$store.commit('model/buyShow')
       },
-      handleUpdateLog () {
+      handleUpdateLog() {
         if (this.$route.name !== 'UpdateLog')
-          this.$router.push ('/updateLog')
+          this.$router.push('/updateLog')
       },
-      handleHelp () {
+      handleHelp() {
         if (this.$route.name !== 'Help')
-          this.$router.push ('/help/Introduce')
+          this.$router.push('/help/Introduce')
       }
     }
   }

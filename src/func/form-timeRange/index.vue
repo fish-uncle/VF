@@ -46,12 +46,7 @@
           value: value,
           key: this.currentVal.key
         })
-        if (this.currentVal.events) {
-          if (this.currentVal.events.onChange) {
-            const fun = new Function('value', this.currentVal.events.onChange)
-            fun(value)
-          }
-        }
+        this.eventsOnChange()
       }
     }
   }

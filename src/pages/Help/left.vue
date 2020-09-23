@@ -1,5 +1,5 @@
 <template>
-  <Menu class="fn-fl vf-help-left" :open-names="['1','2','3','4','5']" :active-name="help.helpName"
+  <Menu class="fn-fl vf-help-left vf-scrollbar" :open-names="['1','2','3','4','5','6']" :active-name="help.helpName"
         @on-select="handleSelect">
     <Submenu name="1">
       <template slot="title">
@@ -33,31 +33,42 @@
     </Submenu>
     <Submenu name="4">
       <template slot="title">
-        {{$t('help_left_3')}}
+        {{$t('help_left_4')}}
       </template>
-      <MenuItem name="Custom components">{{$t('help_left_3_1')}}</MenuItem>
-      <MenuItem name="Internationalization">{{$t('help_left_3_2')}}</MenuItem>
+      <MenuItem name="onChange">onChange</MenuItem>
+      <MenuItem name="onHide">onHide</MenuItem>
+      <MenuItem name="onShow">onShow</MenuItem>
+      <MenuItem name="onUpdate">onUpdate</MenuItem>
     </Submenu>
     <Submenu name="5">
       <template slot="title">
-        {{$t('help_left_4')}}
+        {{$t('help_left_5')}}
       </template>
-      <MenuItem name="Friendship sponsorship">{{$t('help_left_4_1')}}</MenuItem>
-      <MenuItem name="Feedback">{{$t('help_left_4_2')}}</MenuItem>
+      <MenuItem name="Custom components">{{$t('help_left_5_1')}}</MenuItem>
+      <MenuItem name="Internationalization">{{$t('help_left_5_2')}}</MenuItem>
+      <MenuItem name="Verification">{{$t('help_left_5_3')}}</MenuItem>
+    </Submenu>
+    <Submenu name="6">
+      <template slot="title">
+        {{$t('help_left_6')}}
+      </template>
+      <MenuItem name="Friendship sponsorship">{{$t('help_left_6_1')}}</MenuItem>
+      <MenuItem name="Feedback">{{$t('help_left_6_2')}}</MenuItem>
     </Submenu>
   </Menu>
 </template>
 <script>
-  import { mapState } from "vuex";
+  import {mapState} from 'vuex'
 
   export default {
-    computed: mapState ([ "help" ]),
+    computed: mapState(["help"]),
     methods: {
-      handleSelect (name) {
-        const currentHash = decodeURIComponent (location.hash.replace ('#', ''));
-        const nowHash = `/help/${name}`;
-        if (encodeURIComponent (currentHash.replace (/\s+/g, "")) !== encodeURIComponent (nowHash.replace (/\s+/g, ""))) {
-          this.$router.push (nowHash);
+      handleSelect(name) {
+        const currentHash = decodeURIComponent(location.hash.replace('#', ''));
+        const nowHash = `/help/${name}`
+        if (encodeURIComponent(currentHash.replace(/\s+/g, '')) !== encodeURIComponent(nowHash.replace(/\s+/g, ''))) {
+          this.$router.push(nowHash)
+          window.scrollTo(0, 0)
         }
       }
     }
@@ -66,5 +77,6 @@
 <style lang="less">
   .vf-help-left {
     height: calc(100vh - 120px);
+    overflow: auto;
   }
 </style>

@@ -110,12 +110,14 @@ const language = {
   "help_left_2_2": "Dynamic data",
   "help_left_2_3": "Basic components",
   "help_left_2_4": "Decorating components",
-  "help_left_3": "Advanced features",
-  "help_left_3_1": "Custom components",
-  "help_left_3_2": "Internationalization",
-  "help_left_4": "Others",
-  "help_left_4_1": "Friendship sponsorship",
-  "help_left_4_2": "Feedback",
+  "help_left_4": "Events",
+  "help_left_5": "Advanced features",
+  "help_left_5_1": "Custom components",
+  "help_left_5_2": "Internationalization",
+  "help_left_5_3": "Verification",
+  "help_left_6": "Others",
+  "help_left_6_1": "Friendship sponsorship",
+  "help_left_6_2": "Feedback",
 
   "buy_wechat": "weChat",
   "buy_alipay": "Alipay",
@@ -140,12 +142,12 @@ const language = {
   "model_preview_edit": "Edit",
   "model_preview_read": "Read",
   "model_preview_reset": "Reset",
+  "model_preview_change": "Change Data",
 
   "model_read": "read",
 
   "verify_required": "Is required",
 
-  "component_javascript": "Custom JS fragment, only display the text when editing, for occupation, Please try to place it at the end of the form",
 
   "feedback_h2_1": "Feedback",
   "feedback_p_1": "If you have any problems or suggestions in use, please write them down and tell me. If there are any, you may be crowned, otherwise, you may have your valuable suggestions in the next revision.",
@@ -159,6 +161,15 @@ const language = {
   "Friendship sponsorship_p_4": ", and my creation will be more dynamic.",
   "Friendship sponsorship_h2_2": "Sponsorship list",
   "Friendship sponsorship_list_1": "Alipay transfer",
+
+  "statusEdit": "The form is set to be editable",
+  "statusRead": "The form is set to read-only",
+  "reset": "The form reset data",
+  "validate": "Form verification, return true or false",
+  "getData": "Get the current data of the form",
+  "getDataByGroup": "The current data of the form is obtained according to the grouping situation, and the data will be processed again",
+  "changeData": "Modify the value of the specified key in the form",
+  "changeSelectList": "When the type is select, radio, multiple, you can set the selection",
 
 }
 export default language

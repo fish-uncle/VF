@@ -1,14 +1,14 @@
-import {Message} from "view-design";
+import {Message} from 'view-design'
 
-import axios from 'axios';
+import axios from 'axios'
 
-axios.defaults.baseURL = '/';
-axios.defaults.timeout = 10000;
+axios.defaults.baseURL = '/'
+axios.defaults.timeout = 10000
 
 axios.interceptors.request.use(function (config) {
   return config;
 }, function (error) {
-  return Promise.reject(error);
+  return Promise.reject(error)
 });
 
 // {
@@ -17,10 +17,10 @@ axios.interceptors.request.use(function (config) {
 //   resultMsg：'错误信息'
 // }
 // 可自行判断 逻辑报错请求
-const locale = localStorage.getItem('locale');
-let errMessage = '网络异常，请重试';
+const locale = localStorage.getItem('locale')
+let errMessage = '网络异常，请重试'
 if (locale === 'en') {
-  errMessage = 'Network exception, please try again';
+  errMessage = 'Network exception, please try again'
 }
 axios.interceptors.response.use(response => {
   const {data} = response;
@@ -29,15 +29,17 @@ axios.interceptors.response.use(response => {
       return data.data
     } else {
       Message.error(data.returnMessage || errMessage)
-      return Promise.reject(false);
+      return Promise.reject(false)
     }
   } else {
     Message.error(errMessage)
-    return Promise.reject(false);
+    return Promise.reject(false)
   }
 }, function (e) {
-  Message.error(errMessage);
-  return Promise.reject(false);
-});
+  Message.error(errMessage)
+  return Promise.reject(false)
+})
 
-export default axios;
+const request = window.vf_request ? window.vf_request : axios
+
+export default request

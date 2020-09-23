@@ -110,12 +110,14 @@ const language = {
   "help_left_2_2": "动态数据",
   "help_left_2_3": "基础组件",
   "help_left_2_4": "修饰组件",
-  "help_left_3": "高级功能",
-  "help_left_3_1": "自定义组件",
-  "help_left_3_2": "国际化",
-  "help_left_4": "其他",
-  "help_left_4_1": "友情赞助",
-  "help_left_4_2": "意见反馈",
+  "help_left_4": "事件",
+  "help_left_5": "高级功能",
+  "help_left_5_1": "自定义组件",
+  "help_left_5_2": "国际化",
+  "help_left_5_3": "数据校验",
+  "help_left_6": "其他",
+  "help_left_6_1": "友情赞助",
+  "help_left_6_2": "意见反馈",
 
   "buy_wechat": "微信",
   "buy_alipay": "支付宝",
@@ -140,12 +142,11 @@ const language = {
   "model_preview_edit": "编辑",
   "model_preview_read": "只读",
   "model_preview_reset": "重置",
+  "model_preview_change": "修改数据",
 
   "model_read": "读取",
 
   "verify_required": "是必填项",
-
-  "component_javascript": "自定义js片段，仅在编辑时显示该文本，用于占位，请尽量放置在表单末端",
 
   "feedback_h2_1": "意见反馈",
   "feedback_p_1": "您在使用中遇到的问题或意见建议，请写下来告诉我，有则加冕，无则改之，或许在下一次改版中有你的宝贵建议。",
@@ -159,6 +160,15 @@ const language = {
   "Friendship sponsorship_p_4": "，我的创作会更有动力。",
   "Friendship sponsorship_h2_2": "赞助列表",
   "Friendship sponsorship_list_1": "支付宝转账",
+
+  "statusEdit": "表单设置为可编辑状态",
+  "statusRead": "表单设置为只读状态",
+  "reset": "表单重置数据",
+  "validate": "表单校验，返回true或false",
+  "getData": "获取表单当前数据",
+  "getDataByGroup": "根据分组情况获取表单当前数据，会对数据进行二次处理",
+  "changeData": "修改表单中指定key的value",
+  "changeSelectList": "在类型为select,radio,multiple时，可以设定其选择项",
 
 };
 export default language

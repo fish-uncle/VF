@@ -27,7 +27,7 @@
     methods: {
       update() {
         if (this.currentVal.selectListUrl) {
-          const data = {...this.parent.data, ...this.currentVal.customAjaxParams};
+          const data = {...this.parent.data, ...this.currentVal.customAjaxParams}
           request.post(this.currentVal.selectListUrl, data).then(res => {
             if (this.edit) {
               this.$store.commit('center/changeSelectList', {
@@ -46,9 +46,11 @@
           value: '',
           key: this.currentVal.key
         })
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+        if (this.currentVal.controlOthersUpdateTargetKeys) {
+          if (this.currentVal.controlOthersUpdateTargetKeys.length) {
+            if (this.parent) {
+              this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+            }
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
@@ -65,9 +67,11 @@
         if (this.error) {
           this.parent.errorHide(this.currentVal.id);
         }
-        if (this.currentVal.controlOthersUpdateTargetKeys.length) {
-          if (this.parent) {
-            this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+        if (this.currentVal.controlOthersUpdateTargetKeys) {
+          if (this.currentVal.controlOthersUpdateTargetKeys.length) {
+            if (this.parent) {
+              this.parent.controlOthersUpdate(this.currentVal.controlOthersUpdateTargetKeys)
+            }
           }
         }
         if (this.currentVal.controlOthersHideTargetKeys) {
@@ -75,12 +79,7 @@
             this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, value)
           }
         }
-        if (this.currentVal.events) {
-          if (this.currentVal.events.onChange) {
-            const fun = new Function('value', this.currentVal.events.onChange)
-            fun(value)
-          }
-        }
+        this.eventsOnChange()
       }
     }
   }

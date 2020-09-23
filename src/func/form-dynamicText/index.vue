@@ -56,5 +56,6 @@
   .vf-text {
     height: 32px;
     line-height: 32px;
+    font-size: 14px;
   }
 </style>

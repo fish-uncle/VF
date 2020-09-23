@@ -5,9 +5,11 @@ const component = {
   type: 'title',
   dashed: false,
   labelWidth: 0,
+  fontSize: 14,
   content: '标题',
   changeList: [
     'widthRatio',
+    'fontSize',
     'content',
   ]
 }

@@ -4,6 +4,12 @@ cd VF && npm install
 ```
 
 ```shell script
+// 安装 cli
+// 当然也可以使用自己的cli
+npm install eslink-cli -g
+```
+
+```shell script
 // 开发模式启动
 npm run start
 ```
