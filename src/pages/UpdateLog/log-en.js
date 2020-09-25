@@ -1,5 +1,13 @@
 const log = [
   {
+    version: '1.1.5',
+    time: '2020-09-26',
+    content: [
+      'Fix the problem of HTTPS loading in gaude map。',
+      'Fix theme JavaScript error。',
+    ]
+  },
+  {
     version: '1.1.4',
     time: '2020-09-25',
     content: [

@@ -1,5 +1,14 @@
 const log = [
   {
+    version: '1.1.5',
+    time: '2020-09-26',
+    content: [
+      '修复高德地图https加载问题。',
+      '修复theme-javascript报错。',
+      '修复v-form打包后没有正常引入的问题。',
+    ]
+  },
+  {
     version: '1.1.4',
     time: '2020-09-25',
     content: [

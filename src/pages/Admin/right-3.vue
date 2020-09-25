@@ -36,7 +36,7 @@
       <!--      </i-select>-->
       <!--      <i-input v-model="item.rules.pattern" v-if="item.changeList.indexOf('rules')!==-1" :disabled="true"/>-->
       <editor v-model="item.rules" v-if="item.changeList.indexOf('rules')!==-1" @init="editorInit" lang="jsoniq"
-              theme="javascript" height="400"></editor>
+              theme="chrome" height="400"></editor>
     </div>
   </div>
 </template>

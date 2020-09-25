@@ -25,11 +25,10 @@ Just expose your axios instance to the window.vf_request Just ask
 import Vue from 'vue'
 import App from './App'
 import ViewUI from 'view-design'
-
 import request from './utils/request'
+import {VList} from 'eslink-vf'
 
 window.vf_request = request
-import {VList} from 'eslink-vf'
 
 Vue.use(ViewUI)
 Vue.config.productionTip = false

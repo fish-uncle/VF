@@ -20,9 +20,11 @@
 <script>
   import request from '../../utils/request'
   import func from '../../mixins/func'
+  import VForm from '../../components/VForm'
 
   export default {
     mixins: [func],
+    components: {VForm},
     data() {
       return {
         total: 0,

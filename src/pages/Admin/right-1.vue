@@ -67,12 +67,12 @@
     <div class="vf-control" v-if="item.changeList.indexOf('props')!==-1">
       <label>props</label>
       <editor :value="propsVal" @input="value=>editorChange(value,'props')"
-              @init="editorInit" lang="jsoniq" theme="javascript" height="100"></editor>
+              @init="editorInit" lang="jsoniq" theme="chrome" height="100"></editor>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('javascript')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>
       <editor v-model="item.code"
-              @init="editorInit" lang="html" theme="javascript" height="400"></editor>
+              @init="editorInit" lang="javascript" theme="chrome" height="400"></editor>
     </div>
     <div class="vf-control" v-if="item.changeList.indexOf('html')!==-1">
       <label>{{$t('admin_right_btn23')}}</label>

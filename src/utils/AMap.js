@@ -16,7 +16,7 @@ export default function MapLoader(key = 'c846fee54a3a2ffa9c1165fefd609e86', vers
       }
       const script = document.createElement('script')
       script.async = true
-      script.src = `http://webapi.amap.com/maps?v=${version}&callback=initAMap&key=${key}`
+      script.src = `//webapi.amap.com/maps?v=${version}&callback=initAMap&key=${key}`
       script.onerror = reject
       document.head.appendChild(script)
     }
