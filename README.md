@@ -1,5 +1,5 @@
 ## VF
-![version](https://img.shields.io/badge/version-v1.1.3-brightgreen.svg?style=flat-square) [![EPL](https://img.shields.io/badge/license-MIT-orange?style=flat-square)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
+![version](https://img.shields.io/badge/version-v1.1.4-brightgreen.svg?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-orange?style=flat-square)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 ## 介绍
 
 VF，即Vue Form，一个为Vue而设计的可视化表单设计器。
@@ -8,9 +8,11 @@ VF，即Vue Form，一个为Vue而设计的可视化表单设计器。
 
 下面就会把本项目的使用方式本着简单，易用的原则，一一讲解给大家。
 
-## 使用示例及文档
+## 文档
 [项目地址](https://vf.shenzhepei.com)
 个人服务服务器，配置较低，加载速度不是很快
+
+[文档地址](https://vf.shenzhepei.com/#/help/Introduce)
 
 ## 使用示例
 [VF-demo](https://github.com/fish-uncle/VF-demo)

@@ -17,6 +17,18 @@
       <label>{{$t('admin_right_btn34')}}</label>
       <i-input v-model="item.content"></i-input>
     </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('amapVersion')!==-1">
+      <label>{{$t('admin_right_btn35')}}</label>
+      <i-input v-model="item.amapVersion"></i-input>
+    </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('amapKey')!==-1">
+      <label>{{$t('admin_right_btn36')}}</label>
+      <i-input v-model="item.amapKey"></i-input>
+    </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('amapCenter')!==-1">
+      <label>{{$t('admin_right_btn37')}}</label>
+      <i-input v-model="item.amapCenter"></i-input>
+    </div>
     <div class="vf-control" v-if="item.changeList.indexOf('dashed')!==-1">
       <label>{{$t('admin_right_btn5')}}</label>
       <RadioGroup :value="item.dashed?1:0" type="button" size="large"

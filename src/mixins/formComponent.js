@@ -16,8 +16,22 @@ export default {
   },
   props: {
     index: {},
-    value: {}, status: {}, labelWidth: {}, labelTextAlign: {}, props: {},
+    value: {
+      required: true
+    },
+    status: {
+      type: String,
+      required: true
+    },
+    labelWidth: {},
+    labelTextAlign: {},
+    props: {
+      type: Object,
+      default: () => {
+      }
+    },
     language: {
+      type: String,
       default: 'zh'
     }
   },
@@ -33,11 +47,25 @@ export default {
         errorHide: this.errorHide,
         errorShow: this.errorShow,
         visibleStatus: this.visibleStatus,
-        show: this.show, hide: this.hide, update: this.update, id: this.id
+        show: this.show,
+        hide: this.hide,
+        update: this.update,
+        id: this.id
       })
     }
   },
   computed: {
+    currentWidth() {
+      if (typeof this.currentVal.labelWidth === 'number') {
+        return this.currentVal.width
+      } else {
+        if (this.currentVal.width) {
+          return this.currentVal.width
+        } else {
+          return 12
+        }
+      }
+    },
     currentRequired() {
       return this.currentVal.required
     },

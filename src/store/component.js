@@ -1,5 +1,6 @@
 import Input from '../func/form-input/component'
 import Title from '../func/form-title/component'
+import AMap from '../func/form-amap/component'
 // import Input2 from '../func/form-input2/component'
 import Textarea from '../func/form-textarea/component'
 import Switch from '../func/form-switch/component'
@@ -45,7 +46,7 @@ const _list1 = [
 
 ];
 const _list2 = [Divider, DynamicText, Html, Javascript, Title];
-const _list3 = [Table, Table2, Diy];
+const _list3 = [Table, Table2, AMap, Diy];
 const obj1 = {
   labelWidth: 120,
   width: 12,

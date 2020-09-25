@@ -1,7 +1,7 @@
 <template>
   <div class="fn-clear vf-component pos-r"
        v-show="visible"
-       :style="{width:`${currentVal.width/24*100}%`,background:currentGroupColor}"
+       :style="{width:`${currentWidth/24*100}%`,background:currentGroupColor}"
        :class="[index===center.current&&edit?'active':'',
        edit?'vf-component-edit':'',
        `vf-${type}-box`]"

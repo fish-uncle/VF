@@ -8,6 +8,15 @@
         <Radio :label="0">{{$t('admin_right_btn10_2')}}</Radio>
       </RadioGroup>
     </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('clearable')!==-1">
+      <label>{{$t('admin_right_btn11')}}</label>
+      <RadioGroup :value="item.clearable?1:0" type="button" size="large"
+
+                  @on-change="value=>checkChange(!!value,'clearable')">
+        <Radio :label="1">{{$t('admin_right_btn11_1')}}</Radio>
+        <Radio :label="0">{{$t('admin_right_btn11_2')}}</Radio>
+      </RadioGroup>
+    </div>
     <div class="vf-control" v-if="item.changeList.indexOf('rules')!==-1">
       <label>{{$t('admin_right_btn32')}}</label>
       <!--      <i-select :clearable="true"-->
@@ -28,15 +37,6 @@
       <!--      <i-input v-model="item.rules.pattern" v-if="item.changeList.indexOf('rules')!==-1" :disabled="true"/>-->
       <editor v-model="item.rules" v-if="item.changeList.indexOf('rules')!==-1" @init="editorInit" lang="jsoniq"
               theme="javascript" height="400"></editor>
-    </div>
-    <div class="vf-control" v-if="item.changeList.indexOf('clearable')!==-1">
-      <label>{{$t('admin_right_btn11')}}</label>
-      <RadioGroup :value="item.clearable?1:0" type="button" size="large"
-
-                  @on-change="value=>checkChange(!!value,'clearable')">
-        <Radio :label="1">{{$t('admin_right_btn11_1')}}</Radio>
-        <Radio :label="0">{{$t('admin_right_btn11_2')}}</Radio>
-      </RadioGroup>
     </div>
   </div>
 </template>

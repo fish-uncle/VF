@@ -28,7 +28,7 @@ import ViewUI from 'view-design'
 import request from './utils/request'
 
 window.vf_request = request
-import {VList} from '@fish/eslink-vf'
+import {VList} from 'eslink-vf'
 
 Vue.use(ViewUI)
 Vue.config.productionTip = false

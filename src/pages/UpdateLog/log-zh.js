@@ -1,5 +1,16 @@
 const log = [
   {
+    version: '1.1.4',
+    time: '2020-09-25',
+    content: [
+      '优化高级表格,可添加固定字段，类型为text。',
+      '新增高德地图组件 f-amap。',
+      '修复全组件部分报错信息。',
+      'table修改为vxe-table。',
+      '暴露部分插槽slot，引用更好便。',
+    ]
+  },
+  {
     version: '1.1.3',
     time: '2020-09-23',
     content: [

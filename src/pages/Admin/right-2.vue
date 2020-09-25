@@ -73,6 +73,14 @@
         <Radio :label="0">{{$t('admin_right_btn13_2')}}</Radio>
       </RadioGroup>
     </div>
+    <div class="vf-control" v-if="item.changeList.indexOf('tableHover')!==-1">
+      <label>{{$t('admin_right_btn38')}}</label>
+      <RadioGroup :value="item.tableHover?1:0" type="button" size="large"
+                  @on-change="value=>checkChange(!!value,'tableHover')">
+        <Radio :label="1">{{$t('admin_right_btn13_1')}}</Radio>
+        <Radio :label="0">{{$t('admin_right_btn13_2')}}</Radio>
+      </RadioGroup>
+    </div>
     <div class="vf-control" v-if="item.changeList.indexOf('columns')!==-1">
       <label>{{$t('admin_right_btn30')}}</label>
       <ul class="vf-select-list">
@@ -90,6 +98,7 @@
                     @on-change="e=>columnsValueChange(e,index)">
             <i-option value="input">input</i-option>
             <i-option value="select">select</i-option>
+            <i-option value="text">text</i-option>
           </i-select>
           <span :class="item.columns.length>1?'':'disabled'" class="vf-select-del text-center pointer"
                 @click="columnsDelChange(index)">-</span>

@@ -3,11 +3,17 @@
        v-bind="currentVal.props"
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
-    <Button @click="tableCreate" v-if="status==='edit'">添加</Button>
-    <Button @click="tableSave" v-if="status==='edit'">保存</Button>
+    <Button @click="tableCreate">添加</Button>
     <v-form ref="form">
-      <Table :columns="currentColumns" :data="parent.tableData[currentVal.key]">
-      </Table>
+      <vxe-table :data.sync="parent.tableData[currentVal.key]">
+        <vxe-table-column :field="item.key" :title="item.title" v-for="(item) in currentVal.columns">
+          <template slot-scope="{ row,rowIndex }">
+            <v-component :type="item.type" :status="status"
+                         :value="rowValue(item,row,rowIndex)"
+            ></v-component>
+          </template>
+        </vxe-table-column>
+      </vxe-table>
     </v-form>
   </div>
 </template>
@@ -23,76 +29,51 @@
         page: 1,
       }
     },
-    computed: {
-      currentColumns() {
-        if (!this.isMounted)
-          return []
-        if (this.currentVal.columns) {
-          const status = this.status
-          const columns = JSON.parse(JSON.stringify(this.currentVal.columns))
-          const form = this.$refs.form
-          const parent = this.parent
-          const key = this.currentVal.key
-          columns.forEach(item => {
-            item.render = (h, {row, column, index}) => {
-              form.changeData({
-                key: `${column.key}${index}`,
-                value: this.parent.tableData[this.currentVal.key][index][column.key]
-              })
-              return h('v-component', {
-                props: {
-                  status,
-                  value: {
-                    id: `${column.key}${index}`,
-                    key: `${column.key}${index}`,
-                    type: column.type,
-                    selectList: [
-                      {
-                        value: '11',
-                        label: '1'
-                      },
-                      {
-                        value: '22',
-                        label: '2'
-                      }
-                    ],
-                    labelWidth: 0,
-                    events: {
-                      onChange: (value) => {
-                        form.changeData({
-                          key: `${column.key}${index}`,
-                          value: value
-                        })
-                        let val = JSON.parse(JSON.stringify(parent.tableData))
-                        val[key][index][column.key] = value
-                        parent.changeTableData({
-                          key,
-                          value: val[key]
-                        })
-                      }
-                    }
-                  }
-                }
-              })
-            }
-          })
-          return columns
-        } else {
-          return []
-        }
-      }
-    },
     mounted() {
+      const form = this.$refs.form
       this.update()
+      this.parent.tableData[this.currentVal.key].forEach((item, index) => {
+        for (let key in item) {
+          if (key !== '_XID') {
+            form.changeData({
+              key: `${key}${index}`,
+              value: item[key]
+            })
+          }
+        }
+      })
     },
     methods: {
-      tableSave() {
-        // console.log(this.$refs.form.validate())
+      rowValue(item, row, index) {
+        const form = this.$refs.form
+        const parent = this.parent
+        const key = this.currentVal.key
+        return {
+          id: `${item.key}${index}`, key: `${item.key}${index}`,
+          labelWidth: 0,
+          type: item.type,
+          required: false,
+          width: 24,
+          widthRatio: 100,
+          rules: "{'pattern': '','message': '该项格式不正确'}",
+          selectList: item.selectList || [],
+          events: {
+            onChange: (value) => {
+              form.changeData({
+                key: `${item.key}${index}`,
+                value: value
+              })
+              let val = JSON.parse(JSON.stringify(parent.tableData))
+              val[key][index][item.key] = value
+              parent.changeTableData({
+                key,
+                value: val[key]
+              })
+            }
+          }
+        }
       },
       tableCreate() {
-        if (this.status !== 'edit') {
-          return
-        }
         const value = {}
         this.currentVal.columns.forEach(item => {
           value[item.key] = ''
@@ -108,6 +89,10 @@
         if (this.currentVal.tableAjaxUrl) {
           request.post(this.currentVal.tableAjaxUrl).then(res => {
             if (res) {
+              this.parent.changeTableData({
+                value: res.list,
+                key: this.currentVal.key
+              })
               this.data = res.list
               this.total = res.total
             }

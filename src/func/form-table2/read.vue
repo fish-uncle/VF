@@ -3,111 +3,70 @@
        v-bind="currentVal.props"
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
-    <Button @click="tableCreate" v-if="status==='edit'">添加</Button>
-    <Button @click="tableSave" v-if="status==='edit'">保存</Button>
     <v-form ref="form">
-      <Table :columns="currentColumns" :data="parent.tableData[currentVal.key]">
-      </Table>
+      <vxe-table :data.sync="parent.tableData[currentVal.key]" @cell-mouseenter="handleMouseenter"
+                 @cell-mouseleave="handleMouseleave">
+        <vxe-table-column :field="item.key" :title="item.title" v-for="(item,index) in currentVal.columns">
+          <template slot-scope="{ row,rowIndex }">
+            <div class="vxe-cell--label pos-r">{{row[item.key]}}
+              <div class="pos-a vf-table-hover-row" v-if="hover&&hoverIndex===rowIndex && currentVal.tableHover">
+                <slot-render slotName="table2_hover" :row="row" :rowIndex="rowIndex"/>
+              </div>
+            </div>
+          </template>
+        </vxe-table-column>
+      </vxe-table>
     </v-form>
   </div>
 </template>
 <script>
   import request from '../../utils/request'
   import func from '../../mixins/func'
+  import SlotRender from '../../components/SlotRender'
 
   export default {
     mixins: [func],
+    components: {
+      SlotRender
+    },
     data() {
       return {
         total: 0,
         page: 1,
-      }
-    },
-    computed: {
-      currentColumns() {
-        if (!this.isMounted)
-          return []
-        if (this.currentVal.columns) {
-          const status = this.status
-          const columns = JSON.parse(JSON.stringify(this.currentVal.columns))
-          const form = this.$refs.form
-          const parent = this.parent
-          const key = this.currentVal.key
-          columns.forEach(item => {
-            item.render = (h, {row, column, index}) => {
-              form.changeData({
-                key: `${column.key}${index}`,
-                value: this.parent.tableData[this.currentVal.key][index][column.key]
-              })
-              return h('v-component', {
-                props: {
-                  status,
-                  value: {
-                    id: `${column.key}${index}`,
-                    key: `${column.key}${index}`,
-                    type: column.type,
-                    selectList: [
-                      {
-                        value: '11',
-                        label: '1'
-                      },
-                      {
-                        value: '22',
-                        label: '2'
-                      }
-                    ],
-                    labelWidth: 0,
-                    events: {
-                      onChange: (value) => {
-                        form.changeData({
-                          key: `${column.key}${index}`,
-                          value: value
-                        })
-                        let val = JSON.parse(JSON.stringify(parent.tableData))
-                        val[key][index][column.key] = value
-                        parent.changeTableData({
-                          key,
-                          value: val[key]
-                        })
-                      }
-                    }
-                  }
-                }
-              })
-            }
-          })
-          return columns
-        } else {
-          return []
-        }
+        hover: false,
+        hoverIndex: 0
       }
     },
     mounted() {
+      const form = this.$refs.form
       this.update()
+      this.parent.tableData[this.currentVal.key].forEach((item, index) => {
+        for (let key in item) {
+          if (key !== '_XID') {
+            form.changeData({
+              key: `${key}${index}`,
+              value: item[key]
+            })
+          }
+        }
+      })
     },
     methods: {
-      tableSave() {
-        // console.log(this.$refs.form.validate())
+      handleMouseleave() {
+        this.hover = false
       },
-      tableCreate() {
-        if (this.status !== 'edit') {
-          return
-        }
-        const value = {}
-        this.currentVal.columns.forEach(item => {
-          value[item.key] = ''
-        })
-        const tableData = JSON.parse(JSON.stringify(this.parent.tableData[this.currentVal.key]))
-        tableData.push(value)
-        this.parent.changeTableData({
-          value: tableData,
-          key: this.currentVal.key
-        })
+      handleMouseenter({row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, $event}) {
+        this.hover = true
+        this.hoverIndex = rowIndex
       },
       update() {
         if (this.currentVal.tableAjaxUrl) {
           request.post(this.currentVal.tableAjaxUrl).then(res => {
             if (res) {
+              this.parent.changeTableData({
+                value: res.list,
+                key: this.currentVal.key
+              })
               this.data = res.list
               this.total = res.total
             }
@@ -118,15 +77,11 @@
   }
 </script>
 <style lang="less">
-  .vf-table-edit {
-    .ivu-table-cell {
-      text-overflow: unset;
-    }
-
-    .vf-component {
-      padding-left: 0;
-      padding-right: 0;
-    }
+  .vf-table-hover-row {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
 </style>

@@ -3,8 +3,9 @@
        v-bind="currentVal.props"
        :style="{width:`${currentVal.widthRatio}%`}"
        :class="[currentVal.className]">
-    <Table :columns="currentColumns" :data="data">
-    </Table>
+    <vxe-table :data="data">
+      <vxe-table-column :field="item.key" :title="item.title" v-for="item in currentColumns"></vxe-table-column>
+    </vxe-table>
   </div>
 </template>
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <Menu class="fn-fl vf-help-left vf-scrollbar" :open-names="['1','2','3','4','5','6']" :active-name="help.helpName"
+  <Menu class="fn-fl vf-help-left vf-scrollbar" :open-names="['1','7']" :active-name="help.helpName"
         @on-select="handleSelect">
     <Submenu name="1">
       <template slot="title">
@@ -8,15 +8,15 @@
       <MenuItem name="Introduce">{{$t('help_left_1_1')}}</MenuItem>
       <MenuItem name="Catalogue introduction">{{$t('help_left_1_2')}}</MenuItem>
       <MenuItem name="First example">{{$t('help_left_1_3')}}</MenuItem>
+      <MenuItem name="Quick use">{{$t('help_left_1_4')}}</MenuItem>
     </Submenu>
     <Submenu name="2">
       <template slot="title">
         {{$t('help_left_2')}}
       </template>
-      <MenuItem name="Quick use">{{$t('help_left_2_1')}}</MenuItem>
-      <MenuItem name="Dynamic data">{{$t('help_left_2_2')}}</MenuItem>
-      <MenuItem name="Basic components">{{$t('help_left_2_3')}}</MenuItem>
-      <MenuItem name="Decorating components">{{$t('help_left_2_4')}}</MenuItem>
+      <MenuItem name="Basic components">{{$t('help_left_2_1')}}</MenuItem>
+      <MenuItem name="Decorating components">{{$t('help_left_2_2')}}</MenuItem>
+      <MenuItem name="Senior components">{{$t('help_left_2_3')}}</MenuItem>
     </Submenu>
     <Submenu name="3">
       <template slot="title">
@@ -44,16 +44,16 @@
       <template slot="title">
         {{$t('help_left_5')}}
       </template>
-      <MenuItem name="Custom components">{{$t('help_left_5_1')}}</MenuItem>
+      <MenuItem name="Dynamic data">{{$t('help_left_5_1')}}</MenuItem>
       <MenuItem name="Internationalization">{{$t('help_left_5_2')}}</MenuItem>
       <MenuItem name="Verification">{{$t('help_left_5_3')}}</MenuItem>
     </Submenu>
-    <Submenu name="6">
+    <Submenu name="7">
       <template slot="title">
-        {{$t('help_left_6')}}
+        {{$t('help_left_7')}}
       </template>
-      <MenuItem name="Friendship sponsorship">{{$t('help_left_6_1')}}</MenuItem>
-      <MenuItem name="Feedback">{{$t('help_left_6_2')}}</MenuItem>
+      <MenuItem name="Friendship sponsorship">{{$t('help_left_7_1')}}</MenuItem>
+      <MenuItem name="Feedback">{{$t('help_left_7_2')}}</MenuItem>
     </Submenu>
   </Menu>
 </template>

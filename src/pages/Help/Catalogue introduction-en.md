@@ -8,6 +8,7 @@
 |- |- func              // form components
 |- |- languages         // international language pack
 |- |- less              // less file
+|- |- mixins            // mixins file
 |- |- pages             // page file
 |- |- store             // vuex configuration file
 |- |- utils             // Toolkit
@@ -20,8 +21,10 @@
 |- README.md            // Project description document, markdown format
 |- package.json         // Project profile
 |- package-lock.json    // Project profile
-|- fish.config.js       // Custom packaging tool configuration file
+|- eslink.config.js     // Custom packaging tool configuration file
 |- favicon.ico          // Website ico
 |- .gitignore           // git submit ignore file
+|- .npmignore           // npm publish ignore file
+|- index.js             // npm entry file
 └- .editorconfig        // code auto format specification
 ```

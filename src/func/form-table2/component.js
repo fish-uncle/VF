@@ -12,6 +12,7 @@ const component = {
       type: 'input'
     }
   ],
+  tableHover: false,
   tableAjaxUrl: '',
   changeList: [
     'widthRatio',
@@ -19,6 +20,7 @@ const component = {
 
     'columns',
     'tableAjaxUrl',
+    'tableHover',
     'props',
   ]
 }

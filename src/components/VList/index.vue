@@ -7,6 +7,8 @@
                        :labelWidth="labelWidth" :labelTextAlign="labelTextAlign"
                        :status="status"
                        v-for="(item,index) in currentList[scaleIndex]"/>
+          <slot name="component" :status="status" :labelWidth="labelWidth" :labelTextAlign="labelTextAlign"
+                :language="language"/>
         </div>
       </div>
     </Row>
@@ -46,16 +48,18 @@
     props: {
       group: {
         type: Array,
-        default: []
+        default: () => []
       },
       list: {
         type: Array,
         default: [[], []]
       },
       viewScale: {
+        type: String,
         default: '12:12'
       },
       language: {
+        type: String,
         default: 'zh'
       }
     },

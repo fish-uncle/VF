@@ -27,7 +27,7 @@
         appKey: '6SlGudmOCjpBADcTcR5gaMu0',
         placeholder: '请输入内容',
         path: 'VF',
-        avatar: 'robohash',
+        avatar: 'mp',
         meta: ['nick', 'mail']
       })
     }

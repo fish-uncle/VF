@@ -1,5 +1,16 @@
 const log = [
   {
+    version: '1.1.4',
+    time: '2020-09-25',
+    content: [
+      'Optimize advanced table, add fixed field, type text.',
+      'Add the AMap component f-amap.',
+      'Fix the error information of the whole component.',
+      'table update use vxe-table.',
+      'Expose part of the slot, reference is more convenient.',
+    ]
+  },
+  {
     version: '1.1.3',
     time: '2020-09-23',
     content: [

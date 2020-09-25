@@ -2,7 +2,7 @@
   <div class="fn-clear vf-component pos-r"
        v-show="visible"
        :class="[`vf-${type}-box`]"
-       :style="{width:`${currentVal.width/24*100}%`}">
+       :style="{width:`${currentWidth/24*100}%`}">
     <label class="fn-fl vf-component-label"
            :class="[currentRequired?'has-required':'',currentLabelWidth==='0px'?'fn-hide':'']"
            :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
@@ -11,7 +11,9 @@
     <div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
       <component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
                  :status="status"
-                 :error="error"></component>
+                 :error="error">
+        <slot name="table_hover"/>
+      </component>
       <component v-if="status==='read'" :is="readComponent" :value="currentVal" :language="language"
                  :status="status"></component>
     </div>

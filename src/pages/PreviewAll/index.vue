@@ -1,7 +1,20 @@
 <template>
   <div>
     <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :labelWidth="labelWidth"
-            :labelTextAlign="labelTextAlign"/>
+            :labelTextAlign="labelTextAlign">
+      <template slot="component" slot-scope="{status,labelTextAlign,labelWidth,language}">
+        <v-component
+          :status="status"
+          :value="{id:'a1',key:'a1',type:'input',
+          labelTextAlign,labelWidth,
+          required: false,
+          widthRatio: 100,
+          width:12,title:'slot-input',rules:'{\'pattern\': \'\',\'message\': \'该项格式不正确\'}'}"></v-component>
+      </template>
+      <template slot="table2_hover" slot-scope="{row,rowIndex}">
+        <div class="text-right">slot table2_hover{{rowIndex}}</div>
+      </template>
+    </v-list>
     <div class="text-center">
       <Button type="primary" @click="handleSubmit">{{$t('model_preview_submit')}}</Button>
       <Button type="primary" @click="handleReset">{{$t('model_preview_reset')}}</Button>
@@ -11,44 +24,44 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
   import Select from '../../func/form-select/component'
-  import { uuid } from '../../utils'
+  import {uuid} from '../../utils'
 
   export default {
-    data () {
+    data() {
       return {
-        list: [ [], [] ],
+        list: [[], []],
         viewScale: '24:0',
         labelWidth: 120,
         labelTextAlign: 'right',
         language: 'zh'
       }
     },
-    computed: mapState ([ "component" ]),
+    computed: mapState(["component"]),
     methods: {
-      handleReset () {
-        this.$refs.form.reset ()
+      handleReset() {
+        this.$refs.form.reset()
       },
-      handleEdit () {
-        this.$refs.form.statusEdit ()
+      handleEdit() {
+        this.$refs.form.statusEdit()
       },
-      handleRead () {
-        this.$refs.form.statusRead ()
+      handleRead() {
+        this.$refs.form.statusRead()
       },
-      handleSubmit () {
-        if (!this.$refs.form.validate ()) {
-          console.log (this.$refs.form.getData ());
+      handleSubmit() {
+        if (!this.$refs.form.validate()) {
+          console.log(this.$refs.form.getData());
         }
       },
-      mockList () {
+      mockList() {
         let result = [];
-        const component = JSON.parse (JSON.stringify (this.component.list));
-        const i = Math.floor (Math.random () * (component.length - 1));
-        const j = Math.floor (Math.random () * (component.length - 1));
-        component.forEach ((dragItem, index) => {
-          const key_i = uuid ()
-          const key_l = uuid ()
+        const component = JSON.parse(JSON.stringify(this.component.list));
+        const i = Math.floor(Math.random() * (component.length - 1));
+        const j = Math.floor(Math.random() * (component.length - 1));
+        component.forEach((dragItem, index) => {
+          const key_i = uuid()
+          const key_l = uuid()
           let key = `${dragItem.type}_${key_i}`
           if (dragItem.dataType === 'MultiData') {
             key += `;${key_l}`
@@ -64,7 +77,7 @@
           if (dragItem.type === 'radio') {
             dragItem.title_zh = '单项（点我）'
             dragItem.controlOthersHideTargetKeys = {
-              '1': 'test_hide_key'
+              '11': 'test_hide_key'
             }
           }
           if (dragItem.type === 'select') {
@@ -72,22 +85,25 @@
             dragItem.selectListUrl = 'https://cdn.shenzhepei.com/VF/select.json?a=1'
           }
           if (dragItem.type === 'table') {
-            dragItem.columns = 'demo-zh'
             dragItem.tableAjaxUrl = 'https://cdn.shenzhepei.com/VF/table.json'
           }
-          result.push ({
+          if (dragItem.type === 'table2') {
+            dragItem.tableHover = true
+            dragItem.tableAjaxUrl = 'https://cdn.shenzhepei.com/VF/table.json'
+          }
+          result.push({
             ...dragItem,
             key, id: key, width: 12
           })
         });
-        result.push (
+        result.push(
           {
             ...Select,
             title_zh: '下拉（看我）',
             key: 'select2', id: 'select2',
             widthRatio: 100,
             width: 12,
-            controlOthersUpdateTargetKeys: [ 'select3' ]
+            controlOthersUpdateTargetKeys: ['select3']
           },
           {
             ...Select,
@@ -96,7 +112,7 @@
             widthRatio: 100,
             selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=3',
             width: 12,
-            controlOthersUpdateTargetKeys: [ 'select4' ]
+            controlOthersUpdateTargetKeys: ['select4']
           },
           {
             ...Select,
@@ -105,10 +121,10 @@
             widthRatio: 100,
             selectListUrl: 'https://cdn.shenzhepei.com/VF/select.json?a=4',
             width: 12,
-            controlOthersUpdateTargetKeys: [ 'test_hide_key' ]
+            controlOthersUpdateTargetKeys: ['test_hide_key']
           }
         )
-        result.forEach (item => {
+        result.forEach(item => {
           delete item.icon
           delete item.labelWidth
           delete item.labelTextAlign
@@ -119,11 +135,11 @@
           delete item.title_zh
           delete item.title_en
         })
-        this.list = [ result, [] ]
+        this.list = [result, []]
       }
     },
-    mounted () {
-      this.mockList ();
+    mounted() {
+      this.mockList();
     }
   }
 </script>

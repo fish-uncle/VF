@@ -49,6 +49,7 @@
                      @change="handleCenterChange">
             <f-component :value="item" :index="index" :edit="scaleIndex===center.currentScale"
                          :key="item.id"
+                         status="edit"
                          :labelWidth="center.labelWidth"
                          :labelTextAlign="center.labelTextAlign"
                          :language="language.lang"
