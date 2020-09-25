@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[59],{236:function(e,t,a){"use strict";a.r(t);t.default={title_zh:"按钮",title_en:"button",icon:"ios-finger-print",type:"button",dataType:"Number",placeholder:"button",clearable:!0,showText:!1,character:"",changeList:["labelTextAlign","labelWidth","placeholder","widthRatio","disabled","props"]}}}]);
