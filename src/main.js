@@ -1,17 +1,12 @@
 import Vue from 'vue'
 import App from './App'
 import ViewUI from 'view-design'
-import './less/reset.less'
-import './less/index.less'
 import 'view-design/dist/styles/iview.css'
 import i18n from './languages'
 import draggable from 'vuedraggable'
 import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
-
-
-
 import router from './router'
 import store from './store'
 import plugins from '../plugins'
