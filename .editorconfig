@@ -1,20 +1,7 @@
-# 官网
-# http://EditorConfig.org
-# 详细介绍
-# https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
-root = true
-
-# 对所有文件生效
-[*]
+[*.{js,jsx,ts,tsx,vue}]
 charset = utf-8
+indent_style = tab
+indent_size = 4
 end_of_line = lf
-indent_style = space
-indent_size = 2
-tab_size = 2
+insert_final_newline = true
 trim_trailing_whitespace = true
-insert_final_newline = false
-
-# 对后缀名为 md 的文件生效
-[*.md]
-trim_trailing_whitespace = false
-
