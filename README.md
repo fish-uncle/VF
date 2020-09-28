@@ -1,5 +1,5 @@
 ## VF
-![version](https://img.shields.io/badge/version-v1.1.4-brightgreen.svg?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-orange?style=flat-square)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
+![version](https://img.shields.io/badge/version-v1.1.5-brightgreen.svg?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-orange?style=flat-square)](https://opensource.org/licenses/MIT) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 ## 介绍
 
 VF，即Vue Form，一个为Vue而设计的可视化表单设计器。
