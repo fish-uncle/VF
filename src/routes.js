@@ -2,12 +2,12 @@ const routes = [
   {
     path: '/updateLog',
     name: 'UpdateLog',
-    component: () => import('./pages/updateLog')
+    component: () => import('./pages/UpdateLog')
   },
   {
     path: '/help/:name',
     name: 'Help',
-    component: () => import('./pages/help')
+    component: () => import('./pages/Help')
   },
   {
     path: '/',
@@ -19,10 +19,10 @@ const routes = [
     name: 'PreviewAll',
     component: () => import('./pages/PreviewAll')
   },
-  {
-    path: '/Test',
-    name: 'Test',
-    component: () => import('./pages/Test')
-  },
+  // {
+  //   path: '/Test',
+  //   name: 'Test',
+  //   component: () => import('./pages/Test')
+  // },
 ];
 module.exports = routes;

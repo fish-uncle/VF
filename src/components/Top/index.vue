@@ -35,7 +35,7 @@
             value: 'en',
           }
         ],
-        version: process.env.pkg.version
+        version: process.env.VUE_APP_VERSION
       }
     },
     methods: {

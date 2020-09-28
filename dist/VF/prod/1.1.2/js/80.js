@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[80],{433:function(p,a){p.exports='<h2 id="getdata">getData</h2> <p>编写中，请耐心等待</p> '}}]);

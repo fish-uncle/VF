@@ -44,6 +44,7 @@
         <div class="fn-flex pos-r"
              :class="['vf-drag','ivu-col',`ivu-col-span-${item}`,scaleIndex===center.currentScale?'vf-drag-active':'']"
              v-for="(item,scaleIndex) in viewScale"
+			 :key="scaleIndex"
              @click="()=>handleCurrentScale(scaleIndex)">
           <draggable class="vf-drag-content fn-flex flex-row" v-model="center.list[scaleIndex]" group="people"
                      @change="handleCenterChange">

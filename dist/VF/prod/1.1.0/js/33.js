@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[33],{356:function(n,o){n.exports='<h2 id="decorating-components">Decorating components</h2> '}}]);

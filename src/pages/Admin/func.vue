@@ -1,112 +1,110 @@
 <template>
-  <div class="pos-r">
-    <div class="vf-func fn-fl pos-r vf-scrollbar" id="func">
-      <h2>
-        {{$t('admin_left_title1')}}
-      </h2>
-      <draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
-                 :clone="handleClone"
-                 :move="handleMove"
-                 :group="{ name: 'people', pull: 'clone', put: false }">
-        <func-item v-for="(item,key) in component.list" :item="item" :key="key" v-if="item.componentType==='base'"/>
-      </draggable>
-      <h2>
-        {{$t('admin_left_title2')}}
-      </h2>
-      <draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
-                 :clone="handleClone"
-                 :move="handleMove"
-                 :group="{ name: 'people', pull: 'clone', put: false }">
-        <func-item v-for="(item,key) in component.list" :item="item" :key="key"
-                   v-if="item.componentType==='modification'"/>
-      </draggable>
-      <h2>
-        {{$t('admin_left_title3')}}
-      </h2>
-      <draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
-                 :clone="handleClone"
-                 :move="handleMove"
-                 :group="{ name: 'people', pull: 'clone', put: false }">
-        <func-item v-for="(item,key) in component.list" :item="item" :key="key"
-                   v-if="item.componentType==='senior'"/>
-      </draggable>
-    </div>
-  </div>
+	<div class="pos-r">
+		<div class="vf-func fn-fl pos-r vf-scrollbar" id="func">
+			<h2>
+				{{$t('admin_left_title1')}}
+			</h2>
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+					   :clone="handleClone"
+					   :move="handleMove"
+					   :group="{ name: 'people', pull: 'clone', put: false }">
+				<func-item v-for="(item,key) in component.obj.base" :item="item" :key="key"/>
+			</draggable>
+			<h2>
+				{{$t('admin_left_title2')}}
+			</h2>
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+					   :clone="handleClone"
+					   :move="handleMove"
+					   :group="{ name: 'people', pull: 'clone', put: false }">
+				<func-item v-for="(item,key) in component.obj.modification" :item="item" :key="key"/>
+			</draggable>
+			<h2>
+				{{$t('admin_left_title3')}}
+			</h2>
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+					   :clone="handleClone"
+					   :move="handleMove"
+					   :group="{ name: 'people', pull: 'clone', put: false }">
+				<func-item v-for="(item,key) in component.obj.senior" :item="item" :key="key"/>
+			</draggable>
+		</div>
+	</div>
 </template>
 <script>
-  import FuncItem from './func-item';
-  import { mapState } from 'vuex';
-  import { uuid } from "../../utils";
+	import FuncItem from './func-item';
+	import {mapState} from 'vuex';
+	import {uuid} from "../../utils";
 
-  export default {
-    components: {
-      FuncItem,
-    },
-    computed: mapState ([ "component", 'center', 'language' ]),
-    methods: {
-      handleMove: function (evt) {
-        if (evt.to.className === 'vf-drag-content fn-flex flex-row') {
-          return true
-        } else {
-          return false
-        }
-      },
-      handleClone: function (evt) {
-        let dragItem = evt
-        const i = uuid ()
-        const l = uuid ()
-        let key = `${dragItem.type}_${i}`
-        if (dragItem.dataType === 'TimeRange') {
-          key += `;${l}`
-        }
-        dragItem.key = key
-        dragItem.id = key
-        dragItem = JSON.parse (JSON.stringify (dragItem))
-        dragItem.labelWidth = this.center.labelWidth
-        dragItem.labelTextAlign = this.center.labelTextAlign
-        this.$agent.$once ({ type: 'formDataAdd', dragItem })
-        return dragItem
-      }
-    },
-  }
+	export default {
+		components: {
+			FuncItem,
+		},
+		computed: mapState(["component", 'center', 'language']),
+		methods: {
+			handleMove: function (evt) {
+				if (evt.to.className === 'vf-drag-content fn-flex flex-row') {
+					return true
+				} else {
+					return false
+				}
+			},
+			handleClone: function (evt) {
+				let dragItem = evt
+				const i = uuid()
+				const l = uuid()
+				let key = `${dragItem.type}_${i}`
+				if (dragItem.dataType === 'TimeRange') {
+					key += `;${l}`
+				}
+				dragItem.key = key
+				dragItem.id = key
+				dragItem = JSON.parse(JSON.stringify(dragItem))
+				dragItem.labelWidth = this.center.labelWidth
+				dragItem.labelTextAlign = this.center.labelTextAlign
+				this.$agent.$once({type: 'formDataAdd', dragItem})
+				return dragItem
+			}
+		},
+	}
 </script>
 <style lang="less">
-  @import "../../less/conf";
+	@import "../../less/conf";
 
-  .vf-func-disabled {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, .6);
-    top: 0;
-    left: 0;
-  }
+	.vf-func-disabled {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(255, 255, 255, .6);
+		top: 0;
+		left: 0;
+	}
 
-  .vf-func {
-    width: 250px;
-    height: calc(100vh - 130px);
-    padding: 10px;
-    overflow-y: auto;
-    overflow-x: hidden;
+	.vf-func {
+		width: 250px;
+		height: calc(100vh - 130px);
+		padding: 10px;
+		overflow-y: auto;
+		overflow-x: hidden;
 
-    h2 {
-      font-size: 16px;
-      height: 40px;
-    }
+		h2 {
+			font-size: 16px;
+			height: 40px;
+		}
 
-    ul {
-      flex-wrap: wrap;
-    }
+		ul {
+			flex-wrap: wrap;
+		}
 
-    li {
-      margin-bottom: 10px;
-      word-break: break-all;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+		li {
+			margin-bottom: 10px;
+			word-break: break-all;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 
-      &:nth-child(2n) {
-        margin-right: 0;
-      }
-    }
-  }
+			&:nth-child(2n) {
+				margin-right: 0;
+			}
+		}
+	}
 </style>

@@ -16,7 +16,7 @@ sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${sitemap}
 </urlset>
 `
-fs.writeFile(join(__dirname, `../dist/${pkg.name}/prod/sitemap.xml`),
+fs.writeFile(join(__dirname, `../dist/sitemap.xml`),
   sitemap,
   (err) => {
     if (err) {

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[89],{442:function(i,p){i.exports='<h2 id="validate">validate</h2> <p>Writing, please wait patiently</p> '}}]);

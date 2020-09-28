@@ -1,13 +1,13 @@
 <template>
   <div>
     <Timeline class="vf-update-log vf-scrollbar">
-      <TimelineItem v-for="item in log">
+      <TimelineItem v-for="item in log" :key="item.version">
         <div class="vf-update-version">{{item.version}}</div>
         <p>
           <code>{{item.time}}</code>
         </p>
         <ul class="vf-log">
-          <li v-for="child in item.content">
+          <li v-for="(child,index) in item.content" :key="index">
             {{child}}
           </li>
         </ul>

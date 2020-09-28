@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[83],{436:function(e,p){e.exports='<h2 id="reset">reset</h2> <p>Writing, please wait patiently</p> '}}]);

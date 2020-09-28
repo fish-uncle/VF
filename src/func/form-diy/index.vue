@@ -2,7 +2,6 @@
   <div
     class="vf-diy"
     :class="[currentVal.className,error?'vf-error':'']"
-    v-model="parent.data[currentVal.key]"
     :style="{width:`${currentVal.widthRatio}%`}"
   />
 </template>
