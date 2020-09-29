@@ -1,7 +1,6 @@
 const routes = require('./routes');
 const fs = require('fs');
 const join = require('path').join;
-const pkg = require('../package.json');
 const url = 'https://vf.shenzhepei.com';
 
 let sitemap = '';

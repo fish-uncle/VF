@@ -1,5 +1,12 @@
 const log = [
 	{
+		version: '1.1.6',
+		time: '2020-09-29',
+		content: [
+			'Fix platform CSS style issues.',
+		]
+	},
+	{
 		version: '1.1.5',
 		time: '2020-09-28',
 		content: [
