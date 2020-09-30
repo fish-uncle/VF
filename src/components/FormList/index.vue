@@ -1,5 +1,5 @@
 <template>
-  <div class="vf-form-list fn-flex">
+  <div class="vf-form-list">
     <slot/>
     <modelData :data="data"/>
   </div>
