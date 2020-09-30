@@ -61,6 +61,7 @@ const language = {
   "admin_right_btn36": "高德地图key",
   "admin_right_btn37": "高德地图中心坐标",
   "admin_right_btn38": "是否开启表格悬浮按钮",
+  "admin_right_btn39": "是否开启选择时间",
 
   "admin_right_btn5": "组件是否为虚线",
   "admin_right_btn5_1": "是",

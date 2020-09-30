@@ -1,9 +1,10 @@
 const log = [
 	{
 		version: '1.1.6',
-		time: '2020-09-29',
+		time: '2020-09-30',
 		content: [
 			'Fix platform CSS style issues.',
+			'Whether date adding function is enabled to select time.',
 		]
 	},
 	{

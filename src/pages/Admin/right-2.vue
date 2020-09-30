@@ -32,8 +32,23 @@
 		</div>
 		<div class="vf-control" v-if="item.changeList.indexOf('timeFormat')!==-1">
 			<label>{{$t('admin_right_btn24')}}</label>
-			<i-input v-model="item.timeFormat"
-					 @on-change="e=>inputChange(e,'timeFormat')"/>
+			<i-select v-model="item.timeFormat">
+				<i-option value="yyyy-MM-dd">年-月-日</i-option>
+				<i-option value="yyyy-MM-dd HH-mm-ss">年-月-日 时-分-秒</i-option>
+				<i-option value="yyyy/MM/dd">年/月/日</i-option>
+				<i-option value="yyyy/MM/dd HH-mm-ss">年/月/日 时/分/秒</i-option>
+				<i-option value="HH’mm’ss">时’分’秒</i-option>
+				<i-option value="HH-mm-ss">时-分-秒</i-option>
+				<i-option value="HH/mm/ss">时/分/秒</i-option>
+			</i-select>
+		</div>
+		<div class="vf-control" v-if="item.changeList.indexOf('datetime')!==-1">
+			<label>{{$t('admin_right_btn39')}}</label>
+			<RadioGroup :value="item.datetime?1:0" type="button" size="large"
+						@on-change="value=>checkChange(!!value,'datetime')">
+				<Radio :label="1">{{$t('admin_right_btn12_1')}}</Radio>
+				<Radio :label="0">{{$t('admin_right_btn12_2')}}</Radio>
+			</RadioGroup>
 		</div>
 		<div class="vf-control" v-if="item.changeList.indexOf('maxSize')!==-1">
 			<label>{{$t('admin_right_btn27')}}</label>
