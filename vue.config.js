@@ -1,6 +1,7 @@
 const pkg = require('./package.json')
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const isProduction = process.env.NODE_ENV === 'production';
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const isProduction = process.env.NODE_ENV === 'production'
+const needReport = false
 
 module.exports = {
 	publicPath: isProduction ? `https://cdn.shenzhepei.com/VF/prod/${pkg.version}/` : `/`,
@@ -52,5 +53,14 @@ module.exports = {
 			.use('markdown-loader')
 			.loader('markdown-loader')
 			.end()
+		if (isProduction) {
+			if (needReport) {
+				config
+					.plugin('webpack-bundle-analyzer')
+					.use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+					.end()
+			}
+			config.plugins.delete('prefetch')
+		}
 	},
 }

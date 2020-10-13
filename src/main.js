@@ -28,13 +28,13 @@ Vue.component('v-list', FormListUse)
 Vue.component('v-component', FormComponentUse)
 Vue.component('v-form', FormUse)
 Vue.prototype.editorInit = function () {
-	require('brace/ext/language_tools') //language extension prerequsite...
+	require('brace/ext/language_tools')
 	require('brace/mode/html')
-	require('brace/mode/javascript')    //language
+	require('brace/mode/javascript')
 	require('brace/mode/less')
 	require('brace/mode/jsoniq')
 	require('brace/theme/chrome')
-	require('brace/snippets/javascript') //snippet
+	require('brace/snippets/javascript')
 }
 Vue.config.productionTip = false
 Vue.use(plugins)

@@ -59,7 +59,8 @@
     "vue-template-compiler": "^2.6.11",
     "vue2-ace-editor": "0.0.15",
     "vuedraggable": "^2.24.1",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "webpack-bundle-analyzer": "^3.9.0"
   },
   "eslintConfig": {
     "root": true,
