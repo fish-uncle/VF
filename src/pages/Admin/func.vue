@@ -4,7 +4,7 @@
 			<h2>
 				{{$t('admin_left_title1')}}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.base"
 					   :clone="handleClone"
 					   :move="handleMove"
 					   :group="{ name: 'people', pull: 'clone', put: false }">
@@ -13,7 +13,7 @@
 			<h2>
 				{{$t('admin_left_title2')}}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.modification"
 					   :clone="handleClone"
 					   :move="handleMove"
 					   :group="{ name: 'people', pull: 'clone', put: false }">
@@ -22,7 +22,7 @@
 			<h2>
 				{{$t('admin_left_title3')}}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.list"
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.senior"
 					   :clone="handleClone"
 					   :move="handleMove"
 					   :group="{ name: 'people', pull: 'clone', put: false }">

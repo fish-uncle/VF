@@ -1,5 +1,12 @@
 const log = [
 	{
+		version: '1.1.7',
+		time: '2020-10-19',
+		content: [
+			'修复平台多个类型组件拖拽，显示异常问题。',
+		]
+	},
+	{
 		version: '1.1.6',
 		time: '2020-09-30',
 		content: [

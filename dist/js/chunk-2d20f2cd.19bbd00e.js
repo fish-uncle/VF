@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["chunk-2d20f2cd"],{b306:function(t,e,i){"use strict";i.r(e);e.default={title_zh:"双文本",title_en:"input2",icon:"ios-book-outline",type:"input2",dataType:"MultiData",placeholder:"",changeList:["placeholder"]}}}]);
