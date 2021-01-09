@@ -50,7 +50,7 @@
       },
       handleClick() {
         this.amapVisible = true
-        const _self = this;
+        const _self = this
         AMap(this.currentVal.amapKey, this.currentVal.amapVersion).then(({AMap, AMapUI}) => {
           AMapUI.loadUI(['misc/PositionPicker'], function (PositionPicker) {
             const map = new AMap.Map('amap', {
@@ -61,7 +61,7 @@
             const positionPicker = new PositionPicker({
               mode: 'dragMap',
               map: map
-            });
+            })
             positionPicker.on('success', function (positionResult) {
               _self.center = [positionResult.position.lng, positionResult.position.lat]
             })

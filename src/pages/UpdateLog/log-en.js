@@ -1,5 +1,20 @@
 const log = [
 	{
+		version: '1.1.8',
+		time: '2021-01-09',
+		content: [
+			'add commitlint.',
+			'add typescript.',
+		]
+	},
+	{
+		version: '1.1.7',
+		time: '2020-10-19',
+		content: [
+			'Repair the dragging of multiple types of components on the platform, showing abnormal problems.',
+		]
+	},
+	{
 		version: '1.1.6',
 		time: '2020-09-30',
 		content: [

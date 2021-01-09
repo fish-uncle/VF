@@ -1,15 +1,10 @@
-<template>
-  <div>
-    <div class="fn-clear">
-      <left/>
-      <div class="vf-help-content">
-        <div class="markdown-body" v-highlight>
-          <div v-html="help.helpContent" v-if="help.helpType===1"/>
-          <component :is="currentComponent" v-if="help.helpType===2"/>
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+    .fn-clear
+      left
+      .vf-help-content
+        .markdown-body(v-highlight)
+          div(v-html="help.helpContent" v-if="help.helpType===1")
+          component(:is="currentComponent" v-if="help.helpType===2")
 </template>
 <script>
   import Left from './left'
@@ -37,21 +32,20 @@
           || name === 'statusEdit' || name === 'statusRead' || name === 'validate' || name === 'getData'
           || name === 'getDataByGroup' || name === 'reset' || name === 'changeSelectList' || name === 'changeData'
           || name === 'onChange' || name === 'onHide' || name === 'onShow' || name === 'onUpdate') {
-          this.currentComponent = () => import(`./${this.help.helpName}`)
+          this.currentComponent = () => import(`../../../doc/${this.help.helpName}`)
           this.$store.commit('help/changeHelp', {
             helpName: name,
             helpContent: '',
             helpType: 2
           })
         } else {
-          const content = await import(`./${name}-${this.$i18n.locale}.md`)
+          const content = await import(`../../../doc/${name}-${this.$i18n.locale}.md`)
           this.$store.commit('help/changeHelp', {
             helpName: name,
             helpContent: content,
             helpType: 1
           })
         }
-
       }
     },
     beforeDestroy() {

@@ -8,9 +8,9 @@ import top from './top'
 import help from './help'
 import language from './language'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store:any = new Vuex.Store({
   strict: false,
   modules: {
     center,
@@ -22,3 +22,5 @@ export default new Vuex.Store({
     language,
   },
 })
+
+export default store

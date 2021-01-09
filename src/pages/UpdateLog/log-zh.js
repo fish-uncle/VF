@@ -1,9 +1,17 @@
 const log = [
 	{
+		version: '1.1.8',
+		time: '2021-01-09',
+		content: [
+			'添加 commitlint.',
+			'添加 typescript.',
+		]
+	},
+	{
 		version: '1.1.7',
 		time: '2020-10-19',
 		content: [
-			'修复平台多个类型组件拖拽，显示异常问题。',
+			'修复平台多个类型组件拖拽，显示异常问题.',
 		]
 	},
 	{
