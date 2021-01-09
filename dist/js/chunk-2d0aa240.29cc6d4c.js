@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["chunk-2d0aa240"],{"106a":function(n,i){n.exports='<h2 id="internationalization">Internationalization</h2> <p>Writing, please wait patiently</p> '}}]);

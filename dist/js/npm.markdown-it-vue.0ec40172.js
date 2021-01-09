@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["npm.markdown-it-vue"],{f417:function(n,w,o){}}]);
