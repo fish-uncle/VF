@@ -46,9 +46,9 @@
   import Right3 from './right-3'
   import Right4 from './right-4'
   import Right5 from './right-5'
-  import ModelCode from '../../components/ModelCode'
-  import ModelPreview from '../../components/ModelPreview'
-  import ModelRead from '../../components/ModelRead'
+  import ModelCode from '../../components-base/ModelCode'
+  import ModelPreview from '../../components-base/ModelPreview'
+  import ModelRead from '../../components-base/ModelRead'
 
   import {mapState} from 'vuex';
 

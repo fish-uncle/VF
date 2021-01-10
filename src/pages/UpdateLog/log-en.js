@@ -6,6 +6,7 @@ const log = [
 			'add typescript utilization rate.',
 			'add pug.',
 			'Optimize component introduction mode.',
+			'Optimize the introduction of form attributes.',
 		]
 	},
 	{

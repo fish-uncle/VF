@@ -1,4 +1,4 @@
-const config = require.context(`../func`, true, /\.(component.js)$/)
+const config = require.context(`../components`, true, /\.(component.js)$/)
 const changeListDefault = {
 	Base:[
 		'labelTextAlign', 'labelWidth', 'widthRatio', 'disabled',

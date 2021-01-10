@@ -1,5 +1,5 @@
-import VComponent from './src/components/VComponents'
-import VList from './src/components/VList'
+import VComponent from './src/components-base/VComponents'
+import VList from './src/components-base/VList'
 import 'view-design/dist/styles/iview.css'
 import './src/less/reset.less'
 import './src/less/index.less'

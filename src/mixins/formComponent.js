@@ -1,4 +1,4 @@
-import {cssStyle2DomStyle, findComponentUpward} from '../utils'
+import {findComponentUpward} from '../utils'
 
 export default {
 	data() {
@@ -40,8 +40,8 @@ export default {
 		const type = this.currentVal.type
 		const componentType = this.currentVal.componentType
 		this.type = type
-		this.currentComponent = () => import(`../func/${componentType}/${type}`)
-		this.readComponent = () => import(`../func/${componentType}/${type}/read`)
+		this.currentComponent = () => import(`../components/${componentType}/${type}`)
+		this.readComponent = () => import(`../components/${componentType}/${type}/read`)
 		if (this.parent) {
 			this.parent.childMounted({
 				key: this.currentVal.key,

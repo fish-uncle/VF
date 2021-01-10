@@ -10,10 +10,10 @@
 </template>
 <script>
 	import {mapState} from 'vuex';
-	import ModelBuy from './components/ModelBuy'
-	import ModelPlease from './components/ModelPlease'
-	import Top from './components/Top';
-	import Bottom from './components/Bottom';
+	import ModelBuy from './components-base/ModelBuy'
+	import ModelPlease from './components-base/ModelPlease'
+	import Top from './components-base/Top';
+	import Bottom from './components-base/Bottom';
 
 	export default {
 		components: {
