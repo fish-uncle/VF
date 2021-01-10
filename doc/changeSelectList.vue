@@ -1,11 +1,9 @@
-<template>
-  <div>
-    <h2>changeSelectList</h2>
-    <p>{{$t('changeSelectList')}}</p>
-    <pre>
-      <code class="html">{{html}}</code>
-    </pre>
-  </div>
+<template lang="pug">
+	div
+		h2 changeSelectList
+		p {{$t('changeSelectList')}}
+		pre
+			code.html {{html}}
 </template>
 <script>
   export default {

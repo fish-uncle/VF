@@ -1,11 +1,9 @@
-<template>
-  <div>
-    <h2>getDataByGroup</h2>
-    <p>{{$t('getDataByGroup')}}</p>
-    <pre>
-      <code class="html">{{html}}</code>
-    </pre>
-  </div>
+<template lang="pug">
+	div
+		h2 getDataByGroup
+		p {{$t('getDataByGroup')}}
+		pre
+			code.html {{html}}
 </template>
 <script>
   export default {

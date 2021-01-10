@@ -1,22 +1,18 @@
-<template>
-  <div class="vf-top fn-flex flex-row pos-r z-index-999">
-    <h2>VF</h2>
-    <Icon type="ios-analytics" color="white"/>
-    <h1>{{$t('top_description')}}</h1>
-    <span class="vf-version">v{{version}}</span>
-    <ul class="fn-flex flex-row vf-nav">
-      <li class="pointer" :class="top.topIndex===1?'active':''" @click="handleIndex">{{$t('top_home')}}</li>
-      <li class="pointer" :class="top.topIndex===3?'active':''" @click="handleHelp">{{$t('top_documentation')}}</li>
-      <li class="pointer" :class="top.topIndex===2?'active':''" @click="handleUpdateLog">{{$t('top_update_log')}}</li>
-      <li class="pointer" @click="handleGithub">
-        <Icon type="logo-github"/>
-      </li>
-      <!--      <li class="pointer" @click="handleBuyShow">{{$t('top_buy')}}</li>-->
-    </ul>
-    <i-select class="vf-lang pos-r" v-model="$i18n.locale" @on-change="handleLanguageChange">
-      <i-option v-for="lang in langs" :key="lang.value" :value="lang.value">{{lang.title}}</i-option>
-    </i-select>
-  </div>
+<template lang="pug">
+	.vf-top.fn-flex.flex-row.pos-r.z-index-999
+		h2 VF
+		Icon(type="ios-analytics" color="white")
+		h1 {{$t('top_description')}}
+		span.vf-version v{{version}}
+		ul.fn-flex.flex-row.vf-nav
+			li.pointer(:class="top.topIndex===1?'active':''" @click="handleIndex") {{$t('top_home')}}
+			li.pointer(:class="top.topIndex===3?'active':''" @click="handleHelp") {{$t('top_documentation')}}
+			li.pointer(:class="top.topIndex===2?'active':''" @click="handleUpdateLog") {{$t('top_update_log')}}
+			li.pointer(@click="handleGithub")
+				Icon(type="logo-github")
+			//li.pointer(@click="handleBuyShow") {{$t('top_buy')}}
+		i-select.vf-lang.pos-r(v-model="$i18n.locale" @on-change="handleLanguageChange")
+			i-option(v-for="lang in langs" :key="lang.value" :value="lang.value") {{lang.title}}
 </template>
 <script>
   import {mapState} from "vuex";

@@ -1,5 +1,13 @@
 const log = [
 	{
+		version: '1.1.9',
+		time: '2021-01-10',
+		content: [
+			'add typescript utilization rate.',
+			'add pug.',
+		]
+	},
+	{
 		version: '1.1.8',
 		time: '2021-01-09',
 		content: [

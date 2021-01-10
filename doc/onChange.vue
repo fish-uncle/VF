@@ -1,8 +1,5 @@
-<template>
-  <div>
-    <h2>onChange</h2>
-    <p>编写中，请耐心等待</p>
-  </div>
+<template lang="pug">
+	div
+		h2 onChange
+		p 编写中，请耐心等待
 </template>
-<script>
-</script>

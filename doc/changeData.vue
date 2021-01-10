@@ -1,11 +1,9 @@
-<template>
-  <div>
-    <h2>changeData</h2>
-    <p>{{$t('changeData')}}</p>
-    <pre>
-      <code class="html">{{html}}</code>
-    </pre>
-  </div>
+<template lang="pug">
+	div
+		h2 changeData
+		p {{$t('changeData')}}
+		pre
+			code.html {{html}}
 </template>
 <script>
   export default {

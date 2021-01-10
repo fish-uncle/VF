@@ -1,19 +1,17 @@
-<template>
-  <div>
-    <h2>statusEdit</h2>
-    <p>{{$t('statusEdit')}}</p>
-    <pre>
-      <code class="html">{{html}}</code>
-    </pre>
-  </div>
+<template lang="pug">
+	div
+		h2 statusEdit
+		p {{$t('statusEdit')}}
+		pre
+			code.html {{html}}
 </template>
 <script>
-  export default {
-    data() {
-      const lt = '<'
-      const model_preview_edit = this.$t ('model_preview_edit')
-      return {
-        html: `<template>
+	export default {
+		data() {
+			const lt = '<'
+			const model_preview_edit = this.$t ('model_preview_edit')
+			return {
+				html: `<template>
   <div>
     <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
     :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
@@ -43,7 +41,7 @@
   }
 ${lt}/script>
 `
-      }
-    }
-  }
+			}
+		}
+	}
 </script>

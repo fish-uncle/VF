@@ -1,11 +1,9 @@
-<template>
-  <div>
-    <h2>reset</h2>
-    <p>{{$t('reset')}}</p>
-    <pre>
-      <code class="html">{{html}}</code>
-    </pre>
-  </div>
+<template lang="pug">
+	div
+		h2 reset
+		p {{$t('reset')}}
+		pre
+			code.html {{html}}
 </template>
 <script>
   export default {
