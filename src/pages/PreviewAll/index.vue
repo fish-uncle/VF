@@ -25,7 +25,7 @@
 </template>
 <script>
 	import {mapState} from 'vuex'
-	import Select from '../../func/form-select/component'
+	import Select from '../../func/Base/form-select/index.component'
 	import {uuid} from '../../utils'
 
 	export default {

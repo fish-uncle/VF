@@ -5,6 +5,7 @@ const log = [
 		content: [
 			'add typescript utilization rate.',
 			'add pug.',
+			'Optimize component introduction mode.',
 		]
 	},
 	{

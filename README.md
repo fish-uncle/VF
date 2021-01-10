@@ -18,7 +18,7 @@ VF，即Vue Form，一个为Vue而设计的可视化表单设计器。
 [VF-demo](https://github.com/fish-uncle/VF-demo)
 
 ## 赞助
-本项目由[Fish Uncle](https://github.com/fish-uncle)<fishuncle@126.com>一人研发完成,如果觉得项目还能得到你的认可，可以请我喝一杯咖啡，
+本项目由[Fish Uncle](https://github.com/fish-uncle) <fishuncle@126.com>一人研发完成,如果觉得项目还能得到你的认可，可以请我喝一杯咖啡，
 我的创作会更有动力。
 
  <img src="https://cdn.shenzhepei.com/hexo-theme-matery/public/medias/reward/wechat.jpg" width = "100" height = "100"/>

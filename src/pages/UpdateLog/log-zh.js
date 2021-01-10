@@ -5,6 +5,7 @@ const log = [
 		content: [
 			'添加 typescript 使用率。',
 			'添加 pug。',
+			'优化组件引入方式。',
 		]
 	},
 	{

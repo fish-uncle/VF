@@ -37,10 +37,11 @@ export default {
 	},
 	mounted() {
 		this.id = this.currentVal.id
-		const type = cssStyle2DomStyle(this.currentVal.type)
+		const type = this.currentVal.type
+		const componentType = this.currentVal.componentType
 		this.type = type
-		this.currentComponent = () => import(`../func/form-${type}`)
-		this.readComponent = () => import(`../func/form-${type}/read`)
+		this.currentComponent = () => import(`../func/${componentType}/${type}`)
+		this.readComponent = () => import(`../func/${componentType}/${type}/read`)
 		if (this.parent) {
 			this.parent.childMounted({
 				key: this.currentVal.key,

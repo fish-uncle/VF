@@ -4,29 +4,29 @@
 			<h2>
 				{{$t('admin_left_title1')}}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.base"
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.Base"
 					   :clone="handleClone"
 					   :move="handleMove"
 					   :group="{ name: 'people', pull: 'clone', put: false }">
-				<func-item v-for="(item,key) in component.obj.base" :item="item" :key="key"/>
+				<func-item v-for="(item,key) in component.obj.Base" :item="item" :key="key"/>
 			</draggable>
 			<h2>
 				{{$t('admin_left_title2')}}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.modification"
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.Modification"
 					   :clone="handleClone"
 					   :move="handleMove"
 					   :group="{ name: 'people', pull: 'clone', put: false }">
-				<func-item v-for="(item,key) in component.obj.modification" :item="item" :key="key"/>
+				<func-item v-for="(item,key) in component.obj.Modification" :item="item" :key="key"/>
 			</draggable>
 			<h2>
 				{{$t('admin_left_title3')}}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.senior"
+			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.Senior"
 					   :clone="handleClone"
 					   :move="handleMove"
 					   :group="{ name: 'people', pull: 'clone', put: false }">
-				<func-item v-for="(item,key) in component.obj.senior" :item="item" :key="key"/>
+				<func-item v-for="(item,key) in component.obj.Senior" :item="item" :key="key"/>
 			</draggable>
 		</div>
 	</div>
