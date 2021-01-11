@@ -8,6 +8,9 @@ const log = [
 			'Optimize component introduction mode.',
 			'Optimize the introduction of form attributes.',
 			'Optimize the introduction of field attributes.',
+			'Optimizing the introduction of verification attributes.',
+			'Optimize the introduction mode of event settings.',
+			'Stripping language from vuex.',
 		]
 	},
 	{

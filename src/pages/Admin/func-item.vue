@@ -1,15 +1,17 @@
-<template>
-	<li class="pos-r z-index-9 fn-flex vf-func-item" :title="item.title">
-		<Icon :type="item.icon" v-if="item.icon" color="#333" size="18"/>
-		<span>{{item[`title_${language.lang}`]}}</span>
-	</li>
+<template lang="pug">
+	li.pos-r.z-index-9.fn-flex.vf-func-item(:title="item.title")
+		Icon(:type="item.icon" v-if="item.icon" color="#333" size="18")
+		span {{item[`title_${language.lang}`]}}
 </template>
-<script>
-	import { mapState } from 'vuex';
+<script lang="ts">
+	import {Component,Vue,Prop} from 'vue-property-decorator'
+	import language from '../../store/language'
 
-	export default {
-		props: [ 'item' ],
-		computed: mapState ([ 'component', 'model', 'language' ]),
+	@Component
+	export default class FuncItem extends Vue {
+		@Prop(Object) item: any
+
+		language=language.store
 	}
 </script>
 <style lang="less">

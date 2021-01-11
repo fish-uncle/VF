@@ -68,7 +68,7 @@
 		computed: {
 			...mapState(['center']),
 			multiFormValue() {
-				return center.multiForm.length > 1
+				return this.center.multiForm.length > 1
 			}
 		},
 		methods: {

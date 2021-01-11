@@ -67,10 +67,15 @@
 </template>
 <script>
 	import {mapState} from 'vuex'
-
+	import language from '../../store/language'
 	export default {
+		data(){
+			return{
+				language:language.store
+			}
+		},
 		computed: {
-			...mapState(['center', 'component', 'language']),
+			...mapState(['center', 'component']),
 			viewScale() {
 				return this.center.viewScale.split(':')
 			}

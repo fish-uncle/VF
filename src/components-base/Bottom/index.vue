@@ -7,10 +7,9 @@
 	import {Component,Vue} from 'vue-property-decorator'
 
 	@Component
-	class Bottom extends Vue {
+	export default class Bottom extends Vue {
 		date:number=new Date().getFullYear()
 	}
-	export default Bottom
 </script>
 <style lang="less">
 	.vf-bottom {

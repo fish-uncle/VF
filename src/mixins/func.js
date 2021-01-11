@@ -1,12 +1,20 @@
 import {obj2Str, str2Obj} from '../utils'
 import {mapState} from 'vuex'
-
+import language from '../store/language'
 export default {
+	data(){
+		return{
+			language:language.store
+		}
+	},
     computed: {
-        ...mapState(['language','center']),
+        ...mapState(['center']),
         propsVal() {
             return obj2Str(this.item.props)
         },
+		requiredVal() {
+			return this.item.required ? 1 : 0
+		},
         item() {
             if (this.center.list.length > 0) {
                 return this.center.list[this.center.currentScale][this.center.current] ?
@@ -32,6 +40,10 @@ export default {
         }
     },
     methods: {
+		requiredChange(value) {
+			let item = this.item
+			item.required = !!value
+		},
         editorChange(value, key) {
             let item = this.item
             try {

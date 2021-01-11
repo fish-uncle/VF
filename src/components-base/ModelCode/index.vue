@@ -1,44 +1,49 @@
 <template>
-  <Modal width="780" v-model="model.codeVisible" :closable="false" :footer-hide="true" :scrollable="true">
-    <editor :value="html"
-            @init="editorInit" lang="html" theme="chrome" width="750" height="700"></editor>
-  </Modal>
+	<Modal width="780" v-model="model.codeVisible" :closable="false" :footer-hide="true" :scrollable="true">
+		<editor :value="html"
+				@init="editorInit" lang="html" theme="chrome" width="750" height="700"></editor>
+	</Modal>
 </template>
 <script>
-  import { mapState } from 'vuex';
-
-  export default {
-    computed: {
-      ...mapState ([ 'model', 'center', 'language' ]),
-      html () {
-        const model_preview_submit = this.$t ('model_preview_submit')
-        const model_preview_edit = this.$t ('model_preview_edit')
-        const model_preview_read = this.$t ('model_preview_read')
-        const model_preview_reset = this.$t ('model_preview_reset')
-        const lt = '<'
-        let list = JSON.parse (JSON.stringify (this.center.list))
-        const viewScale = this.center.viewScale
-        const group = this.center.group
-        const labelWidth = this.center.labelWidth
-        const labelTextAlign = this.center.labelTextAlign
-        list.forEach (child => {
-          child.forEach (item => {
-            if (item.labelWidth === labelWidth) {
-              delete item.labelWidth
-            }
-            if (item.labelTextAlign === labelTextAlign) {
-              delete item.labelTextAlign
-            }
-            delete item.version
-            delete item.icon
-            item.title = item[`title_${this.language.lang}`]
-            delete item.title_zh
-            delete item.title_en
-            delete item.changeList
-            delete item.componentType
-          })
-        })
-        return `<template>
+	import { mapState } from 'vuex';
+	import language from '../../store/language'
+	export default {
+		data(){
+			return{
+				language:language.store
+			}
+		},
+		computed: {
+			...mapState ([ 'model', 'center' ]),
+			html () {
+				const model_preview_submit = this.$t ('model_preview_submit')
+				const model_preview_edit = this.$t ('model_preview_edit')
+				const model_preview_read = this.$t ('model_preview_read')
+				const model_preview_reset = this.$t ('model_preview_reset')
+				const lt = '<'
+				let list = JSON.parse (JSON.stringify (this.center.list))
+				const viewScale = this.center.viewScale
+				const group = this.center.group
+				const labelWidth = this.center.labelWidth
+				const labelTextAlign = this.center.labelTextAlign
+				list.forEach (child => {
+					child.forEach (item => {
+						if (item.labelWidth === labelWidth) {
+							delete item.labelWidth
+						}
+						if (item.labelTextAlign === labelTextAlign) {
+							delete item.labelTextAlign
+						}
+						delete item.version
+						delete item.icon
+						item.title = item[`title_${this.language.lang}`]
+						delete item.title_zh
+						delete item.title_en
+						delete item.changeList
+						delete item.componentType
+					})
+				})
+				return `<template>
   <div>
     <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
     :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
@@ -82,7 +87,7 @@
     },
   }
 ${lt}/script>`
-      }
-    },
-  }
+			}
+		},
+	}
 </script>
