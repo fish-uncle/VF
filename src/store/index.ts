@@ -6,7 +6,6 @@ import model from './model'
 import right from './right'
 import top from './top'
 import help from './help'
-import language from './language'
 
 Vue.use(Vuex)
 
@@ -19,7 +18,6 @@ const store:any = new Vuex.Store({
     right,
     top,
     help,
-    language,
   },
 })
 
