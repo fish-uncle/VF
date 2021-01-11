@@ -1,7 +1,6 @@
 <template>
     <div>
         <template v-for="child in list">
-			{{item.changeList.indexOf(child)!==-1}}
             <component :key="child"
                        :is="currentComponent[child]"
                        v-if="item.changeList.indexOf(child)!==-1"/>

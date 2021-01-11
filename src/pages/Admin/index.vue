@@ -18,7 +18,7 @@
 						</h2>
 					</div>
 					<template v-for="(item,index) in list">
-						<right :list="item.list" v-if="tabIndex===index+1" :key="index"/>
+						<right :list="item.list" v-if="tabIndex===index+1"/>
 					</template>
 					<setting v-if="tabIndex===5"/>
 				</div>

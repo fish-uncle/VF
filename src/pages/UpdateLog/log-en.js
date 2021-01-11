@@ -13,6 +13,7 @@ const log = [
 			'Stripping language from vuex.',
 			'Remove listening event languagechange.',
 			'Stripping right from vuex.',
+			'Fix the problem of tab switch not showing.',
 		]
 	},
 	{
