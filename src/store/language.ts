@@ -9,4 +9,4 @@ const mutations = {
 		store.lang = state.lang
 	}
 }
-export default{store,mutations}
+export default {store,mutations}

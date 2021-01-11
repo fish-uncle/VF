@@ -12,6 +12,7 @@ const log = [
 			'优化事件设置引入方式。',
 			'剥离vuex中的language。',
 			'移除监听事件languagechange。',
+			'剥离vuex中的right。',
 		]
 	},
 	{

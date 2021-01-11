@@ -12,6 +12,7 @@ const log = [
 			'Optimize the introduction mode of event settings.',
 			'Stripping language from vuex.',
 			'Remove listening event languagechange.',
+			'Stripping right from vuex.',
 		]
 	},
 	{

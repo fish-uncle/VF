@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import center from './center'
 import component from './component'
 import model from './model'
-import right from './right'
 import top from './top'
 import help from './help'
 
@@ -15,7 +14,6 @@ const store:any = new Vuex.Store({
     center,
     component,
     model,
-    right,
     top,
     help,
   },

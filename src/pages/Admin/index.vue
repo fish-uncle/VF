@@ -9,18 +9,18 @@
 					<div class="fn-flex flex-row">
 						<h2 class="pointer"
 							v-for="(item,index) in list"
-							:class="right.tabIndex===index+1?'active':''"
+							:class="tabIndex===index+1?'active':''"
 							@click="changeTab(index+1)">
 							{{item.title}}
 						</h2>
-						<h2 class="pointer" :class="right.tabIndex===5?'active':''" @click="changeTab(5)">
+						<h2 class="pointer" :class="tabIndex===5?'active':''" @click="changeTab(5)">
 							{{$t('admin_right_title5')}}
 						</h2>
 					</div>
 					<template v-for="(item,index) in list">
-						<right :list="item.list" v-if="right.tabIndex===index+1" :key="index"/>
+						<right :list="item.list" v-if="tabIndex===index+1" :key="index"/>
 					</template>
-					<setting v-if="right.tabIndex===5"/>
+					<setting v-if="tabIndex===5"/>
 				</div>
 			</div>
 			<center/>
@@ -40,10 +40,10 @@
 	import ModelRead from '../../components-base/ModelRead'
 
 	import {mapState} from 'vuex';
-	console.log(mapState(["right", "center"]))
 	export default {
 		data() {
 			return {
+				tabIndex:1,
 				list: [
 					{
 						title: this.$t('admin_right_title1'), list: [
@@ -72,7 +72,7 @@
 			}
 		},
 		computed: {
-			...mapState(["right", "center"]),
+			...mapState(["center"]),
 			item() {
 				if (this.center.list.length > 0) {
 					return this.center.list[this.center.currentScale][this.center.current] ?
@@ -93,7 +93,7 @@
 		},
 		methods: {
 			changeTab(tabIndex) {
-				this.$store.commit('right/changeTab', {tabIndex})
+				this.tabIndex=tabIndex
 			},
 		},
 		mounted() {
