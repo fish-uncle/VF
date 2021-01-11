@@ -41,7 +41,6 @@
 			handleLanguageChange(data) {
 				document.title = this.$t('top_description')
 				localStorage.setItem("locale", data)
-				this.$agent.$once({type: 'languageChange', data})
 				language.mutations.change({lang: data})
 			},
 			handleIndex() {

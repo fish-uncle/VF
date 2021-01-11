@@ -8,22 +8,21 @@
 				li(v-for="(child,index) in item.content" :key="index") {{child}}
 </template>
 <script lang="ts">
-	import {Component,Vue} from 'vue-property-decorator'
-
+	import {Component,Vue,Watch} from 'vue-property-decorator'
+	import language from '../../store/language'
 	@Component
 	class UpdateLog extends Vue {
 		log:any[]=[]
+		language=language.store
+
+		@Watch('language', { immediate: true, deep: true })
 		async init () {
 			const log = await import(`./log-${this.$i18n.locale}`)
 			this.log = log.default
 		}
-		beforeDestroy () {
-			this.$agent.$off ('languageChange', this.init)
-		}
+
 		mounted () {
 			this.$store.commit ('top/changeTop', { topIndex: 2 })
-			this.$agent.$on ('languageChange', this.init)
-			this.init ()
 		}
 	}
 	export default UpdateLog

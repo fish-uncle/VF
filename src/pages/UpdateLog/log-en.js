@@ -11,6 +11,7 @@ const log = [
 			'Optimizing the introduction of verification attributes.',
 			'Optimize the introduction mode of event settings.',
 			'Stripping language from vuex.',
+			'Remove listening event languagechange.',
 		]
 	},
 	{
