@@ -1,12 +1,13 @@
 const log = [
 	{
 		version: '1.1.9',
-		time: '2021-01-10',
+		time: '2021-01-11',
 		content: [
 			'add typescript utilization rate.',
 			'add pug.',
 			'Optimize component introduction mode.',
 			'Optimize the introduction of form attributes.',
+			'Optimize the introduction of field attributes.',
 		]
 	},
 	{
