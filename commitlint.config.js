@@ -1,22 +1,56 @@
 module.exports = {
-	extends: ['@commitlint/config-conventional'],
+	parserPreset: {
+		parserOpts: {
+			headerPattern: /^(\w*|[\u4e00-\u9fa5]*)(?:[\(\（](.*)[\)\）])?[\:\：] (.*)/,
+			headerCorrespondence: [
+				'type',
+				'scope',
+				'subject',
+			],
+			referenceActions: [
+				'close',
+				'closes',
+				'closed',
+				'fix',
+				'fixes',
+				'fixed',
+				'resolve',
+				'resolves',
+				'resolved',
+			],
+			issuePrefixes: ['#'],
+			noteKeywords: ['BREAKING CHANGE', '不兼容变更'],
+			fieldPattern: /^-(.*?)-$/,
+			revertPattern: /^Revert\s"([\s\S]*)"\s*This reverts commit (\w*)\./,
+			revertCorrespondence: ['header', 'hash'],
+			warn() {
+			},
+			mergePattern: null,
+			mergeCorrespondence: null,
+		},
+	},
 	rules: {
+		'body-leading-blank': [2, 'always'],
+		'footer-leading-blank': [1, 'always'],
+		'header-max-length': [2, 'always', 108],
+		'subject-empty': [2, 'never'],
+		'type-empty': [2, 'never'],
 		'type-enum': [
 			2,
 			'always',
 			[
-				'bug', // 此项特别针对bug号，用于向测试反馈bug列表的bug修改情况
-				'feature', // 新功能（feature）
+				'feat', // 新功能（feature）
 				'fix', // 修补bug
-				'docs', // 文档（documentation）
+				'perf',
 				'style', // 格式（不影响代码运行的变动）
-				'refactor', // 重构（即不是新增功能，也不是修改bug的代码变动）
+				'docs', // 文档（documentation）
 				'test', // 增加测试
-				'chore', // 构建过程或辅助工具的变动
+				'refactor', // 重构（即不是新增功能，也不是修改bug的代码变动）
+				'build',
+				'ci',
+				'chore',  // 构建过程或辅助工具的变动
 				'revert', // feat(pencil): add ‘graphiteWidth’ option (撤销之前的commit)
-				'merge', // 合并分支， 例如： merge（前端页面）： feature-xxxx修改线程地址
-				'publish', // 发布版本
 			],
 		],
 	},
-}
+};

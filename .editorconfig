@@ -1,7 +1,10 @@
-[*.{js,jsx,ts,tsx,vue}]
-charset = utf-8
-indent_style = tab
-indent_size = 4
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
+root = true
+[*]
+indent_style=tab
+indent_size=4
+# tab_width
+end_of_line=crlf
+charset=utf-8
+trim_trailing_whitespace=false
+insert_final_newline=true
+quote_type=single
