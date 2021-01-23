@@ -2,6 +2,7 @@ const language = {
   "top_home": "首页",
   "top_documentation": "开发文档",
   "top_update_log": "更新日志",
+  "top_example": "组件示例",
   "top_buy": "购买",
   "top_description": "基于Vue的表单设计器，让表单开发简单而高效",
 

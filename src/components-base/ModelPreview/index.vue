@@ -18,14 +18,17 @@
 	import {mapState} from 'vuex'
 	import {uuid} from '../../utils'
 	import language from '../../store/language'
+	import component from '../../store/component'
+
 	export default {
 		data() {
 			return {
 				show: false,
-				language:language.store
+				language: language.store,
+				component: component.store,
 			}
 		},
-		computed: mapState(['model', 'center', 'component']),
+		computed: mapState(['model', 'center']),
 		watch: {
 			"$store.state.model.previewVisible"(newVal) {
 				if (newVal) {

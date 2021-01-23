@@ -88,18 +88,19 @@ export default {
 					if (controlOthersHideTargetKeys[key].indexOf(id) !== -1) {
 						const k = key.toString()
 						if (Array.isArray(value)) {
-							const v = value.map(item => item.toString());
+							const v = value.map(item => item.toString())
 							if (v.indexOf(k) !== -1) {
-								this.child[id].hide();
+
+								this.child[id].hide()
 							} else {
-								this.child[id].show();
+								this.child[id].show()
 							}
 						} else {
-							const v = value ? value.toString() : value;
+							const v = value ? value.toString() : value
 							if (k === v) {
-								this.child[id].hide();
+								this.child[id].hide()
 							} else {
-								this.child[id].show();
+								this.child[id].show()
 							}
 						}
 					}
@@ -184,7 +185,9 @@ export default {
 				if (item.dataType !== 'Null' && this.child[item.id].visibleStatus()) {
 					if (item.rules) {
 						const rules = str2Obj(item.rules)
-						const type = item.dataType ? item.dataType.toLowerCase() : 'string'
+						let type = item.dataType ? item.dataType.toLowerCase() : 'string'
+						if (type === 'multidata')
+							type = 'array'
 						descriptor[item.key] = {
 							id: item.id,
 							type,
@@ -200,15 +203,16 @@ export default {
 					}
 				}
 			}
-			const validator = new Schema(descriptor);
+			console.log(descriptor)
+			const validator = new Schema(descriptor)
 			validator.validate(data, (errors) => {
 				if (errors) {
 					error = true
 					errors.forEach(item => {
-						this.child[descriptor[item.field].id].errorShow(item.message);
+						this.child[descriptor[item.field].id].errorShow(item.message)
 					})
 				}
-			});
+			})
 			return error
 		},
 		// 编辑状态

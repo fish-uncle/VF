@@ -1,6 +1,6 @@
 <template>
 	<div class="fn-clear vf-component pos-r"
-		 v-show="visible"
+		 v-if="visible"
 		 :class="[`vf-${type}-box`]"
 		 :style="{width:`${currentWidth/24*100}%`}">
 		<label class="fn-fl vf-component-label"
@@ -15,7 +15,9 @@
 				<slot name="table_hover"/>
 			</component>
 			<component v-if="status==='read'" :is="readComponent" :value="currentVal" :language="language"
-					   :status="status"></component>
+					   :status="status">
+				<slot name="table_hover"/>
+			</component>
 		</div>
 		<div v-if="error && status==='edit' " class="pos-a vf-component-error-msg"
 			 :style="{left:`${currentVal.labelWidth+10}px`}">

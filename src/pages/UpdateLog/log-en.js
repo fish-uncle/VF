@@ -1,5 +1,13 @@
 const log = [
 	{
+		version: '1.1.10',
+		time: '2021-01-23',
+		content: [
+			'Fix the bug in the component sample.',
+			'Split the components in vuex.',
+		]
+	},
+	{
 		version: '1.1.9',
 		time: '2021-01-11',
 		content: [

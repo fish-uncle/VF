@@ -17,7 +17,6 @@
 						<DropdownItem name="data">{{$t('admin_center_btn2_1')}}</DropdownItem>
 						<DropdownItem name="preview">{{$t('admin_center_btn2_2')}}</DropdownItem>
 						<DropdownItem name="code">{{$t('admin_center_btn2_3')}}</DropdownItem>
-						<DropdownItem name="all">{{$t('admin_center_btn2_4')}}</DropdownItem>
 					</DropdownMenu>
 				</Dropdown>
 				<li class="pointer vf-fn-btn" @click="handleRead">
@@ -68,14 +67,17 @@
 <script>
 	import {mapState} from 'vuex'
 	import language from '../../store/language'
+	import component from '../../store/component'
+
 	export default {
-		data(){
-			return{
-				language:language.store
+		data() {
+			return {
+				language: language.store,
+				component: component.store,
 			}
 		},
 		computed: {
-			...mapState(['center', 'component']),
+			...mapState(['center']),
 			viewScale() {
 				return this.center.viewScale.split(':')
 			}
@@ -109,9 +111,6 @@
 				}
 				if (name === 'code') {
 					this.$store.commit('model/codeShow');
-				}
-				if (name === 'all') {
-					window.open(`${location.origin}/#/previewAll`)
 				}
 			},
 			handleClear() {

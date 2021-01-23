@@ -36,17 +36,19 @@
 	import {mapState} from 'vuex';
 	import {uuid} from "../../utils";
 	import language from '../../store/language'
+	import component from '../../store/component'
 
 	export default {
 		data(){
 			return{
-				language:language.store
+				language:language.store,
+				component:component.store,
 			}
 		},
 		components: {
 			FuncItem,
 		},
-		computed: mapState(["component", 'center']),
+		computed: mapState([ 'center']),
 		methods: {
 			handleMove: function (evt) {
 				if (evt.to.className === 'vf-drag-content fn-flex flex-row') {

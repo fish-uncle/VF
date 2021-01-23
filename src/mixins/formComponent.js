@@ -1,4 +1,5 @@
 import {findComponentUpward} from '../utils'
+import chalk from 'chalk'
 
 export default {
 	data() {
@@ -98,6 +99,9 @@ export default {
 		}
 	},
 	methods: {
+		warn(msg) {
+			console.log(chalk.bgYellow(msg))
+		},
 		visibleStatus() {
 			return this.visible
 		},
@@ -127,7 +131,8 @@ export default {
 			}
 		},
 		update() {
-			this.$children[0].update()
+			if (this.$children[0])
+				this.$children[0].update()
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onUpdate) {
 					const fun = new Function(this.currentVal.events.onUpdate)

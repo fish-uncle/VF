@@ -1,88 +1,89 @@
 {
-  "name": "vf",
-  "version": "1.1.9",
-  "description": "基于Vue的表单设计器，让表单开发简单而高效",
-  "main": "index.js",
-  "keywords": [
-    "vue",
-    "表单设计器",
-    "表单",
-    "form",
-    "design",
-    "form-design"
-  ],
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "sitemap": "node src/sitemap.js",
-    "commit": "git add .&&git cz"
-  },
-  "author": "fish uncle",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:fish-uncle/VF.git"
-  },
-  "dependencies": {
-    "async-validator": "^3.4.0",
-    "axios": "^0.19.2",
-    "date-fns": "^2.16.1",
-    "json5": "^2.1.3",
-    "throttle-debounce": "^2.3.0",
-    "view-design": "^4.3.2",
-    "vue-class-component": "^7.2.6",
-    "vue-property-decorator": "^9.1.2",
-    "vxe-table": "^2.9.23",
-    "xe-utils": "^2.7.13"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-typescript": "^4.5.10",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-typescript": "^7.0.0",
-    "auto-vers": "^1.0.3",
-    "babel-eslint": "^10.1.0",
-    "commitizen": "^4.2.3",
-    "compression-webpack-plugin": "^6.0.2",
-    "core-js": "^3.6.5",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "highlight.js": "^10.2.0",
-    "html-loader": "^1.3.1",
-    "husky": "^4.3.7",
-    "less": "^3.12.2",
-    "less-loader": "^7.0.1",
-    "markdown-it-vue": "^1.1.3",
-    "markdown-loader": "^5.1.0",
-    "pug": "^3.0.0",
-    "pug-plain-loader": "^1.0.0",
-    "typescript": "^4.1.3",
-    "valine": "^1.4.14",
-    "vue": "^2.6.12",
-    "vue-i18n": "^8.21.1",
-    "vue-json-viewer": "^2.2.14",
-    "vue-router": "^3.4.3",
-    "vue-template-compiler": "^2.6.11",
-    "vue2-ace-editor": "0.0.15",
-    "vuedraggable": "^2.24.1",
-    "vuex": "^3.5.1",
-    "webpack-bundle-analyzer": "^3.9.0"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+	"name": "vf",
+	"version": "1.1.9",
+	"description": "基于Vue的表单设计器，让表单开发简单而高效",
+	"main": "index.js",
+	"keywords": [
+		"vue",
+		"表单设计器",
+		"表单",
+		"form",
+		"design",
+		"form-design"
+	],
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint",
+		"sitemap": "node src/sitemap.js",
+		"commit": "git add .&&git cz"
+	},
+	"author": "fish uncle",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:fish-uncle/VF.git"
+	},
+	"dependencies": {
+		"async-validator": "^3.4.0",
+		"axios": "^0.19.2",
+		"chalk": "^4.1.0",
+		"date-fns": "^2.16.1",
+		"highlight.js": "^10.2.0",
+		"json5": "^2.1.3",
+		"throttle-debounce": "^2.3.0",
+		"valine": "^1.4.14",
+		"view-design": "^4.3.2",
+		"vue": "^2.6.12",
+		"vue-class-component": "^7.2.6",
+		"vue-i18n": "^8.21.1",
+		"vue-property-decorator": "^9.1.2",
+		"vue-router": "^3.4.3",
+		"vue2-ace-editor": "0.0.15",
+		"vuedraggable": "^2.24.1",
+		"vuex": "^3.6.0",
+		"vxe-table": "^2.9.23",
+		"xe-utils": "^2.7.13"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^11.0.0",
+		"@commitlint/config-conventional": "^11.0.0",
+		"@typescript-eslint/eslint-plugin": "^4.5.0",
+		"@typescript-eslint/parser": "^4.5.0",
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-typescript": "^4.5.10",
+		"@vue/cli-service": "~4.5.0",
+		"@vue/eslint-config-typescript": "^7.0.0",
+		"auto-vers": "^1.0.3",
+		"babel-eslint": "^10.1.0",
+		"commitizen": "^4.2.3",
+		"compression-webpack-plugin": "^6.0.2",
+		"core-js": "^3.6.5",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^6.7.2",
+		"eslint-plugin-vue": "^6.2.2",
+		"html-loader": "^1.3.1",
+		"husky": "^4.3.7",
+		"less": "^3.12.2",
+		"less-loader": "^7.0.1",
+		"markdown-it-vue": "^1.1.3",
+		"markdown-loader": "^5.1.0",
+		"pug": "^3.0.0",
+		"pug-plain-loader": "^1.0.0",
+		"typescript": "^4.1.3",
+		"vue-json-viewer": "^2.2.14",
+		"vue-template-compiler": "^2.6.11",
+		"webpack-bundle-analyzer": "^3.9.0"
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
 }

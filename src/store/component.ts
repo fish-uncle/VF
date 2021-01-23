@@ -1,3 +1,4 @@
+import Vue from 'vue'
 const config = require.context(`../components`, true, /\.(component.js)$/)
 const changeListDefault = {
 	Base:[
@@ -74,13 +75,12 @@ config.keys().forEach(name=>{
 		obj[componentType].push(child)
 	}
 })
-const store = {
-	namespaced: true,
-	state: {
-		list,
-		obj,
-		changeList
-	},
-	mutations: {}
-};
-export default store
+
+const store = Vue.observable({
+	list,
+	obj,
+	changeList
+})
+const mutations = {
+}
+export default {store,mutations}

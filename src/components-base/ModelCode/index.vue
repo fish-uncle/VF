@@ -40,7 +40,6 @@
 						delete item.title_zh
 						delete item.title_en
 						delete item.changeList
-						delete item.componentType
 					})
 				})
 				return `<template>

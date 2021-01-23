@@ -53,7 +53,6 @@
 		methods: {
 			handleDelete() {
 				this.$store.commit('center/remove', {index: this.index});
-				this.$store.commit('right/changeTab', {tabIndex: 1});
 				this.$agent.$once({type: 'formDataRemove', key: this.currentVal.key});
 			},
 			choose(index) {

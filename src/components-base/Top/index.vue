@@ -8,6 +8,7 @@
 			li.pointer(:class="top.topIndex===1?'active':''" @click="handleIndex") {{$t('top_home')}}
 			li.pointer(:class="top.topIndex===3?'active':''" @click="handleHelp") {{$t('top_documentation')}}
 			li.pointer(:class="top.topIndex===2?'active':''" @click="handleUpdateLog") {{$t('top_update_log')}}
+			li.pointer(:class="top.topIndex===4?'active':''" @click="handleExample") {{$t('top_example')}}
 			li.pointer(@click="handleGithub")
 				Icon(type="logo-github")
 			//li.pointer(@click="handleBuyShow") {{$t('top_buy')}}
@@ -35,6 +36,10 @@
 			}
 		},
 		methods: {
+			handleExample(){
+				if (this.$route.name !== 'PreviewAll')
+					this.$router.push('/previewAll')
+			},
 			handleGithub() {
 				window.open('https://github.com/fish-uncle/VF')
 			},

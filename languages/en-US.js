@@ -2,6 +2,7 @@ const language = {
 	"top_home": "Home",
 	"top_documentation": "Documentation",
 	"top_update_log": "UpdateLog",
+	"top_example": "Example",
 	"top_buy": "Buy",
 	"top_description": "Form designer based on Vue makes form development simple and efficient",
 

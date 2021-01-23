@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import center from './center'
-import component from './component'
 import model from './model'
 import top from './top'
 import help from './help'
@@ -12,7 +11,6 @@ const store:any = new Vuex.Store({
   strict: false,
   modules: {
     center,
-    component,
     model,
     top,
     help,
