@@ -8,12 +8,12 @@
 	import component from '../src/store/component'
 
 	export default {
+		data() {
+			return {
+				component: component.store
+			}
+		},
 		computed: {
-			data() {
-				return {
-					component: component.store
-				}
-			},
 			html() {
 				const model_preview_submit = this.$t('model_preview_submit')
 				const model_preview_edit = this.$t('model_preview_edit')
