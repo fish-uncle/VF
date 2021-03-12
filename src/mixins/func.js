@@ -138,15 +138,15 @@ export default {
             const item = this.item
             if (key === '0') {
                 const newKey = value + ';' + item.key.split(';')[1]
-                this.$agent.$once({ type: 'formDataChange', oldKey: item.key.split(';')[0], newKey: value })
-                this.$agent.$once({ type: 'formDataChange', oldKey: item.key, newKey })
+                this.$agent.$emit({ type: 'formDataChange', oldKey: item.key.split(';')[0], newKey: value })
+                this.$agent.$emit({ type: 'formDataChange', oldKey: item.key, newKey })
                 item.key = newKey
                 this.$store.commit('center/changeKey', { key: newKey, id: item.id })
             }
             if (key === '1') {
                 const newKey = item.key.split(';')[0] + ';' + value
-                this.$agent.$once({ type: 'formDataChange', oldKey: item.key.split(';')[1], newKey: value })
-                this.$agent.$once({ type: 'formDataChange', oldKey: item.key, newKey })
+                this.$agent.$emit({ type: 'formDataChange', oldKey: item.key.split(';')[1], newKey: value })
+                this.$agent.$emit({ type: 'formDataChange', oldKey: item.key, newKey })
                 item.key = newKey
                 this.$store.commit('center/changeKey', { key: newKey, id: item.id })
             }
@@ -154,7 +154,7 @@ export default {
         keyChange (e) {
             const value = e.target.value
             const item = this.item
-            this.$agent.$once({ type: 'formDataChange', oldKey: item.key, newKey: value })
+            this.$agent.$emit({ type: 'formDataChange', oldKey: item.key, newKey: value })
             item.key = value
             this.$store.commit('center/changeKey', { key: value, id: item.id })
         }

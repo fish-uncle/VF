@@ -7,9 +7,9 @@
 </template>
 <script>
 	export default {
-		data() {
+		data () {
 			const lt = '<'
-			const model_preview_edit = this.$t ('model_preview_edit')
+			const model_preview_edit = this.$t('model_preview_edit')
 			return {
 				html: `<template>
   <div>

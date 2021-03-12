@@ -8,13 +8,13 @@
 	import component from '../src/store/component'
 
 	export default {
-		data() {
+		data () {
 			return {
 				component: component.store
 			}
 		},
 		computed: {
-			html() {
+			html () {
 				const model_preview_submit = this.$t('model_preview_submit')
 				const model_preview_edit = this.$t('model_preview_edit')
 				const model_preview_read = this.$t('model_preview_read')
@@ -81,6 +81,6 @@
   }
 ${lt}/script>`
 			}
-		},
+		}
 	}
 </script>

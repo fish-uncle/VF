@@ -6,12 +6,12 @@
 			code.html {{html}}
 </template>
 <script>
-  export default {
-    data() {
-      const lt = '<'
-      const model_preview_read = this.$t ('model_preview_read')
-      return {
-        html: `<template>
+	export default {
+		data () {
+			const lt = '<'
+			const model_preview_read = this.$t('model_preview_read')
+			return {
+				html: `<template>
   <div>
     <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
     :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
@@ -41,7 +41,7 @@
   }
 ${lt}/script>
 `
-      }
-    }
-  }
+			}
+		}
+	}
 </script>

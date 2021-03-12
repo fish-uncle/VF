@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ViewUI from 'view-design'
+import './VF'
 import './less/reset.less'
 import './less/index.less'
 import 'view-design/dist/styles/iview.css'

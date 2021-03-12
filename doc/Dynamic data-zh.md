@@ -19,7 +19,7 @@ https://cdn.shenzhepei.com/VF/select.json
 ### 第四步
 如果你想要修改你的ajax请求整体返回格式
 
-只需要将你的axios实例，在eslink-vf加载前暴露到window.vf_request下就行了
+只需要将你的axios实例，在vf加载前暴露到window.VF.request下就行了
 ```shell script
 import Vue from 'vue'
 import App from './App'
@@ -27,7 +27,7 @@ import ViewUI from 'view-design'
 import request from './utils/request'
 import {VList} from 'eslink-vf'
 
-window.vf_request = request
+window.VF.request = request
 
 Vue.use(ViewUI)
 Vue.config.productionTip = false

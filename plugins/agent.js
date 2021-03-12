@@ -7,7 +7,7 @@
  *    console.log(data)
  * }
  * this.agent.$on('ak47', a)
- * this.agent.$once({data: 1, type: 'ak47'})
+ * this.agent.$emit({data: 1, type: 'ak47'})
  * this.agent.$off('ak47', a)
  * this.agent.$once({data: 2, type: 'ak47'})
  */
@@ -23,7 +23,7 @@ agent.prototype = {
 	 * @description 添加代理对象
 	 */
 	$on: function (type, handler) {
-		if (typeof this.handlers[type] === "undefined") {
+		if (typeof this.handlers[type] === 'undefined') {
 			this.handlers[type] = []
 		}
 		this.handlers[type].push(handler)
@@ -32,12 +32,12 @@ agent.prototype = {
 	/**
 	 * @description 触发代理
 	 */
-	$once: function (event) {
+	$emit: function (event) {
 		if (!event.target) {
 			event.target = this
 		}
 		if (this.handlers[event.type] instanceof Array) {
-			let handlers = this.handlers[event.type], i, len
+			const handlers = this.handlers[event.type]; let i; let len
 			for (i = 0, len = handlers.length; i < len; i++) {
 				handlers[i](event)
 			}
@@ -49,7 +49,7 @@ agent.prototype = {
 	 */
 	$off: function (type, handler) {
 		if (this.handlers[type] instanceof Array) {
-			let handlers = this.handlers[type], i, len
+			const handlers = this.handlers[type]; let i; let len
 			for (i = 0, len = handlers.length; i < len; i++) {
 				if (handlers[i] === handler) {
 					break

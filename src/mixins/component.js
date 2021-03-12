@@ -22,6 +22,7 @@ export default {
 	},
 	methods: {
 		// 默认更新事件
+		// eslint-disable-next-line no-empty-function
 		update () {
 		},
 		// 防抖

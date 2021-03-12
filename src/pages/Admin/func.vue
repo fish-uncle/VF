@@ -82,7 +82,7 @@
 				dragItem = JSON.parse(JSON.stringify(dragItem))
 				dragItem.labelWidth = this.center.labelWidth
 				dragItem.labelTextAlign = this.center.labelTextAlign
-				this.$agent.$once({ type: 'formDataAdd', dragItem })
+				this.$agent.$emit({ type: 'formDataAdd', dragItem })
 				return dragItem
 			}
 		}

@@ -6,9 +6,9 @@ axios.defaults.baseURL = '/'
 axios.defaults.timeout = 10000
 
 axios.interceptors.request.use(function (config) {
-  return config
+    return config
 }, function (error) {
-  return Promise.reject(error)
+    return Promise.reject(error)
 })
 
 // {
@@ -20,26 +20,29 @@ axios.interceptors.request.use(function (config) {
 const locale = localStorage.getItem('locale')
 let errMessage = '网络异常，请重试'
 if (locale === 'en') {
-  errMessage = 'Network exception, please try again'
+    errMessage = 'Network exception, please try again'
 }
 axios.interceptors.response.use(response => {
-  const { data } = response
-  if (data) {
-    if (data.resultCode === '0000') {
-      return data.data
+    const { data } = response
+    if (data) {
+        if (data.resultCode === '0000') {
+            return data.data
+        } else {
+            Message.error(data.returnMessage || errMessage)
+            // eslint-disable-next-line prefer-promise-reject-errors
+            return Promise.reject(false)
+        }
     } else {
-      Message.error(data.returnMessage || errMessage)
-      return Promise.reject(false)
+        Message.error(errMessage)
+        // eslint-disable-next-line prefer-promise-reject-errors
+        return Promise.reject(false)
     }
-  } else {
-    Message.error(errMessage)
-    return Promise.reject(false)
-  }
 }, function (e) {
-  Message.error(errMessage)
-  return Promise.reject(false)
+    Message.error(errMessage)
+    // eslint-disable-next-line prefer-promise-reject-errors
+    return Promise.reject(false)
 })
 
-const request = window.vf_request ? window.vf_request : axios
+const request = window.VF.request ? window.VF.request : axios
 
 export default request

@@ -65,7 +65,7 @@
 		methods: {
 			handleDelete () {
 				this.$store.commit('center/remove', { index: this.index })
-				this.$agent.$once({ type: 'formDataRemove', key: this.currentVal.key })
+				this.$agent.$emit({ type: 'formDataRemove', key: this.currentVal.key })
 			},
 			choose (index) {
 				if (!this.edit) {

@@ -19,7 +19,7 @@ module.exports = {
 		'sonarjs'
 	],
 	globals: {
-		echarts: true
+		echarts: true,
 	},
 	rules: {
 		'array-bracket-spacing': 2, // 强制数组方括号中使用一致的空格

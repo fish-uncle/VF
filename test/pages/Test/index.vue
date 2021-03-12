@@ -3,7 +3,7 @@
 	</div>
 </template>
 <script>
-	import { obj2Str, str2Obj } from '../../utils'
+	import { obj2Str, str2Obj } from '../../../src/utils'
 	import Schema from 'async-validator'
 
 	const descriptor = {
@@ -25,7 +25,12 @@
 		// validation passed
 	})
 	const test1 = '{"required":false,"test":"function (){}","pattern":"^([a-zA-Z]|[0-9])(\\\\w|\\\\-)+@[a-zA-Z0-9]+\\\\.([a-zA-Z]{2,4})$"}'
-	const test2 = { required: false, test: function () {}, pattern: '^([a-zA-Z]|[0-9])(\\\\w|\\\\-)+@[a-zA-Z0-9]+\\\\.([a-zA-Z]{2,4})$' }
+	const test2 = {
+		required: false,
+		test: function () {
+		},
+		pattern: '^([a-zA-Z]|[0-9])(\\\\w|\\\\-)+@[a-zA-Z0-9]+\\\\.([a-zA-Z]{2,4})$'
+	}
 	console.log(obj2Str(test2))
 	console.log(str2Obj(test1))
 	export default {

@@ -19,7 +19,7 @@ https://cdn.shenzhepei.com/VF/select.json
 ### Step four
 If you want to modify the overall return format of your Ajax request
 
-Just expose your axios instance to the window.vf_request Just ask
+Just expose your axios instance to the window.VF.request Just ask
 
 ```shell script
 import Vue from 'vue'
@@ -28,7 +28,7 @@ import ViewUI from 'view-design'
 import request from './utils/request'
 import {VList} from 'eslink-vf'
 
-window.vf_request = request
+window.VF.request = request
 
 Vue.use(ViewUI)
 Vue.config.productionTip = false
