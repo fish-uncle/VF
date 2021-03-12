@@ -4,6 +4,7 @@ const log = [
 		time: '2021-03-21',
 		content: [
 			'Repair option configuration.',
+			'New tab component f-tab.'
 		]
 	},
 	{
