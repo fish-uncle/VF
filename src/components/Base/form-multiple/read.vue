@@ -1,25 +1,30 @@
 <template>
-	<Checkbox-group class="vf-multiple fn-flex flex-row"
-					v-model="parent.data[currentVal.key]"
-					v-bind="currentVal.props"
-					:class="[currentVal.className,error?'vf-error':'']"
-					:style="{width:`${currentVal.widthRatio}%`}">
-		<Checkbox v-for="item in selectList" :label="item.value"
-				  :disabled="currentVal.disabled"
-				  :key="item.value">
-			<span>{{item.label}}</span>
+	<Checkbox-group
+		class="vf-multiple fn-flex flex-row"
+		v-model="parent.data[currentVal.key]"
+		v-bind="currentVal.props"
+		:class="[currentVal.className,error ? 'vf-error' : '']"
+		:style="{width:`${currentVal.widthRatio}%`}"
+	>
+		<Checkbox
+			v-for="item in selectList"
+			:label="item.value"
+			:disabled="currentVal.disabled"
+			:key="item.value"
+		>
+			<span>{{ item.label }}</span>
 		</Checkbox>
 	</Checkbox-group>
 </template>
 <script>
-	import request from "../../../utils/request";
-	import {findComponentUpward} from "../../../utils";
-	import func from "../../../mixins/component";
+	import request from '../../../utils/request'
+	import { findComponentUpward } from '../../../utils'
+	import func from '../../../mixins/component'
 
 	export default {
 		mixins: [func],
 		computed: {
-			selectList() {
+			selectList () {
 				if (this.currentVal.selectListUrl) {
 					return this.currentVal.ajaxList
 				}
@@ -27,25 +32,25 @@
 			}
 		},
 		watch: {
-			value(val) {
-				this.currentVal = val;
-				this.init();
+			value (val) {
+				this.currentVal = val
+				this.init()
 			}
 		},
-		mounted() {
-			this.init();
+		mounted () {
+			this.init()
 		},
 		methods: {
-			update() {
+			update () {
 				this.init()
 				this.parent.changeData({
 					value: [],
 					key: this.currentVal.key
 				})
 			},
-			init() {
+			init () {
 				if (this.currentVal.selectListUrl) {
-					const data = {...this.parent.data, ...this.currentVal.customAjaxParams};
+					const data = { ...this.parent.data, ...this.currentVal.customAjaxParams }
 					request.post(this.currentVal.selectListUrl, data).then(res => {
 						if (this.edit) {
 							this.$store.commit('center/changeSelectList', {

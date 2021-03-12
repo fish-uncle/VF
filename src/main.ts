@@ -47,6 +47,6 @@ new Vue({
 	store,
 	i18n,
 	render: h => h(App)
-}).$mount("#root")
+}).$mount('#root')
 
 document.getElementById('vf-loading').remove()

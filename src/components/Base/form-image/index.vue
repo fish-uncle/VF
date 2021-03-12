@@ -1,8 +1,10 @@
 <template>
-	<div class="vf-image"
-		 :class="[currentVal.className,currentVal.disabled?'f-image-disabled':'',
-       currentVal.className,error?'vf-error':'']"
-		 :style="{width:`${currentVal.widthRatio}%`}">
+	<div
+		class="vf-image"
+		:class="[currentVal.className,currentVal.disabled ? 'f-image-disabled' : '',
+			currentVal.className,error ? 'vf-error' : '']"
+		:style="{width:`${currentVal.widthRatio}%`}"
+	>
 		<div class="vf-image-upload-list" v-for="item in parent.data[currentVal.key]" :key="item.url">
 			<img :src="item.url"/>
 			<div class="vf-image-upload-list-cover">
@@ -10,20 +12,22 @@
 				<Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
 			</div>
 		</div>
-		<Upload ref="upload"
-				v-bind="currentVal.props"
-				:action="currentVal.action"
-				type="drag"
-				:max-size="currentVal.maxSize"
-				:show-upload-list="false"
-				:format="fileFormat"
-				:accept="currentVal.fileAccept"
-				:multiple="true"
-				:on-success="handleSuccess"
-				:on-format-error="handleFormatError"
-				:on-exceeded-size="handleExceededError"
-				:disabled="currentVal.disabled"
-				style="display: inline-block;width:58px;">
+		<Upload
+			ref="upload"
+			v-bind="currentVal.props"
+			:action="currentVal.action"
+			type="drag"
+			:max-size="currentVal.maxSize"
+			:show-upload-list="false"
+			:format="fileFormat"
+			:accept="currentVal.fileAccept"
+			:multiple="true"
+			:on-success="handleSuccess"
+			:on-format-error="handleFormatError"
+			:on-exceeded-size="handleExceededError"
+			:disabled="currentVal.disabled"
+			style="display: inline-block;width:58px;"
+		>
 			<div style="width: 58px;height:58px;line-height: 58px;">
 				<Icon type="ios-camera" size="20"></Icon>
 			</div>
@@ -38,58 +42,58 @@
 
 	export default {
 		mixins: [func],
-		data() {
+		data () {
 			return {
 				visible: false,
 				uploadList: [],
-				imgUrl: '',
+				imgUrl: ''
 			}
 		},
 		computed: {
-			fileFormat() {
+			fileFormat () {
 				return this.currentVal.fileFormat.split(',')
 			}
 		},
-		mounted() {
-			this.init();
+		mounted () {
+			this.init()
 		},
 		methods: {
-			init() {
+			init () {
 				this.uploadList = this.parent.data[this.currentVal.key]
 			},
-			update() {
+			update () {
 				this.parent.changeData({
 					value: [],
 					key: this.currentVal.key
 				})
 			},
-			handleExceededError() {
+			handleExceededError () {
 				this.$Message.error(`当前文件大小超出${this.currentVal.maxSize}kb`)
 			},
-			handleFormatError() {
+			handleFormatError () {
 				this.$Message.error('当前文件格式不符合要求')
 			},
-			handleRemove(file) {
-				const fileList = this.$refs.upload.fileList;
-				this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+			handleRemove (file) {
+				const fileList = this.$refs.upload.fileList
+				this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
 				const list = fileList.map(item => {
-					return {url: item.url, name: item.name}
-				});
+					return { url: item.url, name: item.name }
+				})
 				this.parent.changeData({
 					value: list,
 					key: this.currentVal.key
 				})
 			},
-			handleView(url) {
-				this.imgUrl = url;
-				this.visible = true;
+			handleView (url) {
+				this.imgUrl = url
+				this.visible = true
 			},
-			handleSuccess(response, file, fileList) {
-				file.url = response.data;
-				file.name = response.data;
-				this.parent.data[this.currentVal.key].push({url: response.data, name: response.data})
+			handleSuccess (response, file, fileList) {
+				file.url = response.data
+				file.name = response.data
+				this.parent.data[this.currentVal.key].push({ url: response.data, name: response.data })
 				if (this.error) {
-					this.parent.errorHide(this.currentVal.id);
+					this.parent.errorHide(this.currentVal.id)
 				}
 				this.eventsOnChange()
 			}

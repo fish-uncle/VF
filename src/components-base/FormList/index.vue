@@ -5,7 +5,7 @@
 	</div>
 </template>
 <script>
-	import {mapState} from 'vuex'
+	import { mapState } from 'vuex'
 	import ModelData from '../ModelData'
 	import formList from '../../mixins/formList'
 
@@ -13,20 +13,20 @@
 		name: 'FormList',
 		mixins: [formList],
 		components: {
-			ModelData,
+			ModelData
 		},
 		computed: {
 			...mapState(['center']),
-			viewScale() {
+			viewScale () {
 				return this.center.viewScale.split(':')
 			}
 		},
-		beforeDestroy() {
+		beforeDestroy () {
 			this.$agent.$off('formDataRemove', this.handleChangeKeyForRemove)
 			this.$agent.$off('formDataAdd', this.handleChangeKeyForDrag)
 			this.$agent.$off('formDataChange', this.handleChangeKeyForChangeList)
 		},
-		mounted() {
+		mounted () {
 			this.$agent.$on('formDataRemove', this.handleChangeKeyForRemove)
 			this.$agent.$on('formDataAdd', this.handleChangeKeyForDrag)
 			this.$agent.$on('formDataChange', this.handleChangeKeyForChangeList)

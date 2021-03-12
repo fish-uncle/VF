@@ -23,7 +23,7 @@ const component = {
     'selectList',
     'selectListUrl',
     'controlOthersUpdate',
-    'controlOthersHide',
+    'controlOthersHide'
   ]
 }
 

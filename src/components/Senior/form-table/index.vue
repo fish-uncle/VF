@@ -1,11 +1,17 @@
 <template>
-	<div class="vf-table"
-		 v-bind="currentVal.props"
-		 :style="{width:`${currentVal.widthRatio}%`}"
-		 :class="[currentVal.className]">
+	<div
+		class="vf-table"
+		v-bind="currentVal.props"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		:class="[currentVal.className]"
+	>
 		<vxe-table :data="data">
-			<vxe-table-column :field="item.key" :title="item.title" :key="item.key"
-							  v-for="item in currentColumns"></vxe-table-column>
+			<vxe-table-column
+				:field="item.key"
+				:title="item.title"
+				:key="item.key"
+				v-for="item in currentColumns"
+			></vxe-table-column>
 		</vxe-table>
 	</div>
 </template>
@@ -15,7 +21,7 @@
 
 	export default {
 		mixins: [func],
-		data() {
+		data () {
 			return {
 				data: [],
 				total: 0,
@@ -23,7 +29,7 @@
 			}
 		},
 		computed: {
-			currentColumns() {
+			currentColumns () {
 				if (this.currentVal.columns) {
 					return this.currentVal.columns
 				} else {
@@ -31,11 +37,11 @@
 				}
 			}
 		},
-		mounted() {
-			this.update();
+		mounted () {
+			this.update()
 		},
 		methods: {
-			update() {
+			update () {
 				if (this.currentVal.tableAjaxUrl) {
 					request.post(this.currentVal.tableAjaxUrl).then(res => {
 						if (res) {
@@ -44,7 +50,7 @@
 						}
 					})
 				}
-			},
+			}
 		}
 	}
 </script>

@@ -1,21 +1,21 @@
 <template>
-  <span class="vf-component-read">{{parent.data[currentVal.key]?'是':'否'}}</span>
+	<span class="vf-component-read">{{ parent.data[currentVal.key] ? '是' : '否' }}</span>
 </template>
 <script>
-  import { findComponentUpward } from '../../../utils'
+	import { findComponentUpward } from '../../../utils'
 
-  export default {
-    data () {
-      return {
-        currentVal: this.value,
-        parent: findComponentUpward (this, 'FormList')
-      }
-    },
-    props: [ 'value' ],
-    watch: {
-      value (val) {
-        this.currentVal = val;
-      }
-    },
-  }
+	export default {
+		data () {
+			return {
+				currentVal: this.value,
+				parent: findComponentUpward(this, 'FormList')
+			}
+		},
+		props: ['value'],
+		watch: {
+			value (val) {
+				this.currentVal = val
+			}
+		}
+	}
 </script>

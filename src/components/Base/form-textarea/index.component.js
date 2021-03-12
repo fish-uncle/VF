@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-list-box-outline',
   placeholder: '',
   changeList: [
-    'placeholder',
+    'placeholder'
   ]
 }
 

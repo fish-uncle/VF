@@ -1,42 +1,44 @@
 <template>
-    <div>
-        <template v-for="child in list">
-            <component :key="child"
-                       :is="currentComponent[child]"
-                       v-if="item.changeList.indexOf(child)!==-1"/>
-        </template>
-    </div>
+	<div>
+		<template v-for="child in list">
+			<component
+				:key="child"
+				:is="currentComponent[child]"
+				v-if="item.changeList.indexOf(child) !== -1"
+			/>
+		</template>
+	</div>
 </template>
 <script>
-    import {mapState} from 'vuex'
-    import {obj2Str} from '../../utils'
+	import { mapState } from 'vuex'
+	import { obj2Str } from '../../utils'
 
-    export default {
-        props: ['list'],
-        data() {
-            return {
-                currentComponent: {},
-            }
-        },
-        computed: {
-            ...mapState(["center"]),
-            item() {
-                if (this.center.list.length > 0) {
-                    return this.center.list[this.center.currentScale][this.center.current] ?
-                        this.center.list[this.center.currentScale][this.center.current] : {changeList: []}
-                } else {
-                    return {changeList: []}
-                }
-            }
-        },
-        mounted() {
-            const components = require.context(`../../components-func`, true, /\.(vue)$/)
-            components.keys().forEach(child => {
-                const name = child.split('/')[1].replace('.vue', '')
-                this.currentComponent[name] = components(child).default
-            })
-        }
-    }
+	export default {
+		props: ['list'],
+		data () {
+			return {
+				currentComponent: {}
+			}
+		},
+		computed: {
+			...mapState(['center']),
+			item () {
+				if (this.center.list.length > 0) {
+					return this.center.list[this.center.currentScale][this.center.current]
+						? this.center.list[this.center.currentScale][this.center.current] : { changeList: [] }
+				} else {
+					return { changeList: [] }
+				}
+			}
+		},
+		mounted () {
+			const components = require.context('../../components-func', true, /\.(vue)$/)
+			components.keys().forEach(child => {
+				const name = child.split('/')[1].replace('.vue', '')
+				this.currentComponent[name] = components(child).default
+			})
+		}
+	}
 </script>
 <style lang="less">
     @import "../../less/conf";

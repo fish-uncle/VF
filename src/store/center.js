@@ -1,7 +1,7 @@
 const store = {
   namespaced: true,
   state: {
-    list: [ [], [] ],
+    list: [[], []],
     labelWidth: 120,
     labelTextAlign: 'right',
     viewScale: '24:0',
@@ -12,7 +12,7 @@ const store = {
       {
         color: 'rgba(255,255,255,0)',
         key: 'test',
-        id: 'group0',
+        id: 'group0'
       }
     ],
     multiForm: [
@@ -35,19 +35,19 @@ const store = {
     // 删除表单
     multiFormChangeDel (state, newState) {
       const multiForm = state.multiForm
-      multiForm.splice (newState.index, 1)
+      multiForm.splice(newState.index, 1)
       state.multiForm = multiForm
     },
     // 删除表单
     groupChangeDel (state, newState) {
       const group = state.group
-      group.splice (newState.index, 1)
+      group.splice(newState.index, 1)
       state.group = group
     },
     // 新增表单
     groupChangeAdd (state, newState) {
       const group = state.group
-      group.push ({
+      group.push({
         id: newState.key,
         key: newState.key,
         color: 'rgba(255,255,255,0)'
@@ -56,7 +56,7 @@ const store = {
     // 新增表单
     multiFormChangeAdd (state, newState) {
       const multiForm = state.multiForm
-      multiForm.push ({
+      multiForm.push({
         key: newState.key,
         name: `未命名表单${newState.key}`
       })
@@ -105,10 +105,10 @@ const store = {
     },
     // 清空组件
     clear (state) {
-      const viewScale = state.viewScale.split (':')
+      const viewScale = state.viewScale.split(':')
       const list = []
-      viewScale.forEach (() => {
-        list.push ([])
+      viewScale.forEach(() => {
+        list.push([])
       })
       state.list = list
       state.current = 0
@@ -116,15 +116,15 @@ const store = {
     // 移除一个组件
     remove (state, newState) {
       const list = state.list[state.currentScale]
-      list.splice (newState.index, 1)
+      list.splice(newState.index, 1)
       state.list[state.currentScale] = list
       state.isChange = true
     },
     // 初始化 列表
     changeSelectList (state, newState) {
       const list = state.list
-      list.forEach (child => {
-        child.forEach (item => {
+      list.forEach(child => {
+        child.forEach(item => {
           if (item.key === newState.key) {
             item.ajaxList = newState.value
           }
@@ -135,8 +135,8 @@ const store = {
     // 修改
     changeKey (state, newState) {
       const list = state.list
-      list.forEach (child => {
-        child.forEach (item => {
+      list.forEach(child => {
+        child.forEach(item => {
           if (item.id === newState.id) {
             item.key = newState.key
           }

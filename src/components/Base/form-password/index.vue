@@ -1,45 +1,52 @@
 <template>
-  <div class="vf-password pos-r" :style="{width:`${currentVal.widthRatio}%`}"
-       :class="[currentVal.className,error?'vf-error':'']">
-    <i-input
-      v-model="parent.data[currentVal.key]"
-      v-bind="currentVal.props"
-      :disabled="currentVal.disabled"
-      :placeholder="currentVal.placeholder"
-      :style="{width:`100%`}"
-      @on-change="inputChange"
-      :type="see?'password':'text'"
-    />
-    <Icon :type="see?'ios-eye-outline':'ios-eye-off-outline'" size="20" class="pos-a vf-password-see pointer"
-          @click="see=!see"/>
-  </div>
+	<div
+		class="vf-password pos-r"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		:class="[currentVal.className,error ? 'vf-error' : '']"
+	>
+		<i-input
+			v-model="parent.data[currentVal.key]"
+			v-bind="currentVal.props"
+			:disabled="currentVal.disabled"
+			:placeholder="currentVal.placeholder"
+			:style="{width:`100%`}"
+			@on-change="inputChange"
+			:type="see ? 'password' : 'text'"
+		/>
+		<Icon
+			:type="see ? 'ios-eye-outline' : 'ios-eye-off-outline'"
+			size="20"
+			class="pos-a vf-password-see pointer"
+			@click="see = !see"
+		/>
+	</div>
 </template>
 <script>
-  import func from '../../../mixins/component'
+	import func from '../../../mixins/component'
 
-  export default {
-    mixins: [func],
-    data() {
-      return {
-        see: true,
-      }
-    },
-    methods: {
-      update() {
-        this.parent.changeData({
-          value: '',
-          key: this.currentVal.key
-        })
-      },
-      inputChange(e) {
-        if (this.timeout !== null) clearTimeout(this.timeout)
-        if (this.error) {
-          this.parent.errorHide(this.currentVal.id);
-        }
-        this.eventsOnChange(e)
-      }
-    }
-  }
+	export default {
+		mixins: [func],
+		data () {
+			return {
+				see: true
+			}
+		},
+		methods: {
+			update () {
+				this.parent.changeData({
+					value: '',
+					key: this.currentVal.key
+				})
+			},
+			inputChange (e) {
+				if (this.timeout !== null) clearTimeout(this.timeout)
+				if (this.error) {
+					this.parent.errorHide(this.currentVal.id)
+				}
+				this.eventsOnChange(e)
+			}
+		}
+	}
 </script>
 <style lang="less">
   @import "../../../less/conf";

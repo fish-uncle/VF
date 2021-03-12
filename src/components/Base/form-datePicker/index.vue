@@ -1,15 +1,17 @@
 <template>
-	<Date-picker class="vf-date-picker"
-				 :type="currentVal.datetime?'datetime':'date'"
-				 v-bind="currentVal.props"
-				 :class="[currentVal.className,error?'vf-error':'']"
-				 :style="{width:`${currentVal.widthRatio}%`}"
-				 v-model="parent.data[currentVal.key]"
-				 :clearable="currentVal.clearable"
-				 :placeholder="currentVal.placeholder"
-				 :format="currentVal.timeFormat"
-				 @on-change="dateChange"
-				 :disabled="currentVal.disabled"/>
+	<Date-picker
+		class="vf-date-picker"
+		:type="currentVal.datetime ? 'datetime' : 'date'"
+		v-bind="currentVal.props"
+		:class="[currentVal.className,error ? 'vf-error' : '']"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		v-model="parent.data[currentVal.key]"
+		:clearable="currentVal.clearable"
+		:placeholder="currentVal.placeholder"
+		:format="currentVal.timeFormat"
+		@on-change="dateChange"
+		:disabled="currentVal.disabled"
+	/>
 </template>
 <script>
 	import func from '../../../mixins/component'
@@ -17,15 +19,15 @@
 	export default {
 		mixins: [func],
 		methods: {
-			update() {
+			update () {
 				this.parent.changeData({
 					value: '',
 					key: this.currentVal.key
 				})
 			},
-			dateChange(value) {
+			dateChange (value) {
 				if (this.error) {
-					this.parent.errorHide(this.currentVal.id);
+					this.parent.errorHide(this.currentVal.id)
 				}
 				this.parent.changeData({
 					value,

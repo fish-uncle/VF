@@ -1,8 +1,8 @@
-import {findComponentUpward} from '../utils'
+import { findComponentUpward } from '../utils'
 import chalk from 'chalk'
 
 export default {
-	data() {
+	data () {
 		return {
 			parent: findComponentUpward(this, 'FormList'),
 			currentVal: this.value,
@@ -36,7 +36,7 @@ export default {
 			default: 'zh'
 		}
 	},
-	mounted() {
+	mounted () {
 		this.id = this.currentVal.id
 		const type = this.currentVal.type
 		const componentType = this.currentVal.componentType
@@ -57,7 +57,7 @@ export default {
 		}
 	},
 	computed: {
-		currentWidth() {
+		currentWidth () {
 			if (typeof this.currentVal.labelWidth === 'number') {
 				return this.currentVal.width
 			} else {
@@ -68,17 +68,17 @@ export default {
 				}
 			}
 		},
-		currentRequired() {
+		currentRequired () {
 			return this.currentVal.required
 		},
-		currentLabelTextAlign() {
+		currentLabelTextAlign () {
 			if (this.currentVal.labelTextAlign) {
 				return this.currentVal.labelTextAlign
 			} else {
 				return this.labelTextAlign
 			}
 		},
-		currentLabelWidth() {
+		currentLabelWidth () {
 			if (this.currentVal.labelWidth) {
 				return `${this.currentVal.labelWidth}px`
 			} else {
@@ -89,7 +89,7 @@ export default {
 				}
 			}
 		},
-		currentTitle() {
+		currentTitle () {
 			if (this.currentVal.title) {
 				return this.currentVal.title
 			}
@@ -99,20 +99,20 @@ export default {
 		}
 	},
 	methods: {
-		warn(msg) {
+		warn (msg) {
 			console.log(chalk.bgYellow(msg))
 		},
-		visibleStatus() {
+		visibleStatus () {
 			return this.visible
 		},
-		errorShow(msg) {
+		errorShow (msg) {
 			this.error = true
 			this.errorMsg = msg
 		},
-		errorHide() {
+		errorHide () {
 			this.error = false
 		},
-		show() {
+		show () {
 			this.visible = true
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onChange) {
@@ -121,7 +121,7 @@ export default {
 				}
 			}
 		},
-		hide() {
+		hide () {
 			this.visible = false
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onChange) {
@@ -130,9 +130,10 @@ export default {
 				}
 			}
 		},
-		update() {
-			if (this.$children[0])
-				this.$children[0].update()
+		update () {
+			if (this.$children[0]) {
+this.$children[0].update()
+}
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onUpdate) {
 					const fun = new Function(this.currentVal.events.onUpdate)

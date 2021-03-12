@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-create-outline',
   placeholder: '',
   changeList: [
-    'placeholder',
+    'placeholder'
   ]
 }
 

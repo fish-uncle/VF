@@ -4,7 +4,7 @@ const component = {
   icon: 'logo-javascript',
   code: 'console.log("javascript start!")',
   changeList: [
-    'javascript',
+    'javascript'
   ]
 }
 

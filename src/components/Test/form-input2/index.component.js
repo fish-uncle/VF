@@ -5,7 +5,7 @@ const component = {
   dataType: 'MultiData',
   placeholder: '',
   changeList: [
-    'placeholder',
+    'placeholder'
   ]
 }
 

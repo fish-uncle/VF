@@ -9,37 +9,37 @@
 <script>
 	import Left from './left'
 	import 'markdown-it-vue/dist/markdown-it-vue.css'
-	import {mapState} from 'vuex'
+	import { mapState } from 'vuex'
 	import language from '../../store/language'
 	export default {
-		data() {
+		data () {
 			return {
 				currentComponent: null,
-				language:language.store
+				language: language.store
 			}
 		},
-		components: {Left},
+		components: { Left },
 		computed: mapState(['top', 'help']),
 		watch: {
-			'$route': function () {
+			$route: function () {
 				this.init()
 			},
-			'language':{
-				deep:true,
-				immediate:true,
-				handler:function(){
+			language: {
+				deep: true,
+				immediate: true,
+				handler: function () {
 					this.init()
 				}
 			}
 		},
 		methods: {
-			async init() {
-				let {name} = this.$route.params;
-				name = name.replace(/%20/g, '');
-				if (name === 'Feedback' || name === 'Friendship sponsorship' || name === 'First example'
-					|| name === 'statusEdit' || name === 'statusRead' || name === 'validate' || name === 'getData'
-					|| name === 'getDataByGroup' || name === 'reset' || name === 'changeSelectList' || name === 'changeData'
-					|| name === 'onChange' || name === 'onHide' || name === 'onShow' || name === 'onUpdate') {
+			async init () {
+				let { name } = this.$route.params
+				name = name.replace(/%20/g, '')
+				if (name === 'Feedback' || name === 'Friendship sponsorship' || name === 'First example' ||
+					name === 'statusEdit' || name === 'statusRead' || name === 'validate' || name === 'getData' ||
+					name === 'getDataByGroup' || name === 'reset' || name === 'changeSelectList' || name === 'changeData' ||
+					name === 'onChange' || name === 'onHide' || name === 'onShow' || name === 'onUpdate') {
 					this.currentComponent = () => import(`../../../doc/${this.help.helpName}`)
 					this.$store.commit('help/changeHelp', {
 						helpName: name,
@@ -56,12 +56,13 @@
 				}
 			}
 		},
-		mounted() {
-			if (this.top.topIndex !== 3)
-				this.$store.commit('top/changeTop', {topIndex: 3})
+		mounted () {
+			if (this.top.topIndex !== 3) {
+				this.$store.commit('top/changeTop', { topIndex: 3 })
+			}
 			window.please = function () {
 				this.$store.commit('model/pleaseShow')
-			}.bind(this);
+			}.bind(this)
 		}
 	}
 </script>

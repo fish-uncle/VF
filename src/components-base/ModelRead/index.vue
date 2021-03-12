@@ -1,19 +1,29 @@
 <template>
-	<Modal v-model="model.readVisible" :closable="false" :footer-hide="true" :scrollable="true">
-		<editor v-model="config" @init="editorInit" lang="jsoniq"
-				theme="chrome" height="400"></editor>
+	<Modal
+		v-model="model.readVisible"
+		:closable="false"
+		:footer-hide="true"
+		:scrollable="true"
+	>
+		<editor
+			v-model="config"
+			@init="editorInit"
+			lang="jsoniq"
+			theme="chrome"
+			height="400"
+		></editor>
 		<div class="text-center">
-			<Button type="primary" @click="handleRead">{{$t('model_read')}}</Button>
+			<Button type="primary" @click="handleRead">{{ $t('model_read') }}</Button>
 		</div>
 	</Modal>
 </template>
 <script>
-	import {mapState} from 'vuex'
-	import {str2Obj} from '../../utils'
+	import { mapState } from 'vuex'
+	import { str2Obj } from '../../utils'
 	import component from '../../store/component'
 
 	export default {
-		data() {
+		data () {
 			return {
 				config: '',
 				component: component.store
@@ -21,7 +31,7 @@
 		},
 		computed: mapState(['model']),
 		methods: {
-			handleRead() {
+			handleRead () {
 				const config = str2Obj(this.config)
 				config.list.forEach(child => {
 					child.forEach(item => {

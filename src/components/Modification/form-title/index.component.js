@@ -9,7 +9,7 @@ const component = {
   changeList: [
     'widthRatio',
     'fontSize',
-    'content',
+    'content'
   ]
 }
 

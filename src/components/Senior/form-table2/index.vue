@@ -1,16 +1,24 @@
 <template>
-	<div class="vf-table"
-		 v-bind="currentVal.props"
-		 :style="{width:`${currentVal.widthRatio}%`}"
-		 :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
+	<div
+		class="vf-table"
+		v-bind="currentVal.props"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		:class="[currentVal.className,status === 'edit' ? 'vf-table-edit' : '']"
+	>
 		<Button @click="tableCreate">添加</Button>
 		<v-form ref="form">
 			<vxe-table :data.sync="parent.tableData[currentVal.key]">
-				<vxe-table-column :field="item.key" :title="item.title" v-for="(item) in currentVal.columns"
-								  :key="item.key">
+				<vxe-table-column
+					:field="item.key"
+					:title="item.title"
+					v-for="(item) in currentVal.columns"
+					:key="item.key"
+				>
 					<template slot-scope="{ row,rowIndex }">
-						<v-component :type="item.type" :status="status"
-									 :value="rowValue(item,row,rowIndex)"
+						<v-component
+							:type="item.type"
+							:status="status"
+							:value="rowValue(item,row,rowIndex)"
 						></v-component>
 					</template>
 				</vxe-table-column>
@@ -25,18 +33,18 @@
 
 	export default {
 		mixins: [func],
-		components: {VForm},
-		data() {
+		components: { VForm },
+		data () {
 			return {
 				total: 0,
-				page: 1,
+				page: 1
 			}
 		},
-		mounted() {
+		mounted () {
 			const form = this.$refs.form
 			this.update()
 			this.parent.tableData[this.currentVal.key].forEach((item, index) => {
-				for (let key in item) {
+				for (const key in item) {
 					if (key !== '_XID') {
 						form.changeData({
 							key: `${key}${index}`,
@@ -47,12 +55,13 @@
 			})
 		},
 		methods: {
-			rowValue(item, row, index) {
+			rowValue (item, row, index) {
 				const form = this.$refs.form
 				const parent = this.parent
 				const key = this.currentVal.key
 				return {
-					id: `${item.key}${index}`, key: `${item.key}${index}`,
+					id: `${item.key}${index}`,
+					key: `${item.key}${index}`,
 					labelWidth: 0,
 					type: item.type,
 					required: false,
@@ -66,7 +75,7 @@
 								key: `${item.key}${index}`,
 								value: value
 							})
-							let val = JSON.parse(JSON.stringify(parent.tableData))
+							const val = JSON.parse(JSON.stringify(parent.tableData))
 							val[key][index][item.key] = value
 							parent.changeTableData({
 								key,
@@ -76,7 +85,7 @@
 					}
 				}
 			},
-			tableCreate() {
+			tableCreate () {
 				const value = {}
 				this.currentVal.columns.forEach(item => {
 					value[item.key] = ''
@@ -88,7 +97,7 @@
 					key: this.currentVal.key
 				})
 			},
-			update() {
+			update () {
 				if (this.currentVal.tableAjaxUrl) {
 					request.post(this.currentVal.tableAjaxUrl).then(res => {
 						if (res) {
@@ -101,7 +110,7 @@
 						}
 					})
 				}
-			},
+			}
 		}
 	}
 </script>

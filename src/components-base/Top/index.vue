@@ -16,52 +16,56 @@
 			i-option(v-for="lang in langs" :key="lang.value" :value="lang.value") {{lang.title}}
 </template>
 <script>
-	import {mapState} from "vuex";
-	import language from "../../store/language";
+	import { mapState } from 'vuex'
+	import language from '../../store/language'
 	export default {
-		computed: mapState(["top"]),
-		data() {
+		computed: mapState(['top']),
+		data () {
 			return {
 				langs: [
 					{
 						title: '简体中文',
-						value: 'zh',
+						value: 'zh'
 					},
 					{
 						title: 'English',
-						value: 'en',
+						value: 'en'
 					}
 				],
 				version: process.env.VUE_APP_VERSION
 			}
 		},
 		methods: {
-			handleExample(){
-				if (this.$route.name !== 'PreviewAll')
+			handleExample () {
+				if (this.$route.name !== 'PreviewAll') {
 					this.$router.push('/previewAll')
+				}
 			},
-			handleGithub() {
+			handleGithub () {
 				window.open('https://github.com/fish-uncle/VF')
 			},
-			handleLanguageChange(data) {
+			handleLanguageChange (data) {
 				document.title = this.$t('top_description')
-				localStorage.setItem("locale", data)
-				language.mutations.change({lang: data})
+				localStorage.setItem('locale', data)
+				language.mutations.change({ lang: data })
 			},
-			handleIndex() {
-				if (this.$route.name !== 'Admin')
+			handleIndex () {
+				if (this.$route.name !== 'Admin') {
 					this.$router.push('/')
+				}
 			},
-			handleBuyShow() {
+			handleBuyShow () {
 				this.$store.commit('model/buyShow')
 			},
-			handleUpdateLog() {
-				if (this.$route.name !== 'UpdateLog')
+			handleUpdateLog () {
+				if (this.$route.name !== 'UpdateLog') {
 					this.$router.push('/updateLog')
+				}
 			},
-			handleHelp() {
-				if (this.$route.name !== 'Help')
+			handleHelp () {
+				if (this.$route.name !== 'Help') {
 					this.$router.push('/help/Introduce')
+				}
 			}
 		}
 	}

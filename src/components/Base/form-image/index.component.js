@@ -11,7 +11,7 @@ const component = {
     'maxSize',
     'action',
     'fileFormat',
-    'fileAccept',
+    'fileAccept'
   ]
 }
 

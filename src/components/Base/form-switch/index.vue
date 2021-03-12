@@ -1,28 +1,31 @@
 <template>
-  <i-switch v-model="parent.data[currentVal.key]"
-            v-bind="currentVal.props"
-            class="vf-switch"
-            :class="[currentVal.className]"
-            :disabled="currentVal.disabled" @on-change="clickChange">
-  </i-switch>
+	<i-switch
+		v-model="parent.data[currentVal.key]"
+		v-bind="currentVal.props"
+		class="vf-switch"
+		:class="[currentVal.className]"
+		:disabled="currentVal.disabled"
+		@on-change="clickChange"
+	>
+	</i-switch>
 </template>
 <script>
-  import func from '../../../mixins/component'
+	import func from '../../../mixins/component'
 
-  export default {
-    mixins: [func],
-    methods: {
-      update() {
-        this.parent.changeData({
-          value: false,
-          key: this.currentVal.key
-        })
-      },
-      clickChange() {
-        this.eventsOnChange()
-      }
-    }
-  }
+	export default {
+		mixins: [func],
+		methods: {
+			update () {
+				this.parent.changeData({
+					value: false,
+					key: this.currentVal.key
+				})
+			},
+			clickChange () {
+				this.eventsOnChange()
+			}
+		}
+	}
 </script>
 <style lang="less">
   .vf-switch {

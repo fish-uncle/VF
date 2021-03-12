@@ -5,7 +5,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const needReport = false
 
 module.exports = {
-	publicPath: isProduction ? `https://cdn.shenzhepei.com/VF/prod/${pkg.version}/` : `/`,
+	publicPath: isProduction ? `https://cdn.shenzhepei.com/VF/prod/${pkg.version}/` : '/',
 	productionSourceMap: false,
 	lintOnSave: false,
 	devServer: {
@@ -32,7 +32,7 @@ module.exports = {
 					cacheGroups: {
 						vendor: {
 							test: /[\\/]node_modules[\\/]/,
-							name(module) {
+							name (module) {
 								// get the name. E.g. node_modules/packageName/not/this/part.js
 								// or node_modules/packageName
 								const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
@@ -44,7 +44,7 @@ module.exports = {
 				}
 			}
 		}
-		config.resolve.extensions = [".js", ".vue", ".json", ".ts", ".tsx"]
+		config.resolve.extensions = ['.js', '.vue', '.json', '.ts', '.tsx']
 		config.plugins.push(new webpack.DefinePlugin({
 			'process.env.VUE_APP_VERSION': JSON.stringify(pkg.version)
 		}))
@@ -68,5 +68,5 @@ module.exports = {
 			}
 			config.plugins.delete('prefetch')
 		}
-	},
+	}
 }

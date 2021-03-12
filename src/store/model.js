@@ -7,51 +7,51 @@ const store = {
     buyVisible: false,
     pleaseVisible: false,
     codeVisible: false,
-    loading: false,
+    loading: false
   },
   mutations: {
     readShow (state) {
-      state.readVisible = true;
+      state.readVisible = true
     },
     readHide (state) {
-      state.readVisible = false;
+      state.readVisible = false
     },
     codeShow (state) {
-      state.codeVisible = true;
+      state.codeVisible = true
     },
     codeHide (state) {
-      state.codeVisible = false;
+      state.codeVisible = false
     },
     pleaseShow (state) {
-      state.pleaseVisible = true;
+      state.pleaseVisible = true
     },
     pleaseHide (state) {
-      state.pleaseVisible = false;
+      state.pleaseVisible = false
     },
     buyShow (state) {
-      state.buyVisible = true;
+      state.buyVisible = true
     },
     buyHide (state) {
-      state.buyVisible = false;
+      state.buyVisible = false
     },
     previewShow (state) {
-      state.previewVisible = true;
+      state.previewVisible = true
     },
     previewHide (state) {
-      state.previewVisible = false;
+      state.previewVisible = false
     },
     dataShow (state) {
-      state.dataVisible = true;
+      state.dataVisible = true
     },
     dataHide (state) {
-      state.dataVisible = false;
+      state.dataVisible = false
     },
     loadingHide (state) {
       state.loading = false
     },
     loadingShow (state) {
       state.loading = true
-    },
+    }
   }
-};
+}
 export default store

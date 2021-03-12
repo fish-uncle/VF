@@ -1,15 +1,18 @@
 <template>
-  <Divider class="vf-divider"
-           v-bind="currentVal.props"
-           :style="{width:`${currentVal.widthRatio}%`}"
-           :class="[currentVal.className]" :dashed="currentVal.dashed"/>
+	<Divider
+		class="vf-divider"
+		v-bind="currentVal.props"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		:class="[currentVal.className]"
+		:dashed="currentVal.dashed"
+	/>
 </template>
 <script>
-  import func from '../../../mixins/component'
+	import func from '../../../mixins/component'
 
-  export default {
-    mixins: [func],
-  }
+	export default {
+		mixins: [func]
+	}
 </script>
 <style lang="less">
   .vf-divider {

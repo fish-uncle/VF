@@ -1,4 +1,4 @@
-import {findComponentUpward} from '../../utils'
+import { findComponentUpward } from '../../utils'
 
 export default {
   name: 'slot-render',
@@ -16,6 +16,6 @@ export default {
   },
   render: (h, ctx) => {
     const parent = findComponentUpward(ctx.parent, 'FormList')
-    return h('div', {}, parent.$scopedSlots[ctx.props.slotName]({...ctx.props}))
+    return h('div', {}, parent.$scopedSlots[ctx.props.slotName]({ ...ctx.props }))
   }
 }

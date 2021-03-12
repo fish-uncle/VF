@@ -1,28 +1,40 @@
 <template>
-	<div class="fn-clear vf-component pos-r"
-		 v-show="visible"
-		 :style="{width:`${currentWidth/24*100}%`,background:currentGroupColor}"
-		 :class="[index===center.current&&edit?'active':'',
-       edit?'vf-component-edit':'',
-       `vf-${type}-box`]"
-		 @click="choose(index)">
+	<div
+		class="fn-clear vf-component pos-r"
+		v-show="visible"
+		:style="{width:`${currentWidth / 24 * 100}%`,background:currentGroupColor}"
+		:class="[index === center.current && edit ? 'active' : '',
+			edit ? 'vf-component-edit' : '',
+			`vf-${type}-box`]"
+		@click="choose(index)"
+	>
 		<div class="vf-component-model pos-a z-index-9"/>
-		<label class="fn-fl vf-component-label"
-			   :class="[currentRequired?'has-required':'',currentLabelWidth==='0px'?'fn-hide':'']"
-			   :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
-			{{currentTitle}}:
+		<label
+			class="fn-fl vf-component-label"
+			:class="[currentRequired ? 'has-required' : '',currentLabelWidth === '0px' ? 'fn-hide' : '']"
+			:style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}"
+		>
+			{{ currentTitle }}:
 		</label>
 		<div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
-			<component :is="currentComponent" :value="currentVal" :edit="edit" :language="language"></component>
+			<component
+				:is="currentComponent"
+				:value="currentVal"
+				:edit="edit"
+				:language="language"
+			></component>
 		</div>
-		<div v-if="index===center.current&&edit" class="z-index-9 pos-a vf-component-del pointer text-center"
-			 @click="handleDelete">
+		<div
+			v-if="index === center.current && edit"
+			class="z-index-9 pos-a vf-component-del pointer text-center"
+			@click="handleDelete"
+		>
 			<Icon type="md-trash"/>
 		</div>
 	</div>
 </template>
 <script>
-	import {mapState} from 'vuex'
+	import { mapState } from 'vuex'
 	import formComponent from '../../mixins/formComponent'
 
 	export default {
@@ -30,7 +42,7 @@
 		mixins: [formComponent],
 		computed: {
 			...mapState(['center']),
-			currentGroupColor() {
+			currentGroupColor () {
 				if (this.currentVal.group) {
 					let color = ''
 					this.center.group.forEach(item => {
@@ -42,23 +54,24 @@
 				} else {
 					return 'rgba(255,255,255,0)'
 				}
-			},
+			}
 		},
 		props: ['value', 'index', 'edit', 'language', 'labelTextAlign', 'labelWidth'],
 		watch: {
-			value(val) {
+			value (val) {
 				this.currentVal = val
 			}
 		},
 		methods: {
-			handleDelete() {
-				this.$store.commit('center/remove', {index: this.index});
-				this.$agent.$once({type: 'formDataRemove', key: this.currentVal.key});
+			handleDelete () {
+				this.$store.commit('center/remove', { index: this.index })
+				this.$agent.$once({ type: 'formDataRemove', key: this.currentVal.key })
 			},
-			choose(index) {
-				if (!this.edit)
+			choose (index) {
+				if (!this.edit) {
 					return
-				this.$store.commit('center/choose', {index});
+				}
+				this.$store.commit('center/choose', { index })
 			}
 		}
 	}

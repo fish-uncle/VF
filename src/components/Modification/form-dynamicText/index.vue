@@ -1,5 +1,5 @@
 <template>
-	<div class="vf-text">{{text}}</div>
+	<div class="vf-text">{{ text }}</div>
 </template>
 <script>
 	import func from '../../../mixins/component'
@@ -7,12 +7,12 @@
 	export default {
 		mixins: [func],
 		computed: {
-			text() {
+			text () {
 				const arr = this.currentVal.code.match(/(\$\{[0-9a-zA-Z_]*})/g)
 				const split = this.currentVal.code.split(/(\$\{[0-9a-zA-Z_]*})/g)
 				if (arr) {
 					const data = this.parent.data
-					let result_s = '', result_n = 0
+					let result_s = ''; let result_n = 0
 					if (this.currentVal.showStyle === 'count') {
 						arr.forEach(item => {
 							const i = item.replace(/[${}]/g, '')
@@ -48,7 +48,7 @@
 				}
 				return '无'
 			}
-		},
+		}
 	}
 </script>
 <style lang="less">

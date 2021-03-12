@@ -1,17 +1,29 @@
 <template>
-	<div class="vf-table"
-		 v-bind="currentVal.props"
-		 :style="{width:`${currentVal.widthRatio}%`}"
-		 :class="[currentVal.className,status==='edit'?'vf-table-edit':'']">
+	<div
+		class="vf-table"
+		v-bind="currentVal.props"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		:class="[currentVal.className,status === 'edit' ? 'vf-table-edit' : '']"
+	>
 		<v-form ref="form">
-			<vxe-table :data.sync="parent.tableData[currentVal.key]" @cell-mouseenter="handleMouseenter"
-					   @cell-mouseleave="handleMouseleave">
-				<vxe-table-column :field="item.key" :title="item.title" v-for="(item) in currentVal.columns"
-								  :key="item.key">
+			<vxe-table
+				:data.sync="parent.tableData[currentVal.key]"
+				@cell-mouseenter="handleMouseenter"
+				@cell-mouseleave="handleMouseleave"
+			>
+				<vxe-table-column
+					:field="item.key"
+					:title="item.title"
+					v-for="(item) in currentVal.columns"
+					:key="item.key"
+				>
 					<template slot-scope="{ row,rowIndex }">
-						<div class="vxe-cell--label pos-r">{{row[item.key]}}
-							<div class="pos-a vf-table-hover-row"
-								 v-if="hover&&hoverIndex===rowIndex && currentVal.tableHover">
+						<div class="vxe-cell--label pos-r">
+							{{ row[item.key] }}
+							<div
+								class="pos-a vf-table-hover-row"
+								v-if="hover && hoverIndex === rowIndex && currentVal.tableHover"
+							>
 								<slot-render slotName="table2_hover" :row="row" :rowIndex="rowIndex"/>
 							</div>
 						</div>
@@ -31,7 +43,7 @@
 		components: {
 			SlotRender
 		},
-		data() {
+		data () {
 			return {
 				total: 0,
 				page: 1,
@@ -39,11 +51,11 @@
 				hoverIndex: 0
 			}
 		},
-		mounted() {
+		mounted () {
 			const form = this.$refs.form
 			this.update()
 			this.parent.tableData[this.currentVal.key].forEach((item, index) => {
-				for (let key in item) {
+				for (const key in item) {
 					if (key !== '_XID') {
 						form.changeData({
 							key: `${key}${index}`,
@@ -54,14 +66,14 @@
 			})
 		},
 		methods: {
-			handleMouseleave() {
+			handleMouseleave () {
 				this.hover = false
 			},
-			handleMouseenter({row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, $event}) {
+			handleMouseenter ({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, $event }) {
 				this.hover = true
 				this.hoverIndex = rowIndex
 			},
-			update() {
+			update () {
 				if (this.currentVal.tableAjaxUrl) {
 					request.post(this.currentVal.tableAjaxUrl).then(res => {
 						if (res) {
@@ -74,7 +86,7 @@
 						}
 					})
 				}
-			},
+			}
 		}
 	}
 </script>

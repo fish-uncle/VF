@@ -7,7 +7,7 @@ const component = {
   changeList: [
     'dashed',
     'widthRatio',
-    'props',
+    'props'
   ]
 }
 

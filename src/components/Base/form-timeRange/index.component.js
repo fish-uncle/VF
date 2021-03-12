@@ -4,12 +4,12 @@ const component = {
 	icon: 'ios-time-outline',
 	dataType: 'MultiData',
 	placeholder: '',
-	timeFormat: "HH’mm’ss",
+	timeFormat: 'HH’mm’ss',
 	clearable: true,
 	changeList: [
 		'timeFormat',
 		'placeholder',
-		'clearable',
+		'clearable'
 	]
 }
 

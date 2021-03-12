@@ -5,7 +5,7 @@ module.exports = {
 			headerCorrespondence: [
 				'type',
 				'scope',
-				'subject',
+				'subject'
 			],
 			referenceActions: [
 				'close',
@@ -16,18 +16,18 @@ module.exports = {
 				'fixed',
 				'resolve',
 				'resolves',
-				'resolved',
+				'resolved'
 			],
 			issuePrefixes: ['#'],
 			noteKeywords: ['BREAKING CHANGE', '不兼容变更'],
 			fieldPattern: /^-(.*?)-$/,
 			revertPattern: /^Revert\s"([\s\S]*)"\s*This reverts commit (\w*)\./,
 			revertCorrespondence: ['header', 'hash'],
-			warn() {
+			warn () {
 			},
 			mergePattern: null,
-			mergeCorrespondence: null,
-		},
+			mergeCorrespondence: null
+		}
 	},
 	rules: {
 		'body-leading-blank': [2, 'always'],
@@ -48,9 +48,9 @@ module.exports = {
 				'refactor', // 重构（即不是新增功能，也不是修改bug的代码变动）
 				'build',
 				'ci',
-				'chore',  // 构建过程或辅助工具的变动
-				'revert', // feat(pencil): add ‘graphiteWidth’ option (撤销之前的commit)
-			],
-		],
-	},
-};
+				'chore', // 构建过程或辅助工具的变动
+				'revert' // feat(pencil): add ‘graphiteWidth’ option (撤销之前的commit)
+			]
+		]
+	}
+}

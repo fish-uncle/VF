@@ -4,14 +4,14 @@ const component = {
 	icon: 'ios-calendar-outline',
 	dataType: 'MultiData',
 	placeholder: '',
-	timeFormat: "yyyy-MM-dd",
+	timeFormat: 'yyyy-MM-dd',
 	clearable: true,
 	datetime: false,
 	changeList: [
 		'timeFormat',
 		'placeholder',
 		'clearable',
-		'datetime',
+		'datetime'
 	]
 }
 

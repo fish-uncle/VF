@@ -1,27 +1,44 @@
 <template>
-	<div class="fn-clear vf-component pos-r"
-		 v-if="visible"
-		 :class="[`vf-${type}-box`]"
-		 :style="{width:`${currentWidth/24*100}%`}">
-		<label class="fn-fl vf-component-label"
-			   :class="[currentRequired?'has-required':'',currentLabelWidth==='0px'?'fn-hide':'']"
-			   :style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}">
-			{{currentTitle}}:
+	<div
+		class="fn-clear vf-component pos-r"
+		v-if="visible"
+		:class="[`vf-${type}-box`]"
+		:style="{width:`${currentWidth / 24 * 100}%`}"
+	>
+		<label
+			class="fn-fl vf-component-label"
+			:class="[currentRequired ? 'has-required' : '',currentLabelWidth === '0px' ? 'fn-hide' : '']"
+			:style="{width:`${currentLabelWidth}`,textAlign:currentLabelTextAlign}"
+		>
+			{{ currentTitle }}:
 		</label>
 		<div class="vf-component-content" :style="{marginLeft:`${currentLabelWidth}`}">
-			<component v-if="status==='edit'" :is="currentComponent" :value="currentVal" :language="language"
-					   :status="status"
-					   :error="error">
+			<component
+				v-if="status === 'edit'"
+				:is="currentComponent"
+				:value="currentVal"
+				:language="language"
+				:status="status"
+				:error="error"
+			>
 				<slot name="table_hover"/>
 			</component>
-			<component v-if="status==='read'" :is="readComponent" :value="currentVal" :language="language"
-					   :status="status">
+			<component
+				v-if="status === 'read'"
+				:is="readComponent"
+				:value="currentVal"
+				:language="language"
+				:status="status"
+			>
 				<slot name="table_hover"/>
 			</component>
 		</div>
-		<div v-if="error && status==='edit' " class="pos-a vf-component-error-msg"
-			 :style="{left:`${currentVal.labelWidth+10}px`}">
-			{{errorMsg}}
+		<div
+			v-if="error && status === 'edit' "
+			class="pos-a vf-component-error-msg"
+			:style="{left:`${currentVal.labelWidth + 10}px`}"
+		>
+			{{ errorMsg }}
 		</div>
 	</div>
 </template>
@@ -32,7 +49,7 @@
 		name: 'FormComponents',
 		mixins: [formComponent],
 		watch: {
-			value(val) {
+			value (val) {
 				this.currentVal = val
 				this.id = this.currentVal.id
 				const type = this.currentVal.type
@@ -46,11 +63,14 @@
 						errorHide: this.errorHide,
 						errorShow: this.errorShow,
 						visibleStatus: this.visibleStatus,
-						show: this.show, hide: this.hide, update: this.update, id: this.id
+						show: this.show,
+						hide: this.hide,
+						update: this.update,
+						id: this.id
 					})
 				}
 			}
-		},
+		}
 	}
 </script>
 <style lang="less">

@@ -11,7 +11,7 @@ const component = {
     'showInput',
     'step',
     'max',
-    'min',
+    'min'
   ]
 }
 

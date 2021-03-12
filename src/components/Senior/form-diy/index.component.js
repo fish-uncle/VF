@@ -10,7 +10,7 @@ const component = {
     'labelWidth',
 
     'widthRatio',
-    'rules',
+    'rules'
   ]
 }
 

@@ -1,19 +1,29 @@
 <template>
 	<Tabs
-		  v-bind="currentVal.props"
-		  class="vf-tab"
-		  :class="[currentVal.className,error?'vf-error':'']"
-		  :disabled="currentVal.disabled"
-		  :style="{width:`${currentVal.widthRatio}%`}"
-		  @on-click="clickChange" :clearable="currentVal.clearable">
+		v-bind="currentVal.props"
+		class="vf-tab"
+		:class="[currentVal.className,error ? 'vf-error' : '']"
+		:disabled="currentVal.disabled"
+		:style="{width:`${currentVal.widthRatio}%`}"
+		@on-click="clickChange"
+		:clearable="currentVal.clearable"
+	>
 		<template v-if="!currentVal.selectListUrl">
-			<TabPane v-for="item in currentVal.selectList"
-					 :name="item.value" :label="item.label" :key="item.value">
+			<TabPane
+				v-for="item in currentVal.selectList"
+				:name="item.value"
+				:label="item.label"
+				:key="item.value"
+			>
 			</TabPane>
 		</template>
 		<template v-if="currentVal.selectListUrl">
-			<TabPane v-for="item in currentVal.ajaxList"
-					 :name="item.value" :label="item.label" :key="item.value">
+			<TabPane
+				v-for="item in currentVal.ajaxList"
+				:name="item.value"
+				:label="item.label"
+				:key="item.value"
+			>
 			</TabPane>
 		</template>
 	</Tabs>
@@ -21,35 +31,35 @@
 <script>
 	import request from '../../../utils/request'
 	import func from '../../../mixins/component'
-	import {findComponentUpward} from '../../../utils'
+	import { findComponentUpward } from '../../../utils'
 
 	export default {
 		data () {
 			return {
 				currentVal: this.value,
-				parent: findComponentUpward (this, 'FormList')
+				parent: findComponentUpward(this, 'FormList')
 			}
 		},
 		mixins: [func],
-		mounted() {
+		mounted () {
 			this.init()
 		},
-		props: [ 'value' ],
+		props: ['value'],
 		watch: {
 			value (val) {
-				this.currentVal = val;
+				this.currentVal = val
 			}
 		},
 		methods: {
 			update () {
-				this.parent.changeData ({
+				this.parent.changeData({
 					value: '',
 					key: this.currentVal.key
 				})
 			},
-			init() {
+			init () {
 				if (this.currentVal.selectListUrl) {
-					const data = {...this.parent.data, ...this.currentVal.customAjaxParams};
+					const data = { ...this.parent.data, ...this.currentVal.customAjaxParams }
 					request.post(this.currentVal.selectListUrl, data).then(res => {
 						if (this.edit) {
 							this.$store.commit('center/changeSelectList', {
@@ -76,11 +86,10 @@
 						this.parent.controlOthersHide(this.currentVal.controlOthersHideTargetKeys, '')
 					}
 				}
-
 			},
-			clickChange(value) {
+			clickChange (value) {
 				if (this.error) {
-					this.parent.errorHide(this.currentVal.id);
+					this.parent.errorHide(this.currentVal.id)
 				}
 				if (this.currentVal.controlOthersUpdateTargetKeys) {
 					if (this.currentVal.controlOthersUpdateTargetKeys.length) {
@@ -96,7 +105,7 @@
 				}
 				this.eventsOnChange()
 			}
-		},
+		}
 	}
 </script>
 <style lang="less">

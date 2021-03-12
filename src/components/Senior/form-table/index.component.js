@@ -8,7 +8,7 @@ const component = {
     {
       key: 'test',
       title: 'test',
-      type:'input'
+      type: 'input'
     }
   ],
   tableAjaxUrl: '',
@@ -18,7 +18,7 @@ const component = {
 
     'columns',
     'tableAjaxUrl',
-    'props',
+    'props'
   ]
 }
 

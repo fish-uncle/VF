@@ -1,33 +1,45 @@
 <template>
-	<Modal width="780" v-model="model.codeVisible" :closable="false" :footer-hide="true" :scrollable="true">
-		<editor :value="html"
-				@init="editorInit" lang="html" theme="chrome" width="750" height="700"></editor>
+	<Modal
+		width="780"
+		v-model="model.codeVisible"
+		:closable="false"
+		:footer-hide="true"
+		:scrollable="true"
+	>
+		<editor
+			:value="html"
+			@init="editorInit"
+			lang="html"
+			theme="chrome"
+			width="750"
+			height="700"
+		></editor>
 	</Modal>
 </template>
 <script>
-	import { mapState } from 'vuex';
+	import { mapState } from 'vuex'
 	import language from '../../store/language'
 	export default {
-		data(){
-			return{
-				language:language.store
+		data () {
+			return {
+				language: language.store
 			}
 		},
 		computed: {
-			...mapState ([ 'model', 'center' ]),
+			...mapState(['model', 'center']),
 			html () {
-				const model_preview_submit = this.$t ('model_preview_submit')
-				const model_preview_edit = this.$t ('model_preview_edit')
-				const model_preview_read = this.$t ('model_preview_read')
-				const model_preview_reset = this.$t ('model_preview_reset')
+				const model_preview_submit = this.$t('model_preview_submit')
+				const model_preview_edit = this.$t('model_preview_edit')
+				const model_preview_read = this.$t('model_preview_read')
+				const model_preview_reset = this.$t('model_preview_reset')
 				const lt = '<'
-				let list = JSON.parse (JSON.stringify (this.center.list))
+				const list = JSON.parse(JSON.stringify(this.center.list))
 				const viewScale = this.center.viewScale
 				const group = this.center.group
 				const labelWidth = this.center.labelWidth
 				const labelTextAlign = this.center.labelTextAlign
-				list.forEach (child => {
-					child.forEach (item => {
+				list.forEach(child => {
+					child.forEach(item => {
 						if (item.labelWidth === labelWidth) {
 							delete item.labelWidth
 						}
@@ -59,12 +71,12 @@
   export default {
     data () {
       return {
-        list: ${JSON.stringify (list)},
+        list: ${JSON.stringify(list)},
         viewScale: '${viewScale}',
         labelWidth: ${labelWidth},
         labelTextAlign: '${labelTextAlign}',
         language: 'zh',
-        group: ${JSON.stringify (group)}
+        group: ${JSON.stringify(group)}
       }
     },
     methods: {
@@ -87,6 +99,6 @@
   }
 ${lt}/script>`
 			}
-		},
+		}
 	}
 </script>

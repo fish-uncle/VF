@@ -3,14 +3,14 @@ const store = {
   state: {
     helpName: '',
     helpType: 1,
-    helpContent: '',
+    helpContent: ''
   },
   mutations: {
     changeHelp (state, newState) {
       state.helpName = newState.helpName
       state.helpContent = newState.helpContent ? newState.helpContent.default : ''
       state.helpType = newState.helpType
-    },
+    }
   }
-};
+}
 export default store

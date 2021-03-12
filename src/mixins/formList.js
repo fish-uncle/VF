@@ -1,27 +1,27 @@
 import Schema from 'async-validator'
-import {str2Obj} from '../utils'
+import { str2Obj } from '../utils'
 
 export default {
-	data() {
+	data () {
 		return {
 			data: {},
 			tableData: {},
-			child: {},
+			child: {}
 		}
 	},
 	methods: {
 		// 修改值
-		changeTableData({key, value}) {
+		changeTableData ({ key, value }) {
 			this.$set(this.tableData, key, value)
 		},
 		// 修改值
-		changeData({key, value}) {
+		changeData ({ key, value }) {
 			this.data[key] = value
 		},
 		// 获取 form 数据
-		getData() {
+		getData () {
 			const data = JSON.parse(JSON.stringify(this.data))
-			let componentList = [];
+			const componentList = []
 			for (let i = 0; i <= this.currentList.length - 1; i++) {
 				componentList.push(...this.currentList[i])
 			}
@@ -40,9 +40,9 @@ export default {
 			return data
 		},
 		// 获取 form 数据 进行了分组
-		getDataByGroup() {
+		getDataByGroup () {
 			const data = JSON.parse(JSON.stringify(this.data))
-			let componentList = [];
+			const componentList = []
 			for (let i = 0; i <= this.currentList.length - 1; i++) {
 				componentList.push(...this.currentList[i])
 			}
@@ -82,15 +82,14 @@ export default {
 			return data
 		},
 		// 控制其他隐藏
-		controlOthersHide(controlOthersHideTargetKeys, value) {
-			for (let key in controlOthersHideTargetKeys) {
-				for (let id in this.child) {
+		controlOthersHide (controlOthersHideTargetKeys, value) {
+			for (const key in controlOthersHideTargetKeys) {
+				for (const id in this.child) {
 					if (controlOthersHideTargetKeys[key].indexOf(id) !== -1) {
 						const k = key.toString()
 						if (Array.isArray(value)) {
 							const v = value.map(item => item.toString())
 							if (v.indexOf(k) !== -1) {
-
 								this.child[id].hide()
 							} else {
 								this.child[id].show()
@@ -108,17 +107,17 @@ export default {
 			}
 		},
 		// 控制其他更新
-		controlOthersUpdate(controlOthersUpdateTargetKeys) {
+		controlOthersUpdate (controlOthersUpdateTargetKeys) {
 			controlOthersUpdateTargetKeys.forEach(item => {
 				this.child[item].update()
 			})
 		},
 		// 暴露方法以供调用
-		childMounted(obj) {
+		childMounted (obj) {
 			this.child[obj.id] = obj
 		},
 		// 拖动面板 添加组件时，添加key
-		handleChangeKeyForDrag({dragItem}) {
+		handleChangeKeyForDrag ({ dragItem }) {
 			const data = this.data
 			switch (dragItem.dataType) {
 				case 'Boolean':
@@ -137,8 +136,8 @@ export default {
 					break
 				case 'MultiData':
 					this.$set(data, dragItem.key, [])
-					this.$set(data, dragItem.key.split(';') [0], '')
-					this.$set(data, dragItem.key.split(';') [1], '')
+					this.$set(data, dragItem.key.split(';')[0], '')
+					this.$set(data, dragItem.key.split(';')[1], '')
 					break
 				case undefined:
 					this.$set(data, dragItem.key, '')
@@ -149,13 +148,13 @@ export default {
 			this.data = data
 		},
 		// 拖动面板 修改组件时，修改list
-		handleChangeKeyForChangeList({oldKey, newKey}) {
+		handleChangeKeyForChangeList ({ oldKey, newKey }) {
 			const data = this.data[oldKey]
 			this.$delete(this.data, oldKey)
 			this.$set(this.data, newKey, data)
 		},
 		// 拖动面板 移除组件时，移除key
-		handleChangeKeyForRemove({key}) {
+		handleChangeKeyForRemove ({ key }) {
 			const data = this.data
 			if (key.indexOf(';') !== '-1') {
 				const _key = key.split(';')
@@ -166,28 +165,29 @@ export default {
 			this.$delete(data, key)
 		},
 		// 重置
-		reset() {
+		reset () {
 			this.init()
-			for (let key in this.child) {
+			for (const key in this.child) {
 				this.errorHide(key)
 			}
 		},
 		// 校验 form
-		validate() {
+		validate () {
 			const data = this.data
 			let error = false
-			let componentList = [], descriptor = {};
+			const componentList = []; const descriptor = {}
 			for (let i = 0; i <= this.currentList.length - 1; i++) {
 				componentList.push(...this.currentList[i])
 			}
 			for (let i = 0; i <= componentList.length - 1; i++) {
-				const item = componentList[i];
+				const item = componentList[i]
 				if (item.dataType !== 'Null' && this.child[item.id].visibleStatus()) {
 					if (item.rules) {
 						const rules = str2Obj(item.rules)
 						let type = item.dataType ? item.dataType.toLowerCase() : 'string'
-						if (type === 'multidata')
-							type = 'array'
+						if (type === 'multidata') {
+type = 'array'
+}
 						descriptor[item.key] = {
 							id: item.id,
 							type,
@@ -195,10 +195,10 @@ export default {
 							required: item.required
 						}
 						if (rules.pattern) {
-							descriptor[item.key]['pattern'] = new RegExp(rules.pattern)
+							descriptor[item.key].pattern = new RegExp(rules.pattern)
 						}
 						if (rules.validator) {
-							descriptor[item.key]['validator'] = new Function('rule', 'value', rules.validator)
+							descriptor[item.key].validator = new Function('rule', 'value', rules.validator)
 						}
 					}
 				}
@@ -216,19 +216,19 @@ export default {
 			return error
 		},
 		// 编辑状态
-		statusEdit() {
+		statusEdit () {
 			this.status = 'edit'
 		},
 		// 只读状态
-		statusRead() {
+		statusRead () {
 			this.status = 'read'
 		},
 		// 隐藏错误信息
-		errorHide(id) {
+		errorHide (id) {
 			this.child[id].errorHide()
 		},
 		// 修改组件时，修改list
-		changeSelectList({key, value}) {
+		changeSelectList ({ key, value }) {
 			const currentList = this.currentList
 			currentList.forEach(child => {
 				child.forEach(item => {
@@ -238,6 +238,6 @@ export default {
 				})
 			})
 			this.currentList = currentList
-		},
+		}
 	}
 }

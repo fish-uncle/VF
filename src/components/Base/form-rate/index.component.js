@@ -11,7 +11,7 @@ const component = {
     'placeholder',
     'clearable',
     'character',
-    'showText',
+    'showText'
   ]
 }
 

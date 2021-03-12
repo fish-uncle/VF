@@ -1,4 +1,4 @@
-import {Message} from 'view-design'
+import { Message } from 'view-design'
 
 import axios from 'axios'
 
@@ -6,10 +6,10 @@ axios.defaults.baseURL = '/'
 axios.defaults.timeout = 10000
 
 axios.interceptors.request.use(function (config) {
-  return config;
+  return config
 }, function (error) {
   return Promise.reject(error)
-});
+})
 
 // {
 //   data: '数据',
@@ -23,7 +23,7 @@ if (locale === 'en') {
   errMessage = 'Network exception, please try again'
 }
 axios.interceptors.response.use(response => {
-  const {data} = response;
+  const { data } = response
   if (data) {
     if (data.resultCode === '0000') {
       return data.data

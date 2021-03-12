@@ -20,7 +20,7 @@ const component = {
     'columns',
     'tableAjaxUrl',
     'tableHover',
-    'props',
+    'props'
   ]
 }
 

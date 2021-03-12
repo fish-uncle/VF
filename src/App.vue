@@ -1,7 +1,12 @@
 <template>
 	<div id="app">
 		<top/>
-		<Spin size="large" fix class="z-index-999" v-if="model.loading"></Spin>
+		<Spin
+			size="large"
+			fix
+			class="z-index-999"
+			v-if="model.loading"
+		></Spin>
 		<router-view/>
 		<modelBuy/>
 		<modelPlease/>
@@ -9,21 +14,21 @@
 	</div>
 </template>
 <script>
-	import {mapState} from 'vuex';
+	import { mapState } from 'vuex'
 	import ModelBuy from './components-base/ModelBuy'
 	import ModelPlease from './components-base/ModelPlease'
-	import Top from './components-base/Top';
-	import Bottom from './components-base/Bottom';
+	import Top from './components-base/Top'
+	import Bottom from './components-base/Bottom'
 
 	export default {
 		components: {
 			ModelBuy, ModelPlease, Top, Bottom
 		},
 		computed: {
-			...mapState(["model"]),
+			...mapState(['model'])
 		},
-		mounted() {
-			document.title = this.$t('top_description');
+		mounted () {
+			document.title = this.$t('top_description')
 		}
 	}
 </script>

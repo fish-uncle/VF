@@ -1,20 +1,20 @@
 import Vue from 'vue'
-const config = require.context(`../components`, true, /\.(component.js)$/)
+const config = require.context('../components', true, /\.(component.js)$/)
 const changeListDefault = {
-	Base:[
+	Base: [
 		'labelTextAlign', 'labelWidth', 'widthRatio', 'disabled',
 		'title', 'width', 'key', 'className', 'group', 'rules', 'props',
 		'events.onChange', 'events.onHide', 'events.onShow', 'events.onUpdate', 'props'
 	],
-	Modification:[
+	Modification: [
 		'width', 'key', 'className', 'group'
 	],
-	Senior:[
-		'title', 'width', 'key', 'className', 'group', 'events.onHide', 'events.onShow', 'events.onUpdate',
+	Senior: [
+		'title', 'width', 'key', 'className', 'group', 'events.onHide', 'events.onShow', 'events.onUpdate'
 	]
 }
-const objDefault={
-	Base:{
+const objDefault = {
+	Base: {
 		labelWidth: 120,
 		width: 12,
 		widthRatio: 100,
@@ -28,18 +28,18 @@ const objDefault={
 			onChange: '',
 			onHide: '',
 			onShow: '',
-			onUpdate: '',
-		},
+			onUpdate: ''
+		}
 	},
-	Modification:{
+	Modification: {
 		labelWidth: 120,
 		width: 12,
 		widthRatio: 100,
 		labelTextAlign: 'right',
 		className: '',
-		dataType: 'Null',
+		dataType: 'Null'
 	},
-	Senior:{
+	Senior: {
 		labelWidth: 120,
 		width: 12,
 		widthRatio: 100,
@@ -49,20 +49,20 @@ const objDefault={
 		events: {
 			onHide: '',
 			onShow: '',
-			onUpdate: '',
-		},
+			onUpdate: ''
+		}
 	}
 }
-let changeList = {}
-let list = []
-let obj = {}
-config.keys().forEach(name=>{
-	const componentType =  name.split('/')[1]
-	const type =  name.split('/')[2]
+const changeList = {}
+const list = []
+const obj = {}
+config.keys().forEach(name => {
+	const componentType = name.split('/')[1]
+	const type = name.split('/')[2]
 	let child = config(name).default
-	if(changeListDefault[componentType]){
+	if (changeListDefault[componentType]) {
 		changeList[type] = [...changeListDefault[componentType], ...child.changeList]
-		child={
+		child = {
 			...objDefault[componentType],
 			...child,
 			type,
@@ -70,8 +70,9 @@ config.keys().forEach(name=>{
 			changeList: [...changeListDefault[componentType], ...child.changeList]
 		}
 		list.push(child)
-		if(!obj[componentType])
-			obj[componentType]=[]
+		if (!obj[componentType]) {
+obj[componentType] = []
+}
 		obj[componentType].push(child)
 	}
 })
@@ -83,4 +84,4 @@ const store = Vue.observable({
 })
 const mutations = {
 }
-export default {store,mutations}
+export default { store, mutations }

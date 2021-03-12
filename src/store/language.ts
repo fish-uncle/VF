@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 const store = Vue.observable({
-	lang: localStorage.getItem ("locale") || 'zh',
+	lang: localStorage.getItem('locale') || 'zh'
 })
 
 const mutations = {
@@ -9,4 +9,4 @@ const mutations = {
 		store.lang = state.lang
 	}
 }
-export default {store,mutations}
+export default { store, mutations }

@@ -3,12 +3,12 @@ const component = {
 	title_en: 'timePicker',
 	icon: 'ios-time-outline',
 	placeholder: '',
-	timeFormat: "HH’mm’ss",
+	timeFormat: 'HH’mm’ss',
 	clearable: true,
 	changeList: [
 		'timeFormat',
 		'placeholder',
-		'clearable',
+		'clearable'
 	]
 }
 

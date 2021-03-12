@@ -17,7 +17,7 @@ const component = {
     'rules',
     'amapCenter',
     'amapKey',
-    'amapVersion',
+    'amapVersion'
   ]
 }
 

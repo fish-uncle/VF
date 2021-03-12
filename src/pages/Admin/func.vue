@@ -2,53 +2,65 @@
 	<div class="pos-r">
 		<div class="vf-func fn-fl pos-r vf-scrollbar" id="func">
 			<h2>
-				{{$t('admin_left_title1')}}
+				{{ $t('admin_left_title1') }}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.Base"
-					   :clone="handleClone"
-					   :move="handleMove"
-					   :group="{ name: 'people', pull: 'clone', put: false }">
+			<draggable
+				tag="ul"
+				class="fn-flex flex-row"
+				v-model="component.obj.Base"
+				:clone="handleClone"
+				:move="handleMove"
+				:group="{ name: 'people', pull: 'clone', put: false }"
+			>
 				<func-item v-for="(item,key) in component.obj.Base" :item="item" :key="key"/>
 			</draggable>
 			<h2>
-				{{$t('admin_left_title2')}}
+				{{ $t('admin_left_title2') }}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.Modification"
-					   :clone="handleClone"
-					   :move="handleMove"
-					   :group="{ name: 'people', pull: 'clone', put: false }">
+			<draggable
+				tag="ul"
+				class="fn-flex flex-row"
+				v-model="component.obj.Modification"
+				:clone="handleClone"
+				:move="handleMove"
+				:group="{ name: 'people', pull: 'clone', put: false }"
+			>
 				<func-item v-for="(item,key) in component.obj.Modification" :item="item" :key="key"/>
 			</draggable>
 			<h2>
-				{{$t('admin_left_title3')}}
+				{{ $t('admin_left_title3') }}
 			</h2>
-			<draggable tag="ul" class="fn-flex flex-row" v-model="component.obj.Senior"
-					   :clone="handleClone"
-					   :move="handleMove"
-					   :group="{ name: 'people', pull: 'clone', put: false }">
+			<draggable
+				tag="ul"
+				class="fn-flex flex-row"
+				v-model="component.obj.Senior"
+				:clone="handleClone"
+				:move="handleMove"
+				:group="{ name: 'people', pull: 'clone', put: false }"
+			>
 				<func-item v-for="(item,key) in component.obj.Senior" :item="item" :key="key"/>
 			</draggable>
 		</div>
 	</div>
 </template>
 <script>
-	import FuncItem from './func-item';
-	import {mapState} from 'vuex';
-	import {uuid} from "../../utils";
+	import FuncItem from './func-item'
+	import { mapState } from 'vuex'
+	import { uuid } from '../../utils'
 	import language from '../../store/language'
 	import component from '../../store/component'
 
 	export default {
-		data(){
-			return{
-				language:language.store,
-				component:component.store,
+		data () {
+			return {
+				language: language.store,
+				component: component.store
 			}
 		},
 		components: {
-			FuncItem,
+			FuncItem
 		},
-		computed: mapState([ 'center']),
+		computed: mapState(['center']),
 		methods: {
 			handleMove: function (evt) {
 				if (evt.to.className === 'vf-drag-content fn-flex flex-row') {
@@ -70,10 +82,10 @@
 				dragItem = JSON.parse(JSON.stringify(dragItem))
 				dragItem.labelWidth = this.center.labelWidth
 				dragItem.labelTextAlign = this.center.labelTextAlign
-				this.$agent.$once({type: 'formDataAdd', dragItem})
+				this.$agent.$once({ type: 'formDataAdd', dragItem })
 				return dragItem
 			}
-		},
+		}
 	}
 </script>
 <style lang="less">

@@ -4,7 +4,7 @@ const component = {
   icon: 'ios-color-palette-outline',
   alpha: false,
   changeList: [
-    'alpha',
+    'alpha'
   ]
 }
 
