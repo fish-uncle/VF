@@ -1,5 +1,12 @@
 const log = [
 	{
+		version: '1.1.11',
+		time: '2021-03-21',
+		content: [
+			'Repair option configuration.',
+		]
+	},
+	{
 		version: '1.1.10',
 		time: '2021-01-23',
 		content: [
