@@ -3,23 +3,23 @@
 		<label>{{ $t('admin_right_btn30') }}</label>
 		<ul class="vf-select-list">
 			<li class="fn-flex flex-row">
-				<span style="width: 125px">title</span>
-				<span style="width: 125px">key</span>
+				<span style="width: 125px;">title</span>
+				<span style="width: 125px;">key</span>
 				<span>type</span>
 			</li>
 			<li class="fn-flex flex-row" v-for="(child,index) in item.columns" :key="child.key">
 				<i-input
-					style="width: 125px"
+					style="width: 125px;"
 					v-model="child.title"
 					@on-change="e=>columnsTitleChange(e,index)"
 				/>
 				<i-input
-					style="width: 125px;margin-left: 10px;"
+					style="width: 125px; margin-left: 10px;"
 					v-model="child.key"
 					@on-change="e=>columnsKeyChange(e,index)"
 				/>
 				<i-select
-					style="width: 125px;margin-left: 10px;"
+					style="width: 125px; margin-left: 10px;"
 					v-model="child.type"
 					@on-change="e=>columnsValueChange(e,index)"
 				>
