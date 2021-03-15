@@ -134,42 +134,42 @@
 	@import "../../less/conf";
 
 	.vf-center-empty {
-		font-size: 20px;
 		top: 50%;
+		justify-content: center;
 		width: 100%;
 		margin-top: -15px;
+		font-size: 20px;
 		color: #ccc;
-		justify-content: center;
 	}
 
 	.vf-center {
-		margin-left: 260px;
-		margin-right: 450px;
 		margin-top: 10px;
+		margin-right: 450px;
+		margin-left: 260px;
 	}
 
 	.vf-drag-box {
+		min-height: calc(100vh - 220px);
 		border: 1px dashed #ddd;
 		border-radius: 4px;
-		min-height: calc(100vh - 220px);
 
 		.vf-component {
 			cursor: move;
 		}
 
 		> div {
-			transition: all .3s;
+			transition: all 0.3s;
 		}
 	}
 
 	.vf-drag-active {
-		background-color: rgba(18, 120, 246, .05);
+		background-color: rgba(18, 120, 246, 0.05);
 	}
 
 	.vf-drag-content {
 		flex-wrap: wrap;
-		min-height: 52px;
 		width: 100%;
+		min-height: 52px;
 	}
 
 	.vue-grid-item {
@@ -191,10 +191,10 @@
 	}
 
 	.vf-fn-btn {
+		margin-right: 10px;
 		font-size: 14px;
 		color: @themeColor;
 		user-select: none;
-		margin-right: 10px;
 
 		&:hover {
 			color: @themeColor_08;
@@ -205,8 +205,8 @@
 		height: 90px;
 
 		h2 {
-			font-size: 16px;
 			margin-bottom: 15px;
+			font-size: 16px;
 		}
 	}
 </style>

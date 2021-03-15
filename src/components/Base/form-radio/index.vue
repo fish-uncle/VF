@@ -95,21 +95,21 @@
 	}
 </script>
 <style lang="less">
-  @import "../../../less/conf";
+	@import "../../../less/conf";
 
-  .vf-radio {
-    height: 32px;
-    align-items: center;
-    display: flex !important;
-    display: -webkit-flex !important;
+	.vf-radio {
+		display: flex !important;
+		display: -webkit-flex !important;
+		align-items: center;
+		height: 32px;
 
-    &.vf-error {
-      .ivu-radio-inner {
-        border-color: @error-color;
-        outline: 0;
-        box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
-      }
-    }
-  }
+		&.vf-error {
+			.ivu-radio-inner {
+				border-color: @error-color;
+				outline: 0;
+				box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
+			}
+		}
+	}
 
 </style>

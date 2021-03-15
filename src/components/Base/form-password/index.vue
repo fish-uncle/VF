@@ -49,19 +49,19 @@
 	}
 </script>
 <style lang="less">
-  @import "../../../less/conf";
+	@import "../../../less/conf";
 
-  .vf-password-see {
-    right: 10px;
-    top: 50%;
-    margin-top: -10px;
-  }
+	.vf-password-see {
+		top: 50%;
+		right: 10px;
+		margin-top: -10px;
+	}
 
-  .vf-password.vf-error {
-    input {
-      border-color: @error-color;
-      outline: 0;
-      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
-    }
-  }
+	.vf-password.vf-error {
+		input {
+			border-color: @error-color;
+			outline: 0;
+			box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
+		}
+	}
 </style>

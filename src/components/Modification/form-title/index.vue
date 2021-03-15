@@ -15,7 +15,7 @@
 	}
 </script>
 <style lang="less">
-  .vf-title {
-    min-width: auto;
-  }
+	.vf-title {
+		min-width: auto;
+	}
 </style>

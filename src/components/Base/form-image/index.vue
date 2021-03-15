@@ -26,14 +26,14 @@
 			:on-format-error="handleFormatError"
 			:on-exceeded-size="handleExceededError"
 			:disabled="currentVal.disabled"
-			style="display: inline-block;width:58px;"
+			style="display: inline-block; width: 58px;"
 		>
-			<div style="width: 58px;height:58px;line-height: 58px;">
+			<div style="width: 58px; height: 58px; line-height: 58px;">
 				<Icon type="ios-camera" size="20"></Icon>
 			</div>
 		</Upload>
 		<Modal title="View Image" v-model="visible">
-			<img :src="imgUrl" v-if="visible" style="width: 100%"/>
+			<img :src="imgUrl" v-if="visible" style="width: 100%;"/>
 		</Modal>
 	</div>
 </template>
@@ -107,23 +107,23 @@
 		.ivu-upload {
 			border-color: @error-color;
 			outline: 0;
-			box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+			box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
 		}
 	}
 
 	.vf-image-upload-list {
+		position: relative;
 		display: inline-block;
 		width: 60px;
 		height: 60px;
-		text-align: center;
+		margin-right: 4px;
+		overflow: hidden;
 		line-height: 60px;
+		text-align: center;
+		background: #fff;
 		border: 1px solid transparent;
 		border-radius: 4px;
-		overflow: hidden;
-		background: #fff;
-		position: relative;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		margin-right: 4px;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 
 		&:hover {
 			.vf-image-upload-list-cover {
@@ -138,20 +138,20 @@
 	}
 
 	.vf-image-upload-list-cover {
-		opacity: 0;
-		transition: all .3s;
 		position: absolute;
 		top: 0;
+		right: 0;
 		bottom: 0;
 		left: 0;
-		right: 0;
-		background: rgba(0, 0, 0, .6);
+		background: rgba(0, 0, 0, 0.6);
+		opacity: 0;
+		transition: all 0.3s;
 
 		i {
-			color: #fff;
-			font-size: 20px;
-			cursor: pointer;
 			margin: 0 2px;
+			font-size: 20px;
+			color: #fff;
+			cursor: pointer;
 		}
 	}
 

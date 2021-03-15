@@ -13,5 +13,5 @@
 	}
 </script>
 <style lang="less">
-  @import "../../../less/conf";
+	@import "../../../less/conf";
 </style>

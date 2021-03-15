@@ -28,7 +28,7 @@
 	}
 </script>
 <style lang="less">
-  .vf-switch {
-    margin-top: 5px;
-  }
+	.vf-switch {
+		margin-top: 5px;
+	}
 </style>

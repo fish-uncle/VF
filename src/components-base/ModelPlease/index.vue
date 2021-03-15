@@ -136,20 +136,20 @@
 	}
 </script>
 <style lang="less">
-  .vf-pay {
-    margin: 20px 0;
+	.vf-pay {
+		margin: 20px 0;
 
-    > div {
-      flex: 1;
-      align-items: center;
-    }
+		> div {
+			flex: 1;
+			align-items: center;
+		}
 
-    img {
-      width: 100px;
-    }
-  }
+		img {
+			width: 100px;
+		}
+	}
 
-  .vf-mark {
-    text-align: justify;
-  }
+	.vf-mark {
+		text-align: justify;
+	}
 </style>

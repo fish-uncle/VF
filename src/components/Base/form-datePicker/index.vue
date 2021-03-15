@@ -45,7 +45,7 @@
 		input {
 			border-color: @error-color;
 			outline: 0;
-			box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
+			box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
 		}
 	}
 </style>

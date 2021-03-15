@@ -35,13 +35,13 @@
 	}
 </script>
 <style lang="less">
-  @import "../../../less/conf";
+	@import "../../../less/conf";
 
-  .vf-color-picker.vf-error {
-    .ivu-color-picker-input {
-      border-color: @error-color;
-      outline: 0;
-      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
-    }
-  }
+	.vf-color-picker.vf-error {
+		.ivu-color-picker-input {
+			border-color: @error-color;
+			outline: 0;
+			box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
+		}
+	}
 </style>

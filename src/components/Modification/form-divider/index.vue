@@ -15,8 +15,8 @@
 	}
 </script>
 <style lang="less">
-  .vf-divider {
-    margin: 16px 0 0 0;
-    min-width: auto;
-  }
+	.vf-divider {
+		min-width: auto;
+		margin: 16px 0 0 0;
+	}
 </style>

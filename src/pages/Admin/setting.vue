@@ -26,19 +26,19 @@
 			<i-switch :value="true" :disabled="true"/>
 			<ul class="vf-select-list">
 				<li class="fn-flex flex-row">
-					<span style="width: 140px">{{ $t('group2') }}</span>
-					<span style="width: 70px">{{ $t('group3') }}</span>
+					<span style="width: 140px;">{{ $t('group2') }}</span>
+					<span style="width: 70px;">{{ $t('group3') }}</span>
 					<span>{{ $t('group4') }}</span>
 				</li>
 				<li class="fn-flex flex-row" v-for="(item ,index) in center.group" :key="item.id">
-					<i-input style="width: 130px" v-model="item.id" :disabled="true"/>
+					<i-input style="width: 130px;" v-model="item.id" :disabled="true"/>
 					<ColorPicker
 						v-model="item.color"
 						style="margin-left: 10px;"
 						class="vf-color-picker"
 						:alpha="true"
 					/>
-					<i-input style="width: 130px;margin-left: 10px;" v-model="item.key"/>
+					<i-input style="width: 130px; margin-left: 10px;" v-model="item.key"/>
 					<span
 						class="vf-select-del text-center pointer"
 						:class="Object.keys(center.group).length === 1 ? 'disabled' : ''"
@@ -56,13 +56,13 @@
 			<i-switch v-model="multiFormValue"/>
 			<ul class="vf-select-list">
 				<li class="fn-flex flex-row">
-					<span style="width: 205px">{{ $t('multiform2') }}</span>
+					<span style="width: 205px;">{{ $t('multiform2') }}</span>
 					<span>{{ $t('multiform3') }}</span>
 				</li>
 				<li class="fn-flex flex-row" v-for="(item ,index) in center.multiForm" :key="item.key">
-					<i-input style="width: 165px" v-model="item.key" :disabled="true"/>
+					<i-input style="width: 165px;" v-model="item.key" :disabled="true"/>
 					<i-input
-						style="width: 165px;margin-left: 10px;"
+						style="width: 165px; margin-left: 10px;"
 						:value="item.name"
 						@on-change="e=>multiformChange(e,index)"
 					/>

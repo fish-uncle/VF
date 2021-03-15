@@ -12,14 +12,19 @@ module.exports = {
 		'plugin:sonarjs/recommended'
 	],
 	parserOptions: {
-		ecmaVersion: 2020
+		ecmaVersion: 2020,
+		parser: 'babel-eslint',
+		ecmaFeatures: {
+			legacyDecorators: true
+		}
 	},
 	plugins: [
 		'@typescript-eslint',
-		'sonarjs'
+		'sonarjs',
+		'flowtype'
 	],
 	globals: {
-		echarts: true,
+		echarts: true
 	},
 	rules: {
 		'array-bracket-spacing': 2, // 强制数组方括号中使用一致的空格
@@ -69,7 +74,7 @@ module.exports = {
 		'no-return-await': 2, // 禁止在 return 中使用 await
 		'no-redeclare': 2, // 禁止重复声明
 		'no-regex-spaces': 2, // 禁止在正则表达式中出现连续空格
-		'no-multi-assign': 2, // 禁止连等赋值
+		// 'no-multi-assign': 2, // 禁止连等赋值
 		'no-multi-spaces': 2, // 禁止使用连续的空格
 		'no-mixed-operators': [2, { // 禁止使用混合的逻辑判断，必须把不同的逻辑用圆括号括起来
 			groups: [

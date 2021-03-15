@@ -14,8 +14,8 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint src",
-		"stylelint": "stylelint src/**/*.vue src/**/*.scss --config '.stylelintrc.js' --fix",
+		"lint": "eslint --fix --ext .js --ext .jsx --ext .vue --ext .ts src/",
+		"stylelint": "stylelint 'src/**/*.{scss,vue}' --config '.stylelintrc.js' --fix",
 		"sitemap": "node src/sitemap.js",
 		"commit": "git add .&&git cz"
 	},
@@ -47,6 +47,7 @@
 		"xe-utils": "^2.7.13"
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-decorators": "^7.13.5",
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.5.0",
@@ -58,13 +59,14 @@
 		"@vue/eslint-config-standard": "^6.0.0",
 		"@vue/eslint-config-typescript": "^7.0.0",
 		"auto-vers": "^1.0.3",
-		"babel-eslint": "^10.1.0",
+		"babel-eslint": "^8.1.1",
 		"commitizen": "^4.2.3",
 		"compression-webpack-plugin": "^6.0.2",
 		"core-js": "^3.6.5",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^6.7.2",
 		"eslint-config-standard": "^14.1.1",
+		"eslint-plugin-flowtype": "^5.4.0",
 		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-promise": "^4.3.1",

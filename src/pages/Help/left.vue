@@ -79,8 +79,8 @@
 	}
 </script>
 <style lang="less">
-  .vf-help-left {
-    height: calc(100vh - 120px);
-    overflow: auto;
-  }
+	.vf-help-left {
+		height: calc(100vh - 120px);
+		overflow: auto;
+	}
 </style>

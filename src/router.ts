@@ -20,7 +20,7 @@ Vue.use(VueRouter)
 
 const router: VueRouter = new VueRouter({
 	routes: [
-		...routes,
+		...routes
 	]
 })
 

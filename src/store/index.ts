@@ -13,8 +13,8 @@ const store:any = new Vuex.Store({
     center,
     model,
     top,
-    help,
-  },
+    help
+  }
 })
 
 export default store

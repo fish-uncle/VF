@@ -80,13 +80,13 @@
 	}
 </script>
 <style lang="less">
-  @import "../../../less/conf";
+	@import "../../../less/conf";
 
-  .vf-input.vf-error {
-    input {
-      border-color: @error-color;
-      outline: 0;
-      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
-    }
-  }
+	.vf-input.vf-error {
+		input {
+			border-color: @error-color;
+			outline: 0;
+			box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
+		}
+	}
 </style>

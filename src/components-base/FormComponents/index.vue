@@ -80,13 +80,16 @@
 	@import "../../less/conf";
 
 	.vf-component-model {
-		width: 100%;
-		height: 100%;
 		top: 0;
 		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 
-	.vf-javascript-box, .vf-divider-box, .vf-html-box, .vf-title-box {
+	.vf-javascript-box,
+	.vf-divider-box,
+	.vf-html-box,
+	.vf-title-box {
 		.vf-component-label {
 			display: none;
 		}
@@ -104,12 +107,11 @@
 		}
 	}
 
-
 	.vf-component {
+		padding: 10px;
 		border: 2px solid rgba(0, 0, 0, 0);
 		border-radius: 4px;
-		padding: 10px;
-		transition: all .3s;
+		transition: all 0.3s;
 
 		&.vf-component-edit {
 			&:hover {
@@ -122,39 +124,44 @@
 		}
 
 		&.sortable-ghost {
+			width: 100%;
 			height: 0;
 			padding: 0;
-			width: 100%;
 			border: 2px solid @move-color !important;
 
-			span, i, .vf-component-del, label, input, div {
+			span,
+			i,
+			.vf-component-del,
+			label,
+			input,
+			div {
 				display: none;
 			}
 		}
 
 		.vf-component-label {
-			font-size: 14px;
 			padding-right: 10px;
-			color: rgba(0, 0, 0, .65);
+			font-size: 14px;
 			line-height: 32px;
+			color: rgba(0, 0, 0, 0.65);
 
 			&.has-required {
-				&:before {
-					content: '*';
+				&::before {
 					color: red;
+					content: '*';
 				}
 			}
 		}
 	}
 
 	.vf-component-del {
-		bottom: 0;
 		right: 0;
+		bottom: 0;
 		width: 20px;
 		height: 20px;
+		color: #fff;
 		user-select: none;
 		background-color: @themeColor;
-		color: #fff;
 		border-radius: 2px;
 
 		&:hover {

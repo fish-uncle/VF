@@ -4,7 +4,7 @@
 		span {{item[`title_${language.lang}`]}}
 </template>
 <script lang="ts">
-	import {Component,Vue,Prop} from 'vue-property-decorator'
+	import { Component, Vue, Prop } from 'vue-property-decorator'
 	import language from '../../store/language'
 
 	@Component
@@ -18,19 +18,19 @@
 	@import "../../less/conf";
 
 	.vf-func-item {
+		align-items: center;
 		width: 108px;
 		height: 30px;
+		padding-left: 8px;
+		margin-right: 10px;
+		font-size: 14px;
+		line-height: 30px;
+		cursor: move;
+		user-select: none;
 		background: #f4f6fc;
 		border: 1px solid #f4f6fc;
-		font-size: 14px;
-		cursor: move;
-		line-height: 30px;
-		user-select: none;
-		margin-right: 10px;
 		border-radius: 4px;
-		align-items: center;
-		padding-left: 8px;
-		transition: all .3s;
+		transition: all 0.3s;
 
 		span {
 			margin-left: 5px;
@@ -40,18 +40,17 @@
 			color: @themeColor;
 			border: 1px dashed @themeColor;
 		}
-
-
 	}
 
 	.vf-drag-box {
 		.vf-func-item {
 			&.sortable-ghost {
-				height: 0;
 				width: 100%;
+				height: 0;
 				border: 2px solid @move-color;
 
-				span, i {
+				span,
+				i {
 					display: none;
 				}
 			}

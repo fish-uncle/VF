@@ -82,17 +82,17 @@
 	}
 </script>
 <style lang="less">
-  @import "../../../less/conf";
+	@import "../../../less/conf";
 
-  .vf-amap.vf-error {
-    input {
-      border-color: @error-color;
-      outline: 0;
-      box-shadow: 0 0 0 2px rgba(237, 64, 20, .2);
-    }
-  }
+	.vf-amap.vf-error {
+		input {
+			border-color: @error-color;
+			outline: 0;
+			box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
+		}
+	}
 
-  .amap {
-    height: 600px;
-  }
+	.amap {
+		height: 600px;
+	}
 </style>

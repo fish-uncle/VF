@@ -121,8 +121,8 @@
 		}
 
 		.vf-component {
-			padding-left: 0;
 			padding-right: 0;
+			padding-left: 0;
 		}
 	}
 

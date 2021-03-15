@@ -74,42 +74,42 @@
 	@import "../../less/conf";
 
 	.vf-lang {
-		margin-right: 20px;
 		width: 100px !important;
+		margin-right: 20px;
 		margin-left: 20px;
 	}
 
 	.vf-version {
-		color: rgba(255, 255, 255, 0.9);
+		margin-right: auto;
 		margin-left: 10px;
 		font-size: 16px;
-		margin-right: auto;
+		color: rgba(255, 255, 255, 0.9);
 	}
 
 	.vf-nav {
 		margin-right: 10px;
 
 		li {
-			font-size: 16px;
-			user-select: none;
-			margin-right: 30px;
-			color: rgba(255, 255, 255, 0.9);
 			position: relative;
-			transition: all .3s;
+			margin-right: 30px;
+			font-size: 16px;
+			color: rgba(255, 255, 255, 0.9);
+			user-select: none;
+			transition: all 0.3s;
 
 			&:hover {
 				opacity: 0.7;
 			}
 
-			&:before {
+			&::before {
 				position: absolute;
-				content: '';
-				width: 0;
-				height: 1px;
-				background-color: #fff;
 				bottom: 0;
 				left: 0;
-				transition: all .3s;
+				width: 0;
+				height: 1px;
+				content: '';
+				background-color: #fff;
+				transition: all 0.3s;
 			}
 
 			&:last-child {
@@ -117,7 +117,7 @@
 			}
 
 			&.active {
-				&:before {
+				&::before {
 					width: 100%;
 				}
 			}
@@ -125,36 +125,36 @@
 	}
 
 	.vf-top {
+		align-items: center;
 		height: 80px;
 		background: @themeColor;
-		align-items: center;
 
-		&:before {
+		&::before {
 			position: absolute;
-			content: '';
-			width: 100%;
-			height: 100%;
 			top: 0;
 			left: 0;
+			width: 100%;
+			height: 100%;
+			content: '';
 			background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
 		}
 
 		h2 {
-			color: rgba(255, 255, 255, 0.9);
-			font-size: 34px;
-			margin-left: 20px;
-			font-weight: normal;
 			margin-right: 10px;
+			margin-left: 20px;
+			font-size: 34px;
+			font-weight: normal;
+			color: rgba(255, 255, 255, 0.9);
 		}
 
 		h1 {
-			color: rgba(255, 255, 255, 0.9);
-			font-size: 20px;
-			margin-left: 10px;
-			white-space: nowrap;
 			max-width: 420px;
-			text-overflow: ellipsis;
+			margin-left: 10px;
 			overflow: hidden;
+			font-size: 20px;
+			color: rgba(255, 255, 255, 0.9);
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 	}
 </style>

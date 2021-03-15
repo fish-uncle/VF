@@ -92,23 +92,23 @@
 	@import "../../less/conf";
 
 	.vf-func-disabled {
-		width: 100%;
-		height: 100%;
-		background-color: rgba(255, 255, 255, .6);
 		top: 0;
 		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.6);
 	}
 
 	.vf-func {
 		width: 250px;
 		height: calc(100vh - 130px);
 		padding: 10px;
-		overflow-y: auto;
 		overflow-x: hidden;
+		overflow-y: auto;
 
 		h2 {
-			font-size: 16px;
 			height: 40px;
+			font-size: 16px;
 		}
 
 		ul {
@@ -117,10 +117,10 @@
 
 		li {
 			margin-bottom: 10px;
-			word-break: break-all;
-			text-overflow: ellipsis;
-			white-space: nowrap;
 			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-all;
+			white-space: nowrap;
 
 			&:nth-child(2n) {
 				margin-right: 0;

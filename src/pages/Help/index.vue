@@ -68,9 +68,9 @@
 </script>
 <style lang="less">
 	.vf-help-content {
-		margin-left: 240px;
 		min-height: calc(100vh - 120px);
 		padding: 40px 80px;
+		margin-left: 240px;
 		overflow-y: auto;
 
 		code {
@@ -80,7 +80,8 @@
 	}
 
 	.markdown-body {
-		ul, li {
+		ul,
+		li {
 			list-style: circle;
 		}
 	}
