@@ -80,7 +80,7 @@ export default {
 			platform.actions.changeTop(3)
 		}
 		window.please = function () {
-			this.$store.commit('model/pleaseShow')
+			this.platform.previewVisible = true
 		}.bind(this)
 	},
 }

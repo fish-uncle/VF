@@ -105,12 +105,14 @@
 import { mapState } from 'vuex'
 import language from '../../store/language'
 import component from '../../store/component'
+import platform from '../../store/platform'
 
 export default {
 	data() {
 		return {
 			language: language.state,
 			component: component.state,
+			platform: platform.state,
 		}
 	},
 	computed: {
@@ -121,7 +123,7 @@ export default {
 	},
 	methods: {
 		handleRead() {
-			this.$store.commit('model/readShow')
+			this.platform.readVisible = true
 		},
 		handleCenterChange() {
 			localStorage.setItem(
@@ -147,13 +149,13 @@ export default {
 		},
 		handlePreview(name) {
 			if (name === 'preview') {
-				this.$store.commit('model/previewShow')
+				this.platform.previewVisible = true
 			}
 			if (name === 'data') {
-				this.$store.commit('model/dataShow')
+				this.platform.dataVisible = true
 			}
 			if (name === 'code') {
-				this.$store.commit('model/codeShow')
+				this.platform.codeVisible = true
 			}
 		},
 		handleClear() {

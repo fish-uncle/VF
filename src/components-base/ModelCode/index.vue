@@ -1,7 +1,7 @@
 <template>
 	<Modal
 		width="780"
-		v-model="model.codeVisible"
+		v-model="platform.codeVisible"
 		:closable="false"
 		:footer-hide="true"
 		:scrollable="true"
@@ -17,44 +17,46 @@
 	</Modal>
 </template>
 <script>
-	import { mapState } from 'vuex'
-	import language from '../../store/language'
-	export default {
-		data () {
-			return {
-				language: language.state
-			}
-		},
-		computed: {
-			...mapState(['model', 'center']),
-			html () {
-				const model_preview_submit = this.$t('model_preview_submit')
-				const model_preview_edit = this.$t('model_preview_edit')
-				const model_preview_read = this.$t('model_preview_read')
-				const model_preview_reset = this.$t('model_preview_reset')
-				const lt = '<'
-				const list = JSON.parse(JSON.stringify(this.center.list))
-				const viewScale = this.center.viewScale
-				const group = this.center.group
-				const labelWidth = this.center.labelWidth
-				const labelTextAlign = this.center.labelTextAlign
-				list.forEach(child => {
-					child.forEach(item => {
-						if (item.labelWidth === labelWidth) {
-							delete item.labelWidth
-						}
-						if (item.labelTextAlign === labelTextAlign) {
-							delete item.labelTextAlign
-						}
-						delete item.version
-						delete item.icon
-						item.title = item[`title_${this.language.lang}`]
-						delete item.title_zh
-						delete item.title_en
-						delete item.changeList
-					})
+import { mapState } from 'vuex'
+import language from '../../store/language'
+import platform from '../../store/platform'
+export default {
+	data() {
+		return {
+			language: language.state,
+			platform: platform.state,
+		}
+	},
+	computed: {
+		...mapState(['center']),
+		html() {
+			const model_preview_submit = this.$t('model_preview_submit')
+			const model_preview_edit = this.$t('model_preview_edit')
+			const model_preview_read = this.$t('model_preview_read')
+			const model_preview_reset = this.$t('model_preview_reset')
+			const lt = '<'
+			const list = JSON.parse(JSON.stringify(this.center.list))
+			const viewScale = this.center.viewScale
+			const group = this.center.group
+			const labelWidth = this.center.labelWidth
+			const labelTextAlign = this.center.labelTextAlign
+			list.forEach(child => {
+				child.forEach(item => {
+					if (item.labelWidth === labelWidth) {
+						delete item.labelWidth
+					}
+					if (item.labelTextAlign === labelTextAlign) {
+						delete item.labelTextAlign
+					}
+					delete item.version
+					delete item.icon
+					item.title = item[`title_${this.language.lang}`]
+					delete item.title_zh
+					delete item.title_en
+					delete item.changeList
 				})
-				return `<template>
+			})
+			return `<template>
   <div>
     <v-list ref="form" :language="language" :view-scale="viewScale" :list="list" :group="group"
     :labelWidth="labelWidth" :labelTextAlign="labelTextAlign">
@@ -98,7 +100,7 @@
     },
   }
 ${lt}/script>`
-			}
-		}
-	}
+		},
+	},
+}
 </script>

@@ -74,14 +74,6 @@ const store = {
     // 视图修改
     viewScaleChange (state, newState) {
       state.viewScale = newState.viewScale
-      // const viewScale = state.viewScale.split (':')
-      // const list = []
-      // viewScale.forEach ((item, index) => {
-      //   if (!state.list[index]) {
-      //     state.list[index] = []
-      //   }
-      // })
-      // state.list = list
     },
     // 选中当前组件
     choose (state, newState) {

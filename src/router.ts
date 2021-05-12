@@ -19,9 +19,7 @@ if (!isProduction) {
 Vue.use(VueRouter)
 
 const router: VueRouter = new VueRouter({
-	routes: [
-		...routes
-	]
+	routes: [...routes],
 })
 
 export default router

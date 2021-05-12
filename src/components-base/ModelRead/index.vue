@@ -1,6 +1,6 @@
 <template>
 	<Modal
-		v-model="model.readVisible"
+		v-model="platform.readVisible"
 		:closable="false"
 		:footer-hide="true"
 		:scrollable="true"
@@ -21,12 +21,14 @@
 	import { mapState } from 'vuex'
 	import { str2Obj } from '../../utils'
 	import component from '../../store/component'
+	import platform from '../../store/platform'
 
 	export default {
 		data () {
 			return {
 				config: '',
-				component: component.state
+				component: component.state,
+				platform: platform.state,
 			}
 		},
 		computed: mapState(['model']),

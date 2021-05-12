@@ -1,6 +1,6 @@
 <template>
 	<Modal
-		v-model="model.dataVisible"
+		v-model="platform.dataVisible"
 		:closable="false"
 		:footer-hide="true"
 		:scrollable="true"
@@ -15,10 +15,13 @@
 	</Modal>
 </template>
 <script>
-	import { mapState } from 'vuex'
-
-	export default {
-		computed: mapState(['model']),
-		props: ['data']
-	}
+import platform from '../../store/platform'
+export default {
+	data() {
+		return {
+			platform: platform.state,
+		}
+	},
+	props: ['data'],
+}
 </script>

@@ -65,7 +65,7 @@ export default {
 			}
 		},
 		handleBuyShow() {
-			this.$store.commit('model/buyShow')
+			this.platform.buyVisible = true
 		},
 		handleUpdateLog() {
 			if (this.$route.name !== 'UpdateLog') {
