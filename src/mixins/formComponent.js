@@ -2,7 +2,7 @@ import { findComponentUpward } from '../utils'
 import chalk from 'chalk'
 
 export default {
-	data () {
+	data() {
 		return {
 			parent: findComponentUpward(this, 'FormList'),
 			currentVal: this.value,
@@ -12,37 +12,38 @@ export default {
 			currentComponent: null,
 			readComponent: null,
 			type: '',
-			errorMsg: ''
+			errorMsg: '',
 		}
 	},
 	props: {
 		index: {},
 		value: {
-			required: true
+			required: true,
 		},
 		status: {
 			type: String,
-			required: true
+			required: true,
 		},
 		labelWidth: {},
 		labelTextAlign: {},
 		props: {
 			type: Object,
-			default: () => {
-			}
+			default: () => {},
 		},
 		language: {
 			type: String,
-			default: 'zh'
-		}
+			default: 'zh',
+		},
 	},
-	mounted () {
+	mounted() {
 		this.id = this.currentVal.id
 		const type = this.currentVal.type
 		const componentType = this.currentVal.componentType
 		this.type = type
-		this.currentComponent = () => import(`../components/${componentType}/${type}`)
-		this.readComponent = () => import(`../components/${componentType}/${type}/read`)
+		this.currentComponent = () =>
+			import(`../components/${componentType}/${type}`)
+		this.readComponent = () =>
+			import(`../components/${componentType}/${type}/read`)
 		if (this.parent) {
 			this.parent.childMounted({
 				key: this.currentVal.key,
@@ -52,12 +53,12 @@ export default {
 				show: this.show,
 				hide: this.hide,
 				update: this.update,
-				id: this.id
+				id: this.id,
 			})
 		}
 	},
 	computed: {
-		currentWidth () {
+		currentWidth() {
 			if (typeof this.currentVal.labelWidth === 'number') {
 				return this.currentVal.width
 			} else {
@@ -68,17 +69,17 @@ export default {
 				}
 			}
 		},
-		currentRequired () {
+		currentRequired() {
 			return this.currentVal.required
 		},
-		currentLabelTextAlign () {
+		currentLabelTextAlign() {
 			if (this.currentVal.labelTextAlign) {
 				return this.currentVal.labelTextAlign
 			} else {
 				return this.labelTextAlign
 			}
 		},
-		currentLabelWidth () {
+		currentLabelWidth() {
 			if (this.currentVal.labelWidth) {
 				return `${this.currentVal.labelWidth}px`
 			} else {
@@ -89,30 +90,30 @@ export default {
 				}
 			}
 		},
-		currentTitle () {
+		currentTitle() {
 			if (this.currentVal.title) {
 				return this.currentVal.title
 			}
 			if (this.currentVal[`title_${this.language}`]) {
 				return this.currentVal[`title_${this.language}`]
 			}
-		}
+		},
 	},
 	methods: {
-		warn (msg) {
+		warn(msg) {
 			console.log(chalk.bgYellow(msg))
 		},
-		visibleStatus () {
+		visibleStatus() {
 			return this.visible
 		},
-		errorShow (msg) {
+		errorShow(msg) {
 			this.error = true
 			this.errorMsg = msg
 		},
-		errorHide () {
+		errorHide() {
 			this.error = false
 		},
-		show () {
+		show() {
 			this.visible = true
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onChange) {
@@ -121,7 +122,7 @@ export default {
 				}
 			}
 		},
-		hide () {
+		hide() {
 			this.visible = false
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onChange) {
@@ -130,16 +131,16 @@ export default {
 				}
 			}
 		},
-		update () {
+		update() {
 			if (this.$children[0]) {
-this.$children[0].update()
-}
+				this.$children[0].update()
+			}
 			if (this.currentVal.events) {
 				if (this.currentVal.events.onUpdate) {
 					const fun = new Function(this.currentVal.events.onUpdate)
 					fun()
 				}
 			}
-		}
-	}
+		},
+	},
 }

@@ -26,7 +26,7 @@
 		data () {
 			return {
 				config: '',
-				component: component.store
+				component: component.state
 			}
 		},
 		computed: mapState(['model']),

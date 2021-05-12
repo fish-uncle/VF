@@ -1,12 +1,12 @@
 import Vue from 'vue'
 
 const state = Vue.observable({
-	lang: localStorage.getItem('locale') || 'zh',
+	topIndex: 1,
 })
 
 const actions = {
-	change(lang) {
-		state.lang = lang
+	changeTop(topIndex) {
+		state.topIndex = topIndex
 	},
 }
 export default { state, actions }

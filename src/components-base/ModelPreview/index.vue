@@ -34,8 +34,8 @@
 		data () {
 			return {
 				show: false,
-				language: language.store,
-				component: component.store
+				language: language.state,
+				component: component.state
 			}
 		},
 		computed: mapState(['model', 'center']),

@@ -1,27 +1,6 @@
 <template>
 	<div>
 		<div class="vf-control">
-			<label>{{ $t('admin_right_btn3') }}</label>
-			<i-input
-				v-model="center.labelWidth"
-				@on-change="numberChange"
-			>
-				<span slot="append">px</span>
-			</i-input>
-		</div>
-		<div class="vf-control">
-			<label>{{ $t('admin_right_btn2') }}</label>
-			<RadioGroup
-				v-model="center.labelTextAlign"
-				type="button"
-				size="large"
-				@on-change="checkChange"
-			>
-				<Radio label="left">{{ $t('admin_right_btn2_1') }}</Radio>
-				<Radio label="right">{{ $t('admin_right_btn2_2') }}</Radio>
-			</RadioGroup>
-		</div>
-		<div class="vf-control">
 			<label>{{ $t('group1') }}</label>
 			<i-switch :value="true" :disabled="true"/>
 			<ul class="vf-select-list">

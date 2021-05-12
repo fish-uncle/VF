@@ -77,11 +77,11 @@ obj[componentType] = []
 	}
 })
 
-const store = Vue.observable({
+const state = Vue.observable({
 	list,
 	obj,
 	changeList
 })
-const mutations = {
+const actions = {
 }
-export default { store, mutations }
+export default { state, actions }

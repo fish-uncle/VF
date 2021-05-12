@@ -22,7 +22,7 @@
 	export default {
 		data () {
 			return {
-				language: language.store
+				language: language.state
 			}
 		},
 		computed: {
